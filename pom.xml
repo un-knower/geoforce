@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.chaosting</groupId>
+	<artifactId>geoforce</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<checkstyle.configLocation>${basedir}</checkstyle.configLocation>
+		<repository.url>http://maven.aliyun.com/nexus/content/repositories/releases/</repository.url>
+		<snapshotRepository.url>http://maven.aliyun.com/nexus/content/repositories/snapshots/</snapshotRepository.url>
+	</properties>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.16</version>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.13</version>
+				<configuration>
+					<configLocation>${checkstyle.configLocation}/script/checkstyle.xml</configLocation>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>2.4</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.6</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<name>Nexus Release Repository</name>
+			<url>${repository.url}</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>${snapshotRepository.url}</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<modules>
+		<module>geoforce-area</module><!-- 1099 -->
+		<module>geoforce-base</module><!-- 20821 -->
+		<module>geoforce-addressmatch</module><!-- -1 -->
+		<module>geoforce-distribute</module><!-- 20831 -->
+		<module>geoforce-geocoding</module><!-- 20841 -->
+		<module>geoforce-pathplan</module><!-- 20851 -->
+		<module>geoforce-statistic</module><!-- 20861 -->
+		<module>geoforce-ts</module><!-- 20871 -->
+		<module>geoforce-pathanalysis</module><!-- 20881 -->
+		<module>geoforce-reverse</module><!-- 20891 -->
+		<module>geoforce-lbs</module><!-- 20901 -->
+		<module>geoforce-point</module><!-- 20902 -->
+
+		<module>geoforce-portal</module><!-- 8010 -->
+		<module>geoforce-oss</module><!-- 8020 -->
+		<module>geoforce-saas</module><!-- 8030 -->
+		<module>geoforce-gateway</module><!-- 8040 -->
+	</modules>
+</project>

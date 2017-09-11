@@ -1,0 +1,164 @@
+
+/*数据表格*/
+.data-list {  
+  position: fixed;
+  left: 0; bottom: 0;
+  width: 450px; height: 40px;    
+  z-index: 77778;
+  background-color: #fff;
+  overflow: hidden;
+  border-right: 1px solid #ddd;
+}
+.data-list .head {
+  height: 40px;
+}
+.data-list .head .title {
+  float: left;
+  width: 368px; height: 40px;
+  background: #0096ff url(imgs/table/title-region.png) no-repeat 20px center;
+  line-height: 40px;
+  color: #fff;
+  font-size: 16px;
+  font-family: "microsoft yahei";
+  font-weight: bold;
+  padding-left: 60px;
+  cursor: pointer;
+}
+
+.data-list .head .resize {
+  float: left;
+  width: 40px; height: 40px;
+  border: 1px solid #ddd;
+  border-left: none;
+  cursor: pointer;
+  background-color: #fff;
+}
+.data-list .head .resize:hover {
+  background-color: #f5f5f5;
+}
+.data-list .head .second {
+  border: 1px solid #ddd;
+  border-right: 0;
+  border-left: 0;
+}
+.data-list .head .third {
+  border: 1px solid #ddd;
+  border-right: 0;
+}
+
+.data-list .head .up {
+  background: #fff url(imgs/table/up-top.png) no-repeat center center;
+}
+.data-list .head .right {
+  background: #fff url(imgs/table/up-right.png) no-repeat center center;
+}
+.data-list .head .min {
+  background: #fff url(imgs/table/min.png) no-repeat center center;
+}
+.data-list .head .left {
+  background: #fff url(imgs/table/up-left.png) no-repeat center center;
+}
+.data-list .head .bottom {
+  background: #fff url(imgs/table/down-bottom.png) no-repeat center center;
+}
+.data-list .head .third {
+  display: none;
+}
+.data-list .content {
+  width: 100%;
+  display: none;
+}
+.data-list .content .search-area {
+  padding: 10px 0 0 10px;
+}
+.data-list .data-results {
+  overflow: auto;
+  width: 450px; height: 250px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.data-list .data-table {
+  border: none;
+}
+.data-list .data-table > thead {
+  height: 40px;
+  background-color: #EDEBE9;    
+}
+.data-list .data-table > thead td {
+  border: 1px solid #fff;  
+}
+.data-list .data-table > tbody td {
+  border: 1px solid #ddd;  
+  /*overflow: hidden;*/
+  /*word-break: break-all;*/
+  word-wrap:break-word;
+}
+.data-list .data-table thead .a-head {
+  font-size: 12px;
+  color: #444;
+  font-family: 'microsoft yahei';
+  font-weight: bold;
+}
+.data-list .data-table thead .a-head:hover {
+  text-decoration: none;
+}
+.data-list .data-table thead .a-head:active {
+  text-decoration: none;
+}
+.data-list .data-table thead .dropdown-menu {
+  min-width: 80px;
+  box-shadow: none;
+  border-radius: 0;
+}
+.data-list .data-table thead .dropdown-menu > li > a {
+  font-size: 12px;    
+}
+.data-list .data-table td {
+  max-width: 300px;
+  text-align: center;
+  word-break:break-all;
+}
+.data-list .data-table td.td-60 {
+  min-width: 60px;    
+}
+.data-list .data-table td.td-100 {
+  min-width: 100px;    
+}
+.data-list .data-table td.td-150 {
+  min-width: 160px;    
+}
+.data-list .data-table td.td-200 {
+  min-width: 200px;    
+}
+.data-list .data-table td.td-300 {
+  min-width: 300px;    
+}
+.data-list .data-table tbody td[data-editable] {
+  cursor: pointer;   
+}
+.data-list .foot {
+  width: 100%;
+  padding: 5px 10px 10px 0;
+}
+.data-list .foot .a-foot {
+  font-size: 14px;
+  font-family: 'microsoft yahei';
+  margin-right: 15px;
+  line-height: 38px;
+}
+
+.data-list .data-table tbody tr.action {
+  background-color: #8CD9FC;
+}
+
+.data-list .foot .page-marker {
+  font-family: 'microsoft yahei';
+  color: #333;
+  margin-left: 20px;
+  line-height: 38px;
+}
+
+.data-list .data-table tbody tr.action {
+  background-color: #8CD9FC;
+}
+

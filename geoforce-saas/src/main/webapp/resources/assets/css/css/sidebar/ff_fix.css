@@ -1,0 +1,13 @@
+@media only screen and (min--moz-device-pixel-ratio: 0) {
+  .navbar.navbar-fixed-top {
+    border-radius: 0.05em;
+  }
+  .navbar.navbar-fixed-top,
+  .navbar.navbar-fixed-top > .navbar-container,
+  .navbar.navbar-fixed-top .ace-nav > li .dropdown-menu {
+    -moz-backface-visibility: hidden;
+  }
+  .sidebar.sidebar-fixed {
+    -moz-backface-visibility: hidden;
+  }
+}

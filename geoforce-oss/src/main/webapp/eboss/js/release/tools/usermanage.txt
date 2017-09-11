@@ -1,0 +1,9 @@
+
+..\..\config.js
+..\..\..\user\js\load.js
+..\..\..\user\js\employee.js
+..\..\..\user\js\ordermge.js
+..\..\..\user\js\permission.js
+..\..\..\user\js\productmge.js
+..\..\..\user\js\role.js
+..\..\..\user\js\usermge.js

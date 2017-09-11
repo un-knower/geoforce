@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+        
+    <dubbo:application name="consumer_egispboss" />
+    <dubbo:annotation />
+	<!-- 使用zookeeper注册中心暴露服务地址 --><!-- 外侧 ip 121.40.86.232:2182 -->
+	<!-- 192.168.10.251:2181 -->
+	<dubbo:registry protocol="zookeeper"  address="10.168.191.19:2181"/>
+      
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+	<dubbo:reference id="privilegeService" interface="com.supermap.egispservice.base.service.IPrivilegeService" version="2.5.3"  check="false"/>
+	<dubbo:reference id="roleService" interface="com.supermap.egispservice.base.service.IRoleService" version="2.5.3"  check="false"/>
+	<dubbo:reference id="staffService" interface="com.supermap.egispservice.base.service.IStaffService" version="2.5.3"  check="false"/>
+	<dubbo:reference id="orderService" interface="com.supermap.egispservice.base.service.IOrderService" version="2.5.3"  check="false"/>
+	<dubbo:reference id="serviceModuleService" interface="com.supermap.egispservice.base.service.IServiceModuleService" version="2.5.3"  check="false"/>
+	<dubbo:reference id="sysUpdateLogService" interface="com.supermap.egispservice.base.service.ISysUpdateLogService" version="2.5.3"  check="false"/>
+	<dubbo:reference id="userService" interface="com.supermap.egispservice.base.service.UserService" version="2.5.3"  check="false"/>
+	
+	<!-- 网点服务 -->
+	<dubbo:reference id="pointService" interface="com.supermap.egispservice.base.service.PointService" version="2.5.3" check="false"/>
+	<dubbo:reference id="pointExtcolService" interface="com.supermap.egispservice.base.service.PointExtcolService" version="2.5.3" check="false"/>
+	<dubbo:reference id="pointExtcolValService" interface="com.supermap.egispservice.base.service.PointExtcolValService" version="2.5.3" check="false"/>
+	<dubbo:reference id="pointGroupService" interface="com.supermap.egispservice.base.service.PointGroupService" version="2.5.3" check="false"/>
+
+	<!--城市列表服务  -->
+	<dubbo:reference id="geocodingService" interface="com.supermap.egispservice.geocoding.service.IGeocodingService" version="2.5.3" check="false"/>
+	
+	<!-- 区划服务 -->
+	<dubbo:reference id="areaService" interface="com.supermap.egispservice.area.service.IAreaService" version="2.5.3" check="false"/>
+
+	<!-- 分单服务 -->
+	<dubbo:reference id="logisticsOrderService" interface="com.supermap.egispservice.base.service.ILogisticsOrderService" version="2.5.3" check="false"/>
+
+</beans>

@@ -1,0 +1,64 @@
+.content-left {
+    margin-left: 120px;
+}
+
+
+#content-right {
+    background-color: #fff;
+    overflow: hidden;
+    position: relative;
+    min-height: 700px;    
+}
+
+.content-right-wangdian {
+    background: url(imgs/tongji-banner.png) no-repeat 0 0;
+}
+
+
+.info-wrapper {
+    margin-left: 48px;
+    position: relative;
+    z-index: 11;
+    overflow: hidden;
+}
+
+.introduce {
+    height: 480px;
+    padding-top: 88px;
+    margin-bottom: 58px;
+}
+
+.introduce .title {
+    color: #333;
+    font-size: 80px;
+    line-height: 85px;
+    font-family: 'microsoft yahei';
+}
+.introduce .title span{
+    color: #333;
+    font-size: 64px;
+    line-height: 85px;
+    font-family: 'microsoft yahei';
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #000;
+    font-weight: 500;
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+}
+.introduce .title .icons, .page-product .introduce .title .product-icons-64 {
+    display: block;
+    float: left;
+    margin-right: 15px;
+    line-height:64px;
+}
+
+.product-icons-64 .product-icons-ecs {
+    background-position: 0 0;
+}
+.product-icons-32, .product-icons-48, .product-icons-64, .product-icons-96, .product-icons-128 {
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+}

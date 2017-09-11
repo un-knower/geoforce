@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+	<dubbo:application name="provider_pathplan" />
+
+ 	<!--使用zookeeper注册中心暴露服务地址 -->
+	<dubbo:registry  protocol="zookeeper"  address="10.168.191.19:2181" />
+	<!-- 用dubbo协议在20851端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20851" />
+
+    <dubbo:service interface="com.supermap.egispservice.pathplan.service.IPathPlanService" version="2.5.3" ref="pathPlanService"  timeout="180000" delay="-1" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+    <bean id="pathPlanService" class="com.supermap.egispservice.pathplan.service.PathPlanServiceImpl" />
+    <dubbo:service interface="com.supermap.egispservice.pathplan.service.IRouteTaskService" version="2.5.3" ref="routeTaskService"  timeout="180000" delay="-1" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+    <bean id="routeTaskService" class="com.supermap.egispservice.pathplan.service.RouteTaskServiceImpl" />
+    <dubbo:service interface="com.supermap.egispservice.pathplan.service.IPathPlanServiceAPI" version="2.5.3" ref="pathPlanServiceAPI"  timeout="180000" delay="-1" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+    <bean id="pathPlanServiceAPI" class="com.supermap.egispservice.pathplan.service.PathPlanServiceAPIImpl" />
+
+</beans>

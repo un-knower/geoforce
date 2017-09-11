@@ -1,0 +1,27 @@
+<script type="text/javascript" src="script/jquery-ui-1.8.11.custom.min.js"></script>
+
+<div id="loginWindow" title="登录" style="display:none;">
+  <table>
+    <tr>
+      <td width="80" style="text-align:right">用户名：</td>
+      <td width="165"><input id="userName" name="textfield" type="text" tabindex="1" size="29"  class="login_input" onkeypress="if (event.keyCode==13){User.loginCommit();return false;}"/>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:right">密  码：</td>
+      <td><input id="password" type="password" name="textfield2" tabindex="2" size="29" class="login_input" onkeypress="if (event.keyCode==13){User.loginCommit();return false;}"/></td>
+    </tr>
+	<!-- <tr>
+		<td></td>
+		<td><a href="http://www.supermapcloud.com/cloudweb/findPassword.jsp" target="_new">忘记密码?</a></td>
+	</tr> -->
+    <tr>
+      <td colspan="2"><table style="margin-top:10px;" align="left">
+          <tr>
+            <td><input type="submit" name="button" id="button1"value="登 录" onclick="User.loginCommit()" style="margin-left:73px; width:4em; height:2.5em"/>
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,192 @@
+.skin-2 .navbar.navbar-system {
+	background:#DCDCDC url('../../assets/css/img/top_title_bg.png')  fixed top;
+	
+	#header-logo {
+		img {
+			margin-top: 3px;
+			float: left;
+			
+			&.boc {
+				margin-top: 7px;
+			}
+		}
+		span {
+			float: left;
+			font: normal normal 700 16px/45px 'microsoft yahei';
+			margin-left: 5px;
+			&.red {
+				color: #FE0000;
+			}
+		}
+	}
+	
+	.header-phone, .header-nav-btn {
+		color:#757575; 
+		background:#DCDCDC url('/egispweb/resources/assets/css/img/top_title_bg.png')  fixed top;		
+	}
+	
+	.header-share {
+		cursor: pointer;
+		i {
+			width: 17px;
+			height: 17px;
+			float: left;
+			display: inline-block;
+			margin-top: 14px;
+			background: transparent url('/egispweb/resources/css/imgs/layout/share.png') 0 center;
+		}
+		span {
+			small {
+				margin: 0 10px 0 5px;
+				font-size: 12px;
+			}
+		}
+	}
+	
+	.header-more {
+		color:#757575; 
+		background:#DCDCDC url('/egispweb/resources/assets/css/img/top_title_bg.png')  fixed top;
+		
+		small {
+			font-size: 30px;
+			line-height: 20px;
+		}
+	}
+	
+	.header-more-dropdown {
+		position: absolute;
+		right: 0;
+		top: 43px;
+		width: 100px;
+		border: 1px solid #ddd;
+		background: #fff;
+		z-index: 88888;
+		list-style: none;
+		min-width: 80px;
+		
+		li {
+			list-style: none;
+			width: 100%;
+			height: 30px;
+			font: normal normal normal 14px/30px 'microsoft yahei';
+			padding-left: 15px;
+			border-bottom: 1px solid #ddd;
+			
+			&:last-child {
+				border: 0;
+			}
+		}
+	}
+	
+}
+
+.sidebar.sidebar-absolute {
+	height: ~'calc(100% - 50px)';
+	z-index: 80008;
+}
+
+.bottom-logo {
+	position: fixed;
+  bottom: 2px;
+  left: 0;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  color: #fff;
+  z-index: 1027;
+	
+	img {
+		height: 30px;
+		vertical-align: top;
+	}
+	span {
+		color: #FF9800;
+		font: normal normal normal 14px/30px 'microsoft yahei';
+	}
+}
+
+#navbar_free {
+	background-color:#FF6600;
+	color:#fff;
+	text-align:center;
+	line-height:45px;
+	font-weight:bold;
+	display:none;
+}
+
+.navbar-container {
+	.user-expire {
+//		width: 900px;
+		height: 100%;
+		float: left;
+//		margin-left: ~"calc(50% - 690px)";
+//		margin-left: ~"calc(50% - 275px)";
+		font: normal normal bold 20px/40px "microsoft yahei";
+		color: #CC0033;
+	}
+}
+
+
+@keyframes blink{
+  0%{opacity: 1;}
+  50%{opacity: 1;}
+  50.01%{opacity: 0;} /* 注意这里定义50.01%立刻透明度为０，可以设置闪烁效果 */
+  100%{opacity: 0;} 
+}
+
+/* 添加兼容性前缀 */
+
+@-webkit-keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    50.01% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@-moz-keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    50.01% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@-ms-keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    50.01% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@-o-keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    50.01% { opacity: 0; }
+    100% { opacity: 0; }
+}
+.blink{
+    animation: blink .75s linear infinite;  
+    /* 其它浏览器兼容性前缀 */
+    -webkit-animation: blink .75s linear infinite;
+    -moz-animation: blink .75s linear infinite;
+    -ms-animation: blink .75s linear infinite;
+    -o-animation: blink .75s linear infinite;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

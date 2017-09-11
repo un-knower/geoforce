@@ -1,0 +1,2286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Language" content="zh-CN" />
+  <title>运营支撑系统</title>
+  <script type="text/javascript" src="../libs/include.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/user.css"/>
+</head>
+
+<body>
+<header>
+  <div class="header">
+	  <div class="inner">
+	    <div class="inner-left">
+	        欢迎来到运营支撑系统
+	    </div>
+	    <div class="inner-right">
+          欢迎您，
+	        <a id="nav_login_username" href="javascript:;"></a><i></i>
+	        <a href="javascript:logout();">退出</a> 
+	    </div>
+	  </div>		
+  </div>		
+</header>
+<div class="content">
+
+  <div class="sliderbar-nav">
+
+    <ul class="dashboard-menu click-menu" id="nav_left_menu">
+
+      <li class="active">
+        <div class="pointer">
+          <div class="arrow"></div>
+          <div class="arrow_border"></div>
+        </div>
+        <a href="javascript:;"  id="nav_a_personalmanage" data-target="personal" >
+          <span class="glyphicon glyphicon-th-list btn-lg" style="padding: 5px 10px;"></span> 个人资料
+        </a>
+      </li> 
+    </ul>    
+  </div><!-- end left nav-bar -->
+  
+  <!-- 右边主体内容 -->
+  <div class="content-right">
+    
+    <!-- 个人资料 -->
+    <div id="div_personalmanage" class="tab-contentbody"  style="display: block;">      
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#personalfile" role="tab" data-toggle="tab">个人资料</a></li>
+        <li><a href="#div_resetpassword" role="tab" data-toggle="tab">修改密码</a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="personalfile">
+          <div class="model-content-line">
+            <span class="first">员工姓名：</span>
+            <span class="normal" id="span_me_employee_username"></span>
+          </div>
+          <div class="model-content-line">
+            <span class="first">真实姓名：</span>
+            <span class="normal" id="span_me_employee_realName"></span>
+          </div>
+          <div class="model-content-line">
+            <span class="first">状态：</span>
+            <span class="normal" id="span_me_employee_status"></span>
+          </div>      
+          <div class="model-content-line">
+            <span class="first">性别：</span>
+            <div style="display:inline" id="span_me_employee_gender" class="productslist">            
+            </div>
+          </div>
+          <div class="model-content-line">
+            <span class="first">邮箱：</span>
+            <span class="normal" id="span_me_employee_email"></span>
+          </div>
+          <div class="model-content-line">
+            <span class="first">部门：</span>
+            <span class="normal" id="span_me_employee_department"></span>
+          </div>
+          <div class="model-content-line">
+            <span class="first">职务：</span>
+            <span class="normal" id="span_me_employee_position"></span>
+          </div>
+          <div class="model-content-line">
+            <span class="first">手机：</span>
+            <span class="normal" id="span_me_employee_mobilePhone"></span>
+          </div>  
+          <div class="model-content-line">
+            <span class="first">座机：</span>
+            <span class="normal" id="span_me_employee_phone"></span>
+          </div>  
+          <div class="model-content-line">
+            <span class="first">角色：</span>
+            <span class="normal" id="span_me_employee_roles"></span>
+          </div> 
+        </div>
+        <div class="tab-pane" id="div_resetpassword">          
+          <span class="lbl-resetpwd">旧密码：</span>
+          <input class="resetpwd-text" type="password"  id="txt_oldpassword" placeholder="输入旧密码" value="" style="margin-bottom:20px;margin-top:20px;"/>
+          <br>      
+          <span class="lbl-resetpwd">新密码：</span>
+          <input class="resetpwd-text" type="password" id="txt_newpassword" placeholder="输入新密码" value="" style="margin-bottom:20px;"/>
+          <!-- <span class="hint-resetpwd">密码</span> -->
+          <br>
+          <span class="lbl-resetpwd">确认密码：</span>
+          <input class="resetpwd-text" type="password" id="txt_newpasswordsure" placeholder="再次确认新密码"  value="" style="margin-bottom:20px;" />
+          <span class="hint-resetpwd"></span>
+          <button type="button" id="btn_resetpassword" class="btn btn-success" style="width:180px;margin-left: 82px; ">确定</button>
+        </div>
+      </div>
+    </div> <!-- end 个人资料 -->
+
+    <!-- 用户管理 -->
+    <div id="div_usermanage" class="tab-contentbody">
+      <div class="tab-header">
+        <!-- <button type="button" class="btn btn-success" id="btn_modal_adduser" style="display:none;" data-toggle="modal"  
+        data-target="#modal_add_user">
+          <span class="glyphicon glyphicon-plus"></span> 新增
+        </button> -->
+        <div class="col">
+          <label>所在地：</label>
+          <select class="user-location"></select>
+        </div>
+        <div class="col">
+          <label>所属行业：</label>
+          <select class="user-solutions"></select>
+        </div>
+        <div class="col">
+          <label>时间：</label>
+          <input type="text" class="date txt-searchuser-starttime" value="" readonly="true" 
+            onClick="WdatePicker({dateFmt: 'yyyy-MM-dd', maxDate:'%y-%M-%d'})"/>
+          <label>至</label>
+          <input type="text" class="date txt-searchuser-endtime" value="" readonly="true" 
+            onClick="WdatePicker({dateFmt: 'yyyy-MM-dd', maxDate:'%y-%M-%d'})"/>
+        </div>
+
+        <div class="input-group lg">
+          <input type="text" id="txt_search_user" class="form-control" placeholder="输入邮箱、手机号、昵称、公司名称、真实姓名筛选" value="">
+          </input>
+          <span class="input-group-btn">
+            <button id="btn_search_user" class="btn btn-default" type="button">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>
+        </div>   
+        <select id="select_search_user_status" class="select-searchtype">
+          <option value="-1">全部</option>
+          <option value="0">普通</option>
+          <option value="1">禁用</option>
+          <option value="4">其他</option>
+        </select>     
+      </div>
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr id="thead_users">
+            <td>序号</td>
+            <td>昵称</td>
+            <td>手机号</td>
+            <td>公司名称</td>
+            <td>公司所在地</td>
+            <td>所属行业</td>
+            <td>首次登录时间</td>
+            <td>操作</td>
+          </tr>
+        </thead>
+        <tbody id="table_users">          
+        </tbody>
+      </table>
+      <div class="loader">正在搜索，请稍候...</div>
+
+      <div id="pager_users" class="content-pager" page="0" data-target="user">
+        <ul class="pagination" id="ul_pager_users">
+          <!-- <li><a href="javascript:;">&laquo;</a></li>
+          <li class="active"><a href="javascript:;">1</a></li>
+          <li><a href="javascript:;">2</a></li>
+          <li><a href="javascript:;">&raquo;</a></li> -->
+        </ul>
+      </div>
+	  <div class="export-wrap" id="export_wrap">
+    		<label id="users_total">共1234条</label>
+    		<label>每页</label>
+    		<select class="select-sm" id="users_page_count">
+    			<option value="10" selected="true">10</option>
+    			<option value="50">50</option>
+    			<option value="100">100</option>
+    		</select>
+        <!-- <a href="javascript:void(0);" class="export-a">导出</a> -->
+	  </div>
+    </div> <!-- end 用户管理 -->
+
+    <!-- key管理 -->
+    <div id="div_keymanage" class="tab-contentbody">      
+      <div class="tab-header">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_add_key">
+          <span class="glyphicon glyphicon-plus"></span> 新增
+        </button>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="输入用户名或者用户ID查询"  value=""></input>
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+          </span>
+        </div>        
+      </div>
+      <table class="table table-bordered table-striped table-hover" style="margin-top: 20px;">
+        <thead>
+          <tr>
+            <td>序号</td>
+            <td>用户ID</td>
+            <td>用户名</td>
+            <td>姓名</td>
+            <td>AppKey</td>
+            <td>删除</td>
+          </tr>
+        </thead>
+        <tbody id="table_keys">          
+        </tbody>
+      </table>
+      <div id="pager_keys" class="content-pager" data-target="key">
+        <ul class="pagination">
+          <li><a href="javascript:;">&laquo;</a></li>
+          <li class="active"><a href="javascript:;">1</a></li>
+          <li><a href="javascript:;">2</a></li>
+          <li><a href="javascript:;">&raquo;</a></li>
+        </ul>
+      </div>
+    </div><!--  end key管理 -->
+
+     <!-- 产品管理 -->
+    <div id="div_productmanage" class="tab-contentbody">      
+      <div class="tab-header">
+        <button type="button" class="btn btn-success" id="btn_modal_add_product" style="display:none;">
+          <span class="glyphicon glyphicon-plus"></span> 新增
+        </button>
+        <div class="input-group">
+          <input type="text" class="form-control" id="txt_search_product" value="" placeholder="输入产品名进行查询"></input>
+          <span class="input-group-btn">
+            <button id="btn_search_product" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+          </span>
+        </div>    
+        <select id="select_search_product_status" class="select-searchtype">
+          <option value="-1">全部</option>
+          <option value="0">正式发布</option>
+          <option value="1">公测</option>
+          <option value="2">撤销</option>
+          <option value="3">其他</option>
+        </select>        
+      </div>
+      <table class="table table-bordered table-striped table-hover" style="margin-top: 20px;">
+        <thead >
+          <tr id="thead_products">
+            <td>序号</td>
+            <!-- <td>ID</td> -->
+            <td>产品名称</td>
+            <td>价格/天</td>
+            <td>使用限制/天</td>
+            <td>PID</td>
+            <td>状态</td>
+            <!-- <td>详情</td>
+            <td>修改</td>
+            <td>删除</td> -->
+          </tr>
+        </thead>
+        <tbody id="table_products">          
+        </tbody>
+      </table>
+      <div id="pager_products" class="content-pager" page="0" data-target="product">
+        <ul class="pagination">
+          <!-- <li><a href="javascript:;">&laquo;</a></li>
+          <li class="active"><a href="javascript:;">1</a></li>
+          <li><a href="javascript:;">2</a></li>
+          <li><a href="javascript:;">&raquo;</a></li> -->
+        </ul>
+      </div>
+    </div><!--  end 产品管理 -->
+
+     <!-- 订单管理 -->
+    <div id="div_ordermanage" class="tab-contentbody">      
+      <div class="tab-header">
+        <button type="button" id="btn_modal_addorder" class="btn btn-success" data-toggle="modal" data-target="#modal_add_order" style="display: none;">
+          <span class="glyphicon glyphicon-plus"></span> 新增
+        </button>
+        <div class="input-group">
+          <input type="text" id="txt_search_order" value="" class="form-control" placeholder="输入邮箱、手机号、昵称筛选"></input>
+          <span class="input-group-btn">
+            <button id="btn_search_orders" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+          </span>
+        </div>   
+        <select id="select_search_order_status" class="select-searchtype">
+          <option value="-1">全部</option>
+          <option value="0">待审核</option>
+          <option value="1">商务定制审核通过</option>
+          <option value="2">免费试用审核通过</option>
+          <option value="3">不通过</option>
+        </select>             
+      </div>
+      <table class="table table-bordered table-striped table-hover" style="margin-top: 20px;">
+        <thead>
+          <tr id="thead_orders">
+            <td>序号</td>
+            <td>邮箱</td>
+            <td>手机号</td>
+            <td>昵称</td>
+            <td>订单类型</td>
+            <td>订单状态</td>            
+            <td>创建时间</td>            
+            <!--
+            <td>状态</td>
+            <td>详情</td>
+            <td>修改</td>
+            <td>审核</td>
+            <td>删除</td> -->
+          </tr>
+        </thead>
+        <tbody id="table_orders">          
+        </tbody>
+      </table>
+      <div id="pager_orders" class="content-pager" page="0" data-target="order">
+        <ul class="pagination">
+          <!-- <li><a href="javascript:;">&laquo;</a></li>
+          <li class="active"><a href="javascript:;">1</a></li>
+          <li><a href="javascript:;">2</a></li>
+          <li><a href="javascript:;">&raquo;</a></li> -->
+        </ul>
+      </div>
+    </div><!--  end 订单管理 -->
+
+     <!-- 员工管理 -->
+    <div id="div_employeemanage" class="tab-contentbody">      
+      <div class="tab-header">
+        <button type="button" id="btn_modal_addemployee" style="display:none;" class="btn btn-success" data-toggle="modal" data-target="#modal_add_employee">
+          <span class="glyphicon glyphicon-plus"></span> 新增
+        </button>
+        <div class="input-group">
+          <input type="text" id="txt_search_employee" value="" class="form-control" placeholder="输入员工名称查询"></input>
+          <span class="input-group-btn" id="btn_search_employee">
+            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+          </span>
+        </div>     
+        <select id="select_search_employee_status" class="select-searchtype">
+          <option value="-1">全部</option>
+          <option value="0">普通</option>
+          <option value="1">禁用</option>
+        </select>       
+      </div>
+      <table class="table table-bordered table-striped table-hover" style="margin-top: 20px;">
+        <thead>
+          <tr id="thead_employee">
+            <td>序号</td>
+            <td>用户名</td>
+            <td>真实姓名</td>
+            <td>性别</td>
+            <td>邮箱</td>
+            <td>部门</td>
+            <td>职务</td>
+            <!-- <td>详情</td>
+            <td>修改</td>
+            <td>赋角色</td>
+            <td>重置密码</td>
+            <td>删除</td> -->
+          </tr>
+        </thead>
+        <tbody id="table_employees">          
+        </tbody>
+      </table>
+      <div id="pager_employees" class="content-pager" page="0" data-target="employee" >
+        <ul class="pagination">
+          <!-- <li><a href="javascript:;">&laquo;</a></li>
+          <li class="active"><a href="javascript:;">1</a></li>
+          <li><a href="javascript:;">2</a></li>
+          <li><a href="javascript:;">&raquo;</a></li> -->
+        </ul>
+      </div>
+    </div> <!-- end 员工管理 -->
+
+     <!-- 角色管理 -->
+    <div id="div_rolemanage" class="tab-contentbody">      
+      <div class="tab-header">
+        <button type="button" id="btn_modal_addrole" style="display:none;" class="btn btn-success" data-toggle="modal" data-target="#modal_add_role">
+          <span class="glyphicon glyphicon-plus"></span> 新增
+        </button>
+        <div class="input-group">
+          <input type="text" id="txt_search_role" value="" class="form-control" placeholder="输入角色名称查询"></input>
+          <span class="input-group-btn" id="btn_search_roles">
+            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+          </span>
+        </div>         
+      </div>
+      <table class="table table-bordered table-striped table-hover" style="margin-top: 20px;">
+        <thead>
+          <tr id="thead_role">
+            <td>序号</td>
+            <td>名称</td>
+            <td>状态</td>
+            <!-- <td>修改</td>
+            <td>修改权限</td>
+            <td>删除</td> -->
+          </tr>
+        </thead>
+        <tbody id="table_roles">          
+        </tbody>
+      </table>
+      <div id="pager_roles" class="content-pager" page="0" data-target="role">
+        <ul class="pagination">
+          <!-- <li><a href="javascript:;">&laquo;</a></li>
+          <li class="active"><a href="javascript:;">1</a></li>
+          <li><a href="javascript:;">2</a></li>
+          <li><a href="javascript:;">&raquo;</a></li> -->
+        </ul>
+      </div>
+    </div> <!-- end 角色管理 -->
+
+    <!-- 权限管理 -->
+    <div id="div_permissionmanage" class="tab-contentbody">      
+      <div class="tab-header">
+        <button type="button" id="btn_modal_addper" style="display:none;" class="btn btn-success"  data-toggle="modal" data-target="#modal_add_permission">
+          <span class="glyphicon glyphicon-plus"></span> 新增
+        </button>
+        <div class="input-group">
+          <input type="text" id="txt_search_per" value="" class="form-control" placeholder="输入权限名称查询"></input>
+          <span class="input-group-btn">
+            <button id="btn_search_permissions" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+          </span>
+        </div>    
+        <select id="select_search_per_status" class="select-searchtype">
+          <option value="-1">全部</option>
+          <option value="1">顶级权限</option>
+          <option value="2">子权限</option>
+        </select>          
+      </div>
+      <table class="table table-bordered table-striped table-hover" style="margin-top: 20px;">
+        <thead>
+          <tr id="thead_pers">
+            <td>序号</td>
+            <td>PID</td>
+            <td>名称</td>
+            <td>状态</td>
+            <td>级别</td>
+            <td>代码</td>
+            <td>url</td>
+            <td>备注</td>
+            <!-- <td>修改</td>
+            <td>删除</td> -->
+          </tr>
+        </thead>
+        <tbody id="table_permissions">          
+        </tbody>
+      </table>
+      <div id="pager_permissions" class="content-pager" page="0" data-target="permission">
+        <ul class="pagination">
+          <!-- <li><a href="javascript:;">&laquo;</a></li>
+          <li class="active"><a href="javascript:;">1</a></li>
+          <li><a href="javascript:;">2</a></li>
+          <li><a href="javascript:;">&raquo;</a></li> -->
+        </ul>
+      </div>
+    </div><!--  end 权限管理 -->
+	<!-- 日志更新 -->
+	<div id="div_logmanage" class="tab-contentbody">      
+      <div class="tab-header">
+        <button type="button" id="btn_modal_addlog" class="btn btn-success"  data-toggle="modal" data-target="#modal_add_log">
+          <span class="glyphicon glyphicon-plus"></span> 新增
+        </button>
+        <div class="input-group">
+          <input type="text" id="txt_search_log" value="" class="form-control" placeholder="输入版本名称查询"></input>
+          <span class="input-group-btn">
+            <button id="btn_search_log" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+          </span>
+        </div> 
+        <div class="col" style="float:right;">
+          <label>时间：</label>
+          <input type="text" class="date txt-searchlog-starttime" value="" readonly="true" 
+            onClick="WdatePicker({dateFmt: 'yyyy-MM-dd', maxDate:'%y-%M-%d'})"/>
+          <label>至</label>
+          <input type="text" class="date txt-searchlog-endtime" value="" readonly="true" 
+            onClick="WdatePicker({dateFmt: 'yyyy-MM-dd', maxDate:'%y-%M-%d'})"/>
+        </div>            
+      </div>
+      <table class="table table-bordered table-striped table-hover" style="margin-top: 20px;">
+        <thead>
+          <tr id="thead_logs">
+            <td>序号</td>
+            <td>更新日期</td>
+            <td>版本名称</td>
+            <td>新增功能</td>
+            <td>改进功能</td>
+            <td>缺陷修复</td>
+            <!-- <td>编辑</td>
+            <td>删除</td> -->
+          </tr>
+        </thead>
+        <tbody id="table_logs">          
+        </tbody>
+      </table>
+      <div id="pager_logs" class="content-pager" page="0" data-target="log">
+        <ul class="pagination">
+          <!-- <li><a href="javascript:;">&laquo;</a></li>
+          <li class="active"><a href="javascript:;">1</a></li>
+          <li><a href="javascript:;">2</a></li>
+          <li><a href="javascript:;">&raquo;</a></li> -->
+        </ul>
+      </div>
+    </div><!--  end 日志更新 -->
+	
+	<!--网点数据-->
+	<div id="div_pointmanage" class="tab-contentbody data-mge">   
+      <div class="tab-header">
+          <div class="tt col" style="position:relative;" style="width:95px;">
+            <label>总账号</label>
+            <input type="text" class="top-input" id="point_main_account" style="width:95px;" placeholder="用户名、手机号、邮箱" data-toggle="tooltip" data-placement="top" title="用户名、手机号、邮箱"/>
+            <ul class="drop-ul"></ul>
+          </div>
+          <div class="tt colv2 form-group">
+            <span>子账号</span>
+            <select id="point_sub_account" class="multiple-init" multiple="multiple">
+            </select>
+          </div>
+          <div class="tt colv2">
+                <span>网点分组</span>
+                <select class="point-group multiple-init" id="point_group" multiple="multiple"></select>
+          </div>
+        <div class="ss col">
+          <label>时间</label>
+          <input type="text" class="date txt-searchpoint-starttime" value="" readonly="true" 
+            onClick="javascript:$('.open').removeClass('open');WdatePicker({dateFmt: 'yyyy-MM-dd', maxDate:'%y-%M-%d'})"/>
+          <label>至</label>
+          <input type="text" class="date txt-searchpoint-endtime" value="" readonly="true" 
+            onClick="javascript:$('.open').removeClass('open');WdatePicker({dateFmt: 'yyyy-MM-dd', maxDate:'%y-%M-%d'})"/>
+        </div>
+    		<div class="ss col">
+              <label>网点状态</label>
+              <select class="point-group" id="point_status"><option selected="true" value="">全部</option><option value="0">定位成功</option><option value="1">定位失败</option></select>
+        </div>
+        <div class="ss float-r" style="margin-right: -40px;">
+            <button id="btn_search_point" class="btn btn-default btn-sm" type="button">
+              搜索
+            </button>
+        </div>
+    		<div class="ss col" style="float:;">
+            <label>地区</label>
+  			    <div class="smcity cityli">
+  				    <a href="javascript:void(0);" class="current-city"><span class="text">北京市</span><span class="caret"></span></a>
+    				  <div class="smcity-content" style="display:none;">
+      					<div class="smcity-title-top">
+      					  <span>城市列表</span>
+      					  <span class="show-default-city"></span>
+      					  <button class="close" type="button" data-target=".smcity-content">
+      						<span aria-hidden="true">&times;</span>
+      					  </button>
+      					</div>
+      					<div class="smcity-title">
+      					  <span>当前位置：</span>
+      					  <a href="javascript:void(0);" option="showWholeCountry">全国</a>
+
+      					  <span class="province level-1 level-2 level-3" style="display:none;">></span>
+      					  <a class="province level-1 level-2 level-3" option="toProvince" href="javascript:void(0);">
+      					  </a>
+
+      					  <span class="city level-3 level-2 level-city" style="display:none;">></span>
+      					  <a class="city level-3 level-2 level-city" option="toCity" href="javascript:void(0);"></a>
+
+      					  <span class="county level-3" style="display:none;">></span>
+      					  <a  class="county level-3" href="javascript:void(0);"></a>
+      					</div>
+    					  <div class="line"></div>
+    					  <div class="all-provinces"></div>
+    					  <div class="child-citys"></div>
+    				  </div>
+    			    </div>
+        </div>
+        </div>
+
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr id="thead_points">
+                <td>序号</td>
+                <td>总账号</td>
+                <td>子账号</td>
+                <td>创建时间</td>
+                <td>网点分组</td>
+                <td>网点状态</td>
+                <td>所属地区</td>
+                <td style="color:red;">总条数</td>
+                <td>操作</td>
+              </tr>
+            </thead>
+            <tbody id="table_points">          
+            </tbody>
+          </table>
+          <div class="loader">正在搜索，请稍候...</div>
+
+          <div id="pager_points" class="content-pager" page="0" data-target="point">
+            <ul class="pagination" id="ul_pager_points">
+            </ul>
+          </div>
+    </div><!--  end 网点数据 -->
+
+    <!--区划数据-->
+  <div id="div_regionmanage" class="tab-contentbody">      
+      <div class="tab-header">
+        <div class="tt col" style="position:relative;" style="width:95px;">
+          <label>总账号</label>
+          <input type="text" class="top-input" id="region_main_account" style="width:165px;" placeholder="用户名、手机号、邮箱"/>
+          <ul class="drop-ul"></ul>
+        </div>
+        <div class="tt colv2 form-group">
+            <span>子账号</span>
+            <select id="region_sub_account" class="multiple-init" multiple="multiple">
+            </select>
+          </div>
+        <div class="col">
+          <label>时间</label>
+          <input type="text" class="date txt-searchregion-starttime" value="" readonly="true" 
+            onClick="javascript:$('.open').removeClass('open');WdatePicker({dateFmt: 'yyyy-MM-dd', maxDate:'%y-%M-%d'})"/>
+          <label>至</label>
+          <input type="text" class="date txt-searchregion-endtime" value="" readonly="true" 
+            onClick="javascript:$('.open').removeClass('open');WdatePicker({dateFmt: 'yyyy-MM-dd', maxDate:'%y-%M-%d'})"/>
+            </div>
+            <!-- <div class="col">
+                  <label>区划分组</label>
+                  <select class="region-group" id="region_group"><option selected="true">全部</option><option>分组1</option><option>分组2</option></select>
+            </div> -->
+            
+            <div class="ss col">
+                <label>地区</label>
+                <div class="smcity cityli">
+                  <a href="javascript:void(0);" class="current-city"><span class="text">北京市</span><span class="caret"></span></a>
+                  <div class="smcity-content" style="display:none;">
+                    <div class="smcity-title-top">
+                      <span>城市列表</span>
+                      <span class="show-default-city"></span>
+                      <button class="close" type="button" data-target=".smcity-content">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="smcity-title">
+                      <span>当前位置：</span>
+                      <a href="javascript:void(0);" option="showWholeCountry">全国</a>
+
+                      <span class="province level-1 level-2 level-3" style="display:none;">></span>
+                      <a class="province level-1 level-2 level-3" option="toProvince" href="javascript:void(0);">
+                      </a>
+
+                      <span class="city level-3 level-2 level-city" style="display:none;">></span>
+                      <a class="city level-3 level-2 level-city" option="toCity" href="javascript:void(0);"></a>
+
+                      <span class="county level-3" style="display:none;">></span>
+                      <a  class="county level-3" href="javascript:void(0);"></a>
+                    </div>
+                    <div class="line"></div>
+                    <div class="all-provinces"></div>
+                    <div class="child-citys"></div>
+                  </div>
+                  </div>
+            </div> 
+            <div class="ss">
+                        <button id="btn_search_region" class="btn btn-default btn-sm" type="button">
+                          搜索
+                        </button>
+            </div> 
+          </div>
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr id="thead_regions">
+                <td>序号</td>
+                <td>总账号</td>
+                <td>子账号</td>
+                <td>创建时间</td>
+                <!-- <td>区划分组</td> -->
+                <td>所属地区</td>
+                <td style="color:red;">总条数</td>
+                <td>操作</td>
+              </tr>
+            </thead>
+            <tbody id="table_regions">          
+            </tbody>
+          </table>
+          <div class="loader">正在搜索，请稍候...</div>
+
+          <div id="pager_regions" class="content-pager" page="0" data-target="region">
+            <ul class="pagination" id="ul_pager_regions">
+            </ul>
+          </div>
+    </div><!--  end 区划数据 -->
+  
+    <!--分单数据-->
+  <div id="div_fendanmanage" class="tab-contentbody">      
+      <div class="tab-header">
+        <div class="tt col" style="position:relative;" style="width:95px;">
+          <label>总账号</label>
+          <input type="text" class="top-input" id="fendan_main_account" style="width:145px;" placeholder="用户名、手机号、邮箱"/>
+          <ul class="drop-ul"></ul>
+        </div>
+        <div class="tt colv2 form-group">
+          <span>子账号</span>
+          <select id="fendan_sub_account" class="multiple-init" multiple="multiple">
+          </select>
+        </div>
+        <!-- <div class="col">
+          <label>时间</label>
+          <input type="text" class="date txt-searchfendan-starttime" value="" readonly="true" 
+            onClick="WdatePicker({dateFmt: 'yyyy-MM-dd', maxDate:'%y-%M-%d'})"/>
+          <label>至</label>
+          <input type="text" class="date txt-searchfendan-endtime" value="" readonly="true" 
+            onClick="WdatePicker({dateFmt: 'yyyy-MM-dd', maxDate:'%y-%M-%d'})"/>
+        </div> -->
+            <div class="colv2" style="position:relative;">
+              <span>订单批次</span>
+              <input type="text" class="top-input width-xm" id="fendan_batchs_input" placeholder="输入批次按enter勾选；或者输入多个用英文逗号隔开，点搜索" data-toggle="tooltip" data-placement="top" title="输入批次按enter勾选；或者输入多个用英文逗号隔开，点搜索"/>
+              <span id="drop_caret" class="caret"></span>
+              <ul class="drop-ul-ms batchlist"></ul>
+            </div>
+            <div class="col">
+              <label>订单状态</label>
+              <select class="point-group" id="fendan_status" style="width:112px;">
+              </select>
+            </div>
+            <div class="ss float-r">
+                <button id="btn_search_fendan" class="btn btn-default btn-sm" type="button">
+                  搜索
+                </button>
+            </div>
+            <div class="ss col" style="float:;">
+                <label>地区</label>
+                <div class="smcity cityli">
+                  <a href="javascript:void(0);" class="current-city"><span class="text">北京市</span><span class="caret"></span></a>
+                  <div class="smcity-content" style="display:none;">
+                    <div class="smcity-title-top">
+                      <span>城市列表</span>
+                      <span class="show-default-city"></span>
+                      <button class="close" type="button" data-target=".smcity-content">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="smcity-title">
+                      <span>当前位置：</span>
+                      <a href="javascript:void(0);" option="showWholeCountry">全国</a>
+
+                      <span class="province level-1 level-2 level-3" style="display:none;">></span>
+                      <a class="province level-1 level-2 level-3" option="toProvince" href="javascript:void(0);">
+                      </a>
+
+                      <span class="city level-3 level-2 level-city" style="display:none;">></span>
+                      <a class="city level-3 level-2 level-city" option="toCity" href="javascript:void(0);"></a>
+
+                      <span class="county level-3" style="display:none;">></span>
+                      <a  class="county level-3" href="javascript:void(0);"></a>
+                    </div>
+                    <div class="line"></div>
+                    <div class="all-provinces"></div>
+                    <div class="child-citys"></div>
+                  </div>
+                  </div>
+            </div> 
+          </div>
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr id="thead_regions">
+                <td>序号</td>
+                <td>总账号</td>
+                <td>子账号</td>
+                <td>订单批次</td>
+                <td>订单状态</td>
+                <td>所属地区</td>
+                <td style="color:red;">总条数</td>
+                <td>操作</td>
+              </tr>
+            </thead>
+            <tbody id="table_fendans">          
+            </tbody>
+          </table>
+          <div class="loader">正在搜索，请稍候...</div>
+
+          <div id="pager_regions" class="content-pager" page="0" data-target="region">
+            <ul class="pagination" id="ul_pager_regions">
+            </ul>
+          </div>
+    </div><!--  end 分单数据 -->
+
+  </div><!--end content-right-->
+</div><!--end content-->
+
+<!-- Modal 添加用户  -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_add_user" tabindex="-1" role="dialog" aria-labelledby="model_label_add_user" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_add_user">新增用户</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel-group" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_add_userone">
+                  登录信息
+                </a>
+              </h4>
+            </div>
+            <div id="collapse_add_userone" class="panel-collapse collapse in">
+              <div class="panel-body">                
+                <div class="model-content-line">
+                  <span class="first red">*用户名：</span>
+                  <input type="text" id="txt_user_name" name="username" value=""></input>
+                  <span id="span_tip_username" class="span-tip">4-20位，字母、数字、下划线组合</span>
+                </div>
+                <div class="model-content-line">
+                  <span class="first red">*密码：</span>
+                  <input type="password" id="txt_user_password"  value=""></input>
+                  <span id="span_tip_userpassword" class="span-tip">6-20位，字母、数字、下划线组合</span>
+                </div>
+                <div class="model-content-line">
+                  <span class="first red">*确认密码：</span>
+                  <input type="password" id="txt_user_passwordsure" name="password"  value=""></input>
+                  <span id="span_tip_userpasswordsure" class="span-tip"></span>
+                </div>     
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_add_usertwo">
+                  基本信息
+                </a>
+              </h4>
+            </div>
+            <div id="collapse_add_usertwo" class="panel-collapse collapse">
+              <div class="panel-body">
+                <div class="model-content-line">
+                  <span class="first red">*邮箱：</span>
+                  <input type="text" id="txt_user_email" name="email" autocomplete="off"  value=""></input>
+                  <span id="span_tip_email" class="span-tip"></span>
+                </div>   
+                <div class="model-content-line">
+                  <span class="first red">*真实姓名：</span>
+                  <input type="text" id="txt_user_realname" name="realName" value=""></input>
+                  <span id="span_tip_realname" class="span-tip"></span>
+                </div> 
+                <div class="model-content-line">
+                  <span class="first red">*性别：</span>
+                  <input id="txt_gender_male" type="radio" name="sex" value="0" checked="true">
+                  <label for="txt_gender_male">男</label>
+                  <input type="radio" name="sex" value="1" style="margin-left: 30px;">
+                  <label for="txt_gender_female">女</label>
+                </div>
+                <div class="model-content-line">
+                  <span class="first red">*公司名称：</span>
+                  <input type="text" id="txt_user_company"  value=""></input>
+                  <span id="span_tip_company" class="span-tip"></span>
+                </div>             
+                <div class="model-content-line">
+                  <span class="first">公司电话： </span>
+                  <input type="text" id="txt_user_companyPhone"  value=""></input>
+                  <span id="span_tip_companyPhone" class="span-tip"></span>
+                </div>            
+                <div class="model-content-line">
+                  <span class="first">公司邮箱：</span>
+                  <input type="text" id="txt_user_companyEmail" name="email"  value=""></input>
+                  <span id="span_tip_companyEmail" class="span-tip"></span>
+                </div>           
+                <div class="model-content-line">
+                  <span class="first">公司地址： </span>
+                  <input type="text" id="txt_user_companyAddress"  value=""></input>
+                  <span id="span_tip_companyAddress" class="span-tip"></span>
+                </div>          
+                <div class="model-content-line">
+                  <span class="first">公司备注： </span>
+                  <input type="text" id="txt_user_companyRemarks"  value=""></input>
+                  <span id="span_tip_companyRemarks" class="span-tip"></span>
+                </div> 
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_add_userthree">
+                  联系方式
+                </a>
+              </h4>
+            </div>
+            <div id="collapse_add_userthree" class="panel-collapse collapse">
+              <div class="panel-body">                 
+                <div class="model-content-line">
+                  <span class="first red">*手机：</span>
+                  <input type="text" id="txt_user_mobile" name="mobilephone"  value=""></input>
+                  <span id="span_tip_mobile" class="span-tip"></span>
+                </div>              
+                <div class="model-content-line">
+                  <span class="first">座机：</span>
+                  <input type="text" id="txt_user_phone" name="telephone" value=""></input>
+                  <span id="span_tip_phone" class="span-tip"></span>
+                </div>           
+                <div class="model-content-line">
+                  <span class="first">传真：</span>
+                  <input type="text" id="txt_user_fax" name="fax"  value=""></input>
+                  <span id="span_tip_fax" class="span-tip"></span>
+                </div>                
+                <div class="model-content-line">
+                  <span class="first">邮编：</span>
+                  <input type="text" id="txt_user_zipcode" name="zipcode"  value=""></input>
+                  <span id="span_tip_zipcode" class="span-tip"></span>
+                </div>              
+                <div class="model-content-line">
+                  <span class="first">联系地址：</span>
+                  <input type="text" id="txt_user_address" name="address"  value=""></input>
+                  <span id="span_tip_address" class="span-tip"></span>
+                </div>         
+                <div class="model-content-line">
+                  <span class="first">备注：</span>
+                  <input type="text" id="txt_user_remarks" name="remarks"  value=""></input>
+                  <span id="span_tip_remarks" class="span-tip"></span>
+                </div> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" id="btn_userhandler" class="btn btn-primary"
+        onClick="addUser()">保存</button>
+      </div>    
+    </div>
+  </div>
+</div> <!-- modal end添加用户 -->
+
+<!-- Modal 修改用户  -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_update_user" tabindex="-1" role="dialog" aria-labelledby="model_label_add_key" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_add_key">修改用户</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line"  style="display:none;">
+          <span class="first">用户ID：</span>
+          <input type="text" id="txt_update_userid" value=""></input>
+        </div>
+        <div class="model-content-line">
+          <span class="first">邮箱：</span>
+          <span class="normal" id="txt_update_user_email"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">状态</span>
+          <select id="txt_update_userstatus">
+            <option value="0" param="0">普通</option>
+            <option value="1" param="1">禁用</option>
+            <option value="4" param="4">其他</option>
+          </select>
+        </div>
+        <div class="model-content-line">
+          <span class="first">备注：</span>
+          <input type="text" id="txt_update_userremarks"  value=""></input>
+        </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="User.update()">确定</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal end修改用户  -->
+
+<!-- Modal 删除用户  -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_delete_user" tabindex="-1" role="dialog" aria-labelledby="model_label_deleteuser" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_deleteuser">删除用户</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line"  style="display:none;">
+          <span class="first">用户ID：</span>
+          <input type="text" id="txt_delete_userid" value=""></input>
+        </div>
+        <div class="model-content-line">
+          <span id="span_delete_user" class="normal"></span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="User.remove()">确定</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 删除用户 end -->
+
+<!-- Modal 用户详情  -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_detail_user" tabindex="-1" role="dialog" aria-labelledby="model_label_userdetail" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_userdetail">用户详情</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line">
+          <span class="first">用户ID：</span>
+          <span class="normal" id="span_detail_userid"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">昵称：</span>
+          <span class="normal" id="span_detail_username"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">邮箱：</span>
+          <span class="normal" id="span_detail_email"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">手机号码：</span>
+          <span class="normal" id="span_detail_mobile"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">真实姓名：</span>
+          <span class="normal" id="span_detail_realname"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">公司名称：</span>
+          <span class="normal" id="span_detail_company"></span>
+        </div>
+        <!-- <div class="model-content-line">
+          <span class="first">QQ：</span>
+          <span class="normal" id="span_detail_sex"></span>
+        </div> -->
+        <div class="model-content-line">
+          <span class="first">公司所在地：</span>
+          <span class="normal" id="span_detail_location"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">所属行业：</span>
+          <span class="normal" id="span_detail_solution"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">首次登录时间：</span>
+          <span class="normal" id="span_detail_firstLogin"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">状态：</span>
+          <span class="normal" id="span_detail_status"></span>
+        </div>
+        <!-- 
+        <div class="model-content-line">
+          <span class="first">公司地址：</span>
+          <span class="normal" id="span_detail_companyAddress"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">公司电话：</span>
+          <span class="normal" id="span_detail_companyPhone"></span>
+        </div> -->
+
+        <!-- <div class="model-content-line">
+          <span class="first">邮编：</span>
+          <span class="normal" id="span_detail_zipcode"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">传真：</span>
+          <span class="normal" id="span_detail_fax"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">座机：</span>
+          <span class="normal" id="span_detail_phone"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">备注：</span>
+          <span class="normal" id="span_detail_remarks"></span>
+        </div> -->
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="deleteUser()">确定</button> -->
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 用户详情 end -->
+
+<!-- Modal 添加key  -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_add_key" tabindex="-1" role="dialog" aria-labelledby="model_label_add_key" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_add_key">新增key</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line">
+          <span>*用户ID：</span>
+          <input type="text" id="txt_key_userid" value=""></input>
+        </div>
+        <div class="model-content-line">
+          <span>*服务ID：</span>
+          <input type="text" id="txt_key_serviceid"  value="" placeholder="多个服务ID用英文逗号隔开"></input>
+        </div>
+        <div class="model-content-line">
+          <span>域名或IP：</span>
+          <input type="text" id="txt_key_domain"  value=""></input>
+        </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onClick="">保存</button>
+      </div>
+    </div>
+  </div>
+</div><!-- end Modal 添加key  -->
+
+<!-- Modal 添加/修改产品  -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_add_product" tabindex="-1" role="dialog" aria-labelledby="model_label_add_product" aria-hidden="true" current="0">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_add_product">新增产品</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line" style="display:none;">
+          <span class="first red">id：</span>
+          <input type="text" id="txt_product_id" value=""></input>
+        </div>
+        <div class="model-content-line" id="div_product_name">
+          <span class="first red">*产品名：</span>
+          <input type="text" id="txt_product_name" value=""></input>
+          <span id="span_tip_productname" class="span-tip"></span>
+        </div>
+        <!-- <div class="model-content-line" id="div_product_name">
+          <span class="first red">*产品代码：</span>
+          <input type="text" id="txt_product_code" value=""></input>
+          <span id="span_tip_productcode" class="span-tip"></span>
+        </div> -->
+        <div class="model-content-line">
+          <span class="first">PID：</span>
+          <select id="txt_product_pid"><option value="" selected="true">顶级产品</option></select>
+        </div>
+        <div class="model-content-line">
+          <span class="first red">*价格/天：</span>
+          <input type="text" id="txt_product_price"  value=""></input>
+          <span id="span_tip_productprice" class="span-tip"></span>
+        </div>    
+        <div class="model-content-line">
+          <span class="first red">*图标名称：</span>
+          <input type="text" id="txt_product_icon_url"  value=""></input>
+          <span id="span_tip_product_icon_url" class="span-tip"></span>
+        </div>          
+        <div class="model-content-line">
+          <span class="first red">*状态：</span>
+          <select id="txt_product_status">
+            <option value="0">正式发布</option>
+            <option value="1">beta测试</option>
+            <option value="2">撤销</option>
+            <option value="3">其他</option>
+          </select>
+        </div>  
+        <div class="model-content-line">
+          <span class="first red">*使用url：</span>
+          <input type="text" id="txt_product_url"  value=""></input>
+          <span id="span_tip_producturl" class="span-tip"></span>
+        </div>  
+
+        <div class="model-content-line">
+          <span class="first red">*分类：</span>          
+          <select id="txt_product_kind">
+            <option value="2" selected="true">物流产品</option>
+            <option value="1">基础产品</option>
+          </select>
+        </div>
+
+        <!-- <div class="model-content-line">
+          <span class="first red">*商务电话：</span>
+          <input type="text" id="txt_product_commercial_tel"  value=""></input>
+          <span id="span_tip_commercial_tel" class="span-tip"></span>
+        </div>   -->
+        
+        <div class="model-content-line">
+          <span class="first">使用限制/天：</span>
+          <input type="text" id="txt_product_limit"  value=""></input>
+        </div>  
+        <div class="model-content-line">
+          <span class="first">参考文档路径：</span>
+          <input type="text" id="txt_product_helpurl"  value=""></input>
+        </div>  
+        <div class="model-content-line">
+          <span class="first">备注：</span>
+          <input type="text" id="txt_product_remark"  value=""></input>
+        </div>  
+        <!-- <div class="model-content-line">
+          <span class="first">技术支持：</span>
+          <input type="text" id="txt_product_support_tel"  value=""></input>
+        </div>  --> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" id="btn_add_product" class="btn btn-primary">保存</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 修改产品 end -->
+
+
+<!-- Modal 产品详情  -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_detail_product" tabindex="-1" role="dialog" aria-labelledby="model_label_productdetail" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_productdetail">产品详情</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line">
+          <span class="first">产品ID：</span>
+          <span class="normal" id="span_detail_productid"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">名称：</span>
+          <span class="normal" id="span_detail_productname"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">状态：</span>
+          <span class="normal" id="span_detail_productstatus"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">价格：</span>
+          <span class="normal" id="span_detail_productprice"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">url：</span>
+          <span class="normal" id="span_detail_producturl"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">限制：</span>
+          <span class="normal" id="span_detail_productlimit"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">代码：</span>
+          <span class="normal" id="span_detail_productcode"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">图标名称：</span>
+          <span class="normal" id="span_detail_productl_icon_url"></span>
+        </div>
+        <!-- <div class="model-content-line">
+          <span class="first">商务电话：</span>
+          <span class="normal" id="span_detail_product_commercial_tel"></span>
+        </div> -->
+        <div class="model-content-line">
+          <span class="first">参考文档url：</span>
+          <span class="normal" id="span_detail_product_ref_rul"></span>
+        </div>
+       <!--  <div class="model-content-line">
+          <span class="first">技术支持：</span>
+          <span class="normal" id="span_detail_product_support_tel"></span>
+        </div> -->
+        <div class="model-content-line">
+          <span class="first">备注：</span>
+          <span class="normal" id="span_detail_product_remarks"></span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="deleteUser()">确定</button> -->
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 产品详情 end -->
+
+
+<!-- Modal 删除产品  -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_delete_product" tabindex="-1" role="dialog" aria-labelledby="model_label_deleteuser" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_deleteuser">删除产品</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line"  style="display:none;">
+          <span class="first">产品ID：</span>
+          <input type="text" id="txt_delete_productid" value=""></input>
+        </div>
+        <div class="model-content-line">
+          <span id="span_delete_product" class="normal"></span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Product.remove()">确定</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 删除产品 end -->
+
+<!-- Modal 添加订单 -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_add_order" tabindex="-1" role="dialog" aria-labelledby="model_label_add_order" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_add_order">新增订单</h4>
+      </div>
+      <div class="modal-body" style="padding: 20px 5px;">
+        <div class="model-content-line">
+          <span class="first red" style="width: 80px;">*选择用户：</span>
+          <input type="text" id="txt_order_userid" value="" placeholder="输入邮箱、手机号、昵称按回车筛选"></input>
+          <span id="span_tip_order_userid" class="span-tip"></span>
+        </div>
+       <!--  <div class="model-content-line">
+          <span class="first red">*产品使用时间：</span>
+          <div class="input-daterange input-group datepicker" id="order_add_datepicker">
+            <input type="text" class="input-sm form-control" name="start" id="txt_orderdate_start" readonly="readonly" 
+            style="background-color:#fff;cursor:pointer;"/>
+            <span class="input-group-addon">至</span>
+            <input type="text" class="input-sm form-control" name="end" id="txt_orderdate_end" readonly="readonly"
+            style="background-color:#fff;cursor:pointer;"/>
+          </div>
+          <span id="span_tip_orderdate" class="span-tip"></span>
+        </div>   -->
+        <div class="model-content-line">
+          <span class="first red" style="width: 80px;">*订单类型</span>
+          <select id="txt_order_status">
+            <option value="0" param="0" selected="true">免费试用</option>
+            <option value="1" param="1">商务定制</option>
+          </select>
+        </div>
+        <div class="model-content-line">
+          <span class="first" style="width: 80px;">备注：</span>
+          <input type="text" id="txt_order_remark"  value=""></input>
+        </div>  
+        <div class="model-content-line">
+          <span class="first red" style="width: 80px;">*产品模块：</span>
+          <div style="display:inline" id="div_products_list" class="productslist">            
+          </div>
+        </div>   
+        <div class="model-content-line">
+          <span class="first" style="width: 80px;">价格：</span>
+          <input type="text" id="txt_order_price"  value=""></input>
+        </div> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Order.add()">保存</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 添加订单 end -->
+
+<!-- Modal 修改订单 -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_update_order" tabindex="-1" role="dialog" aria-labelledby="model_label_update_order" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_update_order">修改订单</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="panel-group" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_update_order">
+                  修改属性
+                </a>
+              </h4>
+            </div>
+            <div id="collapse_update_order" class="panel-collapse collapse">
+              <div class="panel-body">
+                <div class="model-content-line" style="display:none;">
+                  <span class="first red">*订单ID：</span>
+                  <input type="text" id="txt_order_update_orderid" value=""></input>
+                  <span id="span_tip_order_userid" class="span-tip"></span>
+                </div>
+                <!-- <div class="model-content-line">
+                  <span class="first red">*产品使用时间：</span>
+                  <div class="input-daterange input-group datepicker"  id="order_update_datepicker">
+                    <input type="text" class="input-sm form-control" name="date_start" id="txt_order_update_date_start" readonly="readonly"  style="background-color:#fff;cursor:pointer;"  onClick="WdatePicker()"/>
+                    <span class="input-group-addon">至</span>
+                    <input type="text" class="input-sm form-control" name="date_end" id="txt_order_update_date_end" readonly="readonly" style="background-color:#fff;cursor:pointer;"  onClick="WdatePicker()"/>
+                  </div>
+                  <span id="span_tip_orderupdatedate" class="span-tip"></span>
+                </div>   -->
+                <div class="model-content-line">
+                  <span class="first">价格：</span>
+                  <input type="text" id="txt_order_update_price"  value=""></input>
+                  <span id="span_tip_orderupdate_price" class="span-tip"></span>
+                </div> 
+                <div class="model-content-line">
+                  <span class="first">备注：</span>
+                  <input type="text" id="txt_order_update_remark"  value=""></input>
+                </div>  
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" onClick="Order.update()">保存</button>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_update_orderitem">
+                  修改产品
+                </a>
+              </h4>
+            </div>
+            <div id="collapse_update_orderitem" class="panel-collapse collapse">
+              <div class="panel-body" style="padding: 15px 5px;">
+                <div class="model-content-line">
+                  <div style="display:inline" id="div_update_order_products_list" class="productslist">            
+                  </div>
+                </div>  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 修改订单 end -->
+
+<!-- Modal 订单详情  -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_detail_order" tabindex="-1" role="dialog" aria-labelledby="model_label_orderdetail" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_orderdetail">订单详情</h4>
+      </div>
+      <div class="modal-body" style="padding: 20px 5px;">
+        <div class="model-content-line">
+          <span class="first">订单ID：</span>
+          <span class="normal" id="span_detail_orderid"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">用户ID：</span>
+          <span class="normal" id="span_detail_order_userid"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">用户名称：</span>
+          <span class="normal" id="span_detail_order_username"></span>
+        </div>
+        <!-- <div class="model-content-line">
+          <span class="first">产品使用时间：</span>
+          <span class="normal" id="span_detail_orderdate"></span>
+        </div>    -->   
+        <div class="model-content-line">
+          <span class="first">产品：</span>
+          <div style="display:inline" id="div_detail_order_productlist" class="productslist">            
+          </div>
+          <!-- <span class="normal" id="span_detail_submitTime"></span> -->
+        </div>
+        <!-- <div class="model-content-line">
+          <span class="first">原价：</span>
+          <span class="normal" id="span_detail_ordertotalprice"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">折后价：</span>
+          <span class="normal" id="span_detail_orderconsultPrice"></span>
+        </div> -->
+        <div class="model-content-line">
+          <span class="first">订单类型：</span>
+          <span class="normal" id="span_detail_orderType"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">订单状态：</span>
+          <span class="normal" id="span_detail_orderstatus"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">创建时间：</span>
+          <span class="normal" id="span_detail_submitTime"></span>
+        </div>  
+        <div class="model-content-line">
+          <span class="first">备注：</span>
+          <span class="normal" id="span_detail_order_remarks"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 订单详情 end -->
+
+<!-- Modal 审核订单  -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_audit_order" tabindex="-1" role="dialog" aria-labelledby="model_label_auditorder" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_auditorder">审核订单</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line"  style="display:none;">
+          <span class="first">订单ID：</span>
+          <input type="text" id="txt_audit_orderid" value=""></input>
+        </div>
+        <div class="model-content-line">
+          <span class="first red">*状态：</span>
+          <select id="txt_audit_order">
+            <option value="0" selected="true">待审核</option>
+            <option id="option_shangwu"  value="1">商务定制审核通过</option>
+            <option id="option_free"  value="2">免费试用审核通过</option>
+            <option value="3">不通过</option>
+          </select>
+        </div>
+        <div class="model-content-line">
+          <span class="first">备注：</span>
+          <input type="text" id="txt_delete_order_auditRemarks" value=""></input>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Order.audit()">确定</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 审核订单 end -->
+
+<!-- Modal 删除订单  -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_delete_order" tabindex="-1" role="dialog" aria-labelledby="model_label_deleteorder" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_deleteorder">删除订单</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line"  style="display:none;">
+          <span class="first">订单ID：</span>
+          <input type="text" id="txt_delete_orderid" value=""></input>
+        </div>
+        <div class="model-content-line">
+          <span id="span_delete_order" class="normal"></span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Order.remove()">确定</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 删除订单 end -->
+
+<!-- Modal 添加权限 -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_add_permission" tabindex="-1" role="dialog" aria-labelledby="model_label_add_permission" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_add_permission">新增权限</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line">
+          <span class="first red">*权限名称：</span>
+          <input type="text" id="txt_permission_name" value=""></input>
+          <span id="span_tip_permission_name" class="span-tip"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">PID：</span>
+          <select id="txt_permission_pid" ></select>
+        </div>     
+        <div class="model-content-line">
+          <span class="first red">*代码：</span>
+          <input type="text" id="txt_permission_code"  value=""></input>
+          <span id="span_tip_permission_code" class="span-tip"></span>
+        </div>      
+        <div class="model-content-line">
+          <span class="first red">*url：</span>
+          <input type="text" id="txt_permission_url"  value=""></input>
+          <span id="span_tip_permission_url" class="span-tip"></span>
+        </div>       
+        <!-- <div class="model-content-line">
+          <span  class="first">级别：</span>
+          <input type="text" id="txt_permission_level"  value=""></input>
+        </div>   -->
+        <div class="model-content-line">
+          <span class="first red">状态：</span>
+          <select id="txt_permission_addstate">
+            <option value="0" selected="true">使用中</option>
+            <option value="1">禁用</option>
+            <option value="2">弃用</option>
+          </select>
+        </div>    
+
+        <div class="model-content-line">
+          <span class="first">备注：</span>
+          <input type="text" id="txt_permission_remarks"  value=""></input>
+        </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Permission.add()">保存</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 添加权限 end -->
+
+<!-- Modal 修改权限 -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_update_permission" tabindex="-1" role="dialog" aria-labelledby="model_label_update_permission" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_update_permission">修改权限</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line" style="display:none;">
+          <span class="first red">*权限id：</span>
+          <input type="text" id="txt_permission_update_id" value=""></input>
+          <span id="span_tip_permission_name" class="span-tip"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first red">状态：</span>
+          <select id="txt_permission_state">
+            <option value="0" selected="true">使用中</option>
+            <option value="1">禁用</option>
+            <option value="2">弃用</option>
+          </select>
+        </div>    
+        <div class="model-content-line">
+          <span class="first">备注：</span>
+          <input type="text" id="txt_permission_update_remarks"  value=""></input>
+        </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Permission.update()">保存</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 修改权限 end -->
+
+<!-- Modal 删除权限  -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_delete_permission" tabindex="-1" role="dialog" aria-labelledby="model_label_delete_permission" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_delete_permission">删除权限</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line"  style="display:none;">
+          <span class="first">权限ID：</span>
+          <input type="text" id="txt_delete_permission_id" value=""></input>
+        </div>
+        <div class="model-content-line">
+          <span id="span_delete_permission" class="normal"></span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Permission.remove()">确定</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 删除权限 end -->
+
+<!-- Modal 添加角色 -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_add_role" tabindex="-1" role="dialog" aria-labelledby="model_label_add_role" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_add_role">新增角色</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line">
+          <span class="first red">*角色名：</span>
+          <input type="text" id="txt_role_name" value=""></input>
+          <span id="span_tip_role_name" class="span-tip"></span>
+        </div>   
+        <div class="model-content-line">
+          <span class="first">权限：</span>
+          <div id="div_role_permissions" class="role-permissions">            
+          </div>
+        </div>   
+        <div class="model-content-line">
+          <span class="first red">状态：</span>
+          <select id="txt_role_addstate">
+            <option value="0" selected="true">使用中</option>
+            <option value="1">禁用</option>
+            <option value="2">弃用</option>
+          </select>
+        </div>    
+        <div class="model-content-line">
+          <span class="first">备注：</span>
+          <input type="text" id="txt_role_remarks"  value=""></input>
+        </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Role.add()">保存</button>
+      </div>
+    </div>
+  </div>
+</div><!-- end Modal 添加角色 -->
+
+<!-- Modal 修改角色 -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_update_role" tabindex="-1" role="dialog" aria-labelledby="model_label_update_role" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_update_role">修改角色</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line" style="display:none;">
+          <span class="first red">*角色ID：</span>
+          <input type="text" id="txt_role_update_id"  value=""></input>
+        </div>   
+        <div class="model-content-line">
+          <span class="first red">*角色名：</span>
+          <span id="span_update_role_name" class="normal"></span>
+        </div>   
+        <div class="model-content-line">
+          <span class="first">状态：</span>
+          <select id="txt_role_update_state">        
+            <option value="COMMON">普通</option>    
+            <option value="FORBIDDEN">禁用</option>    
+          </select>
+        </div>   
+        <div class="model-content-line">
+          <span class="first">备注：</span>
+          <input type="text" id="txt_role_update_remarks"  value=""></input>
+        </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Role.update()">保存</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 修改角色 -->
+
+<!-- Modal 更新角色权限 -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_update_role_permission" tabindex="-1" role="dialog" aria-labelledby="model_label_update_role_permission" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_update_role_permission">更新角色权限</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line" style="display:none;">
+          <span class="first red">*角色ID：</span>
+          <input type="text" id="txt_role_permission_update_id"  value=""></input>
+        </div>   
+        <div class="model-content-line">
+          <span class="first">角色名：</span>
+          <span id="span_update_role_permission_name" class="normal"></span>
+        </div>   
+        <div class="model-content-line">
+          <span class="first" style="float: left;">权限：</span>
+          <div id="div_role_permissions_update" class="role-permissions" style="width: 420px;">            
+          </div>
+        </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Role.updateRolePers()">保存</button>
+      </div>
+    </div>
+  </div>
+</div><!-- end Modal 更新角色权限 -->
+
+
+<!-- Modal 删除角色 -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_delete_role" tabindex="-1" role="dialog" aria-labelledby="model_label_delete_role" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_delete_role">删除角色</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line" style="display:none;">
+          <span class="first red">*角色ID：</span>
+          <input type="text" id="txt_role_delete_id"  value=""></input>
+        </div>   
+        <div class="model-content-line">
+          <span id="span_delete_role_name" class="normal"></span>
+        </div> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Role.remove()">确定</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 删除角色 -->
+
+<!-- Modal 添加员工 -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_add_employee" tabindex="-1" role="dialog" aria-labelledby="model_label_add_employee" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_add_employee">新增员工</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line">
+          <span class="first red">*用户名：</span>
+          <input type="text" id="txt_employee_name" value="" maxlength="20"></input>
+          <span id="span_tip_employee_name" class="span-tip">4-20位，字母、数字、下划线组合</span>
+        </div>
+        <div class="model-content-line">
+          <span class="first red">*密码：</span>
+          <input id="txt_employee_password" type="password"  value="" maxlength="20"></input>
+          <span id="span_tip_employee_password" class="span-tip">4-20位，字母、数字、下划线组合</span>
+        </div>
+        <div class="model-content-line">
+          <span class="first red">*确认密码：</span>
+          <input type="password" id="txt_employee_passwordsure"  value="" maxlength="20"></input>
+          <span id="span_tip_employee_passwordsure" class="span-tip"></span>
+        </div>     
+        <div class="model-content-line">
+          <span class="first red">*真实姓名：</span>
+          <input type="text" id="txt_employee_realname" value="" maxlength="20"></input>
+          <span id="span_tip_employee_realname" class="span-tip"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first red">*邮箱：</span>
+          <input type="text" id="txt_employee_email" name="email" autocomplete="off"  value="" maxlength="32"></input>
+          <span id="span_tip_employee_email" class="span-tip"></span>
+        </div>   
+        <div class="model-content-line">
+          <span class="first red">*职务：</span>
+          <input type="text" id="txt_employee_job" value="" maxlength="32"></input>
+          <span id="span_tip_employee_job" class="span-tip"></span>
+        </div>
+        <!-- <div class="model-content-line">
+          <span>角色：</span>
+          <select id="txt_employee_role">
+            <option value="1" selected="true">测试</option>
+            <option value="-1" >超级管理员</option>
+            <option value="0" >服务管理员</option>
+          </select>
+        </div> -->
+        <div class="model-content-line">
+          <span class="first red">*性别：</span>
+          <input type="radio" name="employee_sex" value="0" checked="true">男
+          <input type="radio" name="employee_sex" value="1" style="margin-left: 30px;">女
+        </div>
+        <div class="model-content-line">
+          <span class="first red">*手机：</span>
+          <input type="text" id="txt_employee_mobile"  value="" maxlength="11"></input>
+          <span id="span_tip_employee_mobile" class="span-tip"></span>
+        </div>         
+        <!-- <div class="model-content-line">
+          <span class="first red">状态：</span>
+          <select id="txt_role_addstate">
+            <option value="0" selected="true">使用中</option>
+            <option value="1">禁用</option>
+            <option value="2">弃用</option>
+          </select>
+        </div>     -->
+        <div class="model-content-line">
+          <span class="first">座机：</span>
+          <input type="text" id="txt_employee_phone"  value="" maxlength="16 "></input>
+        </div> 
+        <div class="model-content-line">
+          <span class="first">部门: </span>
+          <input type="text" id="txt_employee_department"  value="" maxlength="32"></input>
+        </div>     
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Employee.add()">保存</button>
+      </div>
+    </div>
+  </div>
+</div><!-- end modal 添加员工 -->
+
+<!-- Modal 员工详情  -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_detail_employee" tabindex="-1" role="dialog" aria-labelledby="model_label_employeedetail" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_employeedetail">员工详情</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line">
+          <span class="first">员工ID：</span>
+          <span class="normal" id="span_detail_employee_id"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">员工姓名：</span>
+          <span class="normal" id="span_detail_employee_username"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">真实姓名：</span>
+          <span class="normal" id="span_detail_employee_realName"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">状态：</span>
+          <span class="normal" id="span_detail_employee_status"></span>
+        </div>      
+        <div class="model-content-line">
+          <span class="first">性别：</span>
+          <div style="display:inline" id="span_detail_employee_gender" class="productslist">            
+          </div>
+        </div>
+        <div class="model-content-line">
+          <span class="first">邮箱：</span>
+          <span class="normal" id="span_detail_employee_email"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">部门：</span>
+          <span class="normal" id="span_detail_employee_department"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">职务：</span>
+          <span class="normal" id="span_detail_employee_position"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">手机：</span>
+          <span class="normal" id="span_detail_employee_mobilePhone"></span>
+        </div>  
+        <div class="model-content-line">
+          <span class="first">座机：</span>
+          <span class="normal" id="span_detail_employee_phone"></span>
+        </div>  
+        <div class="model-content-line">
+          <span class="first">角色：</span>
+          <span class="normal" id="span_detail_employee_roles"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 员工详情 end -->
+
+<!-- Modal 修改员工 -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_update_employee" tabindex="-1" role="dialog" aria-labelledby="model_label_add_employee" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_add_employee">新增员工</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line" style="display:none;">
+          <span class="first red">*ID：</span>
+          <input type="text" id="txt_employee_update_id" value=""></input>
+        </div>
+        <div class="model-content-line">
+          <span class="first">用户名：</span>
+          <span class="normal" id="span_update_employee_username"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first">部门: </span>
+          <input type="text" id="txt_employee_update_department"  value=""></input>
+        </div>    
+        <div class="model-content-line">
+          <span class="first red">*职务：</span>
+          <input type="text" id="txt_employee_update_job" value=""></input>
+          <span id="span_tip_employee_update_job" class="span-tip"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first red">*手机：</span>
+          <input type="text" id="txt_employee_update_mobile"  value=""></input>
+          <span id="span_tip_employee_update_mobile" class="span-tip"></span>
+        </div>        
+        <div class="model-content-line">
+          <span class="first">座机：</span>
+          <input type="text" id="txt_employee_update_phone"  value=""></input>
+        </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Employee.update()">保存</button>
+      </div>
+    </div>
+  </div>
+</div><!-- end modal 修改员工 -->
+
+<!-- Modal 更新员工角色 -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_employee_role" tabindex="-1" role="dialog" aria-labelledby="modal_label_employee_role" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modal_label_employee_role">更新员工角色</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line" style="display:none;">
+          <span class="first red">*员工ID：</span>
+          <input type="text" id="txt_employee_id_role"  value=""></input>
+        </div>   
+        <div class="model-content-line">
+          <span class="first">用户名：</span>
+          <span id="span_employee_name_role" class="normal"></span>
+        </div>   
+        <div class="model-content-line">
+          <span class="first" style="float: left;">角色：</span>
+          <div id="div_role_employee_update" class="role-permissions">            
+          </div>
+        </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Employee.updateEmployeeRoles()">保存</button>
+      </div>
+    </div>
+  </div>
+</div><!-- end Modal 更新员工角色 -->
+
+<!-- Modal 重置员工密码 -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_update_employee_pwd" tabindex="-1" role="dialog" aria-labelledby="model_label_update_employee_pwd" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_update_employee_pwd">重置员工密码</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line" style="display:none;">
+          <span class="first red">*ID：</span>
+          <input type="text" id="txt_employee_updatepwd_id" value=""></input>
+        </div>
+        <div class="model-content-line">
+          <span class="first">用户名：</span>
+          <span class="normal" id="span_updatepwd_employee_username"></span>
+        </div>
+        <div class="model-content-line">
+          <span class="first red">*密码: </span>
+          <input type="password" id="txt_employee_update_password"  value=""></input>
+          <span id="span_tip_employee_update_password" class="span-tip"></span>
+        </div>    
+        <div class="model-content-line">
+          <span class="first red">*确认密码：</span>
+          <input type="password" id="txt_employee_update_passwordsure" value=""></input>
+          <span id="span_tip_employee_update_passwordsure" class="span-tip"></span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Employee.updateemployeepwd()">保存</button>
+      </div>
+    </div>
+  </div>
+</div><!-- end modal 修改员工 -->
+
+<!-- Modal 删除员工 -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_delete_employee" tabindex="-1" role="dialog" aria-labelledby="model_label_delete_employee" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_delete_employee">删除员工</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line" style="display:none;">
+          <span class="first red">*ID：</span>
+          <input type="text" id="txt_employee_delete_id"  value=""></input>
+        </div>   
+        <div class="model-content-line">
+          <span id="span_delete_employee_name" class="normal"></span>
+        </div> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Employee.remove()">确定</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 删除员工 -->
+
+<!-- Modal 添加日志 -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_add_log" tabindex="-1" role="dialog" aria-labelledby="model_label_add_log" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_add_permission">新增日志</h4>
+      </div>
+      <div class="modal-body">
+	    <div class="model-content-line">
+          <span class="first red">*更新时间：</span>
+          <input class="date" id="txt_log_onlinetime" value="" readonly="true" onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', maxDate:'%y-%M-%d'})" type="text">
+		  <span id="span_tip_log_onlinetime" class="span-tip"></span>
+        </div>  
+        <div class="model-content-line">
+          <span class="first red">*版本名称：</span>
+          <input type="text" id="txt_log_versionname" value=""></select>
+		  <span id="span_tip_log_versionname" class="span-tip"></span>
+        </div>     
+        <div class="model-content-line">
+          <span class="first">新增功能：</span>
+          <textarea class="text-area" id="txt_log_newfunctions"  rows="4" value="" placeholder="请填内容(限500字)" maxlength="500"></textarea>
+        </div>      
+        <div class="model-content-line">
+          <span class="first">改进功能：</span>
+          <textarea class="text-area" id="txt_log_improvefunctions"  rows="4" value="" placeholder="请填内容(限500字)" maxlength="500"></textarea>
+        </div>
+        <div class="model-content-line">
+          <span class="first">缺陷修复：</span>
+          <textarea class="text-area" id="txt_log_repairbugs"  rows="4" value="" placeholder="请填内容(限500字)" maxlength="500"></textarea>
+        </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Log.add()">保存</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 添加日志 end -->
+<!--Modal 修改日志-->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_update_log" tabindex="-1" role="dialog" aria-labelledby="model_label_update_log" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_update_log">修改日志</h4>
+      </div>
+      <div class="modal-body">
+      <div class="model-content-line" style="display:none;">
+          <span class="first red">*ID：</span>
+          <input type="text" id="txt_log_update_id" value=""></input>
+        </div>
+	    <div class="model-content-line">
+          <span class="first">更新时间：</span>
+          <input class="date" id="txt_log_update_onlinetime" value="" readonly="true" type="text">
+		  <span id="span_tip_log_update_onlinetime" class="span-tip"></span>
+        </div>  
+        <div class="model-content-line">
+          <span class="first">版本名称：</span>
+          <input type="text" id="txt_log_update_versionname"></select>
+		  <span id="span_tip_log_update_versionname" class="span-tip"></span>
+        </div>     
+        <div class="model-content-line">
+          <span class="first">新增功能：</span>
+          <textarea class="text-area" id="txt_log_update_newfunctions"  rows="4" placeholder="请填内容(限500字)" maxlength="500"></textarea>
+        </div>      
+        <div class="model-content-line">
+          <span class="first">改进功能：</span>
+          <textarea class="text-area" id="txt_log_update_improvefunctions"  rows="4" placeholder="请填内容(限500字)" maxlength="500"></textarea>
+        </div>
+        <div class="model-content-line">
+          <span class="first">缺陷修复：</span>
+          <textarea class="text-area" id="txt_log_update_repairbugs"  rows="4" placeholder="请填内容(限500字)" maxlength="500"></textarea>
+        </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Log.update()">保存</button>
+      </div>
+    </div>
+  </div>
+</div><!--Modal 修改日志 end-->
+<!-- Modal 删除日志 -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_delete_log" tabindex="-1" role="dialog" aria-labelledby="model_label_delete_employee" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_delete_log">删除日志</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line" style="display:none;">
+          <span class="first red">*ID：</span>
+          <input type="text" id="txt_log_delete_id"  value=""></input>
+        </div>   
+        <div class="model-content-line">
+          <span id="span_delete_log_vresionname" class="normal"></span>
+        </div> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Log.remove()">确定</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 删除日志 -->
+
+<!-- Modal 删除网点数据 -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_delete_point" tabindex="-1" role="dialog" aria-labelledby="model_label_delete_point" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_delete_point">删除网点数据</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line" style="display:none;">
+          <span class="first red">*总条数：</span>
+          <input type="text" id="txt_point_delete_id"  value=""></input>
+        </div>   
+        <div class="model-content-line">
+          <span id="span_delete_point_vresionname" class="normal"></span>
+        </div> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Point.remove()">确定</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 删除网点数据 -->
+
+<!-- Modal 删除区划数据 -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_delete_region" tabindex="-1" role="dialog" aria-labelledby="model_label_delete_region" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_delete_region">删除区划数据</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line" style="display:none;">
+          <span class="first red">*总条数：</span>
+          <input type="text" id="txt_region_delete_id"  value=""></input>
+        </div>   
+        <div class="model-content-line">
+          <span id="span_delete_region_vresionname" class="normal"></span>
+        </div> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Region.remove()">确定</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 删除区划数据 -->
+
+<!-- Modal 删除分单数据 -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_delete_fendan" tabindex="-1" role="dialog" aria-labelledby="model_label_delete_fendan" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="model_label_delete_fendan">删除分单数据</h4>
+      </div>
+      <div class="modal-body">
+        <div class="model-content-line" style="display:none;">
+          <span class="first red">*总条数：</span>
+          <input type="text" id="txt_fendan_delete_id"  value=""></input>
+        </div>   
+        <div class="model-content-line">
+          <span id="span_delete_fendan_vresionname" class="normal"></span>
+        </div> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onClick="Fendan.remove()">确定</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Modal 删除分单数据 -->
+
+<!-- 提示 -->
+<div id="popover_result" class="popover fade top in" style="">
+  <div class="popover-content" id="popover_content"></div>
+</div>
+
+<footer>		
+  <div class="footer show-footer-background" style="min-width: 960px;">
+       <div class="spacing">2009-2014 © 超图云™ supermapcloud.com All rights reserved. 京ICP证120611号  京公网安备11010502008721 甲测资字11002074</div>
+  </div>
+</footer>
+
+
+<div class="overlay">
+  <div class="loadingbox">
+    <div class="loadingWord"><img src="../images/waiting.gif">加载中，请稍候...</div>
+  </div>
+</div>
+
+  
+  <!-- // <script type="text/javascript" src="../js/release/user.js"></script> -->
+  <script type="text/javascript" src="../js/config.js"></script>
+  <script type="text/javascript" src="js/load.js"></script>
+  <script type="text/javascript" src="js/usermge.js"></script>
+  <script type="text/javascript" src="js/productmge.js"></script>
+  <script type="text/javascript" src="js/ordermge.js"></script>
+  <script type="text/javascript" src="js/permission.js"></script>
+  <script type="text/javascript" src="js/employee.js"></script>
+  <script type="text/javascript" src="js/role.js"></script>
+  <script type="text/javascript" src="js/logmge.js"></script>
+  <script type="text/javascript" src="js/datamge.js"></script>
+  <script type="text/javascript" src="../libs/SuperMap.Egisp/city.js"></script>
+</body>
+
+</html>

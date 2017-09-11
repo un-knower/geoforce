@@ -1,0 +1,44 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>地图操作-事件-删除鼠标移动</title>
+<link href="http://www.supermapcloud.com/demo/china/styles/action.css" rel="stylesheet" type="text/css">
+</link>
+<script type="text/javascript" src="../../js/key.js"></script>
+<script type="text/javascript" src="http://www.supermapcloud.com/demo/china/samples/include.js">
+</script>
+
+<script type="text/javascript">
+
+	var map = null;	//地图控件
+
+	//初始化地图
+	function initMap() {
+		
+		map = getMap("mapDiv");	//显示地图
+		
+		map.add_mouseMove(function(coord){
+			var info = "米坐标&nbsp;:"+coord.mapCoord.x+",&nbsp;&nbsp;"+coord.mapCoord.y+
+					"<br/>像素坐标&nbsp;:"+coord.pixelCoord.x+",&nbsp;&nbsp;"+coord.pixelCoord.y;
+			document.getElementById("coordDiv").innerHTML = info;
+		});
+		
+	}
+
+	function removeEvent(){
+		map.remove_mouseMove();alert(1);
+	}
+</script>
+</head>
+
+<body onLoad="initMap()">
+
+<!--地图控件-->
+<div id="mapDiv" style="width: 880px; height: 580px;"></div>
+
+<div id="coordDiv"></div>
+
+<button onClick="removeEvent();">删除鼠标移动监听</button>
+
+</body>
+</html>

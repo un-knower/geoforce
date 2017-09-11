@@ -1,0 +1,89 @@
+@import "../base-less.less";
+@import "../data-list.less";
+
+.container-fendan {
+  position: relative;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+
+  #map {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.data-list {
+	&[status="max"] {
+		.title {
+			width: ~"calc(100% - 245px)";
+		}
+	}
+  .head {
+    .title {
+      background: #0096ff url(../imgs/table/title-marker.png) no-repeat 10px center;
+      padding-left: 40px;
+    }
+  }
+}
+
+.data-import {
+  .box {
+    height: 260px;
+
+    .foot {
+      position: relative;
+      margin-top: 3px;
+      padding: 5px 40px 0 40px;
+
+      a.btn-cancel, a.btn-sure {
+        margin-top: 5px;
+      }
+      a.btn-download-branches {
+        width: 100px;
+      }
+    }
+  }
+}
+
+/*用户引导*/
+.data-guide {
+  background: rgba(0,0,0,.5);
+  min-width: 600px;
+  min-height: 400px;
+
+  .step-1 {
+    position: absolute;
+    left: 130px;
+    bottom: 0; 
+    width: 550px;
+    height: 280px;
+    background: url(imgs/guide/fendan/step.png) no-repeat 0 50px;
+    .import {
+      position: absolute;
+      left: 110px;
+      bottom: 0;
+      width: 126px;
+      height: 40px;
+      background: #fff url(imgs/table/title-import.png) no-repeat 10px center;
+      line-height: 37px;
+      color: #333;
+      font-size: 18px;
+      font-family: "microsoft yahei";
+      font-weight: bold;
+      padding-left: 30px;
+      border: 1px solid #ddd;
+    }
+    .start {
+      position: absolute;
+      left: 280px;
+      top: 100px;
+      width: 110px;
+      height: 50px;
+      background: url(imgs/guide/fendan/start.png) no-repeat 0 0;  
+      cursor: pointer;  
+    }
+  }
+}
+

@@ -1,0 +1,1246 @@
+@import "../base-less.less";
+@import "../data-list.less";
+@import "../../bootstrapslider/bootstrap-slider.min.css";
+
+
+.container-point {
+  position: relative;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+
+  #map {
+    width: 100%;
+    height: 100%;
+  }
+}
+.header {
+	.tools {
+		position: relative;
+	}
+	
+	.hint-part {
+		position: absolute;
+		top: 38px;
+		left: -60px;
+		width: 250px;
+		background: #fff;
+		padding: 15px;
+  	text-align: center;
+  	border: 1px solid #ddd;
+  	.triangle {
+  		position: absolute;
+  		top: -10px;
+  		left: 59px;
+  		border-color: transparent transparent #ccc transparent;
+  	}
+  	p {
+  		text-align: left;
+  		margin: 10px 0 0;
+  		font: normal normal normal 13px/26px "microsoft yahei";
+  		color: #444;
+  	}
+  	.badge {
+  		padding: 3px 7px;
+  		margin-right: 3px;
+  		background-color: #5CCA5C;
+  	}
+	}
+}
+
+
+/*表格*/
+.data-list {
+	&[status="max"] {
+		.title {
+			width: ~"calc(100% - 245px)";
+		}
+	}
+  .head {
+    .title {
+
+      .tab-icon-style {
+        min-width: 90px;
+        height: 16px;
+        margin: 12px 2px 0 0;    
+        display: inline-block;
+        float: right;
+        border-left: 1px solid #ddd;
+        text-align: center;
+        font: normal normal bold 14px/16px 'microsoft yahei';
+      }
+
+      span.tab-text:hover,
+      span.tab-icon-style:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .content {
+    .triangle-top {
+      position: absolute;
+      top: -15px;
+      width: 0;
+      height: 0;
+      border-width: 8px;
+      border-style: solid dashed dashed dashed;
+      border-color: transparent transparent #fff transparent;
+
+      &.front {
+        left: 50px;
+      }
+
+      &.back {
+        right: 240px;
+      }
+    }
+
+    .search-area {
+      select {
+        &.select-group {
+          width: 100px;
+          height: 30px;
+          font: normal normal normal 12px/30px 'microsoft yahei';
+          border-radius: 0;
+          border: 1px solid #ccc;
+          outline: none;
+          margin: 0 8px 0 0;
+        }
+      }
+      input {
+        &.search-input {
+          width: 220px;
+        }
+      }
+    }
+
+
+    .table-branches-detail,
+    .table-branched-count {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    &[data-display="icon"] {
+      width: 100%;
+      display: none;
+    }
+
+    .tab-icon-list { 
+      position: relative;
+      width: 100%; 
+      height: 100%;
+      display: block;
+      overflow-x: hidden;
+      overflow-y: auto;
+
+      > .branch-icon:last-child {
+        margin-bottom: 25px;
+      }
+      
+      .add-branch-icon {
+        position: relative;
+        width: 400px;
+        height: 128px;
+        float: left;
+        border: 1px solid #ddd;    
+        margin: 25px;
+        cursor: pointer;
+
+        &:hover {    
+          box-shadow: 0 0 7px #ccc;
+        }
+
+        span.add-icon-style {
+          color: #333;
+          margin: 38px 0 0 185px;
+          font-size: 28px;
+        }
+
+        .bottom {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 35px;
+          text-align: center;
+          color: #333;
+          font: normal normal bold 15px/35px 'microsoft yahei';
+        }
+      }
+
+    }
+
+    .tab-edit {  
+      position: relative;
+      width: 100%;
+      height: 100%;  
+      display: none;
+      overflow: hidden;
+
+      .icon-edit-container {
+        height: ~"calc(100% - 50px)";
+        padding: 0 0 10px 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        .icon-attr {
+          position: relative;
+          width: 425px;
+          height: 210px;
+          float: left;
+
+          > .branch-icon {
+            cursor: default;
+            margin: 10px 25px;
+
+            .icon-demo {
+              width: 32px;
+              height: 32px;
+              margin: 48px auto 0 auto;
+              background: transparent url('../assets/map/red/default.svg') no-repeat 0 0;
+              background-size: 100% 100%;
+              text-align: center;
+              vertical-align: middle;
+            }
+          }
+        } 
+
+        .icon-selector {
+          min-width: 400px;
+          float: left;
+          margin: 20px 0 0 25px;
+
+          > ul {
+            width: 100%;
+            height: 30px;
+
+            > li {
+              width: 20%;
+              height: 30px;
+              float: left;
+              font: normal normal bold 14px/30px 'microsoft yahei';
+              text-align: center;
+              border-bottom: 1px solid #ccc;
+              cursor: pointer;
+            }
+          }
+
+          .back {
+            display: block;
+
+            .top-mark {
+              left: 0;
+            }
+
+            > ul > li {
+              width: 60px;
+              height: 65px;
+              float: left;
+              margin: 20px 0 0 20px;
+              text-align: center;
+              cursor: pointer;
+
+              &:not(.action):hover {
+                border-bottom: 3px solid #03E4FD;
+              }
+
+              &.action {
+                border-bottom: 3px solid #0096ff;    
+              }
+
+              img {
+                width: 32px;
+                height: 32px;
+              }
+
+              > span {
+                display: block;
+                margin: 5px 0 0 0;
+                color: #000;
+                font: normal normal normal 12px/24px 'microsoft yahei';
+              }
+            }
+          }
+
+          .box {
+            position: relative;    
+            width: 100%;
+            height: 140px;
+            display: none;
+
+            .top-mark {
+              position: absolute;
+              top: 0;
+              width: 20%;  
+              min-width: 80px; 
+              height: 3px; 
+              background: #0096ff;
+            }
+          }
+
+          .size {
+            .top-mark {
+              left: 20%;
+            }
+
+            .choose-size {
+              width: 400px;
+              padding: 40px 0 0 8px;
+              input.icon-size {
+                width: 40px;
+                height: 33px;
+                border: 1px solid #999;
+                border-radius: 5px !important;
+                padding: 10px 8px;
+                margin: -8px 0 0 0;
+                font: normal normal normal 12px/33px 'microsoft yahei';
+                outline: none;                                
+              }
+            }
+
+            .size-slider {
+              width: 350px;
+              float: left;
+            }
+
+            .slider-textmark {
+              width: 340px;
+
+              > span {
+                font: normal normal normal 10px/10px 'microsoft yahei';
+                -webkit-transform:scale(0.9); 
+
+                &.left {
+                  margin: 0 0 0 -5px;
+                }
+
+                .right {
+                  margin: 0 -5px 0 0;
+                }
+              }
+            }
+          }
+
+          .color {
+            .top-mark {
+              left: 40%;
+            }
+
+            ul {
+              width: 100%;
+              height: 200px;
+              padding: 20px 0 0 15px;
+
+              li {
+                width: 80px;
+                height: 80px;
+                float: left;
+                margin: 15px 15px 0 0;
+                cursor: pointer;
+
+                &.red {
+                  background-color: #e51c23;
+                }
+
+                &.purple {
+                  background-color: #9c27b0;
+                }
+                &.blue {
+                  background-color: #0066ff;
+                }
+                &.green {
+                  background-color: #259b24;
+                }
+                &.orange {
+                  background-color: #ff8800;
+                }
+                &.brown {
+                  background-color: #795548;
+                }
+                &.indigo {
+                  background-color: #10a0ad;
+                }
+                &.black {
+                  background-color: #000;
+                }
+                &.left-20 {
+                  margin-left: 26px;
+                }
+                &.action {
+                  background-image: url(../imgs/branch-icon/color-hover.png);
+                  background-repeat: no-repeat;
+                  background-position: 55px 5px;
+                }
+                &:hover {
+                  box-shadow:0px 0px 4px #333;
+                }
+              }
+            }
+          } 
+
+          .ico {
+            .top-mark {
+              left: 60%;
+            }
+            ul {
+              width: 100%;
+              padding-right: 15px;
+              li {
+                width: 22px; 
+                height: 22px;
+                margin: 20px 0 0 20px;
+                color: #999;
+                float: left;
+                text-align: center;
+                vertical-align: center;
+
+                &:not(.disabled) {
+                  span {
+                    &:not(.none) {
+                      font: normal normal normal 20px/22px 'iconfont' !important;
+                      cursor: pointer;
+                    }
+                    &.none {
+                      font: normal normal normal 20px/22px 'simhei';
+                      cursor: pointer;
+                    }
+                  }
+
+                  &:not(.action) {
+                    span {
+                      &:hover {
+                        text-shadow: 0 0 2px rgba(0,0,0,.3);
+                      }
+                    }
+                  }
+                }
+
+                &.action {
+                  span {
+                    color: #0096ff;
+                    cursor: default;
+                  }
+                }
+
+                &.disabled {
+                  span {
+                    font: normal normal normal 20px/22px 'iconfont' !important;
+                    color: #ccc;
+                    cursor: default;
+                  }
+                } 
+              }
+            }
+          } 
+
+          .custom {
+            .top-mark {
+              right: 0;
+            }
+
+            > ul {
+              width: 100%;
+              padding-top: 25px;
+
+              > li {    
+                position: relative;
+                width: 60px;
+                height: 60px;
+                margin-top: 15px;
+                float: left;
+                margin-left: 20px;
+                line-height: 60px;
+                text-align: center;
+
+                &:not(.action) {
+                  &:hover {
+                    box-shadow: 0px 0px 4px #333;
+
+                    a.delete {
+                      display: block;
+                    }
+                  }
+
+                  > img.ico {
+                    max-width: 60px;
+                    max-height: 60px;
+                    cursor: pointer;
+                  }
+
+                  > a.selected {
+                    display: none;
+                  }
+                }
+
+                &.action {
+                  > a.selected {
+                    position: absolute;
+                    top: 3px;
+                    right: 3px;
+                    width: 20px;
+                    height: 20px;
+                    display: block;
+                    background: transparent url(../imgs/branch-icon/color-selected.png) no-repeat 0 0;    
+                    cursor: default;
+                  }
+                }
+
+                &.upload-custom-icon {
+                  background-color: #0096ff;
+                  cursor: pointer;
+
+                  > span {
+                    color: #fff;
+                    font-size: 30px;
+                    margin: 15px;
+                  }
+                }
+
+                > a.delete {
+                  position: absolute;
+                  top: 3px;
+                  right: 3px;
+                  width: 14px;
+                  height: 14px;
+                  display: none;
+                  background: transparent url(../imgs/branch-icon/ico-delete.png) no-repeat 0 0;
+                  cursor: pointer;
+                }
+              }
+            }
+          } 
+        }
+      }
+
+      .icon-save-container {  
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 42px;
+        border-top: 1px solid #ccc;
+        box-shadow: 0px 1px 4px #9f9f9f;    
+
+        .delete-point-style {
+          float: left;
+        }
+
+        .btn {
+          border-radius: 0;
+          outline: none;
+          padding: 5px 30px;
+          color: #fff;
+          text-shadow: 0 !important;
+
+          &:active,
+          &:hover,  
+          &:focus {
+            color: #fff;
+            outline: none;
+          }
+          &:active {
+            top: 0;
+          }
+          &:hover {                        
+            box-shadow: 0 0 7px #666 !important;
+          }
+        }
+
+        .btn-gray {
+          margin: 6px 0 0 8px;
+          background-color: #999 !important;
+          border: 1px solid #888;
+          float: right;
+        }
+        .btn-green {
+          margin: 6px 25px 0 8px;
+          background-color: #5cb85c !important;
+          border: 1px solid #4cae4c;
+          float: right;
+        }
+        .btn-red {
+          margin: 6px 0 0 15px;
+          background-color: #ff5959 !important;   
+          border: 1px solid #ff5959;       
+        }
+      }
+
+
+      .inputs-group {
+        width: 400px;
+        height: 60px;
+        float: left;
+        margin: 0 0 0 25px;
+
+        .row-2 {
+          width: 190px;
+        }
+      }
+    }
+
+    .branch-icon {
+      position: relative;
+      width: 400px;
+      height: 128px;
+      float: left;
+      background: #fff url(../imgs/branch-icon/iconbg.jpg) no-repeat 0 0;
+      border: 1px solid #ddd;    
+      margin: 25px 0 0 25px;
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: 0 0 7px #ccc;
+      }
+
+      .bottom {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 35px;
+        text-align: center;
+        background-color: rgba(33,33,33,.4);
+        color: #fff;
+        font: normal normal bold 15px/35px 'microsoft yahei';
+      }
+
+      .icon-branch {
+        width: 32px;
+        height: 32px;
+        margin: 48px auto 0 auto;
+        background: transparent url('../assets/map/red/default.svg') no-repeat 0 0;
+        background-size: 100% 100%;
+        text-align: center;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .table-branches-count {
+    width: 100%;
+    height: 100%;
+//  height: ~"calc(100% - 41px)";
+    display: none;
+    padding: 25px 0;
+  } 
+}
+
+.hint-mobile-point {
+	cursor: pointer;
+}
+
+
+/*编辑单元格*/
+.data-cell-edit {   
+  .box {
+    .data-edit-box(absolute, 160px);
+
+    .foot { 
+      width: 100%;
+      margin-top: 10px;
+      padding: 0 15px;
+    }
+  }
+}
+
+
+.data-cell-edit-group {
+  .box  {
+    .data-edit-box(absolute, 110px);
+  } 
+}
+
+//添加网点自定义列的弹窗
+.data-column-add {
+  .box {
+    top: 50%;
+    margin-top: -60px;
+  }
+}
+//添加网点分组的弹窗
+.data-branchgroup-add,
+.data-branchgroup-remove {
+  .box {
+    top: 50%;
+    margin-top: -60px;
+  }
+}
+//重命名网点自定义列的弹窗
+.data-column-rename {
+  .box { 
+    .data-edit-box(absolute, 120px);
+  }
+}
+
+
+.data-cars {
+  min-width: 830px;
+  min-height: 370px;
+  z-index: 77779;
+
+  .box {
+    .data-edit-box(relative, 370px, 830px);
+    top: 50%;
+    margin-top: -180px;
+
+    .title {            
+      .data-edit-title;
+      background-color: #CFE9F1;
+
+      .close {
+        .data-edit-close;
+      }
+
+      .text {
+        .data-edit-title-text;
+      }
+    }
+
+    .search-area {
+      padding: 10px;
+
+      .btn-search-cars {
+        padding: 2px 10px;
+        outline: none;
+      }
+
+      label {
+        font-size: 12px;
+        font-weight: normal;
+      }
+
+      input,
+      .select-car-type {
+        width: 110px; 
+        font-size: 12px;
+        font-family: 'microsoft yahei';
+        margin: 0 10px 0 5px;
+        padding: 2px 6px;
+      }
+    }
+
+    .content {
+      width: 99%;
+      height: 200px;
+      margin: 0 auto;
+      overflow: auto;
+      text-align: center;
+      border: 1px solid #ddd;
+
+      .table-cars td {
+        border: 1px solid #ddd;
+      }
+    }
+
+    .foot {
+      a {
+        margin-right: 15px;
+      }
+    }
+  }
+}
+
+
+
+.branch-group {
+  width: 190px;
+  height: 28px;
+  font: normal normal normal 12px/28px 'microsoft yahei';
+  border-radius: 0;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+
+.slider-selection {
+  background: #0096ff;
+}
+.slider-handle.custom:before {
+  content: '\e638'; 
+  color: #0096ff;
+  font: normal normal normal 14px/14px 'iconfont';
+}
+
+.hide {
+  display: none;
+}
+
+.data-guide {
+  background: rgba(0,0,0,.5);
+  min-width: 600px;
+  min-height: 400px;
+
+  .step-1 {
+    position: absolute;
+    left: 246px;
+    bottom: 0; 
+    width: 500px;
+    height: 280px;
+    background: url(../imgs/guide/wangdian/step1.png) no-repeat 20px 5px;
+
+    .import {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 122px;
+      height: 40px;
+      background: #fff url(../imgs/table/title-import.png) no-repeat 10px center;
+      line-height: 37px;
+      color: #333;
+      font-size: 18px;
+      font-family: "microsoft yahei";
+      font-weight: bold;
+      padding-left: 30px;
+      border: 1px solid #ddd;
+    }
+
+    .next {
+      left: 380px;
+      top: 100px;
+    }
+  }
+
+  .next {
+    position: absolute;
+    width: 115px;
+    height: 50px;
+    background: url(../imgs/guide/wangdian/next-step.png) no-repeat 0 0;
+    cursor: pointer;
+  }
+
+  .step-2 {    
+    position: absolute;
+    right: 25px;
+    top: 5px; 
+    width: 400px;
+    height: 280px;
+    display: none;
+    background: url(../imgs/guide/wangdian/step2.png) no-repeat 0 50px;
+
+    input {
+      position: absolute;
+      right: 0;
+      top: 0;
+      background-color: #fff;
+    }
+    .next {
+      left: 130px;
+      top: 280px;
+    }
+  }
+
+  .step-3 {    
+    position: absolute;
+    right: 220px;
+    top: 5px; 
+    width: 580px;
+    height: 350px;
+    display: none;
+    background: url(../imgs/guide/wangdian/step3.png) no-repeat 0 50px;
+
+    a {    
+      position: absolute;
+      top: 0;
+      right: 200px;
+      background-color: #fff;
+      cursor: default;
+    }
+
+    .next {
+      left: 360px;
+      top: 230px;
+    }
+  }
+
+  .step-4 {    
+    position: absolute;
+    left: 175px;
+    top: 10px; 
+    width: 580px;
+    height: 350px;
+    display: none;
+    background: url(../imgs/guide/wangdian/step4.png) no-repeat 0 50px;
+
+    .start {
+      position: absolute;
+      left: 280px;
+      top: 150px;
+      width: 72px;
+      height: 49px;
+      background: url(../imgs/guide/wangdian/start.png) no-repeat 0 0;  
+      cursor: pointer;  
+    }
+
+    .layers-control {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 150px;
+      height: 18px;
+      background-color: #fff;
+      input[type="checkbox"] {
+        margin: -2px 2px 0 2px;
+        background-color: #fff;
+      }
+      i {
+        background: none repeat scroll 0 0 #999;
+        display: inline-block;
+        height: 14px;
+        margin: 3px 5px 5px 5px;
+        vertical-align: middle;
+        width: 1px;
+      }
+      label {
+        font-weight: normal;
+      }
+    }
+  }
+} 
+
+
+.margin-15 {
+  margin: 15px;
+}
+
+
+.sync-mobile-point {
+  .box {
+    position: relative;
+    width: 427px;
+    height: 120px;
+    margin: 50px auto;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 5px;
+    
+    .title {
+      height: 20px;
+      margin: 15px 20px 0 20px;
+      font: normal normal 700 14px/20px 'microsoft yahei';
+
+      .close {
+        font-size: 20px;
+        opacity: .8;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+    .body {
+    	.input-part {
+      	margin: 15px 20px;
+      	
+      	span {
+      		font: normal normal normal 12px/34px "microsoft yahei";
+      	}
+      	
+      	select {
+      		width: 150px;
+      		font-family: "microsoft yahei";
+      		margin-left: 5px;
+      	}
+    	}
+    }
+    
+    .foot {
+      padding: 0 20px;
+    }
+  }
+}
+
+.upload-pictures {
+  .box {
+    position: relative;
+    width: 370px;
+    min-height: 220px;
+    margin: 50px auto;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 5px;
+    padding-bottom: 40px;
+
+    .title {
+      height: 20px;
+      margin: 15px 15px 0 25px;
+      font: normal normal 700 14px/20px 'microsoft yahei';
+
+      .close {
+        font-size: 20px;
+        opacity: .8;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    .body {
+      ul {
+        margin: -15px 0 15px;
+        width: 100%;
+        height: auto;
+
+        li {
+          position: relative;
+          width: 90px;
+          height: 90px;
+          float: left;
+          margin: 15px 0 0 25px;
+          border: 1px solid #ddd;
+
+          &:hover {
+            box-shadow: 0 0 5px rgba(0,0,0,.5);
+          }
+
+          &.add {
+            .to-add {
+              width: 100%;
+              height: 100%;
+              display: block;
+              background: transparent url(../imgs/point/add-1.png) no-repeat center 5px;
+              background-size: 50% 50%;
+              padding-top: 50px;
+              cursor: pointer;
+            
+              @detail-height: 20px;
+              .detail {
+                width: 100%;
+                height: @detail-height;
+                color: #888;
+                text-align: center;
+
+                &.bg {
+                  font: normal normal normal 13px/@detail-height 'microsoft yahei';
+                }
+                &.sm {
+                  font: normal normal normal 12px/15px 'microsoft yahei';
+                }
+              }
+            }
+
+
+            .loading {
+              display: none;   
+              width: 100%;
+              height: 100%;
+              background: transparent url(../imgs/branch-icon/loading.png) no-repeat center center;
+              -webkit-animation: loader 0.7s infinite linear;
+              animation: loader 0.7s infinite linear;
+            }
+
+            &.load {
+              .loading {
+                display: block;
+              }
+              .to-add {
+                display: none;
+              }
+            }
+          }
+
+          &.normal {
+            text-align: center;
+            line-height: 80px;
+
+            .del {
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 16px;
+              height: 16px;
+              cursor: pointer;
+              background: #fff url(../imgs/point/del1.png) no-repeat 0 0;
+              z-index: 2;
+            }
+
+            img {
+              max-width: 100%;
+              max-height: 100%;
+              z-index: 1;
+              vertical-align: middle;
+            }
+          }
+        }
+      }
+    }
+
+    .foot {
+      padding-right: 25px;
+    }
+  }
+}
+
+.setting-fields {
+  .box {
+    position: relative;
+    width: 370px;
+    min-height: 220px;
+    margin: 50px auto;
+    overflow: hidden;
+    background: #fff;
+    padding-bottom: 5px;
+
+    .title {
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      padding: 0 15px 0 20px;
+      border-bottom: 1px solid #ddd;
+
+      span {
+        float: left;
+        font: normal normal bold 15px/40px 'microsoft yahei';
+        color: #444;
+      }
+
+      a {      
+        display: inline-block;
+        float: right;
+        width: 16px; 
+        height: 16px;
+        cursor: pointer;
+        margin: 13px 5px 0 0;
+      }
+
+      .setting-sure {  
+        background: url(../imgs/sure.png) no-repeat 0 0;
+
+        &:hover {
+          background: url(../imgs/sure-hover.png) no-repeat 0 0;
+        }
+        &:active {
+          background: url(../imgs/sure-msedown.png) no-repeat 0 0;
+        }
+      }
+
+      .setting-cancel {   
+        background: url(../imgs/cancel.png) no-repeat 0 0;
+        &:hover {
+          background: url(../imgs/cancel-hover.png) no-repeat 0 0;
+        }
+        &:active {
+          background: url(../imgs/cancel-msedown.png) no-repeat 0 0;
+        }
+      }
+    }
+
+    .body {
+      .mrow {
+        width: 100%;
+        height: 40px;
+        padding: 0 20px;
+        line-height: 40px;
+        border-bottom: 1px solid #ddd;
+
+        &:last-child {
+          border: none;
+        }
+
+        span {
+          float: left;
+          font: normal normal normal 14px/40px 'microsoft yahei';
+        }
+
+        input {
+          float: right;
+          margin: 12px 0 0;
+        }
+      }
+    }
+  }
+}
+
+
+.bk-share {
+	position: absolute;
+	right: 20px;
+	top: 45px;
+	width: 500px;
+	height: 240px;
+	z-index: 88888;
+	background: none repeat scroll 0 0 #FFFFFF;
+  border: 2px solid #85B6E2;
+  border-radius: 10px;
+  
+  a.closeBtn {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    color: #333333;
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    line-height: 26px;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+  .share-left {
+  	width: 36%;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    .share-wx {
+	    width: 168px;
+	    padding: 20px;
+	    font-size: 12px;
+	    color: #777777;
+	    
+	    .img {
+	    	width: 120px;
+	    	height: 120px;
+	    }
+	    span {
+	    	line-height: 22px;
+	    	display: block;
+	    	margin-top: 12px;
+	    }
+		}
+  }
+  .share-right {
+    width: 62%;
+    padding: 10px;
+    z-index: 1;
+    
+    div {
+    	position: relative;
+    	width: 100%;
+    }
+    
+    .copy-success {
+    	color: green;
+    	font: normal normal normal 14px/30px 'microsoft yahei';
+    }
+    
+    .btn-copy-link {
+    	width: 60px;
+    	height: 30px;
+    	padding: 5px 9px;
+	    box-shadow: none!important;
+	    cursor: pointer;
+	    vertical-align: middle;
+	    margin: 0;
+	    position: relative;
+    	border-radius: 5px;
+    	border: 1px solid #ddd;
+    	background-color: #fff !important;
+    	text-shadow: none !important;
+    	color: #666 !important;
+    	text-align: center;
+    	cursor: pointer;
+    	
+    	&:hover, &:active, &.active {
+    		background-color: #f2f2f2 !important;
+    		text-decoration: none;
+    	}
+    }
+	}
+}
+
+
+

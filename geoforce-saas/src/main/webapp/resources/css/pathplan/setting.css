@@ -1,0 +1,143 @@
+.route-setting {
+  position: absolute;
+  top: 45px;
+  left: 1px;
+  width: 260px;
+  height: 205px;
+  background: #fff;
+  border: 1px solid #ddd;
+  z-index: 9999;
+}
+.route-setting .get {
+  height: 40px;
+  margin: 10px 15px;
+  border-bottom: 1px solid #ddd;
+  padding: 0 15px 0 28px;
+  background-color: transparent;
+  background-position: 0 center;
+  background-repeat: no-repeat;
+}
+.route-setting .get input {
+  width: 180px;
+  font: normal normal normal 14px/40px "microsoft yahei";
+  background: transparent !important;
+  padding: 0;
+  color: #333;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.route-setting .get.start {
+  background-image: url(../imgs/pathplan/marker_qi.png);
+}
+.route-setting .get.passing {
+  background-image: url(../imgs/pathplan/marker_jing.png);
+}
+.route-setting .con {
+  width: 230px;
+  margin: 10px 15px;
+}
+.route-setting .con .btn {
+  width: 100%;
+  text-align: center;
+  color: #f5f5f5;
+  border: 0;
+  border-radius: 3px;
+  text-shadow: none !important;
+  font-family: "microsoft yahei";
+  font-size: 14px;
+}
+.route-setting .con.set .btn {
+  background-color: #F1960A !important;
+}
+.route-setting .con.set .btn:hover {
+  background-color: #E48D0A !important;
+}
+.route-setting .con.do .btn {
+  background-color: #0132FF !important;
+}
+.route-setting .con.do .btn:hover {
+  background-color: #0430DD !important;
+}
+.route-setting .panel {
+  position: absolute;
+  top: 0;
+  left: 263px;
+  width: 310px;
+  min-height: 200px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 0;
+}
+.route-setting .panel.passing {
+  top: 50px;
+}
+.route-setting .panel .title {
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+}
+.route-setting .panel .title span {
+  margin: 0 10px;
+  font: normal normal bold 14px/30px "microsoft yahei";
+  color: #333;
+}
+.route-setting .panel .content {
+  padding: 10px;
+}
+.route-setting .panel .content .result-part li {
+  width: 100%;
+  min-height: 40px;
+  margin: 10px 0 0;
+}
+.route-setting .panel .content .result-part .badge {
+  float: left;
+  margin-top: 2px;
+}
+.route-setting .panel .content .result-part .left {
+  float: left;
+  margin-left: 5px;
+}
+.route-setting .panel .content .result-part .left .name {
+  display: block;
+  color: #0096FF;
+  font: normal normal normal 13px/22px "microsoft yahei";
+  cursor: pointer;
+}
+.route-setting .panel .content .result-part .left .name:hover {
+  color: #0033FF;
+}
+.route-setting .panel .content .result-part .left .address {
+  color: #999;
+  font: normal normal normal 12px/18px "microsoft yahei";
+}
+.route-setting .panel .content .content-pager {
+  width: 100%;
+}
+.route-setting .panel .content .content-pager .pagination {
+  float: right;
+  margin: 10px 5px;
+}
+.select-route {
+  width: 80px;
+  height: 26px;
+  font-family: "microsoft yahei";
+  outline: none;
+  font-size: 12px;
+}
+.search-route {
+  width: 150px;
+  height: 26px;
+  font: normal normal normal 12px/26px "microsoft yahei";
+  padding: 0 3px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+.btn-search-route {
+  padding: 3px 10px;
+  vertical-align: top;
+}
+.badge {
+  background-color: #2CDF8D;
+}
+/*# sourceMappingURL=setting.css.map */

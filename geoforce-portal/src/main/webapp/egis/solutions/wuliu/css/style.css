@@ -1,0 +1,102 @@
+
+/*大图*/
+.theme-image {
+    background:  #F6F6F6 url(../images/intro1.jpg)  no-repeat scroll center;
+    height: 463px;
+    border-top: 1px solid #ddd;
+}
+.pendant {
+    width: 500px;
+    height: 280px;
+    position: absolute;
+    top: 105px;
+    z-index: 333;
+    padding-top: 20px;
+    background:  url(../images/light.png)  no-repeat scroll 10px 105px;
+}
+.pendant .bg-title {
+    font-family: "kaiti";
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+.pendant p {
+    text-indent: 32px;
+    font-size: 14px;
+    font-family: "microsoft yahei";
+    color: #666;
+}
+.pendant a{
+    width: 140px;
+    float: right;
+    margin-right: 10px;
+    padding: 5px 10px;
+}
+
+
+.intro-area {    
+    /*width: 100%;*/
+    width: 960px;
+    min-width: 960px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.intro-container {
+    width: 100%;
+    height: 550px;
+    border-bottom: 1px solid #ddd;
+    padding: 0 50px;
+}
+
+.intro-img {
+    line-height: 550px;
+    max-height: 400px;
+    max-width: 450px;
+}
+
+.intro-text {
+    margin-top: 100px;
+    max-width: 330px;
+}
+.btn-w150 {
+    width: 150px;
+    font-size: 14px;
+    font-family: "microsoft yahei";
+}
+
+
+.intro-title {
+    font-size: 24px;
+    font-family: "simhei";
+    font-weight: normal;
+    display: block;
+    margin-bottom: 15px;
+    color: #438FBA;
+}
+
+.intro-subtitle {    
+    font-size: 16px;
+    font-family: "simhei";
+    display: block;
+    margin-bottom: 25px;
+    color: #CC6600;
+    width: 100%;
+    text-align: right;
+}
+
+.intro-content {
+    font-size: 15px;
+    font-family: "microsoft yahei";
+    line-height: 26px;
+    margin: 20px 0;
+    text-indent: 34px;
+}
+
+p.lines {
+    font-size: 16px;
+    font-family: "microsoft yahei";
+    line-height: 26px;
+    background:  url(../images/check.png)  no-repeat scroll left;
+    text-indent: 35px;
+}

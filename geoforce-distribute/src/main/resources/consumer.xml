@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+	<!-- 区划管理 -->	
+	<dubbo:reference id="areaService" interface="com.supermap.egispservice.area.service.IAreaService" version="2.5.3"  check="false"/>
+	
+	<!-- 网点管理 -->
+	<dubbo:reference id="pointService" interface="com.supermap.egispservice.base.service.PointService" version="2.5.3" check="false"/>
+	
+	<!-- 地址解析 -->
+	<dubbo:reference id="addressMatch" interface="com.supermap.egisp.addressmatch.service.IAddressMatchService" version="2.5.3" check="false"/>
+	
+	<!-- 坐标查询省市区 -->
+	<dubbo:reference id="geocodingService" interface="com.supermap.egispservice.geocoding.service.IGeocodingService" version="2.5.3" check="false"/>
+	
+</beans>

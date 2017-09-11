@@ -1,0 +1,70 @@
+.content {
+    width: 100%;
+}
+.header {
+    margin: 0;
+}
+.content .part {
+    height: 450px; width: 100%;    
+}
+.content .part-1 {    
+    background: url(../images/part-1.jpg) no-repeat center 0;
+}
+.content .part-2 {    
+    background: url(../images/part-2.jpg) no-repeat center 0;
+}
+.content .part-3 {    
+    background: url(../images/part-3.jpg) no-repeat center 0;
+}
+.content .part-4 {    
+    background: url(../images/part-4.jpg) no-repeat center 0;
+}
+.content .part-5 {    
+    background: url(../images/part-5.jpg) no-repeat center 0;
+}
+.content .part .detail {
+    width: 1000px;
+    height: 100%;
+    margin: 0 auto;
+}
+.content .part .detail .left{
+    float: left;
+    width: 500px;
+}
+.content .part .detail .right{
+    float: right;
+    width: 460px;
+}
+.content .part .detail p {
+    font-family: 'microsoft yahei';
+    color: #fff;
+}
+.content .part .detail p.title{
+    margin-top: 110px;
+    font-size: 56px;
+    font-weight: bold;
+}
+.content .part .detail p.text{
+    font-size: 16px;
+    line-height: 30px;
+}
+.content .part .detail p.phone{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.content .part .detail .btn-white-green {
+    color: #6cae46;
+    background-color: #fff;
+    border-color: #fff;
+    font-family: 'microsoft yahei';
+    outline: none;
+}
+
+.content .part .detail .btn-white-purple {
+    color: #5172d1;
+    background-color: #fff;
+    border-color: #fff;
+    font-family: 'microsoft yahei';
+    outline: none;
+}

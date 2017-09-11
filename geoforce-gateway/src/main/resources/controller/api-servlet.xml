@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+ xmlns:context="http://www.springframework.org/schema/context" 
+ xmlns:p="http://www.springframework.org/schema/p" 
+ xmlns:mvc="http://www.springframework.org/schema/mvc" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="http://www.springframework.org/schema/beans 
+      http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+      http://www.springframework.org/schema/context 
+      http://www.springframework.org/schema/context/spring-context.xsd 
+      http://www.springframework.org/schema/mvc 
+      http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd"> 
+       
+     <!-- 启动注解驱动的Spring MVC功能，注册请求url和注解POJO类方法的映射--> 
+     <mvc:annotation-driven>
+    	<mvc:message-converters>
+    		<bean class="org.springframework.http.converter.StringHttpMessageConverter"></bean>
+    		<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+    			<property name="objectMapper" ref="smObjectMapper"></property>
+    		</bean>
+    	</mvc:message-converters>
+     </mvc:annotation-driven>
+     
+     
+	 <bean id="smObjectMapper" class="com.supermap.egispapi.util.SMObjectMapper"></bean>
+ 	 <!-- 拦截器 -->
+ 	 <mvc:interceptors>
+    	<bean class="com.supermap.egispapi.interceptor.FrontInterceptor" ></bean>
+    	<bean class="com.supermap.egispapi.interceptor.LogInterceptor" ></bean>
+     </mvc:interceptors>
+     
+     <!-- 启动包扫描功能，以便注册带有@Controller、@Service、@repository、@Component等注解的类成为spring的bean --> 
+     <context:component-scan base-package="com.supermap.egispapi.action" /> 
+ 
+     <!-- 对模型视图名称的解析，在WEB-INF/jsp目录下找对应的jsp文件 --> 
+     <!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" /> 
+   	 -->
+   	
+    <!-- 指定所上传文件的总大小不能超过2000KB。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->  
+   	<!-- 
+   	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <property name="defaultEncoding" value="UTF-8"/>  
+        <property name="maxUploadSize" value="2000000"/>  
+    </bean>  
+     -->
+	
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+	<bean id="jsonview" class="com.supermap.egispapi.view.CustomMappingJacksonJsonpView">        
+		<property name="objectMapper" ref="smObjectMapper"/> 
+		<property  name="extractValueFromSingleKeyModel" value="true" />    
+	</bean>
+	
+	
+    
+    <!-- 定义html文件的位置 --> 
+    <!--放过/scripts下的静态文件--> 
+    <!-- 
+    <bean class="com.supermap.egispweb.util.HtmlViewResolver" p:prefix="/WEB-INF/jsp/" p:suffix=".html" p:order="1" /> 
+    <mvc:resources mapping="/resources/**" location="/resources/" /> 
+     -->
+     
+     <!-- 
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
+		<property name="exceptionMappings">  
+			<props>  
+				<prop key="java.lang.Throwable">error/500</prop>
+            </props>  
+		</property>  
+    </bean>
+     -->
+</beans> 

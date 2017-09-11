@@ -1,0 +1,33 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>地图操作-基础知识-操作配置</title>
+<link href="http://www.supermapcloud.com/demo/china/styles/action.css" rel="stylesheet" type="text/css">
+</link>
+<script type="text/javascript" src="../../js/key.js"></script>
+<script type="text/javascript" src="http://www.supermapcloud.com/demo/china/samples/include.js">
+</script>
+
+<script type="text/javascript">
+
+	var map = null;	//地图控件
+
+	//初始化地图
+	function initMap() {
+		
+		map = getMap("mapDiv");	//显示地图
+		
+		map.set_action(null);
+		
+	}
+
+</script>
+</head>
+
+<body onLoad="initMap()">
+
+<!--地图控件-->
+<div id="mapDiv" style="width: 880px; height: 580px;"></div>
+
+</body>
+</html>

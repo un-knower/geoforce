@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--_路线规划-->
+<lic>
+	<hostname/>
+	<mac/>
+	<userinfo>
+		<id>f9a8d6684ab7c16d014ac23dd711003d</id>
+		<username>hhsong</username>
+		<realname>匿名</realname>
+		<mobilephone>13444444444</mobilephone>
+		<email>supermapcloud@supermap.com</email>
+		<source>4</source>
+		<qq/>
+		<status>1</status>
+		<enterprise>
+			<id>f9a8d6684ab7c16d014ac23dd70c003c</id>
+			<name>supermap</name>
+		</enterprise>
+		<department>
+			<id>f9a8d6684ab7c16d014ac23dd714003e</id>
+			<headname>supermap</headname>
+			<operate_date>2015-01-07 10:34:00</operate_date>
+			<name>d</name>
+			<code>00027000</code>
+			<phone/>
+			<type>1</type>
+		</department>
+	</userinfo>
+	<orders>
+		<order>
+			<id>8a04a77b4d5ab21b014d5ab69d7c0000</id>
+			<order_type>0</order_type>
+			<submit_time>2015-05-16 11:13:46</submit_time>
+			<status>3</status>
+			<items>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab69d860002</id>
+					<module_id>40288e9f48afccb50148afccbf720000</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>0</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab69d870003</id>
+					<module_id>40288e9f48afccfa0148afcd046f0000</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>0</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab69d870004</id>
+					<module_id>40288e9f48afcd530148afcd62f20000</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>0</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab69d870005</id>
+					<module_id>40288e9f48afc7350148afc740600000</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>0</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab69d870006</id>
+					<module_id>40288e9f48afc55a0148afc56a2a0000</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>0</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab69d870007</id>
+					<module_id>40288e9f48afcaf60148afcb01690000</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>0</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab69d870008</id>
+					<module_id>40288e9f48afcbb40148afcbbfb10000</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>0</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab69d880009</id>
+					<module_id>40288e9f48afca090148afca166a0000</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>3</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab69d88000e</id>
+					<module_id>40288e9f48a123e80148a1240e330004</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>1</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab69d89000f</id>
+					<module_id>40288e9f48448d8a0148448d906e0002</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>1</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab69d890010</id>
+					<module_id>40288e9f48448d8a0148448d90690001</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>1</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab69d890011</id>
+					<module_id>40288e9f48448d8a0148448d90120000</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>1</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab69d890012</id>
+					<module_id>40288e9f4844872a014844872fd50000</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>1</item_type>
+					<isLogined/>
+				</item>
+			</items>
+		</order>
+	</orders>
+</lic>

@@ -1,0 +1,149 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="../../script/SuperMap.Include.js"></script>	
+    <script type="text/javascript" src="../../script/osp.js"></script>	
+    <script type="text/javascript">
+        var map = null;
+        var featuresLayer = null;
+		var markerLayer = null;
+		var poiSearchGroup = null; //poi搜索结果分组
+		var poiManager = null;
+		var layer = null;
+		var poiIndex = 0;
+        //初始化地图
+        function onPageLoad() {
+           layer = new SuperMap.Layer.CloudLayer();
+			markerLayer = new SuperMap.Layer.Markers("maker");
+			featuresLayer = new SuperMap.Layer.Vector();
+			 map = new SuperMap.Map("mapDiv", { controls: [
+                      new SuperMap.Control.PanZoomBar(),
+                      new SuperMap.Control.Navigation({
+                          dragPanOptions: {
+                              enableKinetic: true
+                          }
+                      })], allOverlays: true
+            });
+			map.addLayer(layer);
+			map.addLayer(featuresLayer);
+			map.addLayer(markerLayer);
+			map.setCenter(new SuperMap.LonLat(12958399.4681885, 4852082.44060595),11);
+			createPoiService();
+        }
+		
+		function createPoiService(){
+			poiManager = new SuperMap.OSP.UI.POIManager(map);
+			poiManager.markerLayer = markerLayer;
+			poiSearchGroup = new SuperMap.OSP.UI.POIGroup("poi_searchGroupId");
+			poiSearchGroup.caption = "poi搜索分组";
+			var scaledContent = new SuperMap.OSP.UI.ScaledContent();
+			scaledContent.content = '<img src="images/num_map/1.png" />';
+			scaledContent.offset = new SuperMap.OSP.Core.Point2D(0, 0);
+			poiSearchGroup.scaledContents = scaledContent;
+			poiManager.addPOIGroup(poiSearchGroup);
+		}
+
+           //地址匹配
+        //地址匹配
+        function doGeocorder() {
+            var myGeo = new SuperMap.OSP.ExtentionService.Geocoder();
+			myGeo.url = "http://services.supermapcloud.com";
+			// 将地址解析结果显示在地图上,并调整地图视野
+			var address = document.getElementById("txtAddress").value;
+			var geocoderParam = new SuperMap.OSP.ExtentionService.GeocodeParam();
+			geocoderParam.dataSourceName = "zhongguo";
+			geocoderParam.datasetName = "table_1P";
+			geocoderParam.expectCount = 10;
+			geocoderParam.startRecord = 0;
+			geocoderParam.address = address;
+			geocoderParam.province = document.getElementById("txtProvince").value;
+			geocoderParam.city = document.getElementById("txtCity").value;
+			var objInfo = document.getElementById("divGeocoder");
+			objInfo.innerHTML = "正在获取数据，请稍候……";
+			if (address != "") {
+				myGeo.getPoint(geocoderParam, function(result) {
+					//if (result) {
+					//var entitys = result.entities;
+					// var point = SuperMap.OSP.Core.Utility.latLonToMeters(result.entities[0].shape.point2Ds[0]);
+					var point = result.entities[0].shape.point2Ds[0];
+					//var tableHtml = "匹配到" + entitys.length + "个对象<br/><table>";
+					if (!!point.x && !!point.y) {
+						var x = point.x;
+						var y = point.y;
+						//document.getElementById("geocoderLng").innerHTML = x.toFixed(6);
+						//document.getElementById("geocoderLat").innerHTML = y.toFixed(6);
+						map.setCenter(new SuperMap.LonLat(x,y),16);
+						var poi = new SuperMap.OSP.UI.POI("poi" + poiIndex++);
+						poi.imageSize = new SuperMap.Size(18,18);
+						poi.title = document.getElementById("txtAddress").value;
+						var scaledContent = new SuperMap.OSP.UI.ScaledContent();
+						scaledContent.content = '../../images/pin2.png';
+						scaledContent.offset = new SuperMap.OSP.Core.Point2D(0, 0);
+						poi.scaledContents = scaledContent;
+						poi.position = new SuperMap.OSP.Core.Point2D(x, y);
+						poiSearchGroup.addPOIs(poi);
+						poiManager.editPOIGroup(poiSearchGroup);
+						poiManager.refreshPOI();
+						objInfo.innerHTML = "";
+						//} else {
+						// objInfo.innerHTML = "没查到结果";
+						// }
+						// objInfo.innerHTML = "";
+					}
+					},	function(error){
+						objInfo.innerHTML = "很抱歉，你所输入的地址未找到匹配结果";
+				}, "北京市");
+			} else {
+				alert("查询的地址不能为空");
+			} 
+        }
+    </script>
+
+</head>
+<body onload="onPageLoad()">
+    <div id="mapDiv" style="width: 880px; height: 580px;">
+    </div>
+    <div id="operatePanel" style="position: absolute;width: 220px; left: 890px; top: 8px; float: left;
+
+        font-size: 12px; border: solid 1px #969696; z-index: 100; padding-bottom: 5px;
+
+        background-image: url(../../images/toolbar_backgroundb.png);">地址匹配：</font>
+        <p style="font-size: 12px">
+            在输入框中输入要查询的地址，点击地址匹配按钮，则程序会调用地址匹配服务，返回一个地址对应的经纬度坐标。
+        </p>
+       <table>
+				<tr>
+					<td>
+						省：
+					</td>
+					<td>
+						<input type="text" id="txtProvince" style="width: 110px;" value="四川省" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>
+						市：
+					</td>
+					<td>
+						<input type="text" id="txtCity" style="width: 110px;" value="成都市" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>
+						地址：
+					</td>
+					<td>
+						<input type="text" id="txtAddress" style="width: 110px;" value="棕榈南岸" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" value="地址匹配" onclick="doGeocorder()" />
+					</td>
+				</tr>
+			</table>
+    </div>
+    <div id="divGeocoder" style="clear: both">
+    </div>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>地图操作-基础知识-地址匹配</title>
+<link href="http://www.supermapcloud.com/demo/china/styles/action.css" rel="stylesheet" type="text/css">
+</link>
+<script type="text/javascript" src="../../js/key.js"></script>
+<script type="text/javascript" src="http://www.supermapcloud.com/demo/china/samples/include.js">
+</script>
+
+<script type="text/javascript">
+
+        var map = null;
+
+        var poiManager = null;
+
+        var markerLayer = null;
+
+        var poiGroup = null;
+
+        var poiIndex = 0;
+
+        function onPageLoad() {
+
+            map = getMap("mapDiv");
+
+            markerLayer = $create(SuperMap.Web.Mapping.MarkerLayer, { bounds: map.get_bounds() }, null, null, null);
+
+            //map.get_compass().setImgLocation("../../images/controls");
+
+            //var compass = new SuperMap.Web.Controls.Compass({id:1, imageSrc: "../../images/controls/compass.png"});
+
+    		var scaleBar = new SuperMap.Web.Controls.ScaleBar({id:2,scaleBarStyle: {"color":"black", "fontSize": 2,"mode":1},pos: {"x":10, "y":10}});
+
+			map.addLayer(markerLayer);
+
+            poiManager = new SuperMap.OSP.UI.POIManager(map);
+
+            poiManager.markerLayer = markerLayer;
+
+            poiGroup = new SuperMap.OSP.UI.POIGroup("group");
+
+            poiManager.addPOIGroup(poiGroup);
+
+        }
+
+
+
+        //地址匹配
+
+        function doGeocorder() {
+
+            var myGeo = new SuperMap.OSP.ExtentionService.Geocoder();	//地址解析服务
+
+            myGeo.url = getServiceUrl();	//服务地址
+
+            // 将地址解析结果显示在地图上,并调整地图视野
+
+            var address = document.getElementById("txtAddress").value;	//查询的字符
+
+            var geocoderParam = new SuperMap.OSP.ExtentionService.GeocodeParam();	//查询参数
+
+			geocoderParam.dataSourceName = "zhongguo";
+
+			geocoderParam.datasetName = "table_1P";
+
+			geocoderParam.expectCount = 10;
+
+			geocoderParam.startRecord = 0;
+
+            geocoderParam.address = address;
+
+            geocoderParam.province = "北京市";
+
+            geocoderParam.city = "海淀区";
+
+            var objInfo = document.getElementById("divInfo");
+
+            objInfo.innerHTML = "正在获取数据，请稍候……";
+
+            if (address != "") {
+
+                myGeo.getPoint(geocoderParam, function(result) {
+
+                    //if (result) {
+
+                        //var entitys = result.entities;
+
+						var point = SuperMap.OSP.Core.Utility.latLonToMeters(result.entities[0].shape.point2Ds[0]);
+
+                        //var tableHtml = "匹配到" + entitys.length + "个对象<br/><table>";
+
+                        if (!!point.x && !!point.y) {
+
+                            var x = point.x;
+
+                            var y = point.y;
+
+                            map.zoomToLevel(16, new SuperMap.Web.Core.Point2D(x, y));
+
+                            var poi = new SuperMap.OSP.UI.POI("poi" + poiIndex++);
+
+                            poi.title = document.getElementById("txtAddress").value;
+
+                            var scaledContent = new SuperMap.OSP.UI.ScaledContent();
+
+                            scaledContent.content = "<img src='images/pin2.png' />";
+
+                            scaledContent.offset = new SuperMap.Web.Core.Point(7, 13);
+
+                            poi.scaledContents = scaledContent;
+
+                            poi.position = new SuperMap.Web.Core.Point2D(x, y);
+
+                            poi.addEventListerner("click", function(e) {
+
+                                var osp_poi = eval('(' + e.get_info() + ')');
+
+                                var strHtml = 'POI标题：' + osp_poi.title;
+
+                                strHtml += '<br/><div style="width:99%; height:50px;background-color:#E4EDF3"></div>';
+
+                                var location = new SuperMap.Web.Core.Point2D(e._x, e._y);
+
+                                //打开弹窗信息框
+
+                                map.openInfoWindow(location, osp_poi.title, strHtml);
+
+                            });
+
+                            poiGroup.addPOIs(poi);
+
+                            poiManager.editPOIGroup(poiGroup);
+
+                            poiManager.refreshPOI();
+
+                            objInfo.innerHTML = "";
+
+                        //} else {
+
+                        //    objInfo.innerHTML = "没查到结果";
+
+                        //}
+
+                        objInfo.innerHTML = "";
+
+                    }
+
+                },function(error){
+
+					objInfo.innerHTML = "很抱歉，你所输入的地址未找到匹配结果";
+
+				}, "北京市");
+
+            } else {
+
+                alert("查询的地址不能为空");
+
+            }
+
+        }
+
+    </script>
+</head>
+
+<body onLoad="onPageLoad()">
+<div id="mapDiv" style="float: left; width: 800px; height: 500px; top: 10px; left: 10px;
+
+        border: solid 1px gray"> </div>
+<div id="operatePanel" style="float: left; width: 220px; left: 810px; top: 10px;
+
+        border: solid 1px #969696; z-index: 100; padding-bottom: 5px; background-image: url(../../images/toolbar_backgroundb.png);"> <font style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 100%">地址匹配：</font>
+  <p style="font-size: 12px"> 在输入框中输入要查询的地址，点击地址匹配按钮，则程序会调用地址匹配服务，返回一个地址对应的经纬度坐标。 </p>
+  <table>
+    <tr>
+      <td><input type="text" id="txtAddress" style="width: 200px;" value="北京市海淀区中关村人民大学北路16号好方法教育楼前台BBZB" /></td>
+    </tr>
+    <tr>
+      <td><input type="button" value="地址匹配" onClick="doGeocorder()" /></td>
+    </tr>
+  </table>
+  
+  <!--<table>
+
+            <tr>
+
+                <td colspan="4">
+
+                    查询结果：
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+
+                    Lng:
+
+                </td>
+
+                <td>
+
+                    <div id="geocoderLng">
+
+                    </div>
+
+                </td>
+
+                <td>
+
+                    Lat:
+
+                </td>
+
+                <td>
+
+                    <div id="geocoderLat">
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        </table>--> 
+  
+</div>
+<div id="divInfo" style="clear: both"> </div>
+</body>
+</html>

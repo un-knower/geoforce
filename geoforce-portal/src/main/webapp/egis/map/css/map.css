@@ -1,0 +1,745 @@
+﻿body {
+	background: #F1F1F1;
+	margin: 0; /* 最好将 body 元素的边距和填充设置为 0 以覆盖不同的浏览器默认值 */
+	padding: 0;
+	/*text-align: center;*/ /* 在 IE 5* 浏览器中，这会将容器居中。文本随后将在 #container 选择器中设置为默认左对齐 */
+	color: #000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 100%;
+	overflow:hidden;
+	clear:both!important; /* 消除IE下滚动条 */
+}
+p, ul, li, h1, h2, h3, a {
+	font-family: arial, helvetica, sans-serif;
+	display: inline;
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	outline: medium none;
+}
+/*--------头部样式start--------*/
+.hender {
+	background-image:url(../images/map_topBg.gif);
+	width:100%;
+	height:51px;
+	background-repeat: repeat-x;
+	background-position: left top;
+}
+
+#navigation {
+	background-image: url(../images/map_rightBg.gif);
+	float:right;
+	background-repeat: no-repeat;
+	background-position: left top;
+	height:51px;
+	line-height:35px;
+	padding-right:10px;
+}
+#navigation a {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+#supermap_logo {
+	float: left;
+	height: 51px;
+	cursor: pointer;
+}
+
+#divShareMap {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #8BA4D8;
+    display: none;
+    height: 85px;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    width: 350px;
+    z-index: 999999;
+}
+/*--------头部样式end--------*/
+/*-----主体样式start------*/
+.content {
+	display: block;
+	border: 0 none;
+}
+.content a {
+	text-decoration: none;
+}
+/*-----主体样式end----------*/
+/*----------侧边栏start----------------*/
+.leftbar {
+	float: left; /* 由于此元素是浮动的，因此必须指定宽度 */
+	width: 300px; /* 将显示背景色，其宽度等于栏中内容的长度，*/
+	/*padding: 0 15px;*/
+	display: block;	/* 设置为none时隐藏对象，并不为对象保留物理空间 */
+	/*overflow: auto;*/
+	/*height: 250px;*/
+	background-color:#FFFFFF;
+	border-right:1px solid #CCCCCC ;
+	overflow:hidden;
+	position:relative;
+}
+.left_menu {
+	background-image: url(../images/left_bar.gif);
+	background-repeat: repeat-x;
+	background-position: left top;
+	line-height:28px;
+	text-align:left;
+	padding-left:20px;
+	 width:307px\9;
+}
+.left_menu a {
+	cursor: pointer;
+	color:#0B2B3C;
+}
+.left_menu a:hover {
+	text-decoration: underline;
+}
+.left_body {
+	overflow: auto;
+	/*height: 220px;*/
+	padding: 0;
+	background-color: #FFFFFF;
+}
+.left_body a {
+	text-decoration: underline;
+}
+#ssearch_area {
+	margin: 20px 20px 20px 20px;
+}
+.ssearch_box_input {
+	border: 1px solid #D3D3D3;
+	font-size: 13px;
+	height: 25px;
+	width: 200px;
+	line-height: 25px;
+	background-color: #FFFFFF;
+	margin-right:6px;
+	padding-left:6px;
+}
+.widgetBar {
+	padding: 5px 15px 5px 15px;
+	color: #103854;
+	background-image: url(../images/left_bar.gif);
+	background-repeat: repeat-x;
+	background-position: left top;
+	text-align:left;
+	width:305px\9;
+}
+/*----------侧边栏end----------------*/
+/*----------main地图start--------------*/
+#mainMap {
+	position: relative;
+	margin: 0; /* 此 div 元素的左边距会在页面的左下方创建栏 — 无论 sidebar1 div 中包含多少内容，都将保留栏空白。如果您希望在 #sidebar1 中的内容结束时，用 #mainContent div 的文本填充 #sidebar1 空白，则可以删除此边距。 */
+	padding: 0; /* 请记住，填充是 div 方块内部的空间，边距则是 div 方块外部的空间 *//*height: 250px;*/
+	float: left;/*width: 500px;*/
+	border-left:0px solid #CCCCCC ;
+    overflow:hidden;
+}
+#map_toolbar {
+	width:100%;
+	background-image: url(../images/left_bar.gif);
+	background-repeat: repeat-x;
+	background-position: left top;
+	height:28px;
+	line-height:28px;
+}
+#map_toolbar img {
+	margin-bottom:3px;
+	margin-right: 2px;
+	vertical-align:middle;
+	border: 0;
+}
+.userLocation {
+	float: right;
+	line-height: 28px;
+	padding-left: 4px;
+	padding-right:10px;
+}
+.userLocation a{
+	cursor: pointer;
+	color:#0B2B3C;}
+	
+.userLocation a:hover{	text-decoration: underline;}
+/*----------main地图end-------------*/
+/*-------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+#user {
+	margin-top: 20px;
+	text-align: right;
+	padding: 5px 10px 5px 0;
+}
+#user p {
+	color: #FFFFFF;
+}
+#guser p {
+	margin: 0 0;
+	padding: 0;
+	font-family: arial;
+	font-size: 13px;
+}
+#ssearch_top_tab {
+	height: 25px;
+	margin-left: 10px;
+}
+#ssearch_top_tab img {
+	cursor: pointer;
+}
+/*
+#hideButton {
+	float: left;
+	width: 0px;
+	background-color:#FFFFFF;
+	z-index: 2;
+}*/
+#hideButton p {
+	display: block;
+	width: 5px;
+}
+.arrow_left {
+	cursor:pointer;
+	background-attachment: scroll;
+	background-color: transparent;
+	background-image: url(../images/hideArrow.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.arrow_right {
+	background: url(../images/hideArrow.gif) no-repeat center center scroll transparent;
+	cursor:pointer;
+}
+/*#left_menu a {
+	text-decoration: none;
+	font-family: arial,helvetica,sans-serif;
+	font-size: 13px;
+}*/
+
+
+
+
+.map_body {
+	width: 100%;
+	height: 200px;
+}
+#footer {
+	padding: 5px 10px 0 20px; /* 此填充会将它上面 div 中的所有元素左对齐。 */
+	background:#C9E6F5;
+	height: 22px;
+	text-align: center;
+}
+#footer p {
+	margin: 0; /* 将脚注中第一个元素的边距设置为零将避免出现可能的边距重叠（即 div 之间出现的空白）*/
+	padding: 10px 0; /* 就像边距会产生空白一样，此元素上的填充也将产生空白，但不会出现边距重叠问题 */
+}
+.fltrt { /* 此类可用来使页面中的元素向右浮动。浮动元素必须位于页面上要与之相邻的元素之前。 */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* 此类可用来使页面上的元素向左浮动 */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* 此类应当放在 div 或 break 元素上，而且该元素应当是完全包含浮动的容器关闭之前的最后一个元素 */
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+.ssearch_box_btn {
+	magin-left:6px;
+}
+.ssearch_box_btn img {
+	cursor: pointer;
+	magin-right:6px;
+}
+.widget {
+	margin: 6px 2px 6px 2px;
+}
+.widget_content {
+	padding: 5px 15px 5px 26px;
+	text-align: left;
+}
+.widget_content a {
+	margin: 0.2em 0.6em 0 0;
+	margin:4px 10px 2px 0px;
+}
+.separator {
+	background: none repeat scroll 0 0 #999999;
+	height: 1px;
+	overflow: hidden;
+	width:305px\9;
+}
+.poiPanel {
+	margin-left: 10px;
+}
+.poiInfoItem {
+	margin: 5px 15px 0 0;
+}
+.poiName a {
+	color: #2200C1;
+	font-size: 20px;
+	text-decoration: underline;
+}
+.switchBar {
+	position:absolute;
+	right: 0px;
+	padding: 10px 15px 0 0;
+	z-index: 200;
+}
+.switchBar img {
+	cursor: pointer;
+}
+.anchor-selected {
+	color: #000000;
+	cursor: default;
+	font-weight: bold;
+}
+
+.search_result{ font-size:12px;}
+.search_result caption{ text-align:left; background-color:#f1f2f6; padding:8px 0 8px 14px; margin-top:4px;}
+.search_result caption a{ font-weight:bold; color:#0000FF;}
+.search_result tr td{ line-height:23px; border-bottom:1px solid #CCCCCC; }
+.search_result tr td span a{color: #3D6DCC; font-weight:bold; text-decoration:none;}
+
+.search_bottom{ background-color:#f1f2f6; padding:8px 0 8px 14px; margin-top:4px;}
+.search_bottom a{color:#0000FF; font-weight:bold}
+/*--------------OpenInfoWindow--------------------*/
+/*IE6下PNG图片透明*/
+.sm_infoWindowContainer .arrowforIE6 {
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src="../images/iw_tail.png")
+	bottom:-31px;
+	left:30%;
+	width:40px;
+	height:31px;
+	position:absolute;
+}
+.sm_infoWindowContainer .arrow {
+	background-image:url(../images/iw_tail.png);
+	bottom:-31px;
+	left:30%;
+	width:40px;
+	height:31px;
+	position:absolute;
+	/*filter:alpha(Opacity=30);
+	opacity:0.3;*/
+	
+	
+}
+
+/*-----------Controls--------*/
+/*===============弹出框样式==================*/
+.pop_info_div {
+	margin:8px 0 8px 0; overflow:hidden;
+}
+
+.pop_info_div ul{
+	list-style: none;
+	margin:0;
+	padding-left:10px;
+	padding-top:5px;
+}
+.pop_expInfo_div {
+	line-height:25px;
+	padding:5px;
+}
+.pop_expInfo_div a {
+	margin-right: 15px;
+}
+/*===============弹出框样式==================*/
+
+/*实时天气start*/
+.weather{padding-top: 10px; line-height:28px; font-size:12px; margin-left:12px;}
+.today{ float: left; font-size:12px;width:130px;margin-top:20px;}
+.tomorrow{ float:left; font-size:12px;border-left:1px solid #e1e1e1; padding-left:12px; width:130px;margin-top:20px;}
+.weatherMessage{ color:#666666; font-size:12px; line-height:28px;clear:both;}
+/*实时天气end*/
+/*POI显示样式*/
+.poi_info_item{overflow:hidden; margin-top:6px; font-size:12px;}
+
+.logo {
+	padding-left:15px;
+	margin-bottom:8px;
+	float:left;
+	display:inline;
+}
+.login {
+	float:right;
+	margin-right:20px;
+	display:inline;
+	margin-top:25px;
+}
+.login ul li {
+	margin-right:10px;
+	list-style:none;
+	display:inline;
+}
+.login ul li a img {
+	margin-right:4px;
+}
+.login ul li a {
+	color:#335A6B;
+	text-decoration:none;
+	margin-right: 10px;
+}
+.flash {
+	margin-left:5px;
+	width:998px;
+	height:270px;
+	background-image: url(../images/index_banner.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+.column{
+	background-image:url(../images/spr.jpg);
+	width:300px;
+	height:270px;
+	background-color:#eaedf2;
+	float:left;
+	padding-left:19px;
+	margin:20px 8px;
+	background-repeat: no-repeat;
+	background-position: -320px 0px;
+	cursor:pointer;
+}
+/*-----鼠标移动至云地图服务时----- */
+.mseEvent{
+	background-image:url(../images/spr.jpg);
+	width:300px;
+	height:270px;
+	background-color:#eaedf2;
+	float:left;
+	padding-left:19px;
+	margin:20px 8px;
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	cursor:pointer;
+
+}
+.column h2,#content h2{ font-family:"微软雅黑"; font-size:16px; color:#30608e; margin-left:30px;margin-top:20px;}
+.column dd,.column dt,#content dd,#content dt{ font-size:12px; margin-left:30px;margin-top:6px;}
+.bottom {
+	width:1000px;
+	height:66px;
+	background-color:#89BBE6;
+	color:#1D496D;
+	overflow:hidden;
+	margin-top:20px;
+	text-align:center;
+	vertical-align:middle;
+	display:block;
+	margin-left:4px;
+	font-size:12px;
+	padding-top:10px;
+}
+.bottom p {
+	line-height:23px;
+}
+.bottom p a {
+	text-decoration: none;
+}
+.bottom p span {
+	margin-left:10px;
+	margin-right:10px;
+}
+.bottom p a:link, .bottom p a:visited {
+	color:#1D496D;
+	text-decoration: none;
+	padding:2px 2px 2px 2px;
+}
+.bottom p a:hover {
+	color:#FFFFFF;
+	background-color:#206497;
+	padding:2px 2px 2px 2px;
+}
+
+.login_input {
+	width:140px;
+}
+.checking {
+	width:100px;
+}
+#separate {
+	padding-left: 4px;
+	padding-right: 4px;
+}
+/*================快速入口样式=================*/
+.fastEntry {
+	font-size:12px;
+	width:414px;
+	margin-left:593px;
+*margin-left:-390px;
+	position:absolute;
+	top:38px;
+}
+.entryList {
+	background-image:url(../images/RapidEntry_r3_c2.png)!important;
+	background-repeat: repeat-y;
+	background-position: left top;
+ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/RapidEntry_r3_c2.png', sizingMethod='crop');
+}
+.entryList span {
+	display:inline-block;
+	margin-left:20px;
+	color:#1F3A87;
+	white-space:nowrap;
+	height:21px;
+	line-height:21px;
+}
+.entryList span a {
+	color:#1F3A87;
+}
+/*================快速入口样式=================*/
+
+.flashMain {
+	width: 1000px;
+	height: 360px;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+}
+.images {
+	width: 1000px;
+	height: 360px;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+}
+.images ul li {
+	width: 1000px;
+	height: 360px;
+	position: absolute;
+	list-style-type:none;
+}
+.li_list {
+	position: relative;
+	text-align: right;
+	margin: 0px;
+	padding: 0px;
+	z-index:1001;
+	margin-left: auto;
+	margin-right: auto;
+}
+#li_list ul {
+	position: relative;
+	bottom:20px;
+	right: 480px;
+	text-align: right;
+	margin: 0px;
+	padding: 0px;
+}
+#li_list ul li {
+	display: inline;
+	background-color: #003399;
+	color: White;
+	padding-left: 5px;
+	padding-right: 5px;
+	width: 30px;
+	margin-left: 3px;
+	cursor: pointer;
+	z-index:1001;
+	list-style-type:none;
+}
+.cur {
+	background-color: red;
+}
+.cty-topbar-wrap {
+    height: 26px;
+    margin-bottom: 10px;
+}
+
+.cty-topbar {
+    background-color: #333333;
+    color: #CCCCCC;
+    font-family: "Microsoft Yahei";
+    font-size: 12px;
+    height: 26px;
+    left: 0;
+    line-height: 24px;
+    position: relative;
+    text-align: left !important;
+    width: 100%;
+    z-index: 302;
+}
+.cty-topbar .inner {
+    margin: 0 auto;
+	padding-left: 15px;
+	padding-right: 15px;    
+}
+
+.cty-topbar .inner-left {
+    float: left;
+}
+
+.cty-topbar .inner-right {
+    float: right;
+}
+.cty-topbar .inner-right a{
+	text-decoration: none;
+}
+.cty-topbar a {
+    color: #BBBBBB;
+}
+.cty-topbar i {
+    background: none repeat scroll 0 0 #666666;
+    display: inline-block;
+    height: 12px;
+    margin: 0 10px;
+    vertical-align: middle;
+    width: 1px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
+}
+.btn:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.btn:hover,
+.btn:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.btn:active,
+.btn.active {
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btn-default {
+  color: #ffffff;
+  background-color: #474949;
+  border-color: #474949;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active {
+  background-color: #3a3c3c;
+  border-color: #2e2f2f;
+}
+
+.btn-default.disabled,
+.btn-default[disabled],
+fieldset[disabled] .btn-default,
+.btn-default.disabled:hover,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default:hover,
+.btn-default.disabled:focus,
+.btn-default[disabled]:focus,
+fieldset[disabled] .btn-default:focus,
+.btn-default.disabled:active,
+.btn-default[disabled]:active,
+fieldset[disabled] .btn-default:active,
+.btn-default.disabled.active,
+.btn-default[disabled].active,
+fieldset[disabled] .btn-default.active {
+  background-color: #474949;
+  border-color: #474949;
+}
+
+.btn-primary {
+  color: #ffffff;
+  background-color: #428bca;
+  border-color: #428bca;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active {
+  background-color: #357ebd;
+  border-color: #3071a9;
+}
+
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+  background-color: #428bca;
+  border-color: #428bca;
+}
+.btn-position{
+	margin-left: 10px;
+}
+
+.SearchPanels i{
+	background: none repeat scroll 0 0 #666666;
+	display: inline-block;
+	height: 12px;
+	margin: 0 10px;
+	vertical-align: middle;
+	width: 1px;
+}
+.SearchPanels a{
+	color: #0088CC;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.SearchPanels a:hover{
+	color: #005580;
+	text-decoration: underline;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

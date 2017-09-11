@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+	<dubbo:application name="provider_point" />
+
+ 	<!--使用zookeeper注册中心暴露服务地址 -->
+	<dubbo:registry  protocol="zookeeper"  address="10.168.191.19:2181" />
+	<dubbo:protocol port="20902"/>
+	<!-- 网点管理 -->
+	<dubbo:service interface="com.supermap.egispservice.base.service.PointService" version="2.5.3" ref="pointService"  timeout="120000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="pointService" class="com.supermap.egispservice.base.service.impl.PointServiceImpl" />
+	 
+	<!-- 网点自定义字段管理 -->
+	<dubbo:service interface="com.supermap.egispservice.base.service.PointExtcolService" version="2.5.3" ref="pointExtcolService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="pointExtcolService" class="com.supermap.egispservice.base.service.impl.PointExtcolServiceImpl" />
+	
+	<!-- 网点自定义字段值管理 -->
+	<dubbo:service interface="com.supermap.egispservice.base.service.PointExtcolValService" version="2.5.3" ref="pointExtcolValService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="pointExtcolValService" class="com.supermap.egispservice.base.service.impl.PointExtcolValServiceImpl" />
+	
+	<!-- 网点样式管理 -->
+	<dubbo:service interface="com.supermap.egispservice.base.service.PointStyleService" version="2.5.3" ref="pointStyleService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="pointStyleService" class="com.supermap.egispservice.base.service.impl.PointStyleServiceImpl" />
+	
+	<!-- 网点分组管理 -->
+	<dubbo:service interface="com.supermap.egispservice.base.service.PointGroupService" version="2.5.3" ref="pointGroupService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="pointGroupService" class="com.supermap.egispservice.base.service.impl.PointGroupServiceImpl" />
+	
+</beans>

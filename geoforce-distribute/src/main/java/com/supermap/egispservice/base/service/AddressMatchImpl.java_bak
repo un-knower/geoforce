@@ -1,0 +1,928 @@
+package com.supermap.egispservice.base.service;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.alibaba.dubbo.common.utils.StringUtils;
+import com.supermap.address.entity.AddressStandarlizeParam;
+import com.supermap.address.entity.StandardAddressParam;
+import com.supermap.address.service.AdministrativeDivisionService;
+import com.supermap.address.util.AddressStandard;
+import com.supermap.convert.impl.BaiduCoordinateConvertImpl;
+import com.supermap.convert.impl.SuperMapCoordinateConvertImpl;
+import com.supermap.egispservice.base.constants.AddressMatchConstants;
+import com.supermap.egispservice.base.constants.StatusConstants;
+import com.supermap.egispservice.base.dao.IAddressDao;
+import com.supermap.egispservice.base.entity.AddressEntity;
+import com.supermap.egispservice.base.pojo.AddresInfoDetails;
+import com.supermap.egispservice.base.pojo.AddressMatchResult;
+import com.supermap.egispservice.base.pojo.Geometry4KeywordParam;
+import com.supermap.egispservice.base.pojo.Point;
+import com.supermap.egispservice.base.pojo.QueryAttributefilterEntity;
+import com.supermap.egispservice.base.pojo.ReverseMatchResult;
+import com.supermap.entity.AddressMatchResults;
+import com.supermap.entity.CoordinateEntity;
+import com.supermap.entity.FieldNamesConstants;
+import com.supermap.entity.QueryEntity;
+import com.supermap.entity.QueryType;
+import com.supermap.entity.RectangularEntity;
+import com.supermap.search.ISearchPointByAddress;
+import com.supermap.search.SearchByLucene;
+import com.supermap.search.entity.SearchConstants;
+import com.supermap.search.entity.SearchParam;
+import com.supermap.search.impl.SearchByBaidu;
+import com.supermap.search.impl.SearchByKeywords;
+
+@Service
+public class AddressMatchImpl implements IAddressMatch {
+
+	
+	@Autowired
+	private IAddressDao addressDao;
+	
+	
+	//地址标准化
+	private static AddressStandard addressStandard = new AddressStandard();
+	
+	// 关键词匹配
+	private static ISearchPointByAddress searchByKeyword = new SearchByKeywords();
+	
+	private static BaiduCoordinateConvertImpl bdConvert = new BaiduCoordinateConvertImpl();
+	/**
+	 * 地址匹配计划：
+	 *  1：关键词匹配；2：超图地址匹配；3：百度地址匹配
+	 */
+	private List<Integer> plan = new ArrayList<Integer>();
+
+	
+	/**
+	 * 百度地址匹配
+	 */
+	private static SearchByBaidu searchByBaidu = new SearchByBaidu();
+	
+	private static Logger LOGGER = Logger.getLogger(AddressMatchImpl.class);
+	
+	
+//	private static SearchByUDB searchByUDB = new SearchByUDB();
+	
+	
+	@Override
+	public AddressMatchResult search(String id, String address) {
+		AddresInfoDetails amp = new AddresInfoDetails(id,address);
+		return search(amp);
+	}
+
+	@Override
+	public AddressMatchResult search(AddresInfoDetails param) {
+		List<AddresInfoDetails> list = new ArrayList<AddresInfoDetails>();
+		list.add(param);
+		return search(list).get(0);
+	}
+
+	@Override
+	public List<AddressMatchResult> search(List<AddresInfoDetails> params) {
+		return search(params, AddressMatchConstants.SMC);
+	}
+	
+	
+	@Override
+	public List<AddressMatchResult> search(List<AddresInfoDetails> params, String type) {
+		// 地址标准化
+		List<StandardAddressParam> saps = addressStandard(params);
+		//	地址筛选
+		List<SearchParam> searchParams = addressFilter(saps, params);
+		for (int i = 0; i < plan.size(); i++) {
+			switch (plan.get(i)) {
+			case 1:
+				keywordSearch(searchParams);
+				break;
+			case 2:
+				smSearch(searchParams);
+				break;
+			case 3:
+				bdSearch(searchParams);
+				break;
+			}
+		}
+		LOGGER.debug("## 坐标转换...");
+		// 坐标转换
+		coordinateConvert(searchParams,type);
+		List<AddressMatchResult> result = buildResult(searchParams, params);
+		return result;
+	}
+	
+	/**
+	 * 
+	 * <p>Title ：coordinateConvert</p>
+	 * Description：		坐标转换
+	 * @param searchParams
+	 * Author：Huasong Huang
+	 * CreateTime：2014-9-24 下午02:23:45
+	 */
+	private void coordinateConvert(List<SearchParam> searchParams,String type){
+		long convertStart = System.currentTimeMillis();
+		for (int i = 0; i < searchParams.size(); i++) {
+			SearchParam sp = searchParams.get(i);
+			com.supermap.search.entity.Point2D point = sp.getPoint();
+			if (point != null && sp.getFrom().equals(SearchConstants.FROM_BAIDU)) {
+				LOGGER.info("##待转换原始地址 ： " + point.getX() + "," + point.getY());
+				com.supermap.entity.Point coor = new com.supermap.entity.Point(point.getX(), point.getY());
+				coor = bdConvert.convertV2(coor);
+				if(null != coor){
+					if(type.equals(AddressMatchConstants.SMC)){
+						coor = SuperMapCoordinateConvertImpl.smLL2MC(coor);
+					}
+					point.setX(coor.getLon());
+					point.setY(coor.getLat());
+					sp.setPoint(point);
+				}
+			}else if(point != null && point.getX() > 0 && point.getY() > 0 && sp.getFrom().equals(SearchConstants.FROM_SOUSOU)){
+				// 对于系统识别的，需要统一转换为摩卡托坐标
+				if(AddressMatchConstants.SMLL.equals(type)){
+					if(!BaiduCoordinateConvertImpl.isLLPoint(new com.supermap.entity.Point(point.getX(),point.getY()))){
+						com.supermap.entity.Point mcP = SuperMapCoordinateConvertImpl.smMCToLatLon(new com.supermap.entity.Point(point.getX(),point.getY()));
+						point.setX(mcP.getLon());
+						point.setY(mcP.getLat());
+						sp.setPoint(point);
+					}
+				}else{
+					if(BaiduCoordinateConvertImpl.isLLPoint(new com.supermap.entity.Point(point.getX(),point.getY()))){
+						com.supermap.entity.Point mcP = SuperMapCoordinateConvertImpl.smLL2MC(new com.supermap.entity.Point(point.getX(),point.getY()));
+						point.setX(mcP.getLon());
+						point.setY(mcP.getLat());
+						sp.setPoint(point);
+					}
+				}
+			}
+		}
+		long convertEnd = System.currentTimeMillis();
+		LOGGER.info("## 坐标转换耗时：" + (convertEnd - convertStart));
+	}
+	
+	
+	
+	/**
+	 * 
+	 * <p>Title ：buildResult</p>
+	 * Description：		构建结果
+	 * @param searchParams		地址解析参数
+	 * @param params			地址详细信息
+	 * @return
+	 * Author：Huasong Huang
+	 * CreateTime：2014-9-23 上午09:31:23
+	 */
+	public List<AddressMatchResult> buildResult(List<SearchParam> searchParams,List<AddresInfoDetails> params){
+		List<AddressMatchResult> amrs = new ArrayList<AddressMatchResult>();
+		for(int i=0;i<searchParams.size();i++){
+			SearchParam searchParam = searchParams.get(i);
+			AddresInfoDetails aid = params.get(i);
+			AddressMatchResult amr = new AddressMatchResult();
+			amr.setId(aid.getId());
+			amr.setAddress(aid.getAddress());
+			amr.setFrom(searchParam.getFrom());
+			amr.setProvince(searchParam.getProvince());
+			amr.setCity(searchParam.getCity());
+			amr.setCounty(searchParam.getDistrict());
+			amr.setAdmincode(searchParam.getAdmincode());
+			// 如果地址匹配信息不为空，且匹配来源不为空，则属于地址相关的错误，并没有进行地址匹配，所以不需要对坐标点进行匹配
+			/*if(!StringUtils.isEmpty(aid.getResultInfo()) && !StringUtils.isEmpty(amr.getFrom())){
+				amr.setResultType(aid.getResultType());
+				amr.setResultInfo(aid.getResultInfo());
+			}else{
+				com.supermap.search.entity.Point2D point = searchParam.getPoint();
+				if(null == point || point.getX() <= 0 || point.getY() <= 0){
+					amr.setResultType(AddressMatchConstants.RESULT_TYPE_NOT_COOR);
+					amr.setResultInfo(AddressMatchConstants.NOT_COOR_INFO);
+				}else{
+					amr.setSmx(point.getX());
+					amr.setSmy(point.getY());
+					amr.setResultType(AddressMatchConstants.RESULT_TYPE_SUCCESS);
+				}
+			}*/
+			com.supermap.search.entity.Point2D point = searchParam.getPoint();
+			if(null == point || point.getX() <= 0 || point.getY() <= 0){
+				amr.setResultType(AddressMatchConstants.RESULT_TYPE_NOT_COOR);
+				amr.setResultInfo(AddressMatchConstants.NOT_COOR_INFO);
+			}else{
+				amr.setSmx(point.getX());
+				amr.setSmy(point.getY());
+				amr.setResultType(AddressMatchConstants.RESULT_TYPE_SUCCESS);
+			}
+			amrs.add(amr);
+		}
+		return amrs;
+	}
+	
+	
+	/**
+	 * 
+	 * <p>Title ：addressStandard</p>
+	 * Description：		地址标准化
+	 * @param params
+	 * @return
+	 * Author：Huasong Huang
+	 * CreateTime：2014-9-22 下午01:48:31
+	 */
+	private List<StandardAddressParam> addressStandard(List<AddresInfoDetails> params){
+		List<AddressStandarlizeParam> list = new ArrayList<AddressStandarlizeParam>();
+		for(AddresInfoDetails param : params){
+			AddressStandarlizeParam asp = new AddressStandarlizeParam(null,null,param.getAddress());
+			list.add(asp);
+		}
+		List<StandardAddressParam>  results = addressStandard.batchAddressStandard(list, false);
+		return results;
+	}
+	
+	/**
+	 * 
+	 * <p>Title ：addressFilter</p>
+	 * Description：		地址筛选，对不合地址匹配规范的地址进行过滤
+	 * @param saps
+	 * @return
+	 * Author：Huasong Huang
+	 * CreateTime：2014-9-22 下午04:41:37
+	 */
+	private List<SearchParam> addressFilter(List<StandardAddressParam> saps,List<AddresInfoDetails> params){
+		List<SearchParam> searchParams = new ArrayList<SearchParam>();
+		for(int i=0;i<saps.size();i++){
+			StandardAddressParam standardAddress = saps.get(i);
+			AddresInfoDetails details = params.get(i);
+			SearchParam searchParam = new SearchParam(standardAddress.getOrigAddr(), standardAddress
+					.getStandardAddress(), standardAddress.getProvince(), standardAddress.getCity(), standardAddress
+					.getDistrict());
+			if(standardAddress.getAdminType().equals(AdministrativeDivisionService.MUNICIPALITY_CODE)){
+				searchParam.setCity(standardAddress.getProvince());
+			}
+			// 关键词匹配将使用预处理之后的地址
+			searchParam.setPreProcessAddress(standardAddress.getPreProcessAddress());
+			searchParam.setAdmincode(standardAddress.getAdmincode());
+			processStandardAddressState(details, standardAddress);
+			if(StringUtils.isEmpty(details.getFrom())){
+				searchParam.setFrom(details.getFrom());
+			}
+			searchParam.setAddressKeyword(standardAddress.getAddressKeyInfo());
+			searchParams.add(searchParam);
+		}
+		
+		return searchParams;
+	}
+	
+	/**
+	 * 
+	 * <p>Title ：processStandardAddressState</p>
+	 * Description：		过滤地址
+	 * @param dop
+	 * @param sap
+	 * Author：Huasong Huang
+	 * CreateTime：2014-9-22 下午07:48:10
+	 */
+	private void processStandardAddressState(AddresInfoDetails dop,StandardAddressParam sap) {
+		String adminType = sap.getAdminType();
+		// 判断是否源地址中包含了省:放宽对省份的检测
+		/*if (!sap.isHasOrigProvince()) {
+			dop.setAdminLess(true);
+		} else */
+		if (adminType.equals(AdministrativeDivisionService.COMMON_CODE)
+				|| adminType.equals(AdministrativeDivisionService.WITHOUT_DISTRICT)) {
+			// 如果地址中包含了省，并且不是直辖市，则城市字段是必须的
+			if (!sap.isHasOrigCity()) {
+				dop.setAdminLess(true);
+			}
+		}
+		// 判断是否包含了区县
+		if (!adminType.equals(AdministrativeDivisionService.WITHOUT_DISTRICT)) {
+			if(!sap.isHasOrigCounty()){
+				dop.setAdminLess(true);
+			}
+		}
+		
+		if(dop.isAdminLess()){
+			dop.setResultInfo(AddressMatchConstants.NOT_FULL_ADMIN_INFO);
+			dop.setResultType(AddressMatchConstants.RESULT_TYPE_NOT_FULL);
+			// 是否在缺少省市区的情况下，继续分单
+			dop.setNeedAddressMatch(AddressMatchConstants.IS_CONTINUE_DISTRIBUTE);
+		} else {
+			try {
+				// 提取地址关键信息
+				String withoutPrefix = addressStandard.removePrefix(sap);
+				if (withoutPrefix != null) {
+					withoutPrefix = addressStandard.removeSuffix(withoutPrefix);
+				}
+				// 地址关键信息为空，设置地址状态为不完整
+				if (withoutPrefix == null || withoutPrefix.trim().equals("")) {
+					dop.setResultType(AddressMatchConstants.RESULT_TYPE_NOT_FULL);
+					dop.setResultInfo(AddressMatchConstants.NOT_FULL_INFO);
+					dop.setNeedAddressMatch(false);
+				} else if (withoutPrefix.length() <= AddressMatchConstants.SM_LENGTH_NEED_THRESHOLD) {  	// 	地址关键信息过短则不进行分单
+					dop.setResultType(AddressMatchConstants.RESULT_TYPE_NOT_FULL); 
+					dop.setResultInfo(AddressMatchConstants.NEED_MORE_ADDRESS_KEYWORD_INFO);
+					dop.setNeedAddressMatch(false);
+				} else if (withoutPrefix.length() > AddressMatchConstants.SM_LENGTH_MAX_THRESHOLD) {		// 地址信息过长，则需要进行精简
+					withoutPrefix = addressStandard.reduceAddressKeyInfo(withoutPrefix);
+					if (withoutPrefix.length() > AddressMatchConstants.SM_LENGTH_MAX_THRESHOLD) {
+						dop.setResultType(AddressMatchConstants.RESULT_TYPE_NOT_FULL);
+						dop.setResultInfo(AddressMatchConstants.ADDRESS_FUZZY);
+						dop.setNeedAddressMatch(false);
+					}else{
+						sap.setStandardAddress(sap.getPrefix() + withoutPrefix);
+					}
+				}
+				sap.setAddressKeyInfo(withoutPrefix);
+			} catch (IOException e) {
+				LOGGER.error(e, e);
+			}
+		}
+	}
+	
+	
+	
+	/**
+	 * 
+	 * <p>Title ：bdSearch</p>
+	 * Description：		百度地址匹配
+	 * @param searchParams
+	 * Author：Huasong Huang
+	 * CreateTime：2014-9-22 下午04:16:57
+	 */
+	private void bdSearch(List<SearchParam> searchParams){
+		LOGGER.info("## 开始百度查询");
+		searchByBaidu.batchSearch(searchParams);
+	}
+	
+	
+	/**
+	 * 
+	 * <p>Title ：smSearch</p>
+	 * Description：		 超图地址匹配
+	 * @param searchParams
+	 * Author：Huasong Huang
+	 * CreateTime：2014-9-22 下午04:11:12
+	 */
+	private void smSearch(List<SearchParam> searchParams) {
+		LOGGER.info("## 开始超图匹配");
+		for (int i = 0; i < searchParams.size(); i++) {
+			SearchParam sp = searchParams.get(i);
+			// 如果地址没有被匹配才进行
+			if (StringUtils.isEmpty(sp.getFrom())) {
+				long start = System.currentTimeMillis();
+				String keyWord = sp.getAddressKeyword();
+				// 将SM_LENGTH_THRESHOLD设置成过长，则表示忽略该限制
+				if (null != keyWord && keyWord.length() <= AddressMatchConstants.SM_LENGTH_THRESHOLD) {
+					com.supermap.entity.AddressMatchResult amr = SearchByLucene.getInstance().search(keyWord,
+							sp.getAdmincode(), true,
+							com.supermap.search.constants.AddressMatchConstants.OSP_QUERY_SCORE);
+					long end = System.currentTimeMillis();
+					if (null != amr && amr.getSmx() > 0 && amr.getSmy() > 0) {
+						double smx = amr.getSmx();
+						double smy = amr.getSmy();
+						sp.setPoint(new com.supermap.search.entity.Point2D(smx, smy));
+						sp.setFrom(SearchConstants.FROM_SUPERMAP);
+						LOGGER.info("## 超图匹配到：[" + amr.getPoi_id() + "," + amr.getAdmincode() + "," + amr.getPoi_name()
+								+ "," + amr.getAddress() + "," + amr.getScore() + "][耗时," + (end - start) + "ms]");
+					}
+				} else {
+					LOGGER.info("## 关键词为空或者长度超过" + AddressMatchConstants.SM_LENGTH_THRESHOLD + "未能进行超图地址解析");
+				}
+			}
+		}
+	}
+	
+	/**
+	 * 
+	 * <p>Title ：keywordSearch</p>
+	 * Description：		关键词匹配
+	 * @param searchParams
+	 * Author：Huasong Huang
+	 * CreateTime：2014-9-22 下午04:24:59
+	 */
+	private void keywordSearch(List<SearchParam> searchParams){
+		LOGGER.info("## 开始关键词匹配");
+		searchByKeyword.batchSearch(searchParams);
+	}
+	
+	
+
+	public List<Integer> getPlan() {
+		return plan;
+	}
+
+	public void setPlan(List<Integer> plan) {
+		this.plan = plan;
+	}
+
+	
+	
+	@Override
+	public ReverseMatchResult reverseMatch(double smx, double smy,int admincode, double range) {
+		com.supermap.entity.Point p = new com.supermap.entity.Point(smx,smy);
+		if(BaiduCoordinateConvertImpl.isLLPoint(p)){
+			p = SuperMapCoordinateConvertImpl.smLL2MC(p);
+		}
+		com.supermap.entity.AddressMatchResult amr = SearchByLucene.getInstance().findNearPOI(p.getLon(), p.getLat(), admincode, range);
+		ReverseMatchResult rmr = null;
+		if(null != amr){
+			rmr = new ReverseMatchResult();
+			rmr.setAddress(amr.getAddress());
+			rmr.setCity(amr.getCity());
+			rmr.setCounty(amr.getCounty());
+			rmr.setDistande(amr.getDistance());
+			rmr.setPoi_id(amr.getPoi_id());
+			rmr.setProvince(amr.getProvince());
+			rmr.setSmx(amr.getSmx());
+			rmr.setSmy(amr.getSmy());
+			rmr.setName(amr.getPoi_name());
+		}
+		return rmr;
+	}
+
+	@Override
+	public Map<String, Object> poiSearch(String filter, List<String> returnFields, int startRecord, int expectCount) {
+		QueryAttributefilterEntity attrFilter =  parseAttributeFilter(filter);
+		// 关键词查询
+		AddressMatchResults amResults = keywordQuery(attrFilter, startRecord, expectCount);
+		
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		
+		if (amResults != null && amResults.getCurruntCount() > 0) {
+			resultMap.put("totalCount", amResults.getTotalCount());
+			resultMap.put("currentCount", amResults.getCurruntCount());
+		} else {
+			resultMap.put("totalCount", 0);
+			resultMap.put("currentCount", 0);
+			resultMap.put("results", null);
+			return resultMap;
+		}
+		List<com.supermap.entity.AddressMatchResult> results = amResults.getRecords();
+		List<Map<String,Object>> resultInfos = new ArrayList<Map<String,Object>>();
+		
+		for (int ii = 0; ii < results.size(); ii++) {
+			Map<String,Object> resultItem = new HashMap<String,Object>();
+			
+			for (int iii = 0; iii < returnFields.size(); iii++) {
+				if (returnFields.get(iii).equalsIgnoreCase("SMX")) {
+					resultItem.put(returnFields.get(iii), results.get(ii).getSmx());
+				} else if (returnFields.get(iii).equalsIgnoreCase("SMY")) {
+					resultItem.put(returnFields.get(iii), results.get(ii).getSmy());
+				} else if (returnFields.get(iii).equalsIgnoreCase("NAME")) {
+					resultItem.put(returnFields.get(iii), results.get(ii).getPoi_name());
+				} else if (returnFields.get(iii).equalsIgnoreCase("PY")) {
+					resultItem.put(returnFields.get(iii), results.get(ii).getPy());
+				} else if (returnFields.get(iii).equalsIgnoreCase("POI_ID")) {
+					resultItem.put(returnFields.get(iii), results.get(ii).getPoi_id());
+				} else if (returnFields.get(iii).equalsIgnoreCase("ADDRESS")) {
+					resultItem.put(returnFields.get(iii),results.get(ii).getAddress());
+				} else if (returnFields.get(iii).equalsIgnoreCase("ADMINCODE")) {
+					resultItem.put(returnFields.get(iii), results.get(ii).getAdmincode());
+				} else if(returnFields.get(iii).equalsIgnoreCase("PROVINCE")){
+					resultItem.put(returnFields.get(iii), results.get(ii).getProvince());
+				}else if(returnFields.get(iii).equalsIgnoreCase("CITY")){
+					resultItem.put(returnFields.get(iii), results.get(ii).getCity());
+				}else if(returnFields.get(iii).equalsIgnoreCase("COUNTY")){
+					resultItem.put(returnFields.get(iii), results.get(ii).getCounty());
+				}else {
+					resultItem.put(returnFields.get(iii), null);
+				}
+			}
+			resultInfos.add(resultItem);
+		}
+		resultMap.put("results", resultInfos);
+		return resultMap;
+	}
+
+	/**
+	 * 
+	 * <p>Title ：keywordQuery</p>
+	 * Description：		关键词查询
+	 * @param queryAttributeFilterEntity
+	 * @param startRecord
+	 * @param expectCount
+	 * @return
+	 * Author：Huasong Huang
+	 * CreateTime：2014-11-18 下午04:04:44
+	 */
+	private AddressMatchResults keywordQuery(QueryAttributefilterEntity queryAttributeFilterEntity, int startRecord,
+			int expectCount) {
+		AddressMatchResults amrs = null;
+		RectangularEntity rect = new RectangularEntity();
+		CoordinateEntity leftDown = new CoordinateEntity();
+		leftDown.setX(queryAttributeFilterEntity.getLeftDownX());
+		leftDown.setY(queryAttributeFilterEntity.getLeftDownY());
+		rect.setLetfDownPoint(leftDown);
+		CoordinateEntity rightUp = new CoordinateEntity();
+		rightUp.setX(queryAttributeFilterEntity.getRightUpX());
+		rightUp.setY(queryAttributeFilterEntity.getRightUpY());
+		rect.setRightUpPoint(rightUp);
+		
+		LOGGER.info("## 查询参数 KEY_WORD = " + queryAttributeFilterEntity.getLikeKeyword() + ",class = "
+				+ queryAttributeFilterEntity.getClassWord() + ",type = " + queryAttributeFilterEntity.getType()
+				+ ",leftAdmincode = " + queryAttributeFilterEntity.getLeftAdmincode() + " , rightAdmincode = "
+				+ queryAttributeFilterEntity.getRightAdmincode());
+		if (queryAttributeFilterEntity.getType().equals("NAME")) {
+			try {
+				
+				// 如果过滤查询未查询到，则进行关键词查询
+				if(null == amrs || amrs.getTotalCount()  <= 0){
+					// 需要加入超图地址的特殊处理
+					amrs = SearchByLucene.getInstance().search(FieldNamesConstants.FULL_ADDRESS, queryAttributeFilterEntity.getLikeKeyword(),
+							queryAttributeFilterEntity.getLeftAdmincode(), queryAttributeFilterEntity.getRightAdmincode(),
+							startRecord, expectCount, SearchByLucene.FUZZY_ADMIN_RANGE_QUERY,
+							com.supermap.search.constants.AddressMatchConstants.OSP_QUERY_SCORE, rect);
+				}
+			} catch (Exception e) {
+				LOGGER.error("##搜索发生异常", e);
+			}
+		} else if (queryAttributeFilterEntity.getType().equals("CLASS")) {
+			amrs = SearchByLucene.getInstance().searchByPrefix(FieldNamesConstants.POI_CODE, queryAttributeFilterEntity.getClassWord(),
+					queryAttributeFilterEntity.getLeftAdmincode(), queryAttributeFilterEntity.getRightAdmincode(),
+					rect, startRecord, expectCount);
+		}else if(queryAttributeFilterEntity.getType().equals("MIX")){
+			List<QueryEntity> qes = buildQueryEntitys(queryAttributeFilterEntity);
+			amrs = SearchByLucene.getInstance().searchByMix(qes, startRecord, expectCount);
+		}
+
+		return amrs;
+	}
+	
+	/**
+	 * 
+	 * <p>Title ：parseAttributeFilter</p>
+	 * Description：		对过滤条件进行解析
+	 * @param attributeFilter
+	 * @return
+	 * Author：Huasong Huang
+	 * CreateTime：2014-11-18 下午03:57:12
+	 */
+	private QueryAttributefilterEntity parseAttributeFilter(String attributeFilter) {
+		QueryAttributefilterEntity queryAttributefilterEntity = new QueryAttributefilterEntity();
+		int leftAdmincode = -1;
+		int rightAdmincode = -1;
+		LOGGER.info("## 查询条件[" + attributeFilter + "]");
+		// 该条件查询并不支持OR之类的连接方式
+		String filter = attributeFilter.replaceAll(" ", "");
+		String[] clauses = filter.toUpperCase().split("AND");
+		
+		double leftDownX = -1;
+		double leftDownY = -1;
+		double rightUpX = -1;
+		double rightUpY = -1;
+		for (int j = 0; j < clauses.length; j++) {
+			String clausesItem = clauses[j];
+			clausesItem = clausesItem.replaceAll(" ", "");
+			int startSecnd = clausesItem.indexOf('\'');
+			int endSecond = clausesItem.lastIndexOf('\'');
+			
+			if(clausesItem.startsWith("NAME") || clausesItem.startsWith("CLASS")){
+				String keyword = clausesItem.substring(startSecnd +1,endSecond);
+				keyword = keyword.replaceAll("%", "");
+				if(null != keyword && keyword.trim().length() > 0){
+					if(queryAttributefilterEntity.getType() != null){
+						queryAttributefilterEntity.setType("MIX");
+					}else if(clausesItem.startsWith("NAME")){
+						queryAttributefilterEntity.setType("NAME");
+						queryAttributefilterEntity.setLikeKeyword(keyword);
+					}else if(clausesItem.startsWith("CLASS")){
+						queryAttributefilterEntity.setType("CLASS");
+						queryAttributefilterEntity.setClassWord(keyword);
+					}
+				}else{
+					// 未提供任何关键词及分类结果
+				}
+			}else if (clausesItem.startsWith("ADMINCODE")) {
+				if (clausesItem.contains(">")) {
+					leftAdmincode = Integer.parseInt(clausesItem.substring(startSecnd + 1, endSecond));
+				} else if (clausesItem.contains("<")) {
+					rightAdmincode = Integer.parseInt(clausesItem.substring(startSecnd + 1, endSecond));
+				}
+			} else if (clausesItem.startsWith("X")) {
+				if (clausesItem.contains(">")) {
+					leftDownX = Double.parseDouble(clausesItem.substring(startSecnd + 1, endSecond));
+				} else if (clausesItem.contains("<")) {
+					rightUpX = Double.parseDouble(clausesItem.substring(startSecnd + 1, endSecond));
+				}
+			} else if (clausesItem.startsWith("Y")) {
+				if (clausesItem.contains(">")) {
+					leftDownY = Double.parseDouble(clausesItem.substring(startSecnd + 1, endSecond));
+				} else if (clausesItem.contains("Y")) {
+					rightUpY = Double.parseDouble(clausesItem.substring(startSecnd + 1, endSecond));
+				}
+			}
+		}
+		queryAttributefilterEntity.setLeftAdmincode(leftAdmincode);
+		queryAttributefilterEntity.setRightAdmincode(rightAdmincode);
+		queryAttributefilterEntity.setLeftDownX(leftDownX);
+		queryAttributefilterEntity.setLeftDownY(leftDownY);
+		queryAttributefilterEntity.setRightUpX(rightUpX);
+		queryAttributefilterEntity.setRightUpY(rightUpY);
+		return queryAttributefilterEntity;
+	}
+	
+	/**
+	 * 
+	 * <p>Title ：buildQueryEntitys</p>
+	 * Description：		构建查询实体
+	 * @param queryAttributeFilterEntity
+	 * @return
+	 * Author：Huasong Huang
+	 * CreateTime：2014-11-18 下午04:04:14
+	 */
+	private List<QueryEntity> buildQueryEntitys(QueryAttributefilterEntity queryAttributeFilterEntity){
+		List<QueryEntity> qes = new ArrayList<QueryEntity>();
+		// 构建关键词查询
+		String nameKeword = queryAttributeFilterEntity.getLikeKeyword();
+		if(null != nameKeword && !"".equals(nameKeword)){
+			QueryEntity qeKeyword = new QueryEntity();
+			qeKeyword.setFieldName(FieldNamesConstants.POI_NAME_ST);
+			qeKeyword.setType(QueryType.PHRASE);
+			qeKeyword.setParam(new String[]{nameKeword});
+			qes.add(qeKeyword);
+		}
+		// 构建分类搜索
+		String poiCode = queryAttributeFilterEntity.getClassWord();
+		if(null != poiCode && !"".equals(poiCode)){
+			QueryEntity classCode = new QueryEntity();
+			classCode.setFieldName(FieldNamesConstants.POI_CODE);
+			classCode.setType(QueryType.PREFIX);
+			classCode.setParam(new String[]{poiCode});
+			qes.add(classCode);
+		}
+		// 构建Admincode查询
+		int leftAdmincode = queryAttributeFilterEntity.getLeftAdmincode();
+		int rightAdmincode = queryAttributeFilterEntity.getRightAdmincode();
+		if(leftAdmincode > 0 && rightAdmincode > 0 && leftAdmincode <= rightAdmincode){
+			QueryEntity adminRangeQuery = new QueryEntity();
+			adminRangeQuery.setFieldName(FieldNamesConstants.ADMINCODE);
+			adminRangeQuery.setType(QueryType.RANGE);
+			adminRangeQuery.setParamType(Integer.class);
+			adminRangeQuery.setParam(new String[]{leftAdmincode+"",rightAdmincode+""});
+			qes.add(adminRangeQuery);
+		}
+		// 构建X范围的分类查询
+		double leftDownX = queryAttributeFilterEntity.getLeftDownX();
+		double rightUpX = queryAttributeFilterEntity.getRightUpX();
+		if(leftDownX > 0 && rightUpX > 0 && leftDownX < rightUpX){
+			QueryEntity xRangeQuery = new QueryEntity();
+			xRangeQuery.setFieldName(FieldNamesConstants.SMX);
+			xRangeQuery.setType(QueryType.RANGE);
+			xRangeQuery.setParamType(Double.class);
+			xRangeQuery.setParam(new String[]{leftDownX+"",rightUpX+""});
+			qes.add(xRangeQuery);
+			
+		}
+		// 构建Y范围内的分类查询
+		double leftDownY = queryAttributeFilterEntity.getLeftDownY();
+		double rightUpY = queryAttributeFilterEntity.getRightUpY();
+		if(leftDownY > 0 && rightUpY > 0 && leftDownY < rightUpY){
+			QueryEntity yRangeQuery = new QueryEntity();
+			yRangeQuery.setFieldName(FieldNamesConstants.SMY);
+			yRangeQuery.setType(QueryType.RANGE);
+			yRangeQuery.setParamType(Double.class);
+			yRangeQuery.setParam(new String[]{leftDownY+"",rightUpY+""});
+			qes.add(yRangeQuery);
+		}
+		
+		return qes;
+	}
+
+	private static String[] RETURN_FIELDS = new String[]{"PROVINCE","CITY2","COUNTY"};
+	
+	@Override
+	public Map<String, String> searchForCounty(double smx, double smy) {
+//		return searchByUDB.searchByPoint(smx, smy, null, RETURN_FIELDS);
+		return null;
+	}
+
+	@Override
+	public Map<String, Object> poiSearch(String filter, int pageNo, int pageSize,
+			Geometry4KeywordParam geo,String coorType) {
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		AddressMatchResults amResults = null;
+		QueryAttributefilterEntity attrFilter =  parseAttributeFilter(filter);
+		if(null != geo){
+			List<Point> points = geo.getPoints();
+			if(points != null && points.size() > 0){
+				for (int i = 0; i < points.size(); i++) {
+					com.supermap.entity.Point point = new com.supermap.entity.Point(points.get(i).getX(),points.get(i).getY());
+					if(point.getLon() > -180 && point.getLon() < 180 && point.getLat() > -90 && point.getLat()<90){
+						point = SuperMapCoordinateConvertImpl.smLL2MC(point);
+					}
+					points.get(i).setX(point.getLon());
+					points.get(i).setY(point.getLat());
+				}
+				// 圆形范围搜索
+				if(points.size() == 1){
+					List<QueryEntity> querys = buildCircleQueryEntity(attrFilter);
+					List<com.supermap.entity.AddressMatchResult> amrList = SearchByLucene.getInstance().queryByCircle(
+							querys, points.get(0).getX(), points.get(0).getY(), geo.getRadius(), true);
+					
+					if(amrList == null || amrList.size() <= 0){
+						resultMap.put("totalCount", 0);
+						resultMap.put("currentCount", 0);
+						resultMap.put("page", pageNo);
+						resultMap.put("pois", null);
+						return resultMap;
+					}
+					LOGGER.info("## 圆选查询到结果数["+amrList.size()+"]");
+					resultMap.put("totalCount", amrList.size());
+					int size = amrList.size();
+					int start = (pageNo - 1) * pageSize;
+					int end = start + pageSize;
+					if(start >= size || start < 0){
+						start = 0;
+						pageNo = 0;
+					}
+					if(end >= size){
+						end = size;
+					}
+					amrList = amrList.subList(start, end);
+					for (int ii = 0; ii < amrList.size(); ii++) {
+						if(!StringUtils.isEmpty(coorType) && "SMLL".equalsIgnoreCase(coorType)){
+							com.supermap.entity.Point p = new com.supermap.entity.Point(amrList.get(ii).getSmx(),amrList.get(ii).getSmy());
+							p = SuperMapCoordinateConvertImpl.smMCToLatLon(p);
+							amrList.get(ii).setSmx(p.getLon());
+							amrList.get(ii).setSmy(p.getLat());
+						}
+					}
+					resultMap.put("currentCount", amrList.size());
+					resultMap.put("page", pageNo);
+					resultMap.put("pois",resultConvert(amrList));
+					return resultMap;
+				}else{
+					attrFilter.setLeftDownX(points.get(0).getX());
+					attrFilter.setLeftDownY(points.get(0).getY());
+					attrFilter.setRightUpX(points.get(1).getX());
+					attrFilter.setRightUpY(points.get(1).getY());
+				}
+			}
+		}
+		
+		// 关键词查询
+		amResults = keywordQuery(attrFilter, (pageNo - 1)*pageSize, pageSize);
+		
+		resultMap = new HashMap<String,Object>();
+		
+		if (amResults != null && amResults.getCurruntCount() > 0) {
+			resultMap.put("totalCount", amResults.getTotalCount());
+			resultMap.put("currentCount", amResults.getCurruntCount());
+			resultMap.put("page",pageNo);
+			
+		} else {
+			resultMap.put("totalCount", 0);
+			resultMap.put("currentCount", 0);
+			resultMap.put("page", 0);
+			resultMap.put("results", null);
+			return resultMap;
+		}
+		List<com.supermap.entity.AddressMatchResult> results = amResults.getRecords();
+		
+		for (int ii = 0; ii < results.size(); ii++) {
+			if(!StringUtils.isEmpty(coorType) && "SMLL".equalsIgnoreCase(coorType)){
+				com.supermap.entity.Point p = new com.supermap.entity.Point(results.get(ii).getSmx(),results.get(ii).getSmy());
+				p = SuperMapCoordinateConvertImpl.smMCToLatLon(p);
+				results.get(ii).setSmx(p.getLon());
+				results.get(ii).setSmy(p.getLat());
+			}
+		}
+		resultMap.put("pois", resultConvert(results));
+		return resultMap;
+	}
+	
+	
+	private List<Map<String,Object>> resultConvert(List<com.supermap.entity.AddressMatchResult> amrResults){
+		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+		for(com.supermap.entity.AddressMatchResult amr : amrResults){
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("poi_id", amr.getPoi_id());
+			map.put("x", amr.getSmx());
+			map.put("y", amr.getSmy());
+			map.put("name", amr.getPoi_name());
+			map.put("address", amr.getAddress());
+			map.put("admincode", amr.getAdmincode());
+			map.put("province", amr.getProvince());
+			map.put("city", amr.getCity());
+			map.put("county", amr.getCounty());
+			map.put("code", amr.getPoi_typename());
+			list.add(map);
+		}
+		return list;
+	}
+	
+	
+	
+	/**
+	 * 
+	 * <p>Title ：buildCircleQueryEntity</p>
+	 * Description：构建圆选范围的过滤条件查询
+	 * @param queryAttributefilterEntity
+	 * @return
+	 * Author：Huasong Huang
+	 * CreateTime：2014-5-8 下午04:45:10
+	 */
+	private List<QueryEntity> buildCircleQueryEntity(QueryAttributefilterEntity queryAttributefilterEntity){
+		String likeKeyword = queryAttributefilterEntity.getLikeKeyword();
+		List<QueryEntity> qes = new ArrayList<QueryEntity>();
+		if(null != likeKeyword && !"".equals(likeKeyword) && !"all".equalsIgnoreCase(likeKeyword)){
+			QueryEntity queryEntity = new QueryEntity();
+			queryEntity.setFieldName(FieldNamesConstants.POI_NAME_ST);
+			queryEntity.setType(QueryType.PHRASE);
+			queryEntity.setParam(new String[]{likeKeyword});
+			qes.add(queryEntity);
+		}
+		String classWord = queryAttributefilterEntity.getClassWord();
+		if(null != classWord && !"".equals(classWord) && !"all".equalsIgnoreCase(classWord)){
+			QueryEntity queryEntity = new QueryEntity();
+			queryEntity.setFieldName(FieldNamesConstants.POI_CODE);
+			queryEntity.setType(QueryType.PREFIX);
+			queryEntity.setParam(new String[]{classWord});
+			qes.add(queryEntity);
+		}
+		return qes;
+	}
+
+	@Override
+	@Transactional
+	public AddressEntity addrssMatchAndSave(String address, String userId, String eid, String dcode) {
+//		search(param)
+		AddresInfoDetails aid = new AddresInfoDetails();
+		aid.setAddress(address);
+		AddressMatchResult amResult = search(aid);
+		AddressEntity ae = new AddressEntity();
+		ae.setAddress(address);
+		ae.setProvince(amResult.getProvince());
+		ae.setCity(amResult.getCity());
+		ae.setCounty(amResult.getCounty());
+		ae.setAddTime(new Date());
+		ae.setSmx(amResult.getSmx());
+		ae.setSmy(amResult.getSmy());
+		ae.setDcode(dcode);
+		ae.setEid(eid);
+		ae.setUserId(userId);
+		if(amResult.getSmx() > 0 && amResult.getSmy() > 0){
+			ae.setStatus(StatusConstants.ADDRESS_SUCCESS);
+		}
+		ae = this.addressDao.save(ae);
+		return ae;
+	}
+	
+	
+	
+	public Map<String,Object> queryAddressList(final String keyword,int pageNo,int pageSize,final String userId){
+		
+		PageRequest pageRequest = new PageRequest(pageNo - 1,pageSize,new Sort(Direction.DESC,"addTime"));
+		Specification<AddressEntity> spec = new Specification<AddressEntity>(){
+
+			@Override
+			public Predicate toPredicate(Root<AddressEntity> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
+				
+				List<Predicate> predicateList=new ArrayList<Predicate>();
+				Path<String> userPath = root.get("userId");
+				predicateList.add(builder.equal(userPath, userId));
+				
+				if(!StringUtils.isEmpty(keyword)){
+					try {
+						
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+					
+					
+					Path<String> addrPath = root.get("address");
+					predicateList.add(builder.like(addrPath, "%" + keyword.replaceAll("_", "/_").replaceAll("%", "/%") + "%", "/".charAt(0)));
+				}
+				Predicate p[] = new Predicate[predicateList.size()];
+				predicateList.toArray(p);
+				query.where(p);
+				return null;
+			}
+		};
+		Page<AddressEntity> pages = this.addressDao.findAll(spec, pageRequest);
+		Map<String,Object> rmap = new HashMap<String,Object>();
+		rmap.put("totalPages", pages.getTotalPages());
+		rmap.put("page", pageNo);
+		rmap.put("total", pages.getTotalElements());
+		rmap.put("records", pages.getContent());
+		return rmap;
+	}
+	
+	
+}

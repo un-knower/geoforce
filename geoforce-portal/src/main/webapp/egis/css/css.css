@@ -1,0 +1,209 @@
+
+
+.pendant {
+    width: 200px;
+    height: 536px;
+    position: absolute;
+    top: 105px;
+    /*background-color: #666;*/
+    opacity: 0.9;
+    z-index: 333;
+}
+.trial {
+    width: 196px;
+    float: right;
+    height: 177px;
+    background-color: #3F77A0;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 2px;
+    /*opacity: 0.5;*/
+}
+/*div.trial:hover {
+    margin-right: 4px;
+}*/
+
+.trial span{
+    display: block;
+    font-size: 16px;
+    color: #444;
+    margin-top: 15px;
+    font-family: "microsoft yahei";
+    color: #fff;
+    /*background-color: #16325C;*/
+}
+
+/*圆球区*/
+.circle-area {
+    width: 960px;
+    height: 120px;
+    margin: 0 auto;
+    z-index: 999;
+    position: relative;
+    margin-top: -50px;
+}
+.circle {
+    width: 440px;
+    z-index: 999;
+    float: right;
+    margin-right: 40px;
+    position: relative;
+    /*margin-top: -50px;*/
+}
+.circle a {
+    width: 104px;
+    height: 120px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'microsoft yahei';
+}
+.circle a, .circle a img {
+    position: relative;
+    z-index: 999;
+}
+
+/*各系统入口区*/
+.entrance-area {
+    width: 960px; 
+    margin: 20px auto;
+    height: 225px;
+}
+
+
+
+/*大区域介绍区*/
+.introduce-area {
+    width: 100%;
+    /*width: 960px;*/
+    min-width: 960px;
+    margin: 0 auto;
+}
+.introduce-area > div{
+    width: 100%;
+    height: 365px;
+    padding-right: 60px;
+    padding-left: 60px;
+    /*display: inline-block;*/
+}
+
+.intro-map {
+    background-color: #44A0C7;
+    color: #FCF5DB;
+}
+
+.intro-img {
+    line-height: 365px;
+    max-height: 365px;
+    max-width: 450px;
+}
+.intro-text {
+    margin-top: 50px;
+    max-width: 350px;
+}
+
+.intro-title {
+    font-size: 36px;
+    font-family: "microsoft yahei";
+    font-weight: bold;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.intro-subtitle {    
+    font-size: 18px;
+    font-family: "microsoft yahei";
+    display: block;
+    margin-bottom: 10px;
+}
+
+.intro-content {
+    font-size: 14px;
+    font-family: "microsoft yahei";
+    line-height: 26px;
+    margin-bottom: 20px;
+}
+
+.intro-fdb {
+    background-color: #EAEAC4;
+    color: #464646;
+}
+.intro-car {
+    background-color: #45B69A;
+    color: #FCF5DB;
+}
+.intro-kaoqin {
+    background-color: #FCF6E0;
+    color: #515151;    
+}
+.intro-api {
+    background-color: #8BBACE;
+    color: #FCF5DB;    
+}
+.intro-mobile {
+    background-color: #ECE1B4;
+    color: #73550C;    
+}
+
+a.intro-btn-blue{
+    color: #FCF5DB;
+    padding: 10px 50px;
+    font-size: 16px;
+    font-family: 'microsoft yahei';
+    background-color: #2F6A84;
+}
+a.intro-btn-blue:hover {
+    color: #FCF5DB;
+    background-color: #3071a9;
+}
+a.intro-btn-blue-light{
+    color: #FCF5DB;
+    width: 200px;
+    font-size: 16px;
+    font-family: 'microsoft yahei';
+    background-color: #2A7595;
+}
+a.intro-btn-blue-light:hover {
+    color: #333;   
+}
+
+a.intro-btn-yellow {
+    background-color: #C18E2C;
+    color: #FCF5DB;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-family: 'microsoft yahei';    
+}
+a.intro-btn-yellow:hover {
+    color: #FCF5DB;
+    background-color: #dba234;
+}
+
+a.intro-btn-green {
+    background-color: #238E74;
+    color: #FCF5DB;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-family: 'microsoft yahei';    
+}
+a.intro-btn-green:hover {
+    background-color: #269e81;
+    color: #FCF5DB;
+}
+a.intro-btn-light-yellow {
+    background-color: #D1B75A;
+    color: #FCF5DB;
+    width: 200px;
+    font-size: 16px;
+    font-family: 'microsoft yahei';    
+}
+a.intro-btn-light-yellow :hover {
+    color: #333;   
+}
+
+#fly_phone {    
+    background: url(../images/fly-phone.png) no-repeat 0 0;
+    height: 31px;
+    width: 35px;
+}

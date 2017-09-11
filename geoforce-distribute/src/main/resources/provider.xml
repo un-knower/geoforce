@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+	<dubbo:application name="provider_fendan" />
+
+ 	<!--使用zookeeper注册中心暴露服务地址 -->
+	<dubbo:registry  protocol="zookeeper"  address="121.41.42.182:2181" />
+	<dubbo:protocol host="121.41.42.182" port="20831"></dubbo:protocol>
+	<!-- 分单管理 -->
+	<dubbo:service interface="com.supermap.egispservice.base.service.ILogisticsOrderService" version="2.5.3" ref="orderService"  timeout="90000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="orderService" class="com.supermap.egispservice.base.service.LogisticsOrderServiceImpl" />
+	<dubbo:service interface="com.supermap.egispservice.base.service.ILogisticsService" version="2.5.3" ref="logisticsService"  timeout="90000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="logisticsService" class="com.supermap.egispservice.base.service.LogisticsServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.base.service.IAddressMatch" version="2.5.3" ref="addressMatchProxy"  timeout="90000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="addressMatchProxy" class="com.supermap.egispservice.base.service.AddressMatchProxy" />
+
+	<dubbo:service interface="com.supermap.egispservice.base.service.ILogisticsFendanService" version="2.5.3" ref="fendanService"  timeout="90000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="fendanService" class="com.supermap.egispservice.base.service.LogisticsFendanService" />
+	<dubbo:service interface="com.supermap.egispservice.base.service.ICoorConvertService" version="2.5.3" ref="coorConvertService"  timeout="90000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="coorConvertService" class="com.supermap.egispservice.base.service.CoorConvertServiceImpl" />
+	<dubbo:service interface="com.supermap.egispservice.base.service.ICorrectAddressService" version="2.5.3" ref="correctAddressService"  timeout="90000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="correctAddressService" class="com.supermap.egispservice.base.service.CorrectAddressServiceImpl" />
+	 
+	 
+	 <!-- 分单日志记录数据库 -->
+	<dubbo:service interface="com.supermap.egispservice.base.service.APILogService" version="2.5.3" ref="apiLogService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="apiLogService" class="com.supermap.egispservice.base.service.APILogServiceImpl" />
+	<dubbo:service interface="com.supermap.egispservice.base.service.APIFendanService" version="2.5.3" ref="apiFendanService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="apiFendanService" class="com.supermap.egispservice.base.service.APIFendanServiceImpl" />
+	  
+</beans>

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Language" content="zh-CN" />
+  <meta name="description" content="超图地图慧服务中心" />
+  <meta name="keywords" content="地图慧，GIS云，地图汇，GIS在线商店，GIS企业应用, 企业云" />
+  <title>地图慧-云GIS，GIS在线服务，物流GIS，地图可视化</title>
+  <script type="text/javascript" src="libs/include.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link rel="stylesheet" type="text/css" href="products/css/video-js.min.css">
+  <script type="text/javascript" src="products/js/video.js"></script>
+</head>
+
+<body>
+	<div class="map-notice">
+		<div class="nav">
+			<img src="css/home-img/new.gif">
+			<a class="tomapupgrade" href="mapupgrade/" target="_blank">地图服务升级</a>
+		</div>
+	</div>
+	
+	<div class="header" style="margin-bottom:0;">
+    <div class="nav">
+      <div class="logo"><img src="images/logo-new.png"><i></i><span>企业服务</span></div>
+      <div class="nav-right">   
+        <div class="items">
+          <a class="active" href="apps/">产品中心</a>
+          <a href="solutions/">行业方案</a>
+          <a href="http://www.supermapcloud.com/map/">云地图</a>
+          <a href="javascript:void(0);">离线</a>
+          <a href="story/">客户故事</a>  
+          <div class="login">
+            <a href="javascript:void(0);" option="register">注册</a><i></i>
+            <a href="javascript:void(0);" option="login">登录</a>
+          </div> 
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="left">
+        <!--<button type="button" class="btn btn-info" id="btn_trial">立即试用</button>
+        <button type="button" class="btn watch" option="watch_video" open-modal="true" data-movie="wangdian">观看视频</button>-->
+        <a class="btn btn-info btn-watch " href="http://fendan.dituhui.com/egispdemo/resources/fendan/index.html"
+        	>
+        	立即试用分单体验版
+        </a>
+      </div>
+
+      <div class="right wangdian">
+        <div class="branch poi-1">
+          <div class="balloon"></div>
+          <div class="text"></div>
+          <div class="circle"></div>
+        </div>
+
+        <div class="branch poi-2">
+          <div class="balloon"></div>
+          <div class="text"></div>
+          <div class="circle"></div>
+        </div>
+        <div class="branch poi-3">
+          <div class="balloon"></div>
+          <div class="text"></div>
+          <div class="circle"></div>
+        </div>
+        <div class="branch poi-4">
+          <div class="balloon"></div>
+          <div class="text"></div>
+          <div class="circle"></div>
+        </div>
+        <div class="branch poi-5">
+          <div class="balloon"></div>
+          <div class="text"></div>
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="right quhua">
+        <div class="region region-1"></div>
+        <div class="region region-2"></div>
+        <div class="region region-3"></div>
+        <div class="region region-4"></div>
+      </div>
+
+      <div class="right road">
+        <div class="route"></div>
+        
+        <div class="branch poi-1"></div>
+        <div class="branch poi-2"></div>
+
+        <div class="poi-3 shining"></div>
+        <div class="poi-3-1 shining"></div>
+        <div class="poi-3-2 shining"></div>
+
+        <div class="branch poi-4"></div>
+        <div class="branch poi-5"></div>
+        <div class="branch poi-6"></div>
+        <div class="branch poi-7"></div>
+      </div>
+
+      <div class="right word">
+        <div class="note word-1"></div>
+        <div class="note word-2"></div>
+        <div class="note word-3"></div>
+        <div class="note word-4"></div>
+        <div class="note word-5"></div>
+        <div class="note word-6"></div>
+        <div class="note word-7"></div>
+        <div class="note word-8"></div>
+      </div>
+      
+    </div>
+
+  </div>
+
+  <!-- 产品模块介绍部分 -->
+  <div class="intro">
+    <div class="item" option="go" data-target="apps/?sm=1">
+      <div class="ishow">
+        <div class="img">
+          <img src="images/intro/wangdian.png"> 
+        </div>
+        <div class="txt">网点管理</div>       
+      </div>
+      <div class="ifade">
+        <div class="title">网点管理</div>
+        <p>将企业门店、分公司、连锁店等位置及相关业务信息快速标注在地图上，可视化管理网点。</p>
+      </div>
+    </div>
+
+    <div class="item" option="go" data-target="apps/?sm=2">
+      <div class="ishow">
+        <div class="img">
+          <img src="images/intro/quhua.png"> 
+        </div>
+        <div class="txt">区划管理</div>       
+      </div>
+      <div class="ifade">
+        <div class="title">区划管理</div>
+        <p>将企业业务范围划分为覆盖城市的、无缝拼接的区域块，实现企业信息的精细化格网管理。</p>
+      </div>
+    </div>
+
+    <div class="item"  option="go" data-target="apps/?sm=4">
+      <div class="ishow"  style="border-right:none;">
+        <div class="img">
+          <img src="images/intro/luxian.png"> 
+        </div>
+        <div class="txt">路线规划</div>       
+      </div>
+      <div class="ifade">
+        <div class="title">路线规划</div>
+        <p>多车多终点的最优路线规划，智能引导，节省配送车辆的行车成本。</p>
+      </div>
+    </div>
+
+    <div class="item"  option="go" data-target="http://fendan.dituhui.com/egispdemo/resources/fendan/index.html">
+      <div class="ishow" style="border-bottom:none;">
+        <div class="img">
+          <img src="images/intro/fendan.png"> 
+        </div>
+        <div class="txt" style="line-height: 180px;">分单管理</div>       
+      </div>
+      <div class="ifade">
+        <div class="title">分单管理</div>
+        <p>提供轻量级GIS工具进行业务区域划分，系统自动将订单批量分拣到各业务区域及负责人，极大提高分拣效率。</p>
+      </div>
+    </div>
+
+    <div class="item"  option="go" data-target="apps/?sm=7">
+      <div class="ishow" style="border-bottom:none;">
+        <div class="img">
+          <img src="images/intro/car.png"> 
+        </div>
+        <div class="txt" style="line-height: 180px;">车辆监控</div>       
+      </div>
+      <div class="ifade">
+        <div class="title">车辆监控</div>
+        <p>实时了解企业车辆的位置、行驶状态，实现车辆跟踪、轨迹查询、调度、报警及管理等。</p>
+      </div>
+    </div>
+
+
+    <div class="item" option="go" data-target="apps/">
+      <div class="ishow" style="border-right:none;border-bottom:none;">
+        <div class="img">
+          <img src="images/intro/more.png"> 
+        </div>
+        <div class="txt" style="line-height: 180px;">更多产品</div>       
+      </div>
+      <div class="ifade">
+        <div class="title">更多产品</div>
+        <p>更多产品如分单管理、考勤管理、路程计算等，并提供物流、家电、金融等行业解决方案。</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 用户评价部分 -->
+  <div class="comments">
+    <div class="wrapper">
+      <div class="left">
+        <p class="line1">不只是客户，</p>
+        <p class="line2">更是粉丝</p>
+        <img src="images/intro/code.jpg">
+      </div>
+      <div class="right">
+
+        <div class="crow green">
+          <div class="txt">海尔在全国有大量的售后服务网点，每天会处理海量的用户报修和维护工单，超图地图慧企业管理平台帮助海尔快速响应全国各地的维修报修业务，极大提高客户满意度。</div>
+          <div class="triangle-right">
+            <div class="triangle"></div>
+          </div>
+          <div class="logo">
+            <img src="images/intro/haier.png"></img>
+            <p>海尔集团</p>
+          </div>
+        </div>
+
+        <div class="crow blue" style="margin-top: 40px;">
+          <div class="txt">地图慧分单管理平台为宅急送提供了快速准确可视化分单，并实现区域合理规划、挑单、货物定位、取派人员定位和网点规划等功能，使宅急送的整个操作流程更加专业化、便捷化。</div>
+          <div class="triangle-right">
+            <div class="triangle"></div>
+          </div>
+          <div class="logo">
+            <img src="images/intro/zjs.png"></img>
+            <p style="margin-left: 22px;">宅急送</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 填写联系方式 -->
+  <div class="contact">
+    <p>留下您的联系方式，方便我们为您提供专业的服务</p>
+
+    <div class="icol">
+      <span class="labelfor">公司名称</span>
+      <input type="text" class="text-input" id="txt_c_companyName" placeholder="请输入公司名称">      
+    </div>
+    <div class="icol" style="margin-left: 40px;">
+      <span class="labelfor">联系电话</span>
+      <input type="text" class="text-input" id="txt_c_mobile" placeholder="请输入您的联系方式">      
+    </div>
+
+    <button type="button" id="btn_saveInfo" class="btn btn-info" data-loading-text="正在处理...">确定</button>
+
+  </div>
+
+  <div class="footer">
+    <div class="wrapper">
+      <div class="line"></div>
+      <ul>         
+        <li>
+          <dl>
+            <dt>企业服务</dt>
+            <dd><a href="http://dituhui.com/aboutus" target="_blank">关于我们</a></dd>
+            <dd><a href="http://www.dituhui.com/joinus" target="_blank">加入我们</a></dd>
+            <dd><a href="http://www.dituhui.com/terms" target="_blank">使用条款</a></dd>
+            <dd><a href="/feedback" target="_blank">意见反馈</a></dd>
+          </dl>          
+        </li>
+        <li>
+          <dl>
+            <dt>移动下载</dt>
+            <dd><a href="/mobile/data/xundianguanli.apk" target="_blank">巡店管理</a></dd>
+            <dd><a href="/mobile/data/cheliangjiankong.apk" target="_blank">车辆监控</a></dd>
+          </dl>        
+        </li>
+        <li>
+          <dl>
+            <dt>友情链接</dt>
+            <dd><a href="http://www.dituhui.com" target="_blank">地图慧</a></dd>
+            <dd><a href="http://www.supermap.com/cn/" target="_blank">超图软件</a></dd>
+          </dl>        
+        </li>
+        <li>
+          <dl>
+            <dt>商务咨询</dt>
+            
+            <dd><a href="javascript:void(0);" target="_blank">Ms 马 ： 150-1006-9501</a></dd>
+            <dd><a href="javascript:void(0);" target="_blank">Ms 张 ： 186-1829-9165</a></dd>
+            
+          </dl>
+        </li>
+      </ul>
+      <div class="tele">
+        <p>400-966-1112</p><p>010-59896696</p>
+        <div>
+          <a class="btn btn-info btn-sm" href="http://wpa.qq.com/msgrd?v=3&amp;uin=15101153138&amp;site=qq&amp;menu=yes" target="_blank">QQ客服>></a>
+        </div>
+        <a class="btn btn-info btn-sm" href="http://weibo.com/supermapcloud" target="_blank">关注微博</a>
+      </div>
+
+      <div class="line" style="margin-top: 25px;"></div>
+      <div class="copyright">&copy;2015地图慧 京ICP证120611号 | 京ICP备11032883号-3 | 甲测资字1100363</div>
+
+    </div>
+  </div>
+
+  <div class="fixed-contact-us">
+    <div class="ctitle">联系我们</div>
+    <div class="ccontent">
+      <div class="title">联系电话</div>
+      <div class="phone">400-966-1112</div>
+      <div class="phone">010-59896696</div>
+      <a class="btn btn-contact" href="javascript:;"></a>
+      <div class="code"></div>
+      <div class="info">地图慧公众账号：dituhui</div>
+    </div> 
+  </div> 
+
+
+ <!--  <div class="box_os" style="display:none;">
+    <div class="os_x"></div>
+      <div class="osqq">
+        <p class="title-qq">在线咨询</p>
+        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=15101153138&amp;site=qq&amp;menu=yes">
+          <img border="0" width="76" height="28" src="images/qqchat.gif" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+        </a>
+        周璐
+        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=3135685957&amp;site=qq&amp;menu=yes">
+          <img border="0"  width="76" height="28" src="images/qqchat.gif" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+        </a>
+        李娜
+        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2986999425&amp;site=qq&amp;menu=yes">
+          <img border="0" width="76" height="28" src="images/qqchat.gif" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+        </a>
+        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=351570757&amp;site=qq&amp;menu=yes">
+          <img border="0"  width="76" height="28" src="images/qqchat.gif"  alt="点击这里给我发消息" title="点击这里给我发消息"/>
+        </a>
+
+
+        <p class="title-dianhua">联系我们</p>
+        <p class="kefu">小图热线：010-59896335</p>
+        <p class="kefu">邮箱：cloud@supermap.com</p>
+        <p class="kefu">微信：dituhui</p>
+        <img class="code" src="images/intro/code.jpg"></img>
+      </div>
+      <div class="acbox">
+        <a class="ico_pp"  target="_blank"  href="http://wpa.qq.com/msgrd?v=3&amp;uin=2986999425&amp;site=qq&amp;menu=yes" title=""></a>
+        <a class="ico_gt" href="javascript:void(0);" target="_self" title=""></a>
+      </div>
+  </div>
+  <div class="onlineService"  style="display:block;">
+    <p class="ico_os"></p>
+      <a class="ico_pp"  target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2986999425&amp;site=qq&amp;menu=yes" title=""></a>
+      <a class="ico_gt" href="javascript:void(0);" target="_self" title=""></a>
+  </div> -->
+
+
+  
+<!-- Modal 补充用户信息  -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_filluser" tabindex="-1" role="dialog" aria-labelledby="model_label_video" aria-hidden="true">
+  <div class="modal-custom">
+    <div class="closediv">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-custom-header">
+      <span class="title">请补充详细信息</span>
+      <span class="subtitle">开启免费试用之旅</span>
+    </div>
+    <form id="form_filluser" method="POST" enctype="text/plain" onsubmit="return fillUser();">
+      <div class="modal-custom-content">
+        <div class="row" style="display:none">
+          <input type="text" class="text-input" name="email" id="txt_email">
+        </div>
+        
+        <div class="row">
+          <span class="labelfor">公司名称</span>
+          <input type="text" class="text-input" id="txt_companyName" maxlength="32" placeholder="请输入公司名称" 
+          name="companyName">
+          <span class="hint" id="hint_companyName"></span>
+        </div>
+
+        <div class="row">
+          <span class="labelfor">联系人姓名</span>
+          <input type="text" class="text-input" id="txt_realname" maxlength="8" name="realName" placeholder="请输入联系人姓名">
+          <span class="hint" id="hint_realname"></span>
+        </div>
+        <div class="row-2">
+          <div class="col-2">
+            <span class="labelfor">手机号码</span>
+            <input type="text" class="text-input" id="txt_mobile" maxlength="11" placeholder="请输入手机号码" name="telephone">
+          </div>
+          <div class="col-2 note-code">
+            <button type="button" class="btn btn-sm btn-info" id="btn_getNoteCode" >免费获取短信验证码</button>
+            <input type="text" class="text-input" id="txt_noteCode" placeholder="请输入短信验证码" name="verifyCode">
+            <span class="hint" id="hint_mobile"></span>
+          </div>
+        </div>
+        <div class="row">
+          <span class="labelfor">公司所在地</span>
+          <select class="text-select user-location"></select>
+          <span class="hint" id="hint_user_location"></span>
+        </div>
+        <div class="row border-bottom">
+          <span class="labelfor">所属行业</span>
+          <select class="text-select user-solutions"></select>
+          <input class="text-input hide text-user-solutions" name="combusiness" type="text" maxlength="10" placeholder="请填写行业">
+          <span class="hint" ></span>
+        </div>
+        <div class="sure">
+          <button type="button" class="btn btn-info" id="btn_filluser" style="min-width: 200px;">提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div> <!-- modal end 补充用户信息 -->
+
+<!-- Modal 提交信息成功  -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_saveInfo" tabindex="-1" role="dialog" aria-labelledby="model_label_video" aria-hidden="true">
+  <div class="modal-custom">
+    <div class="close">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-custom-content">
+      <div class="back-img"><img src="apps/images/success.png"></div>
+      <span class="title">提交成功</span>
+      <span class="subtitle">客官，您终于来啦！<br>稍后商务MM会与您取得联系，为您提供专业咨询服务</span>
+      <div class="tools">
+        <a href="javascript:;" class="cancel" data-dismiss="modal">取消</a>
+        <div class="tools-right">
+          <span class="wait">等不及了</span>
+          <a href="javascript:void(0);" option="contact" class="btn btn-info btn-lg">立即联系</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- modal end 暂无权限 -->
+
+<script>
+  videojs.options.flash.swf = "apps/js/video-js.swf";
+</script>
+
+<!-- Modal 视频  -->
+<div class="modal fade" style="z-index: 999999;display:none;" id="modal_video" tabindex="-1" role="dialog" aria-labelledby="model_label_video" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="video-pop-header">
+        <span class="title">视频演示</span>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body" id="video_area" style="min-height: 450px;padding: 0;">
+        
+        <video id="video" class="video-js vjs-default-skin" controls preload="none" width="700" height="450"
+            data-setup="{}" style="float:left;">
+          <p class="vjs-no-js">要观看此视频，请启用JavaScript，并考虑升级到<a href="http://videojs.com/html5-video-support/" target="_blank">支持HTML5视频</a>的Web浏览器</p>
+        </video>
+
+        <div class="movie-list">
+          <ul>
+            <li class="selected wangdian">
+              <a href="javascript:void(0);" option="watch_video_home" open-modal="false" data-movie="wangdian" data-list="true">网点管理</a>
+            </li>
+            <li class="item quhua">
+              <a href="javascript:void(0);" option="watch_video_home" open-modal="false" data-movie="quhua" data-list="true">区划管理</a>
+            </li>
+            <li class="item fendan">
+              <a href="javascript:void(0);" option="watch_video_home" open-modal="false"  data-movie="fendanbao" data-list="true">分单管理</a>
+            </li>
+            <li class="item zhixingtong">
+              <a href="javascript:void(0);" option="watch_video_home" open-modal="false"  data-movie="zhixingtong" data-list="true">车辆管理</a>
+            </li>
+            <li class="item pathplan">
+              <a href="javascript:void(0);" option="watch_video_home" open-modal="false"  data-movie="pathplan" data-list="true">多路线规划</a>
+            </li>
+            <li class="item xundian">
+              <a href="javascript:void(0);" option="watch_video_home" open-modal="false"  data-movie="xundianbao" data-list="true">巡店管理</a>
+            </li>
+            <li class="item xiaoshou">
+              <a href="javascript:void(0);" option="watch_video_home" open-modal="false"  data-movie="xiaoshouguanli" data-list="true">销售管理</a>
+            </li>
+            <li class="item wangdian">
+              <a href="javascript:void(0);" option="watch_video_home" open-modal="false"  data-movie="kaoqinguanli" data-list="true">考勤管理</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      
+    </div>
+  </div>
+</div> <!-- modal end 视频 -->
+
+  <div id="popover_result" class="popover fade top in" >
+    <div class="popover-content" id="popover_content"></div>
+  </div>
+
+  <script type="text/javascript" src="js/jquery.contentcarousel.js"></script>
+  <!-- // <script type="text/javascript" src="js/release/home.js"></script> -->
+  <script type="text/javascript" src="js/config.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/feedback_util.js"></script>
+
+</body>
+</html>

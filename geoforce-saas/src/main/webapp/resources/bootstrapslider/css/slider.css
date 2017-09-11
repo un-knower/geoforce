@@ -1,0 +1,8 @@
+.slider-bar{
+    display:block; width:20px; background-color:darkred; position:relative;
+    cursor: pointer;
+}
+
+.slider, .slider-bar{
+    height:20px;
+}

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:flexlib="http://code.google.com/p/flexlib/"
+			   xmlns:mapping="mapping.*"
+			   pageTitle="地图示例" viewSourceURL="srcview/index.html">	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.events.LayerEvent;
+			
+			protected var isLoad:Boolean = false;
+			protected function cloudlayer_loadHandler(event:LayerEvent):void
+			{
+				if(!isLoad) {
+					map.zoomToLevel(9, new Point2D(12957140.380859, 4854144.165039));
+					isLoad = true;
+				}
+			}			
+		]]>
+	</fx:Script>
+	
+	<flexlib:MDICanvas id="mdiCanvas"
+					   horizontalScrollPolicy="off"
+					   verticalScrollPolicy="off"
+					   width="100%"
+					   height="100%"
+					   backgroundColor="#FFFFFF"
+					   backgroundAlpha="0"
+					   >
+		<!--地图控件-->
+		<ic:Map id="map"
+				x="0"
+				y="0"
+				height="100%"
+				width="100%"
+				>
+			<ic:CloudLayer cacheUrl="http://t2.supermapcloud.com/FileService/image"
+						   resolutions="[156543.033928041, 78271.5169640203, 39135.7584820102, 
+						   19567.8792410051, 9783.93962050254, 4891.96981025127, 2445.98490512563, 
+						   1222.99245256282, 611.496226281409, 305.748113140704, 152.874056570352, 
+						   76.4370282851761, 38.218514142588, 19.109257071294, 9.55462853564701, 
+						   4.77731426782351, 2.38865713391175, 1.19432856695588, 0.597164283477938]"
+						   updateEnd="cloudlayer_loadHandler(event)"
+						   >			
+			</ic:CloudLayer>
+		</ic:Map>
+		
+		
+		<!--罗盘控件-->
+		<ic:Compass id="compass" 
+					map="{map}"
+					left="20"
+					top="50" 
+					skinClass="skins.compass.CompassApp"
+					/>
+		
+		<!--导航条控件-->
+		<ic:ZoomSlider id="zoomSlider"
+					   map="{map}"
+					   x="40"
+					   y="117"
+					   sliderHeightParam="7"
+					   skinClass="skins.zoomslider.zoomSliderApp"
+					   />
+		
+		<!--鹰眼控件-->
+		<ic:OverviewMap id="ovMap"
+						map="{map}"
+						overviewMode="rect"
+						currentState="origin"
+						right="5"
+						bottom="5"
+						width="150"
+						height="120"
+						/>
+		
+	</flexlib:MDICanvas>
+	
+	
+</s:Application>

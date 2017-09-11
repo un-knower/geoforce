@@ -1,0 +1,49 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="../../js/key.js"></script>	
+	<!--<script type="text/javascript" src="../../script/SuperMap.Include.js"></script>	
+    <script type="text/javascript" src="../../script/osp.js"></script>-->	
+
+    <script type="text/javascript">
+        var map = null;
+		var layer = null;
+        function onPageLoad() {
+           layer = new SuperMap.Layer.CloudLayer();
+			 map = new SuperMap.Map("mapDiv", { controls: [
+                      new SuperMap.Control.PanZoomBar(),
+                      new SuperMap.Control.Navigation({
+                          dragPanOptions: {
+                              enableKinetic: true
+                          }
+                      })], allOverlays: true
+            });
+			map.addLayer(layer);
+			map.setCenter(new SuperMap.LonLat(12958399.4681885, 4852082.44060595),11);
+        }
+
+        //地图打印
+        function printMap() {
+            var printService = new SuperMap.OSP.Service.PrintService();
+            printService.printMap();
+        } 
+    </script>
+
+</head>
+<body onload="onPageLoad()">
+    <div id="mapDiv" style="position: absolute;  height:398px;width:498px; top: 0px;
+        left: 0px; border: solid 1px">
+    </div>
+    <div id="operatePanel" style="position: absolute; width: 200px; left:500; top:0px;
+        font-size: 12px; border: solid 0px #969696; z-index: 100; padding-bottom: 5px;
+        background-image: url(../../images/toolbar_backgroundb.png);">
+        <font style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 100%">地图打印：</font>
+        <p>
+            OSP提供的打印服务，可以将地图页面输出到打印设备。。</p>
+        <input type="button" value="打印地图" style="background-color: #CCCCCC; border: double;"
+            onclick="printMap()" />
+    </div>
+    <div id="divInfo" style="clear: both">
+    </div>
+</body>
+</html>

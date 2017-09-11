@@ -1,0 +1,220 @@
+body {
+    background-color: #fff;
+}
+.content {
+    width: 100%;
+    background-color: #f5f5f5;
+    min-height: 500px;
+    height: auto;
+    border-top: 1px solid #ddd;
+    overflow: hidden;
+    padding-bottom: 50px;
+}
+.content-body {
+    width: 960px;
+    margin: 0 auto;
+}
+.content-body .title {
+    width: 100%;
+    height: 80px;
+    padding-left: 20px;
+    padding-top: 20px;
+    line-height: 50px;
+}
+.main-title {
+    font-size: 20px;
+    font-family: "Microsoft Yahei";
+    color: #444;
+    font-weight: bold;
+    float: left;
+}
+.title .hint {
+    font-size: 14px;
+    font-family: "Microsoft Yahei";
+    color: #333;
+    margin-left: 30px;
+    margin-top: 3px;
+    float: left;
+}
+.for-price {
+    font-size: 14px;
+    font-family: "Microsoft Yahei";
+    color: #333;
+    margin-left: 30px;
+    float: right;
+}
+.sum-price {
+    font-size: 20px;
+    font-family: "Microsoft Yahei";
+    color: #DE931E;
+    margin-left: 5px;
+    float: right;
+}
+button.intro-btn-yellow {
+    background-color: #C18E2C;
+    color: #FCF5DB;
+    padding: 5px 30px;
+    font-size: 16px;
+    font-family: 'microsoft yahei';  
+    float: right;
+    margin-left: 15px;  
+    /*margin-right: 20px;*/
+    margin-top: 5px;
+}
+button.intro-btn-yellow:hover {
+    color: #FCF5DB;
+    background-color: #dba234;
+}
+.orders {
+    width: 100%;
+    min-height: 300px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.all {
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #ddd;
+    padding-left: 30px;
+    line-height: 50px;
+    font-family: "microsoft yahei";
+    font-size: 15px;
+}
+.all input[type="checkbox"],
+.item input[type="checkbox"] {
+    margin: 0 3px 0 0;
+}
+
+.items {
+    width: 100%;
+    height:auto !important;
+}
+.item {    
+    width: 100%;
+    padding: 20px 50px 20px 30px;
+    font-family: "microsoft yahei";
+    font-size: 15px;
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+    background-color: #FFFDEE;
+}
+.parent {
+    float: left;
+    width: 250px;
+}
+.children {
+    float: left;
+    width: 250px;
+    line-height: 30px;
+    min-height: 80px;
+}
+.children span {
+    display: block;
+}
+.children span.father {
+    font-weight: bold;
+    color: #666;
+    font-size: 14px;
+    font-family: 'microsoft yahei';
+}
+.children span.kid {
+    margin-left: 30px;
+    color: #555;
+    font-size: 12px;
+    font-family: 'microsoft yahei';
+}
+.children span.kid-last {
+    margin-left: 30px;
+    color: #555;
+    font-size: 12px;
+    font-family: 'microsoft yahei';
+    margin-bottom: 10px;
+}
+.time {
+    float: left;
+    width: 220px;
+    height: 40px;
+    line-height: 40px;
+}
+.time input{
+    width: 50px;
+}
+
+
+.input-group-addon {
+    padding: 3px 12px;
+}
+.form-control {
+    height: 30px;
+}
+
+.price {
+    font-size: 20px;
+    font-family: "Microsoft Yahei";
+    color: #DE931E;
+    float: left;
+    width: 180px;
+    margin-left: 40px;
+    text-align: center;
+}
+.remove {
+    float: right;
+}
+.remove a{
+    color: #2a6496;
+}
+.clear{ clear:both;} 
+
+.remark {
+    width: 100%;
+    padding: 20px 0px 10px 45px;
+}
+.remark input[type="text"] {  
+    width: 320px;
+}
+.remark span {    
+    font-family: "microsoft yahei";
+    font-size: 15px;
+}
+
+.hintno {
+    width: 100%;
+    margin-top: 100px;
+    text-align: center;
+    line-height: 34px;
+}
+.hintno span{
+    font-family: 'microsoft yahei';
+    font-size: 16px;
+    font-weight: bold;
+}
+.hintno span a{
+    font-family: 'microsoft yahei';
+    font-size: 16px;
+    font-weight: bold;
+    color: #3372a2;
+}
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.headline-name {
+    margin-left: 210px;
+}
+.headline-time {
+    margin-left: 190px;
+}
+.headline-option {
+    margin-left: 270px;
+}
+.text-time {
+    text-align: center;
+}
+.btn-time-option {
+
+}
+.img-time {
+    width: 10px;
+    height: 10px;
+}

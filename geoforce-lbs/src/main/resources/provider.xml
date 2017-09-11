@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+	<dubbo:application name="provider_lbs" />
+
+ 	<!--使用zookeeper注册中心暴露服务地址 -->
+	<dubbo:registry  protocol="zookeeper"  address="10.168.191.19:2181" />
+	<dubbo:protocol port="20901"/>
+	
+	<dubbo:service interface="com.supermap.egispservice.lbs.service.DriverService" version="2.5.3" ref="driverService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="driverService" class="com.supermap.egispservice.lbs.service.DriverServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.lbs.service.CarService" version="2.5.3" ref="carService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="carService" class="com.supermap.egispservice.lbs.service.CarServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.lbs.service.TerminalService" version="2.5.3" ref="terminalService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="terminalService" class="com.supermap.egispservice.lbs.service.TerminalServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.lbs.service.TerminalTypeService" version="2.5.3" ref="terminalTypeService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="terminalTypeService" class="com.supermap.egispservice.lbs.service.TerminalTypeServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.lbs.service.DataworkService" version="2.5.3" ref="dataworkService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="dataworkService" class="com.supermap.egispservice.lbs.service.DataworkServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.lbs.service.CarLocationService" version="2.5.3" ref="carLocationService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="carLocationService" class="com.supermap.egispservice.lbs.service.CarLocationServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.lbs.service.CarHistoryService" version="2.5.3" ref="carHistoryService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="carHistoryService" class="com.supermap.egispservice.lbs.service.CarHistoryServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.lbs.service.CarRegSearchService" version="2.5.3" ref="carRegSearchService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="carRegSearchService" class="com.supermap.egispservice.lbs.service.CarRegSearchServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.lbs.service.CarSpeedingService" version="2.5.3" ref="carSpeedingService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="carSpeedingService" class="com.supermap.egispservice.lbs.service.CarSpeedingServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.lbs.service.RegionSetService" version="2.5.3" ref="regionSetService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="regionSetService" class="com.supermap.egispservice.lbs.service.RegionSetServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.lbs.service.RegionService" version="2.5.3" ref="regionService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="regionService" class="com.supermap.egispservice.lbs.service.RegionServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.lbs.service.AlarmService" version="2.5.3" ref="alarmService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="alarmService" class="com.supermap.egispservice.lbs.service.AlarmServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.lbs.service.AlarmTypeService" version="2.5.3" ref="alarmTypeService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="alarmTypeService" class="com.supermap.egispservice.lbs.service.AlarmTypeServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.lbs.service.CarAlarmForeginService" version="2.5.3" ref="carAlarmForeginService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="carAlarmForeginService" class="com.supermap.egispservice.lbs.service.CarAlarmForeginServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.lbs.service.CarDisMsgService" version="2.5.3" ref="carDisMsgService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="carDisMsgService" class="com.supermap.egispservice.lbs.service.CarDisMsgServiceImpl" />
+	
+</beans>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd" >
+
+<beans>
+ 	<bean id="mongoDbGlobal" class="com.supermap.egispservice.lbs.mongobase.MongoDbGlobal">
+  		<property name="mongoUrl">
+  			<!-- 外测地址 -->
+  			<!-- <value>121.40.86.232</value> -->
+			<!-- 本地测地址 -->
+  			 <value>10.160.59.65</value>
+  		</property>
+  		<property name="dbName">
+  			<value>egisdata</value>
+  		</property>
+  		<property name="dbUser">
+  			<value>egisdata</value>
+  		</property>
+  		<property name="dbPwd">
+  			<value>egisdata</value>
+  		</property>
+ 	</bean>
+</beans>

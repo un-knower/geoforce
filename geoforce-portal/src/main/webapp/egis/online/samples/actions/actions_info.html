@@ -1,0 +1,317 @@
+﻿<html>
+<head>
+    <title>地图操作</title>
+    <link rel="stylesheet" href="../style.css" type="text/css" />
+</head>
+<body>
+    <div id="banner">
+        地图操作
+    </div>
+    <div id="text">
+        <h4 class="dtH4">
+            描述</h4>
+        <ol type="1">
+            <li>指地图基本的放大、缩小、漫游、全幅显示等地图操作，这是一个在线地图应用最基本的功能，OSP支持所有的基本地图操作，同时也支持鼠标滑轮、键盘操作
+            </li>            
+        </ol>
+        <h4 class="dtH4">
+            代码 (文件格式为 UTF-8)</h4>
+        <div class="detailSample">
+            <pre><code>
+&lthtml&gt
+&lthead&gt
+    &ltmeta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt
+    &ltlink href="http://www.supermapcloud.com/demo/china/styles/action.css" rel="stylesheet" type="text/css"&gt&lt/link&gt
+    &ltlink href="http://www.supermapcloud.com/online/samples/actions/js_color_picker_v2.css" rel="stylesheet" type="text/css"&gt&lt/link&gt
+	&ltscript type="text/javascript" src="http://services.supermapcloud.com/iserver/api?key=aXtbCHyF5FSZn6TeeEywSW0u8TDHrwC0IjFudD2j5xM%3D&v=1.1"&gt&lt/script&gt
+    &ltscript type="text/javascript" src="http://www.supermapcloud.com/online/samples/actions/js_color_picker_v2.js"&gt&lt/script&gt
+    &ltscript type="text/javascript"&gt
+        var map = null;
+        var markerLayer = null;
+        var featuresLayer = null;
+		var layer = null;
+        //初始化地图
+        function onPageLoad() {
+			layer = new SuperMap.Layer.CloudLayer();
+			markerLayer = new SuperMap.Layer.Markers("maker");
+			featuresLayer = new SuperMap.Layer.Vector();
+			drawLine = new SuperMap.Control.DrawFeature(featuresLayer,SuperMap.Handler.Path, { multi: true });
+			drawLine.events.on({"featureadded": drawCompleted});
+			drawPoint = new SuperMap.Control.DrawFeature(featuresLayer,SuperMap.Handler.Point, { multi: true });
+			drawPoint.events.on({"featureadded":drawCompleted});
+			drawPolygon = new SuperMap.Control.DrawFeature(featuresLayer,SuperMap.Handler.Polygon, { multi: true });
+			drawPolygon.events.on({"featureadded":drawCompleted});
+			 map = new SuperMap.Map("mapDiv", { controls: [
+                      new SuperMap.Control.PanZoomBar(),
+                      new SuperMap.Control.Navigation({
+                          dragPanOptions: {
+                              enableKinetic: true
+                          }
+                      }),drawLine,drawPoint,drawPolygon], allOverlays: true
+            });
+			map.addLayer(layer);
+			map.addLayer(featuresLayer);
+			map.addLayer(markerLayer);
+			map.setCenter(new SuperMap.LonLat(12958399.4681885, 4852082.44060595),11);
+        }
+
+		function drawLines(){
+			drawLine.activate();
+		}
+		function drawPoints(){
+			var fillColor = document.getElementById("color1").value;
+				if (fillColor.indexOf("#") != 0) {
+					alert("填充颜色为非法值!");
+					return false;
+				}
+				var strokeColor = document.getElementById("color2").value;
+				if (strokeColor.indexOf("#") != 0) {
+					alert("边线颜色为非法值!");
+					return false;
+				}
+				var opacity = document.getElementById("txtOpacity").value;
+				if (isNaN(opacity)) {
+					alert("透明度的范围在【0-1.0】之间!");
+					return false;
+				}
+				var lineWidth = document.getElementById("txtLineWidth").value;
+				if (isNaN(lineWidth)) {
+					alert("边线宽度应该是数值型");
+					return false;
+				}
+				featuresLayer.style = {fillColor:fillColor,strokeColor:strokeColor,strokeWidth:lineWidth,pointRadius:6,strokeOpacity:opacity,fillOpacity:opacity,strokeWidth:lineWidth};
+			drawPoint.activate();
+		}
+		function drawPolygons(){
+			drawPolygon.activate();
+		}
+		var feature;
+		function drawCompleted(drawGeometryArgs){
+			var fillColor = document.getElementById("color1").value;
+            if (fillColor.indexOf("#") != 0) {
+                alert("填充颜色为非法值!");
+                return false;
+            }
+            var strokeColor = document.getElementById("color2").value;
+            if (strokeColor.indexOf("#") != 0) {
+                alert("边线颜色为非法值!");
+                return false;
+            }
+            var opacity = document.getElementById("txtOpacity").value;
+            if (isNaN(opacity)) {
+                alert("透明度的范围在【0-1.0】之间!");
+                return false;
+            }
+            var lineWidth = document.getElementById("txtLineWidth").value;
+            if (isNaN(lineWidth)) {
+                alert("边线宽度应该是数值型");
+                return false;
+            }
+			featuresLayer.style = {fillColor:fillColor,strokeColor:strokeColor,strokeWidth:lineWidth,pointRadius:6,strokeOpacity:opacity,fillOpacity:opacity,strokeWidth:lineWidth};
+			drawLine.deactivate();
+			drawPoint.deactivate();
+			drawPolygon.deactivate();
+			var geometry = drawGeometryArgs.feature.geometry;
+			feature = new SuperMap.Feature.Vector(geometry);
+		}
+		function clearAll(){
+			featuresLayer.removeAllFeatures();
+		}
+		
+		function zoomIn(){
+			map.zoomIn();
+		}
+		
+		function zoomOut(){
+			map.zoomOut();
+		}
+
+        //将绘制的图形加载到矢量要素图层上。绘制点、线和面结束后传回的回调函数中都是DrawGeometryArgs类型的参数，而绘制圆后传回的回调函数的参数为 DrawCircleArgs，因此以下这个函数不能将圆加载到矢量图层上
+
+        function addScaleBar() {
+            //单线比例尺控件样式
+            var simpleScaleBarStyle = new SuperMap.Web.Controls.ScaleBarStyle();
+            simpleScaleBarStyle.color = "black";
+            simpleScaleBarStyle.fontSize = 1;
+            simpleScaleBarStyle.mode = SuperMap.Web.Controls.ScaleBarMode.SIMPLE;
+
+            //单线比例尺控件
+            var simpleScaleBar = $create(SuperMap.Web.Controls.ScaleBar, { scaleBarStyle: simpleScaleBarStyle, map: map }, null, null, document.getElementById("simpleScaleBarContainer"));
+
+        }
+
+        //编辑操作，必设指定编辑的地图和矢量图层
+        function editEntity() {
+            var drawAction = $create(SuperMap.Web.Actions.EditFeature, { map: map, featuresLayer: featuresLayer }, null, null, null);
+            //drawAction.add_actionCompleted(function (arg) { debugger});
+            map.set_action(drawAction);
+        }
+
+
+
+        //获取地图当前可视范围
+        function getMapViewBounds() {
+            var objViewBounds = document.getElementById("divViewBounds");
+            var view = map.getExtent();
+            objViewBounds.innerHTML = "LeftBottom坐标为,&ltbr/&gtx:" + view.left + "&ltbr/&gty:" + view.bottom + "&ltbr/&gt";
+            objViewBounds.innerHTML += "RightTop坐标为，&ltbr/&gtx:" + view.right + ",&ltbr/&gty:" + view.top;
+        }
+
+        //调整窗口大小
+        function mapResize() {
+            var width = document.getElementById("txtWidth").value;
+            var height = document.getElementById("txtHeight").value;
+            if (isNaN(width) || isNaN(height)) {
+                alert("宽和高必须为数值类型");
+                return false;
+            }
+            map.resize(parseInt(width), parseInt(height));
+        }
+        //恢复窗口大小
+        function mapRecovery() {
+            map.resize(880, 580);
+        }
+
+        var isshow = false;
+        function showLegend() {
+            if (isshow) {
+                document.getElementById("maplegend").style.display = "none";
+                isshow = false;
+            } else {
+                document.getElementById("maplegend").style.display = "block";
+                isshow = true;
+            }
+        }
+
+    &lt/script&gt
+
+&lt/head&gt
+&ltbody onload="onPageLoad()"&gt
+    &lt!--地图控件--&gt
+    &ltdiv id="main" style="position: absolute; height:398px;width:498px; top: 0px;
+        left: 0px; border: solid 0px"&gt
+        &lt!--地图控件--&gt
+        &ltdiv id="mapDiv" style="position: absolute; height:398px;width:498px; top: 0px;
+        left: 0px;"&gt
+        &lt/div&gt
+       
+        &ltdiv id="simpleScaleBarContainer" style="position: absolute; width: 200px; height: 50px;
+            bottom: 30px; left: 30px;"&gt
+        &lt/div&gt
+        &ltdiv id="divMousePosition" style="position: absolute; bottom: 30px; right: 30px;
+            z-index: 9999"&gt
+        &lt/div&gt
+        &ltdiv id="maplegend" style="position: absolute; bottom: 10px; left: 10px; height: 230px;
+            width: 300px; border: 1px solid #ccc; overflow: auto; overflow-x: hidden; display: none;
+            z-index: 9999"&gt
+            &lttable&gt
+                &lttr&gt
+                    &lttd align="center"&gt
+                        图例
+                    &lt/td&gt
+                &lt/tr&gt
+                &lttr&gt
+                    &lttd&gt
+                        &ltimg src="../../images/legend.jpg" /&gt
+                    &lt/td&gt
+                &lt/tr&gt
+            &lt/table&gt
+        &lt/div&gt
+    &lt/div&gt
+    &ltdiv id="tool" style="position: absolute; left:460px; top:0px; width: 72px; z-index: 100;
+        padding-bottom: 5px;"&gt
+        &ltimg src="http://www.supermapcloud.com/online/images/drawPoint.png" title="绘制点" onmouseover="this.src = 'http://www.supermapcloud.com/online/images/drawPoint_on.png'"
+            onmouseout="this.src = 'http://www.supermapcloud.com/online/images/drawPoint.png'" onclick="drawPoints()"&gt&lt/img&gt
+        &ltimg src="http://www.supermapcloud.com/online/images/drawLine.png" title="绘制线" onmouseover="this.src = 'http://www.supermapcloud.com/online/images/drawLine_on.png'"
+            onmouseout="this.src = 'http://www.supermapcloud.com/online/images/drawLine.png'" onclick="drawLines()"&gt&lt/img&gt
+        &ltimg src="http://www.supermapcloud.com/online/images/drawRegion.png" title="绘制面" onmouseover="this.src = 'http://www.supermapcloud.com/online/images/drawRegion_on.png'"
+            onmouseout="this.src = 'http://www.supermapcloud.com/online/images/drawRegion.png'" onclick="drawPolygons()"&gt&lt/img&gt
+        &ltimg src="http://www.supermapcloud.com/online/images/ZoomIn.png" title="放大" onmouseover="this.src = 'http://www.supermapcloud.com/online/images/zoomin_on.png'"
+            onmouseout="this.src = 'http://www.supermapcloud.com/online/images/ZoomIn.png'" onclick="zoomIn()" /&gt
+        &ltimg src="http://www.supermapcloud.com/online/images/ZoomOut.png" title="缩小" onmouseover="this.src = 'http://www.supermapcloud.com/online/images/zoomout_on.png'"
+            onmouseout="this.src = 'http://www.supermapcloud.com/online/images/ZoomOut.png'" onclick="zoomOut()" /&gt
+        &ltimg src="http://www.supermapcloud.com/online/images/eraser.png" title="清除矢量要素" onmouseover="this.src = 'http://www.supermapcloud.com/online/images/eraser_on.png'"
+            onmouseout="this.src = 'http://www.supermapcloud.com/online/images/eraser.png'" onclick="clearAll()"&gt&lt/img&gt
+    &lt/div&gt
+    &ltform&gt
+    &ltdiv id="operatePanel" style="position: absolute; width: 260px; left:500px; top:0px;
+        border: solid 1px #969696; z-index: 100; padding-bottom: 5px; background-image: url(../../images/toolbar_backgroundb.png);"&gt
+        &ltfont style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 100%"&gt地图的基本操作&lt/font&gt
+        &ltdiv style="font-size: 12px"&gt
+               地图窗口的右上方一列按钮分别是绘制点、绘制线、绘制面、矢量要素编辑、漫游、拉框放大、拉框缩小、清除矢量要素共8个按钮。下方填充颜色、透明度、线宽、边线颜色可以对矢量绘制的线型、颜色等进行设置，设置完成后，点击绘制点、线、或面按钮后，可以在地图上绘制自定义风格的矢量图形。&ltbr /&gt
+              点击下方按钮，可以获取地图当前可视范围。&ltbr /&gt
+              设定宽、高的具体值（单位均为像素），点调整按钮，可以调整地图到指定大小，点恢复按钮，则地图回到默认大小。&ltbr /&gt
+        &lt/div&gt
+        &ltdiv id="divFeature" class="box"&gt
+            &lttable style="font-size: 12px"&gt
+                &lttr&gt
+                    &lttd&gt
+                        填充颜色：
+                    &lt/td&gt
+                    &lttd&gt
+                        &ltinput type="text" size="10" id="color1" maxlength="7" name="rgb1" value="#FF0000"
+                            onclick="showColorPicker(this,document.forms[0].rgb1)"&gt
+                    &lt/td&gt
+                &lt/tr&gt
+                &lttr&gt
+                    &lttd&gt
+                        填充透明度：
+                    &lt/td&gt
+                    &lttd&gt
+                        &ltselect id="txtOpacity"&gt
+                            &ltoption value="0.1"&gt0.1&lt/option&gt
+                            &ltoption value="0.2"&gt0.2&lt/option&gt
+                            &ltoption value="0.3"&gt0.3&lt/option&gt
+                            &ltoption value="0.4"&gt0.4&lt/option&gt
+                            &ltoption value="0.5" selected&gt0.5&lt/option&gt
+                            &ltoption value="0.6"&gt0.6&lt/option&gt
+                            &ltoption value="0.7"&gt0.7&lt/option&gt
+                            &ltoption value="0.8"&gt0.8&lt/option&gt
+                            &ltoption value="0.9"&gt0.9&lt/option&gt
+                            &ltoption value="1.0"&gt1.0&lt/option&gt
+                        &lt/select&gt
+                    &lt/td&gt
+                &lt/tr&gt
+                &lttr&gt
+                    &lttd&gt
+                        线宽：
+                    &lt/td&gt
+                    &lttd&gt
+                        &ltinput type="text" id="txtLineWidth" style="width: 50px" value="2" /&gt
+                    &lt/td&gt
+                &lt/tr&gt
+                &lttr&gt
+                    &lttd&gt
+                        边线颜色：
+                    &lt/td&gt
+                    &lttd&gt
+                        &ltinput type="text" size="10" id="color2" maxlength="7" name="rgb2" value="#0000FF"
+                            onclick="showColorPicker(this,document.forms[0].rgb2)"&gt
+                    &lt/td&gt
+                &lt/tr&gt
+            &lt/table&gt
+            &ltdiv id="picker"&gt
+            &lt/div&gt
+        &lt/div&gt
+        &ltinput type="button" value="获取当前地图可视范围" onclick="getMapViewBounds()" /&gt
+        &ltinput type="button" value="显示/隐藏图例" onclick="showLegend()" /&gt
+        &ltdiv id="divViewBounds" style="font-size: 12px"&gt
+        &lt/div&gt
+        &lt!--&ltdiv style="font-size: 12px"&gt
+            调整窗口大小：&ltbr /&gt
+            宽:&ltinput type="text" id="txtWidth" value="500" style="width: 50px" /&gt高:&ltinput style="width: 50px"
+                type="text" id="txtHeight" value="300" /&gt&ltinput type="button" value="调整" onclick="mapResize()" /&gt&ltinput
+                    type="button" value="恢复" onclick="mapRecovery()" /&gt
+        &lt/div&gt--&gt
+    &lt/div&gt
+    &lt/form&gt
+&lt/body&gt
+&lt/html&gt
+
+
+
+            </code></pre>
+        </div>
+    </div>
+</body>
+</html>

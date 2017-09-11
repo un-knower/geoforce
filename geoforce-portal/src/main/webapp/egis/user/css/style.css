@@ -1,0 +1,115 @@
+/*大图*/
+.theme-image {
+    background:  #48AACD url(../images/theme.jpg)  no-repeat scroll center;
+    height: 406px;
+}
+body {
+    background-color: #fff;
+}
+.content {
+    overflow: hidden;
+}
+
+/*各系统入口区*/
+.entrance-area {
+    width: 100%; 
+    border-top: 1px solid #ddd;
+    background-color: #f5f5f5;
+    margin: 0 auto;
+    min-height: 620px;
+    height: 100%;
+    padding: 40px 0;
+    overflow: hidden;
+}
+.imgs {
+    width: 960px;
+    margin: 0 auto;
+    padding-left: 70px;
+}
+
+.title {
+	/*padding: 10px 70px;*/
+	text-align: left;
+	color: #666;
+	margin-bottom: 20px;
+}
+
+.title span {
+	font-family: "SimHei";
+	font-size: 22px;
+	color: #62A1B3;
+}
+
+.nav-tabs > li {
+    border-radius: 5px;
+}
+.tab-pane {
+	border: 1px solid #ddd;
+	padding-top: 30px;
+	padding-left: 100px;
+	/*padding-right: 100px;*/
+	min-height: 350px;
+	background-color: #fff;
+    overflow: hidden;
+}
+
+.hint-resetpwd {
+    font-family: 'microsoft yahei';
+    font-size: 12px;
+    color: #999999;
+    line-height: 32px;
+}
+.lbl-resetpwd {
+    font-family: 'microsoft yahei';
+    font-size: 14px;
+    color: #666;
+    line-height: 32px;
+    display: inline-block;
+    width: 80px;
+}
+.resetpwd-text {    
+    width: 300px;
+    height: 32px;
+    line-height: 26px;
+    font-size: 14px;
+    font-family: "microsoft yahei";
+    background-color: #ffffff;
+    border: #CCC 1px solid;
+    color: #333;
+    margin-bottom:20px;margin-top:10px;
+}
+
+a.intro-btn-yellow {
+    background-color: #C18E2C;
+    color: #FCF5DB;
+    padding: 7px 20px;
+    font-size: 14px;
+    font-family: 'microsoft yahei';    
+}
+a.intro-btn-yellow:hover {
+    color: #FCF5DB;
+    background-color: #dba234;
+}
+
+
+.model-content-line > span ~ select, .model-content-line > span ~ div{
+    float: left;
+    position: relative;
+}
+
+.model-content-line > input[type="radio"]{ 
+    font-size: 14px;
+    font-family: 'microsoft yahei';
+    height: 30px;
+    line-height: 30px;
+    margin: 0;
+}
+
+
+.hint { 
+    font-family: "microsoft yahei";
+    font-size: 14px;
+    color: #999;
+    display: inline-block;
+    width: 250px;
+}

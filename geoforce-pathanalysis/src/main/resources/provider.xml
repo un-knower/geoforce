@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="provider_pathanalysis" />
+
+    <!--使用zookeeper注册中心暴露服务地址 -->
+    <dubbo:registry  protocol="zookeeper"  address="10.168.191.19:2181" />
+    <!-- 用dubbo协议在20851端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20881" />
+
+    <dubbo:service interface="com.supermap.egispservice.pathanalysis.service.IPathAnalysisService" version="2.5.3" ref="pathAnalysisServiceAPI"  timeout="180000" delay="-1" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+    <bean id="pathAnalysisServiceAPI" class="com.supermap.egispservice.pathanalysis.service.PathAnalysisServiceImpl" />
+
+</beans>

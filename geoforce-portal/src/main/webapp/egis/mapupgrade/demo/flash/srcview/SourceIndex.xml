@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index>
+	<title>mapdemo 的源代码</title>
+	<nodes>
+		<node label="html-template">
+			<node label="history">
+				<node icon="cssIcon" label="history.css" url="source/html-template/history/history.css.html"/>
+				<node label="history.js" url="source/html-template/history/history.js.txt"/>
+				<node icon="htmlIcon" label="historyFrame.html" url="source/html-template/history/historyFrame.html"/>
+			</node>
+			<node icon="htmlIcon" label="index.template.html" url="source/html-template/index.template.html"/>
+			<node icon="swfIcon" label="playerProductInstall.swf" url="source/html-template/playerProductInstall.swf"/>
+			<node label="swfobject.js" url="source/html-template/swfobject.js.txt"/>
+		</node>
+		<node label="libs">
+			<node label="flexlib.swc" url="source/libs/flexlib.swc"/>
+			<node label="SuperMap.Web-8.0.1-13225.swc" url="source/libs/SuperMap.Web-8.0.1-13225.swc"/>
+		</node>
+		<node label="src">
+			<node label="assets">
+				<node label="compass">
+					<node icon="imageIcon" label="back.png" url="source/assets/compass/back.png.html"/>
+					<node icon="imageIcon" label="down.png" url="source/assets/compass/down.png.html"/>
+					<node icon="imageIcon" label="left.png" url="source/assets/compass/left.png.html"/>
+					<node icon="imageIcon" label="right.png" url="source/assets/compass/right.png.html"/>
+					<node icon="imageIcon" label="sliderZoomIn.png" url="source/assets/compass/sliderZoomIn.png.html"/>
+					<node icon="imageIcon" label="sliderZoomOut.png" url="source/assets/compass/sliderZoomOut.png.html"/>
+					<node icon="imageIcon" label="thumb.png" url="source/assets/compass/thumb.png.html"/>
+					<node icon="imageIcon" label="up.png" url="source/assets/compass/up.png.html"/>
+				</node>
+			</node>
+			<node icon="packageIcon" label="skins.compass" expanded="true">
+				<node icon="mxmlIcon" label="CompassApp.mxml" url="source/skins/compass/CompassApp.mxml.html"/>
+				<node icon="mxmlIcon" label="down.mxml" url="source/skins/compass/down.mxml.html"/>
+				<node icon="mxmlIcon" label="left.mxml" url="source/skins/compass/left.mxml.html"/>
+				<node icon="mxmlIcon" label="right.mxml" url="source/skins/compass/right.mxml.html"/>
+				<node icon="mxmlIcon" label="up.mxml" url="source/skins/compass/up.mxml.html"/>
+			</node>
+			<node icon="packageIcon" label="skins.zoomslider" expanded="true">
+				<node icon="mxmlIcon" label="thumbSkin.mxml" url="source/skins/zoomslider/thumbSkin.mxml.html"/>
+				<node icon="actionScriptIcon" label="TrackHighLightSkin.as" url="source/skins/zoomslider/TrackHighLightSkin.as.html"/>
+				<node icon="actionScriptIcon" label="Trackskin.as" url="source/skins/zoomslider/Trackskin.as.html"/>
+				<node icon="mxmlIcon" label="ZoomInButtonSkin.mxml" url="source/skins/zoomslider/ZoomInButtonSkin.mxml.html"/>
+				<node icon="mxmlIcon" label="ZoomOutButtonSkin.mxml" url="source/skins/zoomslider/ZoomOutButtonSkin.mxml.html"/>
+				<node icon="mxmlIcon" label="zoomSliderApp.mxml" url="source/skins/zoomslider/zoomSliderApp.mxml.html"/>
+			</node>
+			<node icon="mxmlAppIcon" selected="true" label="mapdemo.mxml" url="source/mapdemo.mxml.html"/>
+		</node>
+	</nodes>
+	<zipfile label="下载源代码（ZIP，2274 KB）" url="mapdemo.zip">
+	</zipfile>
+	<sdklink label="下载 Flex SDK" url="http://www.adobe.com/go/flex451_sdk_download_zh_CN">
+	</sdklink>
+</index>

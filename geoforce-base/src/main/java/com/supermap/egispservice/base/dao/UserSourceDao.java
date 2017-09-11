@@ -1,0 +1,18 @@
+package com.supermap.egispservice.base.dao;
+
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+import com.supermap.egispservice.base.entity.UserSourceEntity;
+
+
+public interface UserSourceDao  extends CrudRepository<UserSourceEntity, String>, 
+PagingAndSortingRepository<UserSourceEntity, String>, 
+JpaSpecificationExecutor<UserSourceEntity>{
+	
+	public UserSourceEntity findById(byte id);
+	
+	public UserSourceEntity findByValue(String value);
+	
+}

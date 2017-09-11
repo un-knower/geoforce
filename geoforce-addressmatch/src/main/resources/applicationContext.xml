@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:aop="http://www.springframework.org/schema/aop"  
+    xmlns:util="http://www.springframework.org/schema/util" 
+    
+    xsi:schemaLocation="http://www.springframework.org/schema/beans   
+          http://www.springframework.org/schema/beans/spring-beans.xsd   
+          http://www.springframework.org/schema/context   
+          http://www.springframework.org/schema/context/spring-context.xsd   
+          http://www.springframework.org/schema/aop   
+          http://www.springframework.org/schema/aop/spring-aop.xsd   
+          http://www.springframework.org/schema/util 
+          http://www.springframework.org/schema/util/spring-util.xsd">
+	
+	
+	<context:annotation-config />
+	<context:component-scan base-package="com.supermap.egisp.addressmatch.service" />
+	<context:component-scan base-package="com.supermap.egisp.addressmatch.utils" />
+	<util:properties id="configParam" location="config.properties" />
+		
+	<bean id="addressMatchService" class="com.supermap.egisp.addressmatch.service.impl.AddressMatchServiceImpl">
+		<property name="plan">
+			<list>
+				<!-- 顺序可随意调整，但应该将“关键词匹配”放置在首位 -->
+				<!-- 关键词匹配 -->
+				<value>1</value>
+				<!-- 缓存 -->
+				<!--<value>4</value>-->
+				<!-- 百度匹配 -->
+				<!-- <value>3</value> -->
+				<!-- 超图匹配 -->
+				<!-- <value>2</value> -->
+				<!-- 高德匹配 -->
+				<value>5</value>
+			</list>
+		</property>
+	</bean>
+	<import resource="provider.xml" /> 
+	<!-- <import resource="consumer.xml" /> -->
+</beans> 

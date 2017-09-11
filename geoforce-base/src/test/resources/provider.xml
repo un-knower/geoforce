@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+	<dubbo:application name="provider_menu" />
+
+ 	<!--使用zookeeper注册中心暴露服务地址 -->
+	<dubbo:registry  protocol="zookeeper"  address="127.0.0.1:2181" />
+
+	<dubbo:service interface="com.supermap.egispservice.base.service.UserRoleMapService" version="2.5.3" ref="userRoleMapService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="userRoleMapService" class="com.supermap.egispservice.base.service.UserRoleMapServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.base.service.InfoRoleService" version="2.5.3" ref="infoRoleService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="infoRoleService" class="com.supermap.egispservice.base.service.InfoRoleServiceImpl" />
+
+	<dubbo:service interface="com.supermap.egispservice.base.service.InfoRoleFunctionService" version="2.5.3" ref="infoRoleFunctionService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="infoRoleFunctionService" class="com.supermap.egispservice.base.service.InfoRoleFunctionServiceImpl" />
+
+	<dubbo:service interface="com.supermap.egispservice.base.service.DemoService" version="2.5.3" ref="demoService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="demoService" class="com.supermap.egispservice.base.service.DemoServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.base.service.UserService" version="2.5.3" ref="userService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="userService" class="com.supermap.egispservice.base.service.UserServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.base.service.InfoDeptService" version="2.5.3" ref="infoDeptService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="infoDeptService" class="com.supermap.egispservice.base.service.InfoDeptServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.base.service.IOrderHistoryService" version="2.5.3" ref="orderHistoryService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="orderHistoryService" class="com.supermap.egispservice.base.service.OrderHistoryServiceImpl" />
+	
+	<!-- 网点管理 -->
+	<dubbo:service interface="com.supermap.egispservice.base.service.PointService" version="2.5.3" ref="pointService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="pointService" class="com.supermap.egispservice.base.service.PointServiceImpl" />
+	
+	<!-- 分单管理 -->
+	<dubbo:service interface="com.supermap.egispservice.base.service.ILogisticsOrderService" version="2.5.3" ref="orderService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="orderService" class="com.supermap.egispservice.base.service.LogisticsOrderServiceImpl" />
+	<dubbo:service interface="com.supermap.egispservice.base.service.ILogisticsService" version="2.5.3" ref="logisticsService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="logisticsService" class="com.supermap.egispservice.base.service.LogisticsServiceImpl" />
+	<dubbo:service interface="com.supermap.egispservice.base.service.IAddressMatch" version="2.5.3" ref="addressMatch"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="addressMatch" class="com.supermap.egispservice.base.service.AddressMatchImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.base.service.ILogisticsFendanService" version="2.5.3" ref="fendanService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="fendanService" class="com.supermap.egispservice.base.service.LogisticsFendanService" />
+	
+	 
+</beans>

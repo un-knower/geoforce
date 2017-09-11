@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--_巡店管理-->
+<lic>
+	<hostname/>
+	<mac/>
+	<userinfo>
+		<id>f9a8d6684ab7c16d014ac23dd711003d</id>
+		<username>hhsong</username>
+		<realname>匿名</realname>
+		<mobilephone>13444444444</mobilephone>
+		<email>supermapcloud@supermap.com</email>
+		<source>4</source>
+		<qq/>
+		<status>1</status>
+		<enterprise>
+			<id>f9a8d6684ab7c16d014ac23dd70c003c</id>
+			<name>supermap</name>
+		</enterprise>
+		<department>
+			<id>f9a8d6684ab7c16d014ac23dd714003e</id>
+			<headname>supermap</headname>
+			<operate_date>2015-01-07 10:34:00</operate_date>
+			<name>d</name>
+			<code>00027000</code>
+			<phone/>
+			<type>1</type>
+		</department>
+	</userinfo>
+	<orders>
+		<order>
+			<id>8a04a77b4d5ab21b014d5ab8690a0021</id>
+			<order_type>1</order_type>
+			<submit_time>2015-05-16 11:15:44</submit_time>
+			<status>3</status>
+			<items>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab8690a0022</id>
+					<module_id>f9a8d66849a37433014a03f6d7570000</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>2</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab8690a0023</id>
+					<module_id>f9a8d66849a37433014a03fa19870003</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>0</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab8690b0024</id>
+					<module_id>f9a8d66849a37433014a03fa809a0004</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>0</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab8690b0025</id>
+					<module_id>f9a8d66849a37433014a03fadddf0005</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>0</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab8690b0026</id>
+					<module_id>f9a8d66849a37433014a03f99eac0002</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>0</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab8690b0027</id>
+					<module_id>f9a8d66849a37433014a03f84f2e0001</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>0</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab8690b0028</id>
+					<module_id>40288e9f48a123e80148a1240e330004</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>1</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab8690b0029</id>
+					<module_id>40288e9f48448d8a0148448d906e0002</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>1</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab8690b002a</id>
+					<module_id>40288e9f48448d8a0148448d90690001</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>1</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab8690c002b</id>
+					<module_id>40288e9f48448d8a0148448d90120000</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>1</item_type>
+					<isLogined/>
+				</item>
+				<item>
+					<id>8a04a77b4d5ab21b014d5ab8690c002c</id>
+					<module_id>40288e9f4844872a014844872fd50000</module_id>
+					<user_time>2015-05-16 00:00:00</user_time>
+					<deadline>2015-06-16 00:00:00</deadline>
+					<item_type>1</item_type>
+					<isLogined/>
+				</item>
+			</items>
+		</order>
+	</orders>
+</lic>

@@ -1,0 +1,10 @@
+##连接信息
+#内网
+#DATASOURCE_URL=192.168.14.117/orcl
+#DBURL=jdbc:oracle:thin:@192.168.14.117:1521:orcl
+#外网
+DATASOURCE_URL=192.168.10.254/cloud
+DBURL=jdbc\:oracle\:thin\:@192.168.10.254\:1521\:cloud
+DBDRIVER=oracle.jdbc.driver.OracleDriver
+USERNAME=egisp
+PASSWORD=supermap

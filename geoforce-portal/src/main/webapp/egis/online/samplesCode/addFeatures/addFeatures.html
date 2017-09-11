@@ -1,0 +1,185 @@
+﻿<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="http://www.supermapcloud.com/demo/china/styles/action.css" rel="stylesheet" type="text/css"></link>
+    <script type="text/javascript" src="../../js/key.js"></script>	
+	<!--<script type="text/javascript" src="../../script/SuperMap.Include.js"></script>	
+    <script type="text/javascript" src="../../script/osp.js"></script>-->		
+    <script type="text/javascript">
+        var map = null;
+        var markerLayer = null;
+        var featuresLayer = null;
+        //初始化地图
+		var selectFeature = null;
+		var layer = null;
+
+        function onPageLoad() {
+			layer = new SuperMap.Layer.CloudLayer();
+			markerLayer = new SuperMap.Layer.Markers("maker");
+			featuresLayer = new SuperMap.Layer.Vector("feature");
+			drawLine = new SuperMap.Control.DrawFeature(featuresLayer,SuperMap.Handler.Path, { multi: true });
+			drawLine.events.on({"featureadded": drawCompleted});
+			drawPoint = new SuperMap.Control.DrawFeature(featuresLayer,SuperMap.Handler.Point, { multi: true });
+			drawPoint.events.on({"featureadded": drawCompleted});
+			drawPolygon = new SuperMap.Control.DrawFeature(featuresLayer,SuperMap.Handler.Polygon, { multi: true });
+			drawPolygon.events.on({"featureadded": drawCompleted});
+			 map = new SuperMap.Map("mapDiv", { controls: [
+                      new SuperMap.Control.PanZoomBar(),
+                      new SuperMap.Control.Navigation({
+                          dragPanOptions: {
+                              enableKinetic: true
+                          }
+                      }),drawLine,drawPoint,drawPolygon], allOverlays: true
+            });
+			map.addLayer(layer);
+			map.addLayer(markerLayer);
+			map.addLayer(featuresLayer);
+			map.setCenter(new SuperMap.LonLat(12958399.4681885, 4852082.44060595),11);
+			
+			selectFeature = new SuperMap.Control.SelectFeature(featuresLayer,{
+					onSelect:openWindow , onUnselect: unfeatueSelect
+				});
+			selectFeature.selectStyle = {
+				strokeColor : "#0099FF",
+				strokeWidth : 2,
+				pointerEvents : "visiblePainted",
+				fillColor : "#0066CC",
+				fillOpacity : 0.4,
+				pointRadius : 6,
+				label : "",
+				fontSize : 14,
+				fontWeight : "normal",
+				cursor : "pointer"
+			}
+			map.addControl(selectFeature);
+			selectFeature.activate();
+        }
+		
+		function unfeatueSelect(feature){
+			//alert("unfeatueSelect");
+			//map.removePopup(feature.popup);
+            //feature.popup.destroy();
+            //feature.popup = null;
+			//selectFeature.activate();
+		}
+		
+		function drawPointFeature(){
+			drawPoint.activate();
+		}
+		
+		function drawLineFeature(){
+			drawLine.activate();
+		}
+		
+		function drawPolygonFeature(){
+			drawPolygon.activate();
+		}
+		function drawCompleted(drawGeometryArgs){
+			drawLine.deactivate();
+			drawPoint.deactivate();
+			drawPolygon.deactivate();
+			var feature = drawGeometryArgs.feature;
+			feature.style = {
+				strokeColor : "#0099FF",
+				strokeWidth : 2,
+				pointerEvents : "visiblePainted",
+				fillColor : "#FF8247",
+				fillOpacity : 0.4,
+				pointRadius : 6,
+				label : "",
+				fontSize : 14,
+				fontWeight : "normal",
+				cursor : "pointer"
+			}
+			featuresLayer.addFeatures([feature]);
+			
+			openWindow(feature);
+		}
+		function openWindow(feature){
+			var name;
+			if(feature.geometry.CLASS_NAME == "SuperMap.Geometry.MultiPoint"){
+				name = "标注点";
+			}else if(feature.geometry.CLASS_NAME == "SuperMap.Geometry.MultiPolygon"){
+				name = "标注面"
+			}else{
+				name = "标注线"
+			}
+			
+			var popup = new SuperMap.Popup.FramedCloud("chicken", 
+                                     feature.geometry.getBounds().getCenterLonLat(),
+                                     null,
+									 name,
+                                     null,
+									 true);
+            map.addPopup(popup);
+		}
+
+		function deleteFeature(){
+			featuresLayer.removeAllFeatures();
+		}
+    </script>
+
+</head>
+<body onload="onPageLoad()">
+    <!--地图控件-->
+	<div id="div_examples_description" class='examples'>
+    <div id="main" style="position: absolute; height:398px;width:498px; top: 0px;
+        left: 0px; border: solid 0px">
+        <!--地图控件-->
+        <div id="mapDiv" style="position: absolute; height:398px;width:498px; top: 0px;
+        left: 0px;">
+        </div>
+       
+        <div id="simpleScaleBarContainer" style="position: absolute; width: 200px; height: 50px;
+            bottom: 30px; left: 30px;">
+        </div>
+        <div id="divMousePosition" style="position: absolute; bottom: 30px; right: 30px;
+            z-index: 9999">
+        </div>
+    </div>
+		<div style="display: block; position: absolute; width: 22%; left: 77%; top: 0px; height: 48%; font-size: 12px; border: 1px solid rgb(150, 150, 150); z-index: 100; padding-bottom: 5px; background-image: url(&quot;images/toolbar_backgroundb.png&quot;);" id="featureMarkDiv">
+            <table style="font-size: 12px">
+				<tbody><!--<tr>
+					<td>
+						Feature标题
+					</td>
+					<td>
+						<input type="text" value="标题：" size="3" id="markerName">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Feature内容
+					</td>
+					<td>
+						<input type="text" value="内容......." size="3" id="markerContent">
+					</td>
+				</tr>-->
+				<tr>
+					<td>
+						<input type="button" onclick="drawPointFeature()" value="添加点标记" id="addPointMarks" size="8">
+					</td>
+				</tr>
+				<tr>
+					<td>
+                        <input type="button" onclick="drawLineFeature()" value="添加线标记" id="addLineMarks" size="8">
+                    </td>
+				</tr>
+				<tr>
+					<td>
+                        <input type="button" onclick="drawPolygonFeature()" value="添加面标记" id="addPolygonMarks" size="8">
+                    </td>
+				</tr>
+				<tr>
+					<td>
+                        <input type="button" onclick="deleteFeature()" value="删除" id="btnDelete" size="2">
+                    </td>
+				</tr>
+            </tbody></table>
+		</div>
+	</div>
+    <form>
+    </form>
+</body>
+</html>
+

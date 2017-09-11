@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+        
+    <dubbo:application name="consumer_egispportal" />
+    <dubbo:annotation />
+	<!-- 使用zookeeper注册中心暴露服务地址 --><!-- 外侧 ip 121.40.86.232:2182 -->
+	<!-- 192.168.10.251:2181 -->
+	<dubbo:registry protocol="zookeeper"  address="10.168.191.19:2181"/>
+      
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+	<dubbo:reference id="orderService" interface="com.supermap.egispservice.base.service.IOrderService" version="2.5.3"  check="false"/>
+	<dubbo:reference id="serviceModuleService" interface="com.supermap.egispservice.base.service.IServiceModuleService" version="2.5.3"  check="false"/>
+	<dubbo:reference id="sysUpdateLogService" interface="com.supermap.egispservice.base.service.ISysUpdateLogService" version="2.5.3"  check="false"/>
+	<dubbo:reference id="userService" interface="com.supermap.egispservice.base.service.UserService" version="2.5.3"  check="false"/>
+	<dubbo:reference id="phoneService" interface="com.supermap.egispservice.base.service.IPhoneService" version="2.5.3"  check="false"/>
+	<dubbo:reference id="mailService" interface="com.supermap.egispservice.base.service.IMailService" version="2.5.3"  check="false"/>
+	
+	
+</beans>

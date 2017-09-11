@@ -1,0 +1,1867 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>在线开发</title>
+<script type="text/javascript" src="js/key.js"></script>
+<link href="style/jquery.ui.all.css" rel="stylesheet" type="text/css" ></link>
+<link href="style/bootstrap.min.css" rel="stylesheet" type="text/css" ></link>
+<link href="style/css.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="script/developAPI.js"></script>
+<script text="txt/javascript" src="script/samples.js"></script>
+<script type="text/javascript" src="script/public.js"></script>
+<script type="text/javascript" src="script/user.js"></script>
+<script type="text/javascript" src="script/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="script/jquery-ui-1.8.11.custom.min.js"></script>
+<script type="text/javascript" >
+	window.onload = function() {
+		//加载登录用户数据
+		User.loadCurrentUser(function(){
+			User.changeLoginTip();
+		});
+	}
+	jQuery(function(){
+		//加载登录用户数据
+		User.loadCurrentUser(function(){
+			User.changeLoginTip();
+		});
+		//登录按钮监听
+		jQuery("#a_login").click(function(){
+			User.showLoginDialog();
+		});
+	});
+
+</script>
+</head>
+
+<body>
+<!--hender start-->
+<div class="msgbg">
+	<div class="msg">
+    <span class="nav"> 
+      <a id="a_clouddata" href="data/">云GIS数据服务</a>
+      <a id="a_clouddata" href="../">云GIS企业服务</a>
+    </span>
+   	<span id="span_loginSuccessTip" class="login"></span>
+   	<span id="span_loginTip" class="login">
+      <a href="javascript:User.showLoginDialog();">登录</a>
+    </span>    
+  </div>
+</div> 
+<!--logo start-->
+<div class="logobg">
+  <div class="logomain" style="position:relative;">
+    <a class="logo" style="width: 60px;" hidefocus="true" href="http://www.dituhui.com" title="地图慧">
+      <img src="../images/logo-blue.png">
+    </a>
+    <!-- <i style="background: none repeat scroll 0 0 #00bcd4;display: inline-block;height:45px; position: absolute;top: 15px;left: 60px;width:2px;"></i>
+    <a href="http://e.dituhui.com"><span style="font-size: 28px;font-family: 'microsoft yahei';position: absolute;top: 10px;left: 65px;display: inline-block;min-width: 140px;color: #00bcd4;" >企业服务</span></a> -->
+    <i style="background: none repeat scroll 0 0 #00bcd4;display: inline-block;height:30px; position: absolute;top: 28px;left: 67px;width:2px;"></i>
+    <span style="font-size: 28px;font-family: 'microsoft yahei';position: absolute;top: 7px;left: 80px;display: inline-block;min-width: 140px;color: #00bcd4;">云在线开发</span>
+  </div>
+</div>
+<!--logo end--> 
+<!--导航 start-->
+<div class="navBg">
+  <div class="navmain">
+    <ul id="sddm">
+      <li><a id="current" onClick="setTab('1',this)" href="javascript:void(0);" class="sddm_li_a_hover">开发首页</a></li>
+      <li><a onClick="setTab('2',this)" href="javascript:void(0);" class="sddm_li_a">获取KEY</a></li>
+      <li><a onClick="setTab('3',this)"  href="javascript:void(0);" class="sddm_li_a">开发指南</a></li>
+      <li><a onClick="setTab('4',this)"  href="javascript:void(0);" class="sddm_li_a">示例</a></li>
+      <li><a href="javascript:void(0);" onMouseOver="mopen('m1')" onMouseOut="mclosetime()" class="sddm_li_a">类参考</a>
+        <div id="m1" onMouseOver="mcancelclosetime()" onMouseOut="mclosetime()"> <a href="http://www.supermap.com.cn:8090/iserver/iClient/forJavaScript/apidoc/files/SuperMap/Map-js.html" target="_new">Javascript API</a> <a href="javascript:void(0);" onclick="setTab('8',this)">Flex API </a> <a href="javascript:void(0);" onclick="setTab('9',this)">Silverlight API</a> </div>
+      </li>
+      <li><a onClick="setTab('5',this)"  href="javascript:void(0);" class="sddm_li_a">成功案例</a></li>
+      <li><a onClick="setTab('6',this)"  href="javascript:void(0);" class="sddm_li_a">使用条款</a></li>
+      <li><a onClick="setTab('7',this)"  href="javascript:void(0);" class="sddm_li_a">常见问题</a></li>
+    </ul>
+  </div>
+</div>
+<!--导航end--> 
+<!--hender end-->
+<div id="context" class="content">
+<!--开发首页 start-->
+<div style="display: block" id="context_1"> 
+  <!--侧边栏 start-->
+  <div class="sidebar">
+    <div class="sidebarTitle"><span>新手上路</span></div>
+    <ul>
+      <li><a href="javascript:void(0);" onClick="fold()">快速入门</a></li>
+      <li><a href="javascript:void(0);"  onclick="setTab('3',this)">阅读开发指南</a></li>
+      <li><a href="javascript:void(0);" onClick="setTab('4',this)">参考示例</a></li>
+      <li><a href="#contactUs">联系我们</a></li>
+    </ul>
+    <div class="sidebarTitle"><span>常见问题</span></div>
+			<ul>
+			  <li><a href="javascript:void(0);" onClick="setTab('7',this)">1.什么是地图API</a></li>
+			  <li><a href="javascript:void(0);" onClick="setTab('7',this)">2.地图API提供了哪些功能</a></li>
+			  <li><a href="javascript:void(0);" onClick="setTab('7',this)">3.坐标体系是否遵循国家对地理信息保密要求</a></li>
+			  <li><a href="javascript:void(0);" onClick="setTab('7',this)">4.数据覆盖情况如何</a></li>
+			</ul>
+  </div>
+  <!--侧边栏 end-->
+  <div class="main" > 
+    <!-----超图云API start---->
+    <div id="default">
+      <div  class="banner"><img src="images/banner.png" /></div>
+      <div class="text">
+        <h3>超图云API</h3>
+        <p> 地图API是支持各种客户端，包括Javascript、富客户端、三维插件胖客户端等，它能够帮助您在网站中构建功能丰富、交互性强的地图应用程序。地图API不仅包含构建地图的基本接口，还提供了诸如本地搜索、路线规划等数据服务，可根据自己的需要进行选择。</p>
+        <h3>功能简介</h3>
+        <p> 基本地图操作：拖动、平移、缩放等；</p>
+        <p>地图控件操作：比例尺、导航、缩放等控件的显示/隐藏、对齐；</p>
+        <p>地图绘制操作：画圆、画矩形、画线、画多边形等；</p>
+        <p>地图标注操作：图片、文本等标记的显示/隐藏、拖拽、动画等；</p>
+        <p>矢量编辑操作：支持线、面节点编辑和拖曳；</p>
+        <p>本地搜索：提供指定地区的位置检索服务，比如在北京搜索“酒店”；</p>
+        <p>驾车导航：提供驾车出行方案的检索服务；</p>
+      </div>
+    </div>
+    <!----超图云API end-----> 
+    <!-----快速入门 start----->
+    <div id="speed" style="display:none">
+      <div class="mainTitle"><span>快速入门</span></div>
+      <div class="text">
+        <p>开始学习云在线地图API最简单的方式是看一个简单的示例。例如，我们要显示以北京的天安门为中心的 800x500 地图，可以这样做：</p>
+        <p>示例代码：</p>
+        <textarea name=""  cols="" rows="" readonly="readonly" class=" areaWord h380">
+		
+	var map = null;	//地图控件
+	var layer = null;
+	//初始化地图
+	function initMap() {
+		layer = new SuperMap.Layer.CloudLayer();
+		map = new SuperMap.Map("mapDiv");
+		map.addLayer(layer);
+		map.setCenter(new SuperMap.LonLat(12958399.4681885, 4852082.44060595),11);	
+	}
+                 </textarea>
+        <p><a href="speed/center.html" target="_new"> 查看示例</a></p>
+        <p>即使在此简单的示例中，也需要注意五点：</p>
+        <ul>
+          <li>1. 使用 script 标签包含地图 API JavaScript。</li>
+          <li>2. 创建名为 "mapDiv" 的 div 元素存放地图。</li>
+          <li>3. 编写 JavaScript 函数创建 map 对象。</li>
+          <li>4. 将地图中的中心设置为给定的地理点 LatLng。</li>
+          <li>5. 从 body 标签的 onload 事件初始化地图对象。</li>
+        </ul>
+        <p>加载地图 API</p>
+        <p>源代码示例：</p>
+        <textarea name="" cols="" rows="" readonly="readonly" class=" areaWord h30">
+<script type="text/javascript" src="http://services.supermapcloud.com/iserver/api?key=inbTxCaWslCxWX1dmAvGy9DdFkz%2BMnAK3UHI7TTJL7c%3D"></script>
+                  </textarea>
+        <P>地图 DOM 元素</P>
+        <P>示例代码</P>
+        <textarea name="" cols="" rows="" readonly="readonly" class=" areaWord h30">
+<div id="mapDiv" style="width: 800px; height: 500px;margin-left:40px;"></div>
+                 </textarea>
+        <p>要使地图在网页上显示，必须为其在网页中留出一个位置。通常，我们通过创建名为 div 的元素并在浏览器的文档对象模型 (DOM) 中获取此元素的引用执行此操作。在上述示例中，我们定义名为 "mapDiv" 的 div，并使用样式属性设置其尺寸。地图会自动使用容器尺寸调整自身的尺寸。</p>
+        <p>地图基本对象</p>
+        <p>源代码示例：</p>
+        <textarea name="" cols="" rows="" readonly="readonly" class=" areaWord h30">
+		var map = new SuperMap.Map("mapDiv");
+		</textarea>
+        <p> 表示地图的 JavaScript 类是 Map 类。此类的对象在页面上定义单个地图。我们使用 JavaScript new 操作符创建此类的一个新实例。当创建新的地图实例时，在页面中指定一个 DOM 节点（通常是 div 元素）作为地图的容器。此代码定义一个全局变量（名为map），并将该变量分配给新的 Map 对象。函数 Map() 称为构造函数，其定义请参考<a href="http://www.supermapcloud.com/help/WebHelp_Pro/webhelp.htm" target="_new">《参考手册》</a>。</p>
+        <p>加载地图</p>
+        <p>源代码示例：</p>
+        <textarea name="" cols="" rows="" readonly="readonly" class=" areaWord h30">
+<body onLoad="initMap()">
+				</textarea>
+        <p>当 HTML 页面显示时，文档对象模型 (DOM) 即会扩展，接收其他外部图像和脚本并将其合并到 document 对象中。为了确保只有在完全加载页面后才将我们的地图放在页面上，我们仅在 HTML 页面的'<'body'>'
+          元素收到onload 事件后才执行构造 Map 的函数。这样做可以避免出现不可预期的行为，并使我们可以对地图绘制的方式和时间进行更多控制。body 标签的 onload 属性是事件处理程序的一个示例。云在线地图Javascript API还提供了一组事件，可供您进行处理以确定状态变化。有关详细信息，请参阅地图事件部分。</p>
+        <!--<p><a href="speed/center.html" target="_new">查看示例</a></p>-->
+      </div>
+    </div>
+    <!--快速入门 end--> 
+    <!--联系我们 start-->
+    <div>
+      <div class="mainTitle"><span><a name="contactUs">联系地址</a></span></div>
+      <div class="text">
+        <p>北京超图软件股份有限公司</p>
+        <p>地址：北京市朝阳区酒仙桥北路 甲10号院电子城IT产业园107楼6层</p>
+        <p>邮编：100015</p>
+        <p>电话：+86-010-59896373</p>
+      </div>
+    </div>
+    <!-- 联系我们 end --> 
+  </div>
+</div>
+<!--开发首页 end--> 
+<!---获取KEY start-->
+    <div id="context_2" style="display:none">
+      <!--侧边栏 start-->
+      <div class="sidebar">
+        <div class="sidebarTitle"><span>新手上路</span></div>
+        <ul>
+		  <li><a href="javascript:void(0);" onclick="fold()">快速入门</a></li>
+		  <li><a href="javascript:void(0);"  onclick="setTab('3',this)">阅读开发指南</a></li>
+		  <li><a href="javascript:void(0);" onclick="setTab('4',this)">参考示例</a></li>
+		  <!--<li><a href="javascript:void(0);">查看类参考</a></li>-->
+		  <li><a href="#contactUs" onclick="javascript: setTab('1',this);">联系我们</a></li>
+		</ul>
+        <div class="sidebarTitle"><span>常见问题</span></div>
+      		<ul>
+			  <li><a href="javascript:void(0);" onclick="setTab('7',this)">1.什么是地图API</a></li>
+			  <li><a href="javascript:void(0);" onclick="setTab('7',this)">2.地图API提供了哪些功能</a></li>
+			  <li><a href="javascript:void(0);" onclick="setTab('7',this)">3.坐标体系是否遵循国家对地理信息保密要求</a></li>
+			  <li><a href="javascript:void(0);" onclick="setTab('7',this)">4.数据覆盖情况如何</a></li>
+			</ul>
+      </div>
+      <!--侧边栏 end-->
+       <div class="mainA" >
+      <div>
+        <div class="mainTitle"><span>获取KEY</span></div>
+        <div class="text">
+            <textarea cols="" rows="" class="area" readonly="true">
+								
+                               					API使用条款 
+                                
+	感谢您使用超图地理信息云门户地图服务API！使用超图地理信息云门户地图服务API即表示您同意接受本“API使用条款”（以下称“条款”）以及超图地理信息云门户其他条款的约束。
+	服务介绍
+	超图地理信息云门户地图服务API由Javascript、Flex、Sliverlight、三维四种API构成，可让您在接受下述条款约束的情况下，在您的网站上显示超图地理信息云门户提供服务的地图图片；并可进行搜索服务、缓冲区分析、路径分析、地址匹配等服务。
+	在接受条款的情况下，您只可使用超图地理信息云门户地图服务API文档中所列明开放的API功能来对API相关服务数据的结果进行展示，不得直接存取、使用内部数据、图片、程序、模块或是任何其他超图地理信息云门户地图服务或功能。在接受使用条款约束的情况下，您可以在向最终用户提供其他信息的同时，使用API获得API相关服务数据。
+	要获得 API，您必须有超图地理信息云门户的帐户。向超图地理信息云门户提供您的帐户信息、服务网址并同意使用条款后，我们会向您发送一个由超图地理信息云门户系统自动分配的 Key ，该 Key 由字母数字组成，只与您的超图地理信息云门户帐户和服务网址相关。如地图 API 文档所述，您的服务必须使用含此 Key 的 HTML”script“ 标记导入 超图地理信息云门户地图 API，否则超图地理信息云门户会因无效 Key 或无效网址而拦截请求。超图地理信息云门户对地图的数据和格式拥有完全和绝对的控制权。
+	在提供网络服务时，可能会对部分网络服务的用户收取一定的费用。在此情况下，北京超图软件股份有限公司会在相关页面上做明确的提示。如用户拒绝支付该等费用，则不能使用相关的网络服务。
+北京超图软件股份有限公司（以下简称“超图”）对于地图的数据与格式保有绝对的权利，有权在未事前通知您的情况下，拒绝向您或任何其他人提供服务。
+	您必须保证：
+    (i)您在开始使用服务时及使用服务期间，向超图提供的所有信息都是正确的和最新的；
+    (ii)您具备必要的权利或授权，能够接受并履行使用条款；
+    (iii)您承认使用条款具有书面协议的效力。
+</textarea>
+
+          <p><input name="radio_article" type="radio" value="1" checked="checked"/>我已经阅读并同意条款&nbsp;<input name="radio_article" type="radio" value="0" />不同意条款</p>
+          <p>我的地址：<input name="url" type="text" id="keyURL" value="" size="36" />  <input name="获取KEY" type="submit" value="获取key" onclick="createKey()"/>
+		  <br/><div id="createKey"></div>
+		  </p>
+          <p class="rule"><span>域名与key的生成规则</span></p>
+          <p>一个 Key 只对您域名（或IP）及域名（或IP）下的子目录有效。</p>
+          <p>例如:如果您为网址http://www.supermapcloud.com/注册，得到的 Key 可用于http://www.supermapcloud.com/域名下所有目录。</p>
+          <p>例如:如果您为网址http://www.supermapcloud.com/map注册，得到的 Key 可用于http://www.supermapcloud.com/map/域名下所有目录。</p>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!---获取KEY end-->
+    <!---开发指南 start-->
+ <div style="display:none" id="context_3">
+ 
+ 	<div class="sidebar">
+      <div class="sidebarTitle"><span>栏目</span></div>
+      <ul>
+        <li><a href="javascript:showGuidePanel('guideBaseKnowledge')">基础知识</a></li>
+        <li><a href="javascript:showGuidePanel('guideEvent')">事件</a></li>
+        <li><a href="javascript:showGuidePanel('guideControl')">控件</a></li>
+        <li><a href="javascript:showGuidePanel('guideGeometry')">几何图形</a></li>
+        <li><a href="javascript:showGuidePanel('guideService')">服务</a></li>
+      </ul>
+    </div>
+ 	<div class="mainA">
+      <!--基础知识 start-->
+      <div id="div_guidePanel_guideBaseKnowledge">
+      		<div class="mainTitle"><span>地图基础介绍</span></div>
+      		<div class="text">
+            	<p>地图API是支持各种客户端，包括Javascript、富客户端、三维插件胖客户端等，它能够帮助您在网站中构建功能丰富、交互性强的地图应用程序。地图API不仅包含构建地图的基本接口，还提供了诸如本地搜索、路线规划等数据服务，可根据自己的需要进行选择。</p>
+            	<h3>地图属性</h3>
+                <p>地图有很多属性，通过更改这些属性可以更改地图实例的状态。我们来看下面两个例子：</p>
+                <h3>修改缩放</h3>
+                <p>源代码示例：</p>
+                <textarea name="" cols="" rows="" class="areaWord h120">
+			map = getMap("mapDiv");//显示地图
+			setInterval(function() {
+				map.setCenter(new SuperMap.LonLat(12958399.4681885, 4852082.44060595),map.getZoom() + 1);
+			}, 2000);
+                </textarea>
+                <!-- <P><a href="guideDemo/baseKnowledge/zoom.html" target="_new">查看示例</a></P> -->
+                <P>通过 get_level 可以得到当前地图的缩放级别，通过 zoomToLevel 方法可以修改地图的缩放级别。示例中定时每隔 2 秒钟将地图的缩放级别加 1，地图缩放级别为 0-18。</P>
+                <h3>修改中心</h3>
+                <p>源代码示例：</p>
+                 <textarea name="" cols="" rows="" class="areaWord h120">
+    map = getMap("mapDiv");	//显示地图
+    map.panTo(new SuperMap.Lonlat(12956382.042450484, 4855280.036674386));	//设置中心点北京
+    setTimeout(function(){
+        map.panTo(new SuperMap.Lonlat(12747250.333062245, 4586221.6971105635));//石家庄
+    }, 2000);//设置定时器
+                </textarea>
+                <!-- <P><a href="guideDemo/baseKnowledge/center.html" target="_new">查看示例</a></P> -->
+                <P>通过 panTo 方法来设置地图的中心点，每次刷新后 2 秒钟，地图的中[12956382.042450484, 4855280.036674386] 移动至 [12747250.333062245, 4586221.6971105635]。</P>
+                
+                <h3>纬度和经度</h3>
+                <p>用来表示地图位置的方法。 SuperMap.LonLat 对象提供了此类机制，来实现一个地理坐标位置。您可以构建一个 Point2D 对象，以 {纬度, 经度} 的顺序传递其参数：</p>
+                 <textarea name="" cols="" rows="" class="areaWord h30">
+	new SuperMap.LonLat(12956382.042450484, 4855280.036674386);
+                </textarea>
+               <p>如果不知道一个地点（如”天安门“）的地理坐标，可以通过 “地址解析” 来得到。请注意：将 “地址” 转变为地理地点的过程叫做 “地址解析” 。有关详细信息，请参见服务部分中的<a href="javascript:void(0);"> 地址解析</a> 。也可以通过<a href="http://www.supermapcloud.com/help/WebHelp_Pro/webhelp.htm" target="_new"> 《参考手册》</a> 来具体了解这个接口如何去使用。</p>
+				 
+				<h3>key的获取与使用</h3>
+				<p>使用地图 API 可在您自己的网页上内嵌超图在线地图。一个地图 API Key 只对您网络服务器上的一个“目录”有效。</p>
+				<p>要获得 API，您必须有超图地理信息云门户的帐户。向超图地理信息云门户提供您的帐户信息、服务网址并同意使用条款后，我们会向您发送一个由超图地理信息云门户系统自动分配的 Key ，该 Key 由字母数字组成，只与您的超图地理信息云门户帐户和服务网址相关。如地图 API 文档所述，您的服务必须使用含此 Key 的 HTML ”script”标记导入 超图地理信息云门户地图 API，否则超图地理信息云门户会因无效 Key 或无效网址而拦截请求。</p>
+				<p>key的引用方法如下：</p>
+				<textarea name="" cols="" rows="" class="areaWord h70">
+&ltscript type="text/javascript" src="http://services.supermapcloud.com/iserver/api?key=H1KP%2BzxNPWOCIedTdOuZhP5gy1gcAOtAX%2Fy%2B9eLJRFY%3D"' + &gt&lt/script&gt
+				</textarea>
+				<p>具体获取key的过程请参见<a onClick="setTab('2',this)" href="javascript:void(0);">获取key</a>页面。<p>
+           		 
+            </div>
+      </div>
+      <!--基础知识 end-->
+      <!--事件 start-->
+      <div id="div_guidePanel_guideEvent">
+      		<div class="mainTitle"><span>地图事件</span></div>
+            <div class="text">
+            		<p>SuperMapCloud地图 API具有事件接口，用户可以根据各自不同的需求添加不同的事件扩展。</p>
+                    <h3>添加地图上鼠标移动事件</h3>
+                    <p>如果你想对地图添加鼠标移动事件，只需要在代码中添加如下内容：</p>
+                    <textarea name="" cols="" rows="" class="areaWord h120">
+map = getMap("mapDiv");	//显示地图
+map.events.register("mousemove",map,lonlat);//为地图注册一个鼠标移动事件，传入map参数，lonlat为方法名
+function lonlat(e){
+	//此处为代码逻辑
+}
+			       </textarea>
+                    <!-- <p><a href="guideDemo/event/mouseMove.html" target="_new">查看示例</a></p> -->
+                    <p>使用map.events.register 可以给map的鼠标注册移动事件，在lonlat的方法中可以获取到屏幕的坐标。通过map.getLonLatFromPixel()方法可以把拿到的坐标转发为所需要的经纬度坐标。</p>
+            </div>
+      </div>
+      <!--事件 end-->
+      <!--控件start-->
+      <div id="div_guidePanel_guideControl">
+      		<div class="mainTitle"><span>地图控件</span></div>
+            <div class="text">
+            	<p>SuperMapCloud地图 API控件是用户与地图交互的 UI 元素。API提供多样的控件便于用户直接使用，并提供自定义控件Control，最大限度满足用户需求。</p>
+                <p>目前 SuperMapCloud地图 API中提供的控件有：</p>
+				<ul>
+                	<li> 1. 指北针控件(Compass)</li>
+                    <li> 2. 地图比例尺(ScaleBar)</li>
+                    <li> 3. 地图缩放控件(ZoomSlider)</li>
+                    <li> 4. 鹰眼控件(OverviewMap)</li>
+                </ul>
+                <h3>向地图添加控件</h3>
+                <p>在地图上添加一个指北针控件，并将控件放置在地图的左上角，可在代码中添加如下内容：</p>
+                <textarea name="" cols="" rows="" class="areaWord h150">
+//指北针控件
+var PanZoomBar = new SuperMap.Control.PanZoomBar();
+map.addControl(PanZoomBar);	//添加控件
+                </textarea>
+                <!-- <p><a href="guideDemo/control/add_control.html" target="_new">查看示例</a></p> -->
+                <p>首选初始化一个SuperMap.Control.PanZoomBar对象,然后通过map.addControl()来添加控件</p>
+                <h3>移除控件</h3>
+                <p>代码示例：</p>
+                <textarea name="" cols="" rows="" class="areaWord h30">
+map.removeControl(PanZoomBar);
+                </textarea>
+                <!-- <p><a href="guideDemo/control/remove_control.html" target="_new">查看示例</a></p> -->
+                <h3>添加右键菜单控件</h3>
+                <textarea name="" cols="" rows="" class="areaWord h300">
+//邮件菜单样式
+ var style = new SuperMap.MenuStyle({
+				backColor: "#FFFFFF",
+				overColor: "#D6E9F8",
+				speed: 100});
+    var items = new Array();
+		items.push(new SuperMap.MenuItem({
+				title: "放大",
+				callBack:function(e,pos){
+					map.zoomIn();
+				}
+				}));
+		items.push(new SuperMap.MenuItem({
+				title: "缩小",
+				callBack:function(e,pos){
+					map.zoomOut();
+				}
+				}));
+    var contextMenu = new SuperMap.ContextMenu({
+		items: items,
+		style: style,
+		mapContainer: document.getElementById("mapDiv")
+		});
+	}
+                </textarea>
+                <!-- <p><a href="guideDemo/control/add_menu.html" target="_new">查看示例</a></p> -->
+            </div>
+      </div>
+      <!--控件 end-->
+      <!--地图覆盖物 start-->
+      <div id="div_guidePanel_guideGeometry">
+      		<div class="mainTitle"><span>几何图形</span></div>
+            <div class="text">
+            	<p>几何图形是指覆盖到地图上面的所有图形，几何图统一类型是SuperMap.Geometry</p>
+                <p> SuperMapCloud 地图API中的主要包括的几何图形有：</p>
+                <ul>
+                	<li> • 点</li>
+                    <li> • 折线</li>
+                    <li> • 多边形</li>
+                </ul>
+                <h3>点线面</h3>
+                <p> 如果想要在地图上的绘制点线面，通过SuperMapCloud地图API可以几何图形的显示样式，以及指定图形不同事件的相应方法，我们来看看下面例子：</p>
+                <h3>添加点线面：</h3>
+                <p>源代码示例：</p>
+                <textarea name="" cols="" rows="" class="areaWord h400">
+		map = getMap("mapDiv");	//显示地图
+		featuresLayer = new SuperMap.Layer.Vector();//创建绘制图层
+		drawLine = new SuperMap.Control.DrawFeature(featuresLayer,SuperMap.Handler.Path, { multi: true });//创建绘制线的控件
+		drawLine.events.on({"featureadded": drawCompleted});//注册监听方法
+		drawPoint = new SuperMap.Control.DrawFeature(featuresLayer,SuperMap.Handler.Point, { multi: true });//创建绘制点的控件
+		drawPoint.events.on({"featureadded":drawCompleted});
+		drawPolygon = new SuperMap.Control.DrawFeature(featuresLayer,SuperMap.Handler.Polygon, { multi: true });//创建绘制面的控件
+		drawPolygon.events.on({"featureadded":drawCompleted});
+		map.addLayer(featuresLayer);//添加绘制图层
+		map.addControls([drawLine,drawPoint,drawPolygon]);//添加点线面绘制控件
+			//绘制线
+		function drawLineEntity() {
+			drawLine.activate();
+		}
+
+		//绘制面
+		function drawPolygonEntity() {
+			drawPolygon.activate();
+		}
+		//绘制点
+		function drawPoints(){
+			drawPoint.activate();
+		}
+		//绘制完成执行函数
+		function drawCompleted(arg){
+			drawLine.deactivate();//关闭绘制线
+			drawPoint.deactivate();//关闭绘制点
+			drawPolygon.deactivate();//关闭绘制面
+			var geometry = drawGeometryArgs.feature.geometry;
+			var feature = new SuperMap.Feature.Vector(geometry);//将绘制的元素添加到地图上
+		}
+
+                 </textarea>
+                <!-- <p><a href="guideDemo/geometry/add_geometry.html" target="_new">查看示例</a></p> -->
+                
+            </div>
+            
+      </div>		
+<!--地图覆盖物 end-->
+<!---地图服务 start-->
+	<div id="div_guidePanel_guideService">
+    		<div class="mainTitle"><span> 检索服务 searchService</span></div>
+            <div class="text">
+            	<p>地图服务是指提供地图数据的接口，如 Poi检索、路线计算服务、公交线路详情、公交站点详情等。</p>
+                <ul>
+                	<li><a href="#a_search">POI检索服务 POISearch</a></li>
+                    <li><a href="#a_transportationAnalyst">路线分析 TransportationAnalyst</a></li>
+                    <li><a href="#a_geocoder">地址解析 Geocoder</a></li>
+                </ul>
+                <h3><a name="a_search"/>POI检索服务 SuperMap.OSP.Service.POISearch</h3>
+            	<p>提供指定地区的位置检索服务。你可以通过 SuperMap.OSP.Service.POISearch 对象检索POI数据。此对象与SuperMapCloud地图API Search Service 进行通信，该服务将接收检索请求并传回计算结果。</p>
+                <p>通过指定要检索的关键字文本字符串("如酒店")，要检索的地理区域范围（当前地图显示范围）来查找POI数据。检索服务返回的是多个 SuperMap.OSP.UI.POI 对象，并且能够分页获取。</p>
+                <h3>检索请求 SearchRequest</h3>
+                <p>SuperMapCloud地图 API 需要调用外部服务器，因此，对检索服务的访问是异步的。为此，您需要传递一个回调方法，以在请求完成后执行。此回调方法将会对结果进行处理。请注意，检索服务以 SearchResult 对象的形式传回Poi 数据,多个poi对象被包含在SearchResult对象的 records[] 属性中。</p>
+                <p>要检索Poi数据。需要创建一个类型为 SuperMap.OSP.Service.POISearch 的对象，并调用 POISearch.getPOIsByGeometry() 向检索服务发送一条请求，方法是为其传递三个参数分别是: SuperMap.OSP.Service.GetPOIsByGeometryParam 参数对象，回调方法，错误处理函数。</p>
+                <p>SearchRequest 的参数SuperMap.OSP.Service.GetPOIsByGeometryParam对象常量包含下列字段：</p>
+                 <textarea name="" cols="" rows="" class="areaWord h200">
+				 {
+	DataSourceName: String	//数据源
+	datasetName: String	//数据集
+	districtLevel: Number	//搜索的区域级别
+  districtCode： Number  //搜索的区域代码
+	keyword: String	//搜索关键字
+	startRecord: Number	//查询数据的起始索引
+  expectCount: Number //返回结果个数
+				 }
+                  </textarea>
+					
+                  <p>示例 SearchRequest 如下所示：</p>
+                   <textarea name="" cols="" rows="" class="areaWord h200">
+				 {
+	DataSourceName: "china_poi"
+	datasetName: "PbeijingP"
+	expectCount: 10
+	geometry: SuperMap.OSP.Utility.Geometry
+	keyword: "酒店"
+	startRecord: 0
+				 }
+                     </textarea>
+                     
+                     <h3>检索响应</h3>
+                     <p>检索服务要求一个回调方法，在检索方法中返回结果。回调函数返回一个json格式的对象。</p>
+                     <h3>检索结果 SearchResult</h3>
+                     <p>SearchResult 对象常量表示一个检索结果，并且是采用以下形式的对象：</p>
+                   <textarea name="" cols="" rows="" class="areaWord h120">
+{
+currentCount: Number	//当前查询返回的结果数
+records: Array[]	//POI结果数据数组
+totalCount: Number	//查询包含的总个数
+}
+                     </textarea>
+					 
+                     <h3>数据POI</h3>
+                     <p>POI是“Point of Interest”的缩写，可以翻译成“兴趣点”，这是一个GIS的术语。一般而言POI是相对于地名等普通地理信息的，狭义上不包含地名等。不过，广义上POI应该指一切可以抽象为点的地理对象。SuperMapCloud地图 API中 POI 对象提供了此类机制。代表一个地点对象。它有以下属性：</p>
+                     <ul>
+						<li>id 唯一标示。</li>
+                     	<li>title 标题。</li>
+						<li>scaledContents 显示内容。</li>
+                        <li>position 位置。</li>
+                        <li>properties 属性。</li>
+                     	<li>visible 是否显示。</li>
+                     </ul>
+					 
+					 <h3>结果POI存放和显示</h3>
+                     <p>我们通过SuperMap.OSP.UI.POIGroup的addPOIs方法来保存分页查询出来的每一个POI,并将这个POIGroup由SuperMap.OSP.UI.POIManager来管理POI组的显示和隐藏。</p>
+					 
+                     <p>下面举例说明本地检索、周边检索、矩形区域检索的使用。比如在北京搜索“酒店”，我们来看看下面几个例子：</p>
+                     
+					 <h3>本地检索</h3>
+                     <p>示例代码</p>
+                   <textarea name="" cols="" rows="" class="areaWord h400">
+	var map = null;	//地图控件
+	var featuresLayer = null;//承载 Feature 矢量图
+	var markerLayer = null;//承载 Marker 地物标记
+	var layer = null;//承载Layer 加载地图
+	var poiManager = null;//POI管理对象
+	var poiSearchGroup = null; //保存poi搜索结果对象
+	//初始化地图
+	function initMap() {	
+		layer = new SuperMap.Layer.CloudLayer();
+			markerLayer = new SuperMap.Layer.Markers("maker");
+			 map = new SuperMap.Map("mapDiv", { controls: [
+                      new SuperMap.Control.PanZoomBar(),
+                      new SuperMap.Control.Navigation({
+                          dragPanOptions: {
+                              enableKinetic: true
+                          }
+                      })], allOverlays: true
+            });
+			map.addLayer(layer);
+			map.setCenter(new SuperMap.LonLat(12958399.4681885, 4852082.44060595),11);
+		
+		poiSearchGroup = new SuperMap.OSP.UI.POIGroup("poi_searchGroupId");
+ 	    poiManager = new SuperMap.OSP.UI.POIManager(map);
+ 	    poiManager.markerLayer = markerLayer;
+	    poiManager.addPOIGroup(poiSearchGroup);
+	}
+	
+	var searchService = null;//搜索服务类
+	var ospPager = null;//分页控件
+	var pageSize = 10;//每页显示记录数
+	var keywordTextId = "txtKeyword";	//查询的关键字
+	var resultDivId = "resultDiv";	//显示返回结果的div的id
+	var datasetName ='PbeijingP';	//数据集
+	var pagerId = "folioDiv";	//显示页码的div的id
+	
+	//查询
+	function searchPOIByPager(rowIndex){
+
+		if (!ospPager) {
+			ospPager = new OspPager("ospPager", searchPOIByPager);
+			ospPager.page = 1;
+	
+		}
+	
+		if (!rowIndex) {
+			rowIndex = 0;//起始记录号
+		}
+	
+		var keyword = document.getElementById(keywordTextId).value;
+		var poiSearchService = new SuperMap.OSP.Service.POISearch();	//查询服务接口
+    poiSearchService.search.url = "http://services.supermapcloud.com";
+		var resultObj = document.getElementById(resultDivId);
+		if (keyword == "") {
+			var str = "搜索的关键字不能为空!";
+			messageAlert(str);
+			return false;
+		}
+		resultObj.innerHTML = '正在查询……';
+
+		//poi查询参数
+		var keywordPOIParam = new SuperMap.OSP.Service.GetPOIsParam();
+      keywordPOIParam.keyword = keyword; 
+      keywordPOIParam.datasetName = 'PbeijingP';
+      keywordPOIParam.districtLevel = 1;
+
+      keywordPOIParam.districtCode = '110000';
+      keywordPOIParam.expectCount = 10;
+      keywordPOIParam.startRecord = 0;
+      keywordPOIParam.DataSourceName = 'china_poi';
+
+		poiSearchService.getPois(keywordPOIParam, function(result){	//进行服务器交互
+			if (result) {
+				//openOrCloseDistrictPanel(true);
+				//openOrCloseTypesPanel(true);
+				//设置分页控件的总页数
+				ospPager.pageCount = Math.ceil(result.totalCount / pageSize);
+				//显示分页
+				ospPager.printHtml("yahoo", pagerId);
+				showPoiResult(result.records);//显示查询结果
+			}
+		}, function(error){//错误处理代码	
+			alert(error.information)	
+			resultObj.innerHTML = error.information;	
+		});
+	}
+	//-----------------显示搜索结果---------------//
+	var poiHashMap = null;//缓存查询的POI
+	function showPoiResult(records){
+		var strHtml = "";
+		if (records) {
+			//装载查询到的POI对象
+			poiHashMap = null;
+			poiHashMap = new SuperMap.OSP.Core.HashMap();
+			poiSearchGroup.clearPOIs();	//清空组内所有POI
+			for (var i = 0; i < records.length; i++) {
+				var poiInfo = records[i];
+				poiHashMap.put(poiInfo.code, poiInfo);
+				strHtml += '<table cellspacing="0" cellpadding="0" border="0" class="tab_color">';
+				strHtml += '<tr style="height:5px"><td colspan="2"></td></tr>';
+				strHtml += '<tr style="height:5px"><td align="center" width="54" valign="top" rowspan="3"><img src="../../images/' + (i + 1) + '.gif"></td>';
+				strHtml += '<td width="448" valign="top"><span style="float: right; margin-right: 15px;"></span><strong><span href="javascript:positionPoi(\'' + poiInfo.code + '\',1)">' + poiInfo.name + '</span></strong></td></tr>';
+				//strHtml += '<tr><td colspan="2">地址：' + poiInfo.address + '</td></tr>';
+				strHtml += '<tr style="height:5px;"><td colspan="2"></td></tr></table>';
+				//组织poi对象
+				var poi = new SuperMap.OSP.UI.POI("search_POI_" + i);	//查询的POI点对象
+				poi.position = new SuperMap.OSP.Core.Point2D(parseFloat(poiInfo.x), parseFloat(poiInfo.y));//地理坐标系下点对象
+				var scaledContent = new SuperMap.OSP.UI.ScaledContent();//POI显示内容
+				scaledContent.content = '../../images/num_map/' + (i + 1) + '.png';
+				scaledContent.offset = new SuperMap.OSP.Core.Point2D(0, 0);//偏移量,像素单位
+				poi.title = poiInfo.name;
+				poi.scaledContents = scaledContent;
+				poiSearchGroup.addPOIs(poi);
+			}
+			document.getElementById(resultDivId).innerHTML = strHtml;
+			//更新poi分组并显示
+			poiManager.editPOIGroup(poiSearchGroup);
+			poiManager.refreshPOI();	//刷新地图,并显示POI
+		}
+		else {
+			document.getElementById(resultDivId).innerHTML = "没有找到您要的结果！";
+		}
+	}
+                     </textarea>
+                     <!-- <p><a href="guideDemo/service/searchPOI.html" target="_new">查看示例</a></p> -->
+                     
+                     <h3>周边检索：</h3>
+                     <p>源代码示例：</p>
+                   <textarea name="" cols="" rows="" class="areaWord h400">
+	var map = null;	//地图控件
+	var featuresLayer = null;	//承载 Feature 矢量图
+	var markerLayer = null;//承载 Marker 地物标记
+	var poiManager = null;//POI管理对象
+	var poiSearchGroup = null; //保存poi搜索结果对象
+	var searchGeometry = null;//查询区域
+	
+	//初始化地图
+	function initMap() {
+		
+			layer = new SuperMap.Layer.CloudLayer();
+			featuresLayer = new SuperMap.Layer.Vector();
+			markerLayer = new SuperMap.Layer.Markers("maker");
+			 map = new SuperMap.Map("mapDiv", { controls: [
+                      new SuperMap.Control.PanZoomBar(),
+                      new SuperMap.Control.Navigation({
+                          dragPanOptions: {
+                              enableKinetic: true
+                          }
+                      })], allOverlays: true
+            });
+			map.addLayer(layer);
+			map.addLayer(featuresLayer);
+			map.addLayer(markerLayer);
+			
+			map.setCenter(new SuperMap.LonLat(12958399.4681885, 4852082.44060595),11);
+		
+		poiSearchGroup = new SuperMap.OSP.UI.POIGroup("poi_searchGroupId");
+ 	    poiManager = new SuperMap.OSP.UI.POIManager(map);
+ 	    poiManager.markerLayer = markerLayer;
+	    poiManager.addPOIGroup(poiSearchGroup);
+		//绘制搜索区域
+		var radius = 10000;//缓冲区半径
+		var centerPoint = map.getCenter();//中心点
+		searchGeometry = markRoundGeometry(centerPoint,radius);//绘制
+		
+		featuresLayer.style = {fillColor:"#0000FF",pointRadius:5,strokeOpacity:0.2,fillOpacity:0.2};
+        var feature = new SuperMap.Feature.Vector(markRoundGeometry(centerPoint,radius));
+        featuresLayer.addFeatures(feature);
+	}
+	
+	var round = null;
+function markRoundGeometry(center, radius) {
+    var d360 = Math.PI * 2;
+    var sidePoints = [];
+    var n = 36;
+    var d = d360 / n;
+    for (var i = 1; i <= n; i++) {
+        var rd = d * i;
+        var x = center.lon + radius * Math.cos(rd);
+        var y = center.lat + radius * Math.sin(rd);
+        var sidePoint = new SuperMap.Geometry.Point(x, y);
+        sidePoints.push(sidePoint);
+    }
+	var line = new SuperMap.Geometry.LinearRing(sidePoints);
+	var roundRegion = new SuperMap.Geometry.Polygon(line);
+	round = new SuperMap.OSP.Utility.Geometry();
+	center = new SuperMap.OSP.Core.Point2D(center.lon,center.lat);
+	sidePoints[0] = new SuperMap.OSP.Core.Point2D(sidePoints[0].x,sidePoints[0].y);
+	var param = [center,sidePoints[0]];
+	round.point2Ds = param;
+    return roundRegion;
+}
+	
+	
+	var searchService = null;//搜索服务类
+	var ospPager = null;//分页控件
+	var pageSize = 10;//每页显示记录数
+	var keywordTextId = "txtKeyword";	//查询的关键字
+	var resultDivId = "resultDiv";	//显示返回结果的div的id
+	var datasetName ='PbeijingP';	//数据集
+	var pagerId = "folioDiv";	//显示页码的div的id
+	
+//周边查询
+function searchPOIByPager(rowIndex){
+	if (!rowIndex) {
+        rowIndex = 0;//起始记录号
+	}else if(rowIndex == '1') {
+		rowIndex = 0;
+	}else{
+		rowIndex = rowIndex * 10 - 10;
+	}
+	if (!ospPager) {
+		ospPager = new OspPager("ospPager", searchPOIByPager);
+		ospPager.page = 1;
+
+	}
+	var keyword = document.getElementById(keywordTextId).value;
+	var poiSearchService = new SuperMap.OSP.Service.POISearch();//查询服务接口
+	var getPOIsParam = new SuperMap.OSP.Service.GetPOIsByGeometryParam();//查询参数
+	
+	getPOIsParam.geometry = round;//设置搜索区域
+	
+	getPOIsParam.keyword = keyword;
+	getPOIsParam.expectCount = pageSize;
+	getPOIsParam.startRecord = rowIndex;
+	poiSearchService.search.url = "http://services.supermapcloud.com";//"http://www.supermapcloud.com";
+	getPOIsParam.datasetName=datasetName;
+	getPOIsParam.DataSourceName = 'china_poi';
+	var resultObj = document.getElementById(resultDivId);
+	poiSearchService.getPOIsByGeometry(getPOIsParam, function(result){
+        if (result.totalCount != 0) {
+            //设置分页控件的总页数
+            ospPager.pageCount = Math.ceil(result.totalCount / pageSize);
+            //显示分页
+            ospPager.printHtml("yahoo", pagerId);
+            showPoiResult(result.records);
+        }
+		else{
+			resultObj.innerHTML = '哎呀！没有找到结果！';
+			document.getElementById(pagerId).innerHTML = "";
+			return false;
+		}
+    }, function(error){
+        resultObj.innerHTML = error.information;
+    });
+}
+
+//-----------------显示搜索结果---------------//
+
+function showPoiResult(records){
+
+    var strHtml = "";
+
+    if (records) {
+
+        poiSearchGroup.clearPOIs();	//清空组内所有POI
+
+        for (var i = 0; i < records.length; i++) {
+
+            var poiInfo = records[i];
+
+            strHtml += '<table cellspacing="0" cellpadding="0" border="0" class="tab_color">';
+
+            strHtml += '<tr style="height:5px"><td colspan="2"></td></tr>';
+
+            strHtml += '<tr style="height:5px"><td align="center" width="54" valign="top" rowspan="3"><img src="../../images/' + (i + 1) + '.gif"></td>';
+
+            strHtml += '<td width="448" valign="top"><span style="float: right; margin-right: 15px;"></span><strong><span href="javascript:positionPoi(\'' + poiInfo.code + '\',1)">' + poiInfo.name + '</span></strong></td></tr>';
+
+            strHtml += '<tr style="height:5px;"><td colspan="2"></td></tr></table>';
+
+            //组织poi对象
+
+            var poi = new SuperMap.OSP.UI.POI("search_POI_" + i);	//查询的POI点对象
+
+            poi.position = new SuperMap.OSP.Core.Point2D(parseFloat(poiInfo.x), parseFloat(poiInfo.y));//地理坐标系下点对象
+
+            var scaledContent = new SuperMap.OSP.UI.ScaledContent();//POI显示内容
+
+            scaledContent.content = '../../images/num_map/' + (i + 1) + '.png';
+
+            scaledContent.offset = new SuperMap.OSP.Core.Point2D(0, 0);//偏移量,像素单位
+
+            poi.title = poiInfo.name;
+
+            poi.scaledContents = scaledContent;
+
+            poi.properties = {
+
+                code: poiInfo.code
+
+            };
+
+            poiSearchGroup.addPOIs(poi);
+
+        }
+
+        document.getElementById(resultDivId).innerHTML = strHtml;
+
+        //更新poi分组并显示
+        poiManager.editPOIGroup(poiSearchGroup);
+
+        poiManager.refreshPOI();	//刷新地图,并显示POI
+    }
+    else {
+        document.getElementById(resultDivId).innerHTML = "没有找到您要的结果！";
+    }
+}
+                     </textarea>
+                     <!-- <p><a href="guideDemo/service/searchPOI_near.html" target="_new">查看示例</a></p> -->
+                     
+					 <p>在周边检索中，通过构markRoundGeometry(返回SuperMap.Geometry.Polygon类型的对象)函数来绘制一个圆形搜索区域,方法两个参数如下</p>
+                     <ul>
+                     	 	<li>center 中心点,SuperMap.OSP.Core.Point2D类型;</li>
+                            <li>radius 半径,Number类型。</li>
+                     </ul>
+                     
+					 
+					 <h3><a name="a_transportationAnalyst"/>路线分析</h3>
+            	<p>用于计算两个或多个位置之间路线的服务。你可以通过 SuperMap.OSP.Service.TransportationAnalyst 对象检索路线计算服务。此对象与 SuperMapCloud Maps API Search Service 进行通信，该服务将接收检索请求并传回路线计算的结果。</p>
+                <h3>查询请求 transportationAnalyst</h3>
+				<p>要检索Poi数据。需要创建一个类型为 SuperMap.OSP.Service.TransportationAnalyst 的对象，并调用 findPath 向检索服务发送一条请求，方法是为其传递三个参数,分别是 SuperMap.OSP.Service.TransportionAParameter 参数对象，回调方法，错误处理函数。</p>
+                
+				<p>transportationAnalyst 的参数SuperMap.OSP.Service.TransportionAParameter对象包含下列字段：</p>
+                 <textarea name="" cols="" rows="" class="areaWord h120">
+{
+	endPoint: SuperMap.OSP.Service.SePoint//目的地
+	pPntWay: Array[]//途径点的集合
+	startPoint: SuperMap.OSP.Service.SePoint//出发地
+}
+                  </textarea>
+					
+                  <p>示例 SearchRequest 如下所示：</p>
+                   <textarea name="" cols="" rows="" class="areaWord h120">
+{
+	endPoint: SuperMap.OSP.Service.SePoint
+	pPntWay: Array[0]
+	startPoint: SuperMap.OSP.Service.SePoint
+}
+                     </textarea>
+                     
+                     <h3>查询响应</h3>
+                     <p>查询服务要求一个回调方法，在检索方法中返回结果。回调函数返回一个json格式的对象。</p>
+                     <h3>查询结果 SearchResult</h3>
+                     <p>SearchResult 对象常量表示一个查询结果，并且是采用以下形式的对象：</p>
+                   <textarea name="" cols="" rows="" class="areaWord h120">
+{
+	path: SuperMap.Geometry.lineString//几何线路图
+	pathInfoList: Array[]//途径点的集合
+}
+                     </textarea>
+					 
+					 <h3>线路结果的显示</h3>
+                     <p>查询的结果分为两部分,几何线路图和途径点。几何图通过featuresLayer.addFeatures(feature)显示;途经点我们可以把每个途经点的信息进行以文本形式展现。</p>
+					 
+                     <p>示例代码</p>
+					 <textarea name="" cols="" rows="" class="areaWord h200">
+	var startPoint = new SuperMap.LonLat(116.37566618893023,39.98860245609523);
+	var endPoint = new SuperMap.LonLat(116.45470821660479,39.96279383689269);
+	var startImg = SuperMap.OSP.Core.Utility.latLonToMeters(startPoint);
+	var startSize = new SuperMap.Size(25,30);
+	var startIcon = new SuperMap.Icon('http://www.supermapcloud.com/cloudweb/images/start.png', startSize);
+	var startMarker = new SuperMap.Marker(new SuperMap.LonLat(startImg.lon,startImg.lat),startIcon);
+	markerLayer.addMarker(startMarker);
+	
+	var endImg = SuperMap.OSP.Core.Utility.latLonToMeters(endPoint);
+	var endSize = new SuperMap.Size(25,30);
+	var endIcon = new SuperMap.Icon('http://www.supermapcloud.com/cloudweb/images/end.png', endSize);
+	var endMarker = new SuperMap.Marker(new SuperMap.LonLat(endImg.lon,endImg.lat),endIcon);
+	markerLayer.addMarker(endMarker);
+	map.setCenter(new SuperMap.LonLat(12958879.900879698,4864286.157687547),12)
+	
+	var param = new SuperMap.OSP.Service.TransportionAnalystParameter();
+	var findPathStartPoint = new SuperMap.OSP.Service.SePoint();
+	findPathStartPoint.x = 116.37566618893023;
+	findPathStartPoint.y = 39.98860245609523;
+	param.startPoint = findPathStartPoint;
+	
+	var findPathEndPoint = new SuperMap.OSP.Service.SePoint();
+	findPathEndPoint.x = 116.45470821660479;
+	findPathEndPoint.y = 39.96279383689269;
+	param.endPoint = findPathEndPoint;
+	param.pPntWay = pPntWay;
+	param.nSearchMode = 1;//最佳路径
+	param.coordsysType = 0; //设置坐标系统参数，0为经纬度坐标，1为墨卡托坐标,默认为0
+	var transportationAnalyst = new SuperMap.OSP.Service.TransportationAnalyst();
+	transportationAnalyst.url = "http://services.supermapcloud.com";
+	transportationAnalyst.findPath(param,function(result){
+		featuresLayer.style = {fillColor: "#7C9DE4",strokeColor: "#7A9BE2",pointRadius:6,strokeWidth:4};
+		var line = new SuperMap.Geometry.LineString(result.path);
+		var lineFeature = new SuperMap.Feature.Vector(line);
+		featuresLayer.addFeatures(lineFeature);
+		pathFeatures.push(lineFeature);
+		var pathInfoList = result.pathInfoList;
+		findPathResult(result);
+		drawLine = result;
+	},function(error){
+	
+	});
+					 </textarea>
+					 <!-- <p><a href="guideDemo/service/transportationAnalyst.html" target="_new">查看示例</a></p> -->
+					 
+                     <h3><a name="a_geocoder"/>地址解析 Geocoder</h3>
+                     <p>SuperMapCloud地图 API 需要调用外部服务器，因此，对地址解析服务的访问是异步的。为此，您需要传递一个回调方法，以在请求完成后执行。此回调方法将会对结果进行处理。</p>
+                     <p>您可以通过在代码中使用SuperMap.OSP.ExtentionService.Geocoder 对象，访问 SuperMapCloud地图 API 地址解析服务。Geocoder.getPoint() 方法发起地址解析服务请求，方法是向地址解析服务传递三个参数,分别是:请求参数SuperMap.OSP.ExtentionService.GeocodeParam,回调函数和错误处理函数。</p>
+                     <h3>地址解析请求参数 SuperMap.OSP.ExtentionService.GeocodeParam 包含下列字段：</h3>
+                   <textarea name="" cols="" rows="" class="areaWord h200">
+{
+	address: String			//请求地址
+	dataSourceName: String	//数据源
+	datasetName: String		//数据集
+	province: String		//查询的省份范围
+	city: String			//查询的城市范围
+	expectCount: Number		//查询个数限制
+	startRecord: Number		//查询初始索引
+}
+                     </textarea>
+                     
+                     <h3>地址解析响应</h3>
+                     <p>地址解析服务要求一个回调方法，以在检索到地址解析器返回的结果后执行。此回调有一个参数 GeocoderResult。</p>
+                     <h3>地址解析结果 GeocoderResult</h3>
+                     <p>GeocoderResult 对象常量表示一个地址解析结果，并且是采用以下形式的对象：</p>
+                   <textarea name="" cols="" rows="" class="areaWord h120">
+{
+	entities: Array[]	//查询出的所有结果数组
+	totalCount: Number	//查询出的所有结果总数
+}
+                     </textarea>
+					 
+                     <h3>地址组成部分的类型</h3>
+					 <p>每个结果是 Point2D 类型的对象</p>
+					 
+                   <textarea name="" cols="" rows="" class="areaWord h200">
+entities:{
+	id: Number,	//唯一标示
+	fieldValues: [],	//查询的数据
+	shape: {
+		feature: SuperMap.Feature.Vector,	//几何对象
+		parts: SuperMap.OSP.Core.Point2D[],	//搜索区域
+		Point2Ds: SuperMap.OSP.Core.Point2D[]	//每一个搜索结果点
+	}
+}
+                     </textarea>
+					 
+                     <h3>地址解析示例：</h3>
+                     <p>源代码示例：</p>
+                   <textarea name="" cols="" rows="" class="areaWord h200">
+	 var myGeo = new SuperMap.OSP.ExtentionService.Geocoder();
+			myGeo.url = "http://services.supermapcloud.com";
+			// 将地址解析结果显示在地图上,并调整地图视野
+			var address = document.getElementById("txtAddress").value;
+			var geocoderParam = new SuperMap.OSP.ExtentionService.GeocodeParam();
+			geocoderParam.dataSourceName = "zhongguo";
+			geocoderParam.datasetName = "table_1P";
+			geocoderParam.expectCount = 10;
+			geocoderParam.startRecord = 0;
+			geocoderParam.address = address;
+			geocoderParam.province = document.getElementById("txtProvince").value;
+			geocoderParam.city = document.getElementById("txtCity").value;
+			var objInfo = document.getElementById("divGeocoder");
+			objInfo.innerHTML = "正在获取数据，请稍候……";
+			if (address != "") {
+				myGeo.getPoint(geocoderParam, function(result) {
+					var point = result.entities[0].shape.point2Ds[0];
+					if (!!point.x && !!point.y) {
+						var x = point.x;
+						var y = point.y;
+						map.setCenter(new SuperMap.LonLat(x,y),16);
+						var poi = new SuperMap.OSP.UI.POI("poi" + poiIndex++);
+						poi.imageSize = new SuperMap.Size(18,18);
+						poi.title = document.getElementById("txtAddress").value;
+						var scaledContent = new SuperMap.OSP.UI.ScaledContent();
+						scaledContent.content = '../../images/pin2.png';
+						scaledContent.offset = new SuperMap.OSP.Core.Point2D(0, 0);
+						poi.scaledContents = scaledContent;
+						poi.position = new SuperMap.OSP.Core.Point2D(x, y);
+						poiSearchGroup.addPOIs(poi);
+						poiManager.editPOIGroup(poiSearchGroup);
+						poiManager.refreshPOI();
+						objInfo.innerHTML = "";
+					}
+					},	function(error){
+						objInfo.innerHTML = "很抱歉，你所输入的地址未找到匹配结果";
+				}, "北京市");
+			} else {
+				alert("查询的地址不能为空");
+			} 
+                     </textarea>
+                     <!-- <p><a href="guideDemo/service/geocoder.html" target="_new">查看示例</a></p> -->
+                     
+            </div>
+    </div>
+<!---地图服务 end-->
+
+      </div>
+    </div>
+    <!--开发指南 end-->
+	
+		<!--silverlight 说明-->
+		<div class="big_main" id="context_9" style="display:none">
+		  <!--中间整个主体部分start-->
+
+			<h2 class="sl_h2" style="padding-top:10px;">整体描述:</h2>
+			<p class="sl_contentP">SuperMap iClient 6R for Silverlight 是一套基于 Microsoft Silverlight 4.0 技术的 Web 地理信息系统开发包，利用该套开发包并结合 Microsoft .NET 开发框架，可快速方便地构建跨平台跨浏览器的Service GIS富客户端应用程序。Sliverlight API不仅可以在客户端流畅的显示地图，还可以迅速地使用 SuperMap GIS 服务器或第三方服务器提供的地图与服务，从而构建界面丰富、高度互动、体验优越的地图应用。</p>
+			<h2 class="sl_h2">申请KEY介绍:</h2>
+			<p class="sl_contentP">根据页面提示流程申请key，得到key后可根据需要调用接口，进行开发应用。标准key形式如下：8dsSDyqvi43wi%2BlOvLZZjg%3D%3D%0D%0A</p>
+			<p class="sl_contentP">下载开发包描述：<a href="http://www.supermapcloud.com/files/iClient_6R_SL_6R_601_7918_392.zip">点击转入下载页面</a></p>
+			<p class="sl_contentP">新建一个基于web应用的SilverLight工程，并在工程中引入开发包。</p>
+			<h2 class="sl_h2">开发描述:</h2>
+			<ol class="sl_ol">
+				<li>&lt;ic:Map id="map" x="0" y="0" height="100%" width="100%" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}"&gt;</li>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;&lt;is:TiledDynamicIServerLayer url="http://192.168.11.11:7080/demo" mapName="World" mapServiceAddress="192.168.11.11" mapServicePort="8600"/&gt;</li>
+				<li>&lt;/ic:Map&gt;</li>
+			</ol>
+			<h2 class="sl_h2">参数说明：</h2>
+				<ol class="sl_ol">
+					<li>scales：获取或设置地图比例尺数组。该属性与分辨率数组 resolutions 属性只需设置其一即可。</li>
+					<li>url：图层所在的服务地址。</li>
+					<li>mapName：获取或设置请求服务的地图名称。必设属性。</li>
+					<li>mapServiceAddress：获取或设置地图 GIS 服务地址。例如 192.168.11.11，注意：无须在 IP 值前加 “HTTP：//”。必设属性。</li>
+					<li>mapServicePoint：获取或设置地图服务的端口号。必设属性。</li>
+				</ol>
+			<h2 class="sl_h2">开发代码演示:</h2>
+			<p class="sl_contentP">在 GettingStarted.mxml 中添加如下代码，实现访问 SuperMap iServer Java 2008 服务提供的分块动态图层。</p>
+			<ol class="sl_ol">
+				<li>&lt;?xml version="1.0" encoding="utf-8"?&gt;</li>
+					<li>&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"  xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:ic="http://www.supermap.com/iclient/2010" xmlns:is="http://www.supermap.com/iserverjava/2008" width="100%" height="100%"&gt;</li><br/>
+					<li>&lt;ic:Map id="map" x="0" y="0" height="100%" width="100%" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}"&gt;</li>
+					<li>&lt;is:TiledDynamicIServerLayer url="http://192.168.11.11:7080/demo" mapName="World" mapServiceAddress="192.168.11.11" mapServicePort="8600"/&gt;</li>
+					<li>&lt;/ic:Map&gt;</li>
+				<li>&lt;/s:Application&gt;</li>
+			</ol>
+		  </div>
+	
+		<div class="big_main" id="context_8" style="display:none">
+  <!--中间整个主体部分start-->
+
+	<h2 class="sl_h2" style="padding-top:10px;">整体描述:</h2>
+	<p class="sl_contentP">SuperMap iClient 6R for Flex 是一套基于 Adobe Flex 技术和 Adobe Flash Builder4 开发平台的 Web 地理信息系统开发包。Flex API不仅支持普通用户对地图的浏览、查询等操作，还支持企业级用户构架高级的 GIS 客户端程序，定制专业的 GIS 服务。</span><br/><br/>
+	<h2 class="sl_h2">申请KEY介绍:</h2>
+	<p class="sl_contentP">根据页面提示流程申请key，得到key后可根据需要调用接口，进行开发应用。标准key形式如下：8dsSDyqvi43wi%2BlOvLZZjg%3D%3D%0D%0A</p>
+	<p class="sl_contentP">下载开发包描述：<a href="http://www.supermapcloud.com/files/SuperMap_iClient_6R_for_Flex_601_7915_307_ToiServer6R.zip">点击转入下载页面</a></p>
+	<p class="sl_contentP">新建一个基于web应用的Flex工程，并在工程中引入开发包。</p>
+	<h2 class="sl_h2">开发描述:</h2>
+	<ol class="sl_ol">
+		<li>&lt;supermap:Map&gt;</li>
+		<li>&nbsp;&nbsp;&nbsp;&nbsp;&lt;supermap:CloudLayer key="8dsSDyqvi43wi%2BlOvLZZjg%3D%3D%0D%0A"/&gt;</li>
+		<li>&lt;/supermap:Map&gt;</li>
+	</ol>
+	<h2 class="sl_h2">参数说明：</h2>
+	<p class="sl_contentP">key：用户申请的许可，必设参数。</p>
+	<h2 class="sl_h2">开发代码演示:</h2>
+	<p class="sl_contentP">在 GettingStarted.mxml 中添加如下代码，实现访问超图云服务提供的地图。</p>
+	<ol class="sl_ol">
+		<li>&lt;?xml version="1.0" encoding="utf-8"?&gt;</li>
+			<li>&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 	   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" xmlns:supermap="http://www.supermap.com/iclient/2010"&gt;</li>
+			<li>&lt;supermap:Map&gt;</li>
+			<li>&lt;supermap:CloudLayer key="8dsSDyqvi43wi%2BlOvLZZjg%3D%3D%0D%0A"/&gt;</li>
+			<li>&lt;/supermap:Map&gt;</li>
+		<li>&lt;/s:Application&gt;</li>
+	</ol>
+  </div>
+    <!---示例代码 start--->
+	<div id="context_4" style="display:none">
+		<div class="sidebar">
+		<div class="sidebarTitle"><span>新手上路</span></div>
+		<ul>
+     		<li><a href="javascript:void(0);" onclick="selectSample(0, this)">概述</a></li>
+			<li><a href="javascript:void(0);" onclick="selectSample(1, this)">地图浏览</a></li>
+			<li><a href="javascript:void(0);" onclick="selectSample(2, this)">地图操作</a></li>
+			<li><a href="javascript:void(0);" onclick="selectSample(3, this)">地物标记</a></li>
+			<!--<li><a href="javascript:void(0);" onclick="selectSample(4, this)">关联数据库的poi管理</a></li>-->
+			<li><a href="javascript:void(0);" onclick="selectSample(5, this)">关键字搜索</a></li>
+			<li><a style="display:none;" isDataHide="true" href="javascript:void(0);" onclick="selectSample(6, this)">几何对象搜索</a></li>
+			<li><a href="javascript:void(0);" onclick="selectSample(12, this)">圆选搜索</a></li>
+			<!--<li><a href="javascript:void(0);" onclick="selectSample(7, this)">缓冲区分析</a></li>-->
+			<li><a href="javascript:void(0);" onclick="selectSample(8, this)">路径分析</a></li>
+			<li><a href="javascript:void(0);" onclick="selectSample(9, this)">地图打印</a></li>
+			<li><a href="javascript:void(0);" onclick="selectSample(10, this)">地图测量</a></li>
+			<li><a href="javascript:void(0);" onclick="selectSample(11, this)">地址匹配</a></li>
+		</ul>
+		</div>
+		<div id="divSampleWrap" class="mainA" style="height:670px">
+			 <div class="mainTitle"><span>示例</span></div>
+			 <div style="position:absolute; width:700px; top:140px; left:float; border:solid 0px gray">
+				<div id="main" style="width:740px; height:630px; border:solid 0px gray">
+					<div id="div_examples_description" class='examples'>
+						<ul>
+						<li style="display: none;">
+							<p class="title">概述</p>
+							<p class="pl20">
+							所见及所得的 SampleCode 向用户演示了如何利用 SuperMap Online Service Platform 的各个接口实现相应的 GIS 功能，软件的大部分功能在示范代码中都能找到。
+左侧的功能列表区展示了我们提供了哪些功能示范；右边页面上部对当前选中功能进行了介绍；右边页面下部为实现当前功能的代码；在右边页面顶部，可以看到 "运行代码" 的链接，点击它即可看见该示范代码运行效果。要保证示范程序能够正常运行，请按照以下步骤操作。
+							</p>
+							<!--<p class="pl20 link"><a href="samples/summarize.html" target="_new">点击这里</a>查看源代码</p>-->
+						</li>
+						<li style="display: none;">
+							<p class="title">地图浏览</p>
+							<p class="pl20">指地图基本的浏览功能和展示</p>
+							<p class="pl20 link"><a href="samples/map/map_info.html" target="_new">点击这里</a>查看源代码</p>
+						</li>
+						<li style="display: none;">
+							<p class="title">地图操作</p>
+							<p class="pl20">指地图基本的放大、缩小、漫游、全幅显示等地图操作，这是一个在线地图应用最基本的功能，OSP支持所有的基本地图操作，同时也支持鼠标滑轮、键盘操作。</p>
+							<p class="pl20">地图上一列按钮分别是绘制点、绘制线、绘制面、放大、缩小、清除矢量要素共5个按钮。地图右方是填充颜色、透明度、线宽、边线颜色可以对矢量绘制的线型、颜色等进行设置，设置完成后，点击绘制点、线、或面按钮后，可以在地图上绘制自定义风格的矢量图形。</p>
+							<p class="pl20 link"><a href="samples/actions/actions_info.html" target="_new">点击这里</a>查看源代码</p>
+						</li>
+						<li style="display: none;">
+							<p class="title">地物标记</p>
+							<p class="pl20">
+							本范例介绍：点击添加点、线、面的按钮，在地图上进行绘制。绘制完成后，点击绘制元素弹出信息框并且将元素置成选中状态，点击删除。删除所有元素。
+							</p>
+							<p class="pl20 link"><a href="samples/poiManager/poiManager1_info.html" target="_new">点击这里</a>查看源代码</p>
+						</li>
+						<li style="display: none;">
+							<p class="title">地物标记</p>
+							<p class="pl20">
+							本示例介绍：地物标记指可以实现对点、线、面的标记，将属性信息填写好，点、线、或者面画于地图上，点击点、线、面就能弹出带有它们属性的信息框。
+							</p>
+							<p class="pl20 link"><a href="samples/FeatureMark/sample_featureMark.html" target="_new">点击这里</a>查看源代码</p>
+						</li>
+						<!--<li style="display: none;">
+							<p class="title">关联数据库的POI管理</p>
+							<p class="pl20">本示例介绍：除了和客户端POI管理具有相同的功能外，可以在文本框中输入一个POI分组名称，提供了添加POI分组的功能按钮，添加分组后，增加的POI点都按照所属分组保存到数据库中，对POI所做的更改操作，都可以永久保存到数据库里，浏览器关闭后重新打开，点击“加载POI”按钮，可以将某个分组的POI全部从数据库中取出，并恢复到地图上。 本示例主要使用了POI、POIGroup、POIManager、POIService几个类的接口： （1）	POIService类，用于将客户端对POI的更改操作更新到后台数据库的类。可以分页获取所有POI的信息，按分组获取POI列表，按用户获取POI组列表，还提供了对POI组和POI的保存、更新、删除操作。</p>
+							<p class="pl20 link"><a href="samples/poiManager/poiManager2_info.html" target="_new">点击这里</a>查看源代码</p>
+						</li>-->
+						<li style="display: none;">
+							<p class="title">关键字查询</p>
+							<p class="pl20">
+							本示例主要通过搜索关键字查询到可视范围内的POI。
+							</p>
+							<p class="pl20 link"><a href="samples/search/searchByKeyword_info.html" target="_new">点击这里</a>查看源代码</p>
+						</li>
+						<li style="display: none;">
+							<p class="title">基于几何对象的搜索</p>
+							<p class="pl20">
+							本示例介绍：点击“绘制查询面”按钮，可以在地图上绘制一个矢量面区域，绘制完成，自动执行查询，查询结果为矢量面区域内的所有公园。
+							</p>
+							<p class="pl20 link"><a href="samples/search/queryByGeometry_info.html" target="_new">点击这里</a>查看源代码</p>
+						</li>
+						<li style="display: none;">
+							<p class="title">缓冲区分析</p>
+							<p class="pl20">
+							本示例介绍：可以设置缓冲半径，默认为500米，点击“绘制缓冲线”按钮，然后在地图上绘制一个矢量线对象，绘制完成后，在地图上显示出分析结果面区域，同时在地图下方会显示缓冲区域的面积和周长值。 
+							</p>
+							<p class="pl20 link"><a href="samples/spatialAnalyst/bufferAnalyst_info.html" target="_new">点击这里</a>查看源代码</p>
+						</li>
+						<li style="display: none;">
+							<p class="title">最佳路径分析</p>
+							<p class="pl20">
+							通过设置起点和终点在地图上绘制两个POI,点击路径分析就会得到最佳路径。
+							</p>
+							<p class="pl20 link"><a href="samples/findPath/findPath_info.html" target="_new">点击这里</a>查看源代码</p>
+						</li>
+						<li style="display: none;">
+							<p class="title">地图打印</p>
+							<p class="pl20">
+							OSP提供的打印服务，可以将地图页面输出到打印设备。 本示例介绍：点击“打印地图”，会弹出地图打印窗口。
+							</p>
+							<p class="pl20 link"><a href="samples/printMap/printMap_info.html" target="_new">点击这里</a>查看源代码</p>
+						</li>
+						<li style="display: none;">
+							<p class="title">地图测量</p>
+							<p class="pl20">
+							提供两点之间的实地长度测量服务，面状区域的面积、周长测量服务。 本示例介绍：点击“绘制线并量算长度”按钮，程序会计算出绘制出的线的长度值。
+							</p>
+							<p class="pl20 link"><a href="samples/measure/measure_info.html" target="_new">点击这里</a>查看源代码</p>
+						</li>
+						<li style="display: none;">
+							<p class="title">地址匹配</p>
+							<p class="pl20">通过搜索关键字来确定地理位置</p>
+							<p class="pl20 link"><a href="samples/geocoder/geocoder_info.html" target="_new">点击这里</a>查看源代码</p>
+						</li>
+						<li style="display: none;">
+							<p class="title">圆选查询</p>
+							<p class="pl20">
+							本示例介绍：右键点击地图，可以在地图上绘制圆的中点，可输入想查询的词，点击确定即可得到结果，查询结果为圆面区域内的所有POI，圆的半径默认为1Km。
+							</p>
+							<p class="pl20 link"><a href="samples/CircleSearch/sample_CircleSearch.html" target="_new">点击这里</a>查看源代码</p>
+						</li>
+						</ul>
+					</div>
+					<p class="title">效果演示</p>
+					<!--地图控件-->
+				<div  style="margin-left:40px;width:700px;">
+					<div id="mapDiv" style=" border:solid 1px gray;height:400px;width:500px;"></div>
+					<div id="simpleScaleBarContainer" style="width: 200px; height: 50px;bottom: 30px; left: 30px;"></div>
+					<div id="divMousePosition" style="bottom: 30px; right: 30px;z-index:9999"></div>
+				</div>
+				</div>
+				<!-----------地图操作图层--begin------------->
+				<!--<div id="toolsDiv" class="toolsDiv">
+					<img src="images/drawPoint_on.png" title="绘制点" onmouseover="this.src = 'images/drawPoint_on.png'"
+						onmouseout="this.src = 'images/drawPoint_on.png'" onclick="drawPointEntity()"></img>
+					<img src="images/drawLine_on.png" title="绘制线" onmouseover="this.src = 'images/drawLine_on.png'"
+						onmouseout="this.src = 'images/drawLine_on.png'" onclick="drawLineEntity()"></img>
+					<img src="images/drawRegion_on.png" title="绘制面" onmouseover="this.src = 'images/drawRegion_on.png'"
+						onmouseout="this.src = 'images/drawRegion_on.png'" onclick="drawPolygonEntity()"></img>
+					<img src="images/drawCircle_on.png" title="绘制圆" onmouseover="this.src = 'images/drawCircle_on.png'"
+						onmouseout="this.src = 'images/drawCircle_on.png'" onclick="drawCircleEntity()"></img>
+					<img src="images/eidtEntity_over.png" title="矢量要素编辑" onmouseover="this.src = 'images/eidtEntity_over.png'"
+						onmouseout="this.src = 'images/eidtEntity_over.png'" onclick="editEntity()"></img>
+					<img src="images/pan_on.png" title="漫游" onmouseover="this.src = 'images/pan_on.png'"
+						onmouseout="this.src = 'images/pan_on.png'" onclick="setPan()" />
+					<img src="images/zoomin_on.png" title="放大" onmouseover="this.src = 'images/zoomin_on.png'"
+						onmouseout="this.src = 'images/zoomin_on.png'" onclick="setZoomIn()" />
+					<img src="images/zoomout_on.png" title="缩小" onmouseover="this.src = 'images/zoomout_on.png'"
+						onmouseout="this.src = 'images/zoomout_on.png'" onclick="setZoomOut()" />
+					<img src="images/eraser_on.png" title="清除矢量要素" onmouseover="this.src = 'images/eraser_on.png'"
+						onmouseout="this.src = 'images/eraser_on.png'" onclick="clearFeatures()"></img>
+				</div>-->
+			
+				<!--<div id="operatePanelMap" class="operatePanelMap">
+				<font >地图的基本操作</font>
+				<div>点击下方按钮，可以获取地图当前可视范围。<br />
+					设定宽、高的具体值（单位均为像素），点调整按钮，可以调整地图到指定大小，点恢复按钮，则地图回到默认大小。<br />
+				</div>
+				<div id="divFeature" class="box">
+					<table style="font-size: 12px">
+						<tr>
+							<td>
+								圆半径：
+							</td>
+							<td>
+								<input type="text" size="10" id="circleRadius" maxlength="7" value="" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								填充颜色：
+							</td>
+							<td>
+								<input type="text" size="10" id="color1" maxlength="7" name="rgb1" value="#FF0000"
+									onclick="showColorPicker(this,document.getElementById('color1'))" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								填充透明度：
+							</td>
+							<td>
+								<select id="txtOpacity">
+									<option value="0.1">0.1</option>
+									<option value="0.2">0.2</option>
+									<option value="0.3">0.3</option>
+									<option value="0.4">0.4</option>
+									<option value="0.5" selected>0.5</option>
+									<option value="0.6">0.6</option>
+									<option value="0.7">0.7</option>
+									<option value="0.8">0.8</option>
+									<option value="0.9">0.9</option>
+									<option value="1.0">1.0</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								线宽：
+							</td>
+							<td>
+								<input type="text" id="txtLineWidth" style="width: 50px" value="2" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								边线颜色：
+							</td>
+							<td>
+								<input type="text" size="10" id="color2" maxlength="7" name="rgb2" value="#0000FF"
+									onclick="showColorPicker(this,document.getElementById('color2'))" />
+							</td>
+						</tr>
+					</table>
+					<div id="picker">
+					</div>
+				</div>
+				<input type="button" value="获取当前地图可视范围" onclick="getMapViewBounds()" />
+				<input type="button" value="显示/隐藏图例" onclick="showLegend()" />
+				<div id="divViewBounds" style="font-size: 12px; margin-left:4px;">
+				</div>
+				<div style="font-size: 12px">调整窗口大小：<br />
+					宽:<input type="text" id="txtWidth" value="500" style="width: 50px" />高:<input style="width: 50px"
+						type="text" id="txtHeight" value="300" /><input type="button" value="调整" onclick="mapResize()" /><input
+						type="button" value="恢复" onclick="mapRecovery()" />
+				</div>
+				</div>-->
+		
+				<!--图例-->
+				<div id="maplegend" style="display:none; position: absolute; bottom: 10px; width:33%; height:30%; top:70%; left:39%;
+				border: 1px solid #ccc; overflow: auto; overflow-x: hidden; display: none;
+					z-index: 9999">
+					<table>
+						<tr>
+							<td align="center">
+								图例
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img src="images/legend.jpg" />
+							</td>
+						</tr>
+					</table>
+				</div>
+			<!-----------地图操作图层--end------------->
+			<!-------------客户端POI操作工具--begin----------
+        <div id="operatePanelPOI" class="operatePanelPOI" >
+        <font>客户端POI管理操作说明：</font>
+        <div >“鼠标绘制添加标注”按钮，用鼠标在地图某处点击，可添加一个标注
+		<br /> “清除标注”按钮，清除地图上的所有标注和文本标签<br /></div>
+        <table >
+            <tr>
+                <td colspan="2">
+                    <input type="radio" name="radioPin" value="1" checked="checked" /><img src="http://www.supermapcloud.com/demo/china/images/pin1.png" />
+                    <input type="radio" name="radioPin" value="2" /><img src="http://www.supermapcloud.com/demo/china/images/pin2.png" />
+                    <input type="radio" name="radioPin" value="3" /><img src="http://www.supermapcloud.com/demo/china/images/pin3.png" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    PIN标题
+                </td>
+                <td>
+                    <input id="txtPinName" type="text" value="-" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" value="鼠标绘制添加PIN" onclick="addPOIByMouse()" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" value="清除PIN" onclick="clearPOI()" />
+                </td>
+            </tr>
+        </table>
+		</div>
+		<!-------------客户端POI操作工具--end----------->
+		<!-----------------地物标记---start---------->
+		<!--<div id="featureMarkDiv" style="display:none; position:absolute; width: 28%; left: 78%; top:220px; height:48%;
+        font-size: 12px; border: solid 1px #969696; z-index: 100; padding-bottom: 5px;
+		background-image: url(images/toolbar_backgroundb.png);">
+            <table style="font-size: 12px">
+				<tr>
+					<td>
+						Feature标题
+					</td>
+					<td>
+						<input id="markerName" size="3" type="text" value="标题：" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Feature内容
+					</td>
+					<td>
+						<input id="markerContent" size="3" type="text" value="内容......." />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" size="8" id="addPointMarks" value="添加点标记" onclick="drawPointFeature()" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+                        <input type="button" size="8" id="addLineMarks" value="添加线标记" onclick="drawLineFeature()"/>
+                    </td>
+				</tr>
+				<tr>
+					<td>
+                        <input type="button" size="8" id="addPolygonMarks" value="添加面标记" onclick="drawPolygonFeature()" />
+                    </td>
+				</tr>
+				<tr>
+					<td>
+                        <input type="button" size="2" id="btnDelete" value="删除" onclick="deleteFeature()"/>
+                    </td>
+				</tr>
+            </table>
+		</div>-->
+		<!-----------------地物标记---end---------->
+		<!------------------数据库poi操作图层---begin--------->
+		<!--<div id="operatePanelPoiDB" style="display:none; position:absolute; width: 28%; left: 78%; top:220px; height:48%;
+        font-size: 12px; border: solid 1px #969696; z-index: 100; padding-bottom: 5px;
+        background-image: url(images/toolbar_backgroundb.png);">
+        <font>关联数据库的POI管理操作说明：</font>
+        <p>
+            单击"添加POI分组"按钮，可以向数据库中保存文本框中输入的名称的POI分组。
+        </p>
+        <p>
+            单击"添加POI"按钮，可以在地图上选择POI的坐标并添加到上述分组中。
+        </p>
+        <p>
+            单击“查看所有POI分组”，可以查看该用户添加的所有POI分组信息。
+        </p>
+        <table>
+            <tr>
+                <td colspan="2">
+                    <input type="text" id="txtPoiGroup" value="POI分组名称" style="width: 88%" /><input type="hidden"
+                        id="groupServerId" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="添加POI分组" onclick="avascript:this.select();addPOIGroup()"style="background-color: #CCCCCC;cursor:pointer " />
+                </td>
+                <td>
+                    <input type="button" id="SelectPoint" value="添加POI" style="background-color: #CCCCCC; cursor:pointer" onclick="addPOI1()" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan='2'>
+                    <input type="button" value="查看所有POI分组" style="background-color: #CCCCCC; cursor:pointer" onclick="loadPOIGroup()" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="清除POI" onclick="clearPOI()" style="background-color: #CCCCCC;cursor:pointer " />
+                </td>
+                <td>
+                    <input type="button" value="平移" style="background-color: #CCCCCC; cursor:pointer" onclick="panMap()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+		<div id="divInfoDB" style="clear: both; display:none; position:absolute; width:190px; left:80%; top:85%;">
+		</div>-->
+		<!----------------数据库poi操作图层---end--------------->
+		<!-----------------关键字搜索图层--------begin------------------>
+		<div id="searchByKeyDiv"class="searchByKeyDiv">
+        <font>关键字搜索：</font>
+        <p>
+            实现基于关键字查询POI。</p>
+			<input type="text" id="txtKeyword" value="学院" /><input type="button" value="搜索" onclick="searchByKeyword()" />
+		</div>
+		<!--显示-->
+		<div id="divInfo" class="divInfo"></div>
+		<!--分页图层-->
+		<div id="divInfo1" style="clear: both; display:none; position:absolute; width:28%; left:66%; top:26%;">
+		</div>
+		<!-----------------关键字搜索图层--------end------------------>
+		<!-------------------几何对象搜索图层---begin---------------------->
+		<div id="searchByGeo" class="searchByGeo" >
+			<font>多边形查询：</font>
+			<p>点击“绘制查询面”按钮，可以在地图上绘制一个矢量面区域，绘制完成，自动执行查询，查询结果为矢量面区域内的所有POI。</p>
+				关键字：<input type="text" id="txtKeyword1" style="width: 100px" value="公园"><br>
+			<input type="button" id="SelectPointGeo" value="绘制查询面" style="background-color: #CCCCCC;margin-left:10px; margin-top:10px;cursor:pointer" onclick="drawGeometry()">
+			<input type="button" value="清除所有" style="background-color: #CCCCCC; margin-left:10px;margin-top:10px;cursor:pointer;" onclick="clearAll()">
+		</div>
+		<div id="pageDiv" class="pageDiv" ></div>
+		<div id="divGEOSearch" class="divGEOSearch" ></div>
+		<!-------------------几何对象搜索图层---end---------------------->
+		<!-------------------圆选搜索-----begin---------------->
+		<div id="addNew" style="display:none; position:absolute; width:28%; left:78%; top:160%; border: solid 0px #969696;
+		font-size: 12px; border: solid 0px #969696; z-index: 100; padding-bottom: 5px; height:20px">
+		地图值：<input type="text" id="realRadius" style="width:50px" value=""/>
+		</div>
+		<div id="searchByCircleDiv" style="display:none; position:absolute; left:78%; width: 28%; top:160px;
+			font-size: 12px; border: solid 0px #969696; z-index: 100; padding-bottom: 5px;" >
+		</div>
+		<div id="divCircleSearch" style="display:none; position:absolute; width:28%; left:78%; top:80%;">
+		</div>
+		<!-------------------圆选搜索-----end---------------->
+		
+		<!-------------------缓冲区搜索图层---begin---------------------->
+		<div id="searchByBufferDiv" style="display:none; position:absolute; left:78%; width: 28%; top:150px; height:28%;
+			font-size: 12px; border: solid 1px #969696; z-index: 100; padding-bottom: 5px;
+			background-image: url(images/toolbar_backgroundb.png);">
+			<font style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 100%">缓冲区查询：</font>
+			<p>
+				可以设置缓冲半径，默认为500米，点击“绘制缓冲线”按钮，然后在地图上绘制一个矢量线对象，绘制完成后，自动查询这个线对象缓冲区内的POI。
+			</p>
+			缓冲范围:<input type="text" id="txtBufferRreze" style="width: 50px" value="500" />米,<br />
+			关键字：<input type="text" id="txtKeyword2" style="width: 100px" value="公园" /><br />
+			<input type="button" style="background-color: #CCCCCC; border: double;" value="绘制缓存线并查询"
+				onclick="drawLineGeometry()" /><br />
+			<input type="button" value="平移" style="background-color: #CCCCCC; border: double"
+				onclick="panMap()" />
+			<input type="button" value="清除" style="background-color: #CCCCCC; border: double"
+				onclick="clearAll1()" />
+		</div>
+		<div id="divBufferSearch" style="display:none; position:absolute; width:28%; left:78%; top:80%;"></div>
+		<!-------------------缓冲区搜索图层---end---------------------->
+		
+		<!-------------------缓冲区分析图层---begin---------------------->
+		<div id="analysisBufferDiv"class="analysisBufferDiv">
+			<font >缓冲区分析：</font>
+			<p>可以设置缓冲半径，默认为500米，点击“绘制缓冲线”按钮，然后在地图上绘制一个矢量线对象，绘制完成后，在地图上显示出分析结果面区域，同时在地图下方会显示缓冲区域的面积和周长值。</p>
+			缓存半径<input type="text" id="txtBufferRreze" value="500" style="width: 100px">米</br>
+			&nbsp;<input type="button" value="绘制缓存线并分析" onclick="drawLineGeometry1()" style="background-color: #CCCCCC;">
+			&nbsp;<input type="button" value="清除" style="background-color: #CCCCCC; cursor:pointer" onclick="clearAll2()">
+		</div>
+		<div id="divBufferAnalysis" class="divBufferAnalysis"></div>
+		<!-------------------缓冲区分析图层---end---------------------->
+		
+		<!--------------地图截屏--begin------------------->
+		<!--地图截屏图层-->
+		<div id="mapCaptureDiv"class="mapCaptureDiv">
+			<font style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 100%">地图截屏：</font>
+			<p>
+				本示例介绍：点击“显示地图覆盖物”按钮，可以在地图上添加一组POI，同时还可以加上一条矢量线。点击“截图”按钮，完成地图截图，得到图片的URL。</p>
+			<input type="button" id="SelectPoint" value="显示地图覆盖物" style="background-color: #CCCCCC;
+				border: double; margin-left: 10; margin-right: 40;" onclick="addOverly()" />
+			<input type="button" value="截图" style="background-color: #CCCCCC; border: double;
+				margin-left: 10; margin-top: 5px;" onclick="mapCapturer()" />
+		</div>
+		<div id="divMapCut" style="clear: both; position:absolute; width:28%; left:60%; top:28%;">
+		</div>
+		<!--------------地图截屏--end------------------->
+		
+		<!---------------路径分析----begin----------------->
+		<!--路径分析图层-->
+		<div id="pathDiv" class="pathDiv">
+			<p>路径分析模式:</p>
+			<table style="font-size: 12px">
+				<tbody>
+				<tr>
+					<td ><input type="radio" name="radioPathMode" value="length" checked="checked"/> 最少路程</td>
+					<td><input type="radio" name="radioPathMode" value="time" />最少时间</td>
+				</tr>
+				<tr>
+					<td>选择起点:</td>
+					<td colspan="2">健翔桥
+					<select id="sel_path_start" style="display: none;"><option value="12954879.900879698,4864286.157687547">健翔桥</option></select>
+					<!--<input type="button" value="选择起点" onclick="addFindPathPointAction('start')"><input type="hidden" id="txtPathStart" />-->
+					</td>
+				</tr>
+				<tr>
+					<td>选择终点:</td>
+					<td colspan="2">三元桥
+					<select id="sel_path_end" style="display: none;"><option value="12963678.819151698,4860537.053380347">三元桥</option></select>
+					<!--<input type="button" value="选择终点" onclick="addFindPathPointAction('end')"><input type="hidden" id="txtPathEnd" />-->
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="button" onclick="findNewPath()" value="路径分析" /><input type="button" onclick="clearPath()" value="清除" /><input type="button" onclick="setPan()" value="平移" /></td>
+				</tr>
+			</tbody></table>
+		</div>
+		<div id="routeDiv" style="position:absolute; width:28%; left:78%; top:50%;"></div>
+		<!---------------路径分析----end----------------->
+		
+		<!-----------------地图打印------------begin------------>
+		<div id="printMapDiv" class="printMapDiv" >
+			<font style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 100%">地图打印：</font>
+			<p>
+				OSP提供的打印服务，可以将地图页面输出到打印设备。。</p>
+			<input type="button" value="打印地图" style="background-color: #CCCCCC;cursor:pointer"onclick="printMap()" />
+		</div>
+		<div id="divMapPrint" style="position:absolute; width:28%; left:78%; top:25%;">
+		</div>
+		<!--------------地图打印----------end------------------>
+		
+		<!-----------------地图测量------------begin------------>
+		<div id="measureMapDiv"class="measureMapDiv" >
+			<font style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 100%">地图测量：</font>
+			<p>
+				点击“绘制线并量算长度”按钮，程序会计算出绘制出的线的长度值。</p>
+			<input type="button" value="绘制线并量算长度" onclick="setMeasure()" style="background-color: #CCCCCC;cursor:pointer" />
+			<!--<input type="button" value="清除所有" style="background-color: #CCCCCC; cursor:pointer"onclick="clearAll3()" />-->
+		</div>
+		<div id="divMapMeasure" style="clear: both; position:absolute; width:28%; left:78%; top:32%;">
+		</div>
+		<!-----------------地图测量------------end------------>
+		
+		<!-------------------地图编辑--begin--------------------->
+		<!--地图编辑图层-->
+		<div id="editMapDiv" class="editMapDiv" >
+			<font style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 100%">地图编辑：</font>
+			<p>
+				点击“获取实体”按钮，获取指定数据集下的所有实体对象列表。</p>
+			<p>
+				点击“添加实体”按钮，可以在地图上添加一个实体到该数据集。
+			</p>
+			<input type="button" id="SelectPoint" value="获取实体" style="background-color: #CCCCCC;
+				border: double; margin-left: 10; margin-right: 40;" onclick="getEntitys()" />
+			<input type="button" id="addEntityBtn" value="添加实体" style="background-color: #CCCCCC;
+				border: double; margin-left: 10; margin-right: 40;" onclick="addCinema()" />
+		</div>
+		<div id="divMapEdit" style="display:none; clear: both; position:absolute; width:28%; left:60%; top:30%;"></div>
+		<!-------------------地图编辑--end--------------------->
+		
+		<!-------------------地图共享--begin--------------------->
+		<div id="shareMapDiv" class="shareMapDiv" >
+			<font style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 100%">地图共享：</font>
+			<p>
+				点击“显示地图覆盖物”按钮，可以在地图上添加一组POI，同时还可以加上一条矢量线。点击“分享地图”按钮，会将地图状态信息保存到服务器，同时返回一个key，将key传到另一个页面（即“查看分享的地图”链接打开的页面），在这个页面中可以使用key从服务器上获取地图状态信息，并恢复地图地图的状态，完成一次地图共享过程。</p>
+			<input type="button" id="SelectPoint" value="显示地图覆盖物" style="background-color: #CCCCCC;
+				border: double; margin-left: 10; margin-right: 40;" onclick="addOverly1()" />
+			<input type="button" value="分享地图" style="background-color: #CCCCCC; border: double;
+				margin-left: 10;" onclick="shareMap()" />
+		</div>
+		<div id="divShareMap" style="clear: both; position:absolute; width:28%; left:60%; top:38%;">
+		</div>
+		<!-------------------地图共享--end--------------------->
+			
+		<!-------------------统计分析--begin--------------------->
+		<div id="statisticeDiv" class="statisticeDiv">
+			<font style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 100%">统计分析：</font>
+			<p>
+				统计自定义面内宾馆酒店的各项指标</p>
+			选择统计指标类型：<br />
+			<input type="radio" name="radioIndex" value="平均值" />平均值
+			<input type="radio" name="radioIndex" value="最大值" />最大值
+			<input type="radio" name="radioIndex" value="最小值" />最小值
+			<br />
+			<input type="radio" name="radioIndex" value="求和" />求和    <input type="radio"
+				name="radioIndex" value="个数" checked="checked" />个数    <input type="radio"
+					name="radioIndex" value="方差" />方差
+			<br />
+			<input type="radio" name="radioIndex" value="标准差" />标准差
+			<br />
+			<input type="button" id="SelectPoint" value="绘制自定义面并统计" style="background-color: #CCCCCC;
+				border: double; margin-left: 10; margin-right: 40;" onclick="drawGeometry1()" />
+		</div>
+		<div id="divStatistic" style="clear: both; position:absolute; width:28%; left:60%; top:28%;">
+		</div>
+		<!-------------------统计分析--end--------------------->
+		
+		<!--------------地址匹配-----------begin--------------------->
+		<div id="geocoderDiv"  class="geocoderDiv">
+			<font style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 100%">地址匹配：</font>
+			<p style="font-size: 12px">
+				在输入框中输入要查询的地址，点击地址匹配按钮，则程序会调用地址匹配服务，返回一个地址对应的经纬度坐标。
+			</p>
+			<!-- <table>
+				<tr>
+					<td>
+						省：
+					</td>
+					<td>
+						<input type="text" id="txtProvince" style="width: 120px;" value="四川省" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>
+						市：
+					</td>
+					<td>
+						<input type="text" id="txtCity" style="width: 120px;" value="成都市" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>
+						地址：
+					</td>
+					<td>
+						<input type="text" id="txtAddress" style="width: 120px;" value="高新区棕榈南岸" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" value="地址匹配" onclick="doGeocorder()" />
+					</td>
+				</tr>
+			</table> -->
+			<table>
+				<tr>
+					<td colspan="4">
+						查询结果：
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Lng:
+					</td>
+					<td>
+						<div id="geocoderLng">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Lat:
+					</td>
+					<td>
+						<div id="geocoderLat">
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="divGeocoder" class="divGeocoder" ></div>
+		<!--------------地址匹配-----------end--------------------->
+        			
+					<!--源代码图层start-->
+					
+					<!--<div id="sourceCodeDiv" style="width:60%; height:34%;border:solid 0px gray">
+						<iframe id="sourceCodeFrame" src="" scrolling="yes" width="100%" height="100%"></iframe>
+					</div>-->
+				</div>
+			 </div>
+		</div>
+    <!--示例代码 end-->
+	
+    <!--类参考 start-->
+
+    <!--类参考 end-->
+
+    <!--成功案例 start-->
+        <div id="context_5" style="display:none">
+      		 <div class="mainTitle"><span>成功案例</span></div>
+      	      <table cellspacing="0" cellpadding="0" class="case">
+                 <tr>
+                  <td><a target="_new" href="http://lbs.supermapcloud.com:8080/lbsweb"><img src="images/location1.jpg" width="200px" height="150px"/></a></td>
+                  <td><a target="_new" href="http://42.121.2.79:8010/orderSystem/login.html"><img src="images/fendan.jpg" width="200px" height="150px"/></a></td>
+                  <td><a target="_new" href="http://callcenter.supermapcloud.com/customerServiceSystem/login.html"><img src="images/shouhou.jpg"width="200px" height="150px"/></a></td>
+                  <td><a target="_new" href="http://www.supermapcloud.com/bm/map.html"><img src="images/market.jpg" width="200px"/></a></td>
+                </tr>
+                <tr>
+                  <td><a target="_new" href="http://lbs.supermapcloud.com:8080/lbsweb">超图位置监控服务</a></td>
+                  <td><a target="_new" href="http://42.121.2.79:8010/orderSystem/login.html">分单宝</a></td>
+                  <td><a target="_new" href="http://callcenter.supermapcloud.com/customerServiceSystem/login.html ">售后客服平台</a></td>
+                  <td><a target="_new" href="http://www.supermapcloud.com/bm/map.html">市场分析服务</a></td>
+              </tr>
+				</table>
+      </div>
+    <!--成功案例 end-->
+    <!--使用条款 start-->
+        <div id="context_6" style="display:none" >
+     		 <div class="mainTitle"><span>使用条款</span></div>
+             <div class="text">
+             	 <h2> API使用条款</h2>
+                <p> 感谢您使用超图地理信息云门户地图服务API！使用超图地理信息云门户地图服务API即表示您同意接受本“API使用条款”（以下称“条款”）以及超图地理信息云门户其他条款的约束。</p>
+   						 <h3>服务介绍</h3>
+    <p>超图地理信息云门户地图服务API由Javascript、Flex、Sliverlight、三维四种API构成，可让您在接受下述条款约束的情况下，在您的网站上显示超图地理信息云门户提供服务的地图图片；并可进行搜索服务、缓冲区分析、路径分析、地址匹配等服务。</p>
+    <p>在接受条款的情况下，您只可使用超图地理信息云门户地图服务API文档中所列明开放的API功能来对API相关服务数据的结果进行展示，不得直接存取、使用内部数据、图片、程序、模块或是任何其他超图地理信息云门户地图服务或功能。在接受使用条款约束的情况下，您可以在向最终用户提供其他信息的同时，使用API获得API相关服务数据。</p>
+    <p>要获得 API，您必须有超图地理信息云门户的帐户。向超图地理信息云门户提供您的帐户信息、服务网址并同意使用条款后，我们会向您发送一个由超图地理信息云门户系统自动分配的 Key ，该 Key 由字母数字组成，只与您的超图地理信息云门户帐户和服务网址相关。如地图 API 文档所述，您的服务必须使用含此 Key 的 HTML “script” 标记导入 超图地理信息云门户地图 API，否则超图地理信息云门户会因无效 Key 或无效网址而拦截请求。超图地理信息云门户对地图的数据和格式拥有完全和绝对的控制权。</p>
+    <p>在提供网络服务时，可能会对部分网络服务的用户收取一定的费用。在此情况下，北京超图软件股份有限公司会在相关页面上做明确的提示。如用户拒绝支付该等费用，则不能使用相关的网络服务。
+北京超图软件股份有限公司（以下简称“超图”）对于地图的数据与格式保有绝对的权利，有权在未事前通知您的情况下，拒绝向您或任何其他人提供服务。</p>
+   <p> 您必须保证：(i)您在开始使用服务时及使用服务期间，向超图提供的所有信息都是正确的和最新的；(ii)您具备必要的权利或授权，能够接受并履行使用条款；(iii)您承认使用条款具有书面协议的效力。</p>
+   <h3>照片图片</h3>
+   <p>可通过“服务”访问的超图地理信息云门户的地图图片可能含照片图片。您对此照片图片的使用仅限于在“服务”本身范围内向最终用户展示，展示方式、形式、格式以及外观都必须与“服务”中的相同。除了通过“服务”得到的照片图片原样，您不得，也不得允许其他人复制、分发、显示、更改或以其他方式使用此照片图片。超图保留自行判定您对通过“服务”得到的照片图片的显示方式是否符合本条要求的权利，并保留出于任何原因随时终止或暂停您对照片图片访问的权利，恕不另行通知。 </p>
+   <h3>修改</h3>
+   <p>超图保留发布API后续版本以及要求您获得并使用最新版API的权利。超图可能会随时在事先通知或不通知的情况下下修改使用条款，您可以随时在www.supermapcloud.com上查看最新版本的使用条款。如果您无法接受修改，可通过从网站中删除API来取消“服务”。如果您继续在任何网站上使用“服务”，将被视为接受修改。如果使用条款与超图网络服务使用协议条款发生冲突，以使用条款为准。</p>
+   <h3>适当行为和禁止途径</h3>
+   <p>如需使用本服务，您的网站所提供给用户的服务必须是开放给一般大众使用，并且是免费提供。</p>
+<p>使用本服务时，即表示您同意对于您的服务内容与行为，以及由此产生的任何后果承担完全的责任。使用本服务，您必须接受和遵守使用条款。您不得从事以下活动，也不得同意、授权或指示任何第三人从事包括但不限于以下内容的活动：</p>
+<p>违反《中华人民共和国电信条例》第五十七条规定或中华人民共和国其他法律、法规、规章制度的行为；</p>
+<p>约束或限制其他用户使用或享用超图地理信息云门户地图服务；</p>
+<p>出于任何非法或未经授权的目的使用超图地理信息云门户地图服务；</p>
+<p>删除超图地理信息云门户地图服务中包含的任何版权声明、商标声明或其他所有权声明；</p>
+<p>干扰或中断超图地理信息云门户地图服务或与超图地理信息云门户地图服务相连的服务器或网络，或违反任何与超图地理信息云门户地图服务相连网络的要求、程序、政策或法规；</p>
+<p>使用任何漫游器、抓取工具、网站搜索/检索应用程序或其他设备检索或索引超图地理信息云门户地图服务的任一部分，或出于任何未经授权的目的收集关于用户的信息；</p>
+<p>提交错误地明示或暗示此服务为超图地理信息云门户地图所属、赞助或认可的内容；</p>
+<p>宣扬或提供关于非法行为的说明信息、宣扬针对任何团体或个人的人身伤害；或传播任何病毒、蠕虫、缺陷、特洛伊木马或其他具有破坏性的内容。</p>
+<p>违反本使用条款。</p>
+<p>如果您有任何该条款禁止的行为活动超图有权切断您的服务使用，且对超图造成损害的，应承担赔偿责任。</p>
+
+             </div>
+      </div>
+    <!---使用条款 end-->
+    <!--常见问题 start-->
+    <div id="context_7" style="display:none">
+    	<div class="sidebar">
+      		<div class="sidebarTitle"><span>常见问题</span></div>
+     			<ul>
+				  <li><a href="#a_question_1">1.什么是地图API</a></li>
+				  <li><a href="#a_question_2">2.地图API提供了哪些功能</a></li>
+				  <li><a href="#a_question_3">3.坐标体系是否遵循国家对地理信息保密要求</a></li>
+				  <li><a href="#a_question_4">4.数据覆盖情况如何</a></li>
+				</ul>
+   		</div>
+		 
+		<div class="mainA">
+			<div class="mainTitle"><span>常见问题</span></div>
+			
+			<div class="text">
+				<a name="a_question_1"></a>
+				<h3>什么是地图API</h3>
+				<p>&nbsp;&nbsp;&nbsp; SuperMapCloud 地图API是由超图提供的地理位置服务接口，应用程序接口由JavaScript语言编写的，它能够帮助您在网站中方便的搭建基于地图应用程序。 SuperMapCloud 地图开放API提供了：构建地图的基本接口、本地搜索接口等，您可以根据自己的需要进行选择。</p>
+			</div>
+			
+			<div class="text">
+				<a name="a_question_2"></a>
+				<h3>地图API提供了哪些功能</h3>
+				<p>&nbsp;&nbsp;&nbsp; SuperMapCloud 地图提供了基本的地图构建；地点搜索；地址解析；反地址解析；公交、驾车路线搜索；绘制点线面等丰富的地图服务，具体的内容您可以参考 <a href="javascript:setTab('4',this);">示例</a> 或 详细阅读 <a href="http://www.supermapcloud.com/help/WebHelp_Pro/webhelp.htm" target="_new">参考手册</a> 进行进一步的了解。</p>
+			</div>
+			
+			<div class="text">
+				<a name="a_question_3"></a>
+				<h3>坐标体系是否遵循国家对地理信息保密要求</h3>
+				<p>&nbsp;&nbsp;&nbsp; SuperMapCloud 地图API对外接口的坐标系，都是经过国家测绘局加密处理，符合国家测绘局对地理信息保密要求。</p>
+			</div>
+			
+			<div class="text">
+				<a name="a_question_4"></a>
+				<h3>数据覆盖情况如何</h3>
+				<p>
+				<ul>
+				<li>1.&nbsp;全国范围内的地图底图；</li>
+				<li>2.&nbsp;300多个地级市，2000个多县/县级市的POI搜索；</li>
+				<li>3.&nbsp;200多个城市的公交换乘方案检索；</li>
+				<li>4.&nbsp;300多个城市的驾车方案检索。</li>
+				</ul>
+				</p>
+			</div>
+			
+		</div>
+    </div>
+    <!--常见问题 end -->
+</div>
+
+  <div class="footer">
+    <div class="wrapper">
+      <div class="line"></div>
+      <ul>         
+        <li style="padding-left: 0;width: 140px;">
+          <dl>
+            <dt>企业服务</dt>
+            <dd><a href="http://www.dituhui.com/aboutus" target="_blank">关于我们</a></dd>
+            <dd><a href="http://www.dituhui.com/joinus" target="_blank">加入我们</a></dd>
+            <dd><a href="http://www.dituhui.com/terms" target="_blank">使用条款</a></dd>
+            <dd><a href="/feedback" target="_blank">意见反馈</a></dd>
+          </dl>          
+        </li>
+        <li>
+          <dl>
+            <dt>移动下载</dt>
+            <dd><a href="http://e.dituhui.com/mobile/data/xundianguanli.apk" target="_blank">巡店管理</a></dd>
+            <dd><a href="http://e.dituhui.com/mobile/data/cheliangjiankong.apk" target="_blank">车辆监控</a></dd>
+          </dl>        
+        </li>
+        <li>
+          <dl>
+            <dt>友情链接</dt>
+            <dd><a href="http://www.dituhui.com" target="_blank">地图慧</a></dd>
+            <dd><a href="http://www.supermap.com/cn/" target="_blank">超图软件</a></dd>
+          </dl>        
+        </li>
+        <li style="width: 220px;">
+          <dl>
+            <dt>商务咨询</dt>
+            <dd><a href="javascript:void(0);" target="_blank">Ms 马 ： 150-1006-9501</a></dd>
+            <dd><a href="javascript:void(0);" target="_blank">Ms 张 ： 186-1829-9165</a></dd>
+          </dl>
+        </li>
+      </ul>
+      <div class="tele">
+        <p>400-966-1112</p><p>010-59896696</p>
+        <div>
+          <a class="btn btn-info btn-sm" href="http://wpa.qq.com/msgrd?v=3&uin=15101153138&site=qq&menu=yes" target="_blank">QQ客服>></a>
+          
+        </div>
+        <a class="btn btn-info btn-sm" href="http://weibo.com/supermapcloud" target="_blank">关注微博</a>
+      </div>
+
+      <div class="line" style="margin-top: 25px;"></div>
+      <div class="copyright">&copy;2015地图慧 京ICP证120611号 | 京ICP备11032883号-3 | 甲测资字11002074</div>
+
+    </div>
+  </div>
+</body>
+</html>

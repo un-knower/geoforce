@@ -1,0 +1,102 @@
+.theme-image {
+  background: url(img/banner.png) no-repeat scroll center;
+  height: 300px;
+}
+.infobox {
+  width: 1100px;
+  min-height: 600px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 50px auto;
+  padding-bottom: 50px;
+}
+.infobox .mtitle {
+  margin: 25px 15px 0;
+  background: url(img/icon_up.png) no-repeat 0 0;
+  padding-left: 50px;
+  font: normal normal normal 18px/38px 'microsoft yahei';
+  color: #000;
+}
+.infobox .sectitle {
+  margin: 25px 15px 0;
+  background: url(img/icon_info.png) no-repeat 12px 0;
+  padding-left: 50px;
+  font: normal normal normal 16px/38px 'microsoft yahei';
+  color: #000;
+}
+.infobox p {
+  font: normal normal normal 15px/30px 'microsoft yahei';
+}
+.infobox p.main-title {
+  margin: 25px 15px 0 65px;
+  font-size: 15px;
+  color: #333;
+}
+.infobox p.main-title.red {
+  font-size: 17px;
+  color: red;
+  font-weight: bold;
+}
+.infobox p.stitle {
+  margin: 25px 25px 0;
+  font-size: 15px;
+  color: #000;
+}
+.infobox p.ctitle {
+  margin: 25px 25px 0 65px;
+  font-size: 15px;
+  color: #000;
+}
+.infobox p.ctitle span.badge {
+  font-weight: normal;
+  background-color: #FACD89;
+  color: #000;
+  font-size: 14px;
+  padding: 12px 14px;
+  border-radius: 50%;
+}
+.infobox p.ctext {
+  margin: 15px 25px 0 65px;
+  font-size: 15px;
+  color: #333;
+}
+.infobox p.ctext .downlowdjs {
+  color: #0000ff;
+  text-decoration: none;
+}
+.infobox p.ctext .downlowdjs:hover {
+  text-decoration: underline;
+}
+.infobox p.code {
+  margin: 10px 100px 0;
+  color: #47565F;
+  font-size: 14px;
+  font-style: italic;
+}
+.infobox p .blue {
+  color: #1CA1E2;
+}
+.infobox .res {
+  font: normal normal normal 15px/30px 'microsoft yahei';
+  width: 1050px;
+  margin: 5px 25px 0;
+  font-size: 16px;
+  color: #666;
+}
+.infobox .dash-line {
+  width: 1070px;
+  height: 1px;
+  border-top: 1px dashed #bbb;
+  margin: 25px 15px;
+}
+.infobox .link-demo {
+  color: #0000FF;
+  float: right;
+  margin: 15px 25px 0;
+  font: normal normal normal 15px/22px 'microsoft yahei';
+}
+.infobox .link-demo-content {
+  height: 40px;
+}
+/*# sourceMappingURL=css.css.map */

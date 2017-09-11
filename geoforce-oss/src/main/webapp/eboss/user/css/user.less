@@ -1,0 +1,101 @@
+.content {
+
+  .sliderbar-nav {
+    position: absolute;
+    width: 160px;
+    float: left;
+    margin: 0em;
+    padding-top: 5.8em; 
+  }
+
+  .content-right {
+    width: 1040px;
+    background-color: #fff;
+    height: 100%;
+    float: right;
+    border-left: 1px solid #dae3e9;
+    border-right: 1px solid #dae3e9;
+
+    .tab-contentbody {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 50px;
+      border: none;
+      display: none;
+
+      .tab-header {
+        padding: 0;
+        width: 100%;
+
+        select {
+          padding: 4px 2px;
+        }
+
+        .input-group {
+          width: 320px;
+          float: right;
+
+          &.lg {            
+            width: 345px;
+          }
+
+          & > input {
+            font: normal normal normal 12px/20px 'microsoft yahei';
+            height: 30px;
+          }
+
+          & > span {
+            & > button {
+              padding: 4px 10px;
+            }
+          }
+        }
+
+        .select-searchtype {
+          float: right;
+          margin: 0 10px;
+          font: normal normal normal 12px/20px 'microsoft yahei';
+        }
+
+        .col {
+          float: left;
+          margin-right: 10px;
+          label {
+            font: normal normal normal 12px/30px 'microsoft yahei';
+            margin: 0;
+          }
+          select {
+            font: normal normal normal 12px/20px 'microsoft yahei';
+            margin: 0;
+          }
+
+          .date {
+            background-color:#fff;
+            cursor: pointer;
+            width: 85px;
+            height: 26px;
+            padding: 0 2px;
+            font: normal normal normal 12px/20px 'microsoft yahei';
+            margin: 0;
+          }
+          .to {
+            font: normal normal normal 12px/30px 'microsoft yahei';
+          }
+        }
+      }
+
+      .loader {
+        width: 100%;
+        height: 100px;
+        text-align: center;
+        font: normal normal normal 14px/100px 'microsoft yahei';
+        color: #999;
+        display: none;
+        &.show {
+          display: block;
+        }
+      }
+    }
+  }
+}

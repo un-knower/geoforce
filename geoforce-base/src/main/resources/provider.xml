@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+	<dubbo:application name="provider_base" />
+
+ 	<!--使用zookeeper注册中心暴露服务地址 -->
+	<dubbo:registry  protocol="zookeeper"  address="10.168.191.19:2181" />
+	<dubbo:protocol port="20821"/>
+	<dubbo:service interface="com.supermap.egispservice.base.service.UserRoleMapService" version="2.5.3" ref="userRoleMapService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="userRoleMapService" class="com.supermap.egispservice.base.service.impl.UserRoleMapServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.base.service.InfoRoleService" version="2.5.3" ref="infoRoleService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="infoRoleService" class="com.supermap.egispservice.base.service.impl.InfoRoleServiceImpl" />
+
+	<dubbo:service interface="com.supermap.egispservice.base.service.InfoRoleFunctionService" version="2.5.3" ref="infoRoleFunctionService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="infoRoleFunctionService" class="com.supermap.egispservice.base.service.impl.InfoRoleFunctionServiceImpl" />
+
+	<dubbo:service interface="com.supermap.egispservice.base.service.DemoService" version="2.5.3" ref="demoService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="demoService" class="com.supermap.egispservice.base.service.impl.DemoServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.base.service.UserService" version="2.5.3" ref="userService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="userService" class="com.supermap.egispservice.base.service.impl.UserServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.base.service.InfoDeptService" version="2.5.3" ref="infoDeptService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="infoDeptService" class="com.supermap.egispservice.base.service.impl.InfoDeptServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.base.service.IOrderHistoryService" version="2.5.3" ref="orderHistoryService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="orderHistoryService" class="com.supermap.egispservice.base.service.impl.OrderHistoryServiceImpl" />
+	
+	
+	<!-- 日志管理 -->
+	<dubbo:service interface="com.supermap.egispservice.base.service.SysLogService" version="2.5.3" ref="sysLogService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="sysLogService" class="com.supermap.egispservice.base.service.impl.SysLogServiceImp" />
+	
+	
+	<dubbo:service interface="com.supermap.egispservice.base.service.ISysUpdateLogService" version="2.5.3" ref="sysUpdateLogService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="sysUpdateLogService" class="com.supermap.egispservice.base.service.impl.SysUpdateLogServiceImpl" />
+	
+	
+	<!-- EBOSS -->
+	<dubbo:service interface="com.supermap.egispservice.base.service.IOrderService" version="2.5.3" ref="orderService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="orderService" class="com.supermap.egispservice.base.service.impl.OrderServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.base.service.IPrivilegeService" version="2.5.3" ref="privilegeService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="privilegeService" class="com.supermap.egispservice.base.service.impl.PrivilegeServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.base.service.IRoleService" version="2.5.3" ref="roleService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="roleService" class="com.supermap.egispservice.base.service.impl.RoleServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.base.service.IServiceModuleService" version="2.5.3" ref="serviceModuleService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="serviceModuleService" class="com.supermap.egispservice.base.service.impl.ServiceModuleServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.base.service.IStaffService" version="2.5.3" ref="staffService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="staffService" class="com.supermap.egispservice.base.service.impl.StaffServiceImpl" />
+	
+	<!-- PORTAL -->
+	<dubbo:service interface="com.supermap.egispservice.base.service.IPhoneService" version="2.5.3" ref="phoneService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="phoneService" class="com.supermap.egispservice.base.service.impl.PhoneServiceImpl" />
+	
+	<dubbo:service interface="com.supermap.egispservice.base.service.IMailService" version="2.5.3" ref="mailService"  timeout="30000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
+	<bean id="mailService" class="com.supermap.egispservice.base.service.impl.MailServiceImpl" />
+	
+	
+</beans>

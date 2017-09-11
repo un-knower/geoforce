@@ -1,0 +1,13 @@
+﻿
+// @koala-prepend "../../bootstrapslider/bootstrap-slider.min.js"
+// @koala-prepend "../../assets/js/jquery.form.js"
+// @koala-prepend "map.js"
+// @koala-prepend "Page.js"
+// @koala-prepend "branch-style.js"
+// @koala-prepend "mobile-point.js"
+// @koala-prepend "cars.js"
+// @koala-prepend "changeMap.js"
+// @koala-prepend "layerEdit.js"
+// @koala-prepend "point.pictures.js"
+// @koala-prepend "../public/baidu.map.js"
+// @koala-prepend "../public/dth.map.js"

@@ -1,0 +1,253 @@
+/*-------------------------header  start-------------------------*/
+#header {
+	width: 100%;
+}
+.nav{ text-align:right;height:24px; line-height:24px;}
+.nav a{ color:#5C5C5C; margin-right:8px; text-decoration:none;}
+.nav a:hover{ text-decoration:underline; color:#0037A8}
+.logo{ 
+	float:left; padding-right:6px; margin-left:60px;position: relative;
+	min-width: 180px;
+}
+.logo img {
+  position: absolute;left: 0;
+  cursor: pointer;
+}
+.logo i {
+  position: absolute;
+  top: 5px;
+  left: 53px;
+  background: none repeat scroll 0 0 #00bcd4;
+  height: 45px;
+  vertical-align: middle;
+  width: 2px;
+  margin: 0;
+}
+.logo span {
+  font-size: 28px;
+  font-family: 'microsoft yahei', 'simsun';
+  position: absolute;
+  top: 15px;
+  left: 65px;
+  display: inline-block;
+  min-width: 140px;
+  color: #00bcd4;
+  cursor: pointer;
+}
+
+.PoiTab{ float:left; text-align:left; margin-bottom:6px; margin-bottom:0\9;margin-top:16px;}
+.SearchInput{ border:2px solid #3997D4; height:32px; line-height:32px; vertical-align:middle;}
+.Search{ clear:both; overflow:hidden; padding: 5px 0 3px 0;}
+.TabList{ height:23px; overflow:hidden; margin:0; padding:0; padding-bottom:8px; margin-top:-1px;}
+.TabList li{ float:left; list-style:none; width:57px; height:23px; line-height:23px; text-align:center; overflow:hidden; margin-right:3px; font-weight:bold; font-size:116%; border:1px solid #A8D4DD; border-top:none; cursor:pointer;}
+.searchTabSelect{ background-color:#3199E0; color:#FFFFFF; padding-bottom:2px; }/*鼠标点击效果*/
+.searchTabHover{ background-color:#D6E9F7; border:1px solid #A8D4DD;}/*鼠标经过效果*/
+/*-------------------------hender  end-------------------------*/
+
+.main{  border-top:0px solid #CDCDCD; 
+		clear:both;width:100%; height:100%; overflow:hidden;
+}
+
+.sidebar{ width:340px; background-color:#FFFFFF;height:100%; float:left; text-align:left;}
+.div_recommendPanel{ margin-left:20px;}
+.title{ text-align:left; margin-left:20px; font-size:116%; font-weight:bold; padding-top:10px;}
+.title a{ float:right; font-size:12px; font-weight:normal; color:#0000FF; text-decoration:underline; padding-right:20px;text-decoration:none;}
+.searchTist{ text-align:left; margin-left:16px; margin-top:15px;}
+.searchTist li{ float:left; width:124px; height:32px; line-height:32px; padding-right:1px 10px 0 1px; padding-top:6px\9;cursor:pointer}
+.repast img{ width:14px; height:19px;background-image:url(../images/city.gif);background-position:0 0;background-repeat: no-repeat; margin-right:6px;  }
+.hotel a img{width:16px; height:19px;background-image:url(../images/city.gif);background-position:-15px 0;background-repeat: no-repeat; margin-right:6px;    }
+.market a img{width:16px; height:19px;background-image:url(../images/city.gif);background-position:-36px 0;background-repeat: no-repeat; margin-right:6px;   }
+.hospital a img{width:16px; height:19px;background-image:url(../images/city.gif);background-position:-58px 0;background-repeat: no-repeat;  margin-right:6px;  }
+.movie a img{width:16px; height:19px;background-image:url(../images/city.gif);background-position:-80px 0;background-repeat: no-repeat;  margin-right:6px;  }
+.tickets a img{width:16px; height:19px;background-image:url(../images/city.gif);background-position:-98px 0;background-repeat: no-repeat;  margin-right:6px;   }
+.bank a img{width:16px; height:19px;background-image:url(../images/city.gif);background-position:-116px 0;background-repeat: no-repeat; margin-right:6px; }
+.viewpoint a img{width:16px; height:19px;background-image:url(../images/city.gif);background-position:-134px 0;background-repeat: no-repeat; margin-right:6px;  }
+.school a img{width:18px; height:19px;background-image:url(../images/city.gif);background-position:-154px 0;background-repeat: no-repeat; margin-right:6px;  }
+.gas a img{width:18px; height:19px;background-image:url(../images/city.gif);background-position:-174px 0;background-repeat: no-repeat; margin-right:6px; }
+.weather{ text-align:left;}
+.idea{
+	color:#999999;
+	margin:6px;
+	position:absolute;
+	left: 5px; bottom:10px; bottom:30px\9
+}
+.idea a{color:#999999; text-decoration:underline;}
+.map{ float:left; width:76%;}
+
+.tools{	
+	background-image:url(../images/map/navbar_background.gif);
+	background-repeat: repeat-x;
+	background-position: left top;
+	height:32px; line-height:32px; width:100%;
+	position:relative;top:0px; z-index:999;
+	border-left: 1px solid #e6e6e6;
+}
+.left_nav_background { 
+	background-image:url(../images/map/navbar_background.gif);
+	background-repeat: repeat-x;
+	background-position: left top;
+	height:32px; width:100%; line-height:24px;
+	position:relative;top:0px; z-index:999;
+}
+
+
+.area{ text-align:left; margin-left:10px; float:left;}
+.area a{ color:#0000FF; text-decoration:none;}
+.tools_r_con{ float:right; height:30px; line-height:30px;  margin-right:10px; text-align: center; padding-top:4px\9;}
+/*.tools_r_con ul li{ float:left; margin-right:5px; cursor:pointer; margin-top:4px\9;}*/
+.tools_r_con ul li a{color:#176293; text-decoration:none; padding:3px; padding:0 3px 0 3px\9; }
+.tools_r_con ul li a img{vertical-align: middle; padding-right:2px;}
+.tools_r_con ul li a:hover{border:1px solid #CCCCCC; background-color:#EAF4FB;  outline:none; outline:0;}
+#pointTools_r_con{ border:1px solid #7A9BC9; background-color:#C7E2F3; color:#176293;}/*鼠标经过效果*/
+/*------------------------------------地图样式 start-------------------------------------*/
+.MapWrap{ background-color:#F0F0F0; width:100%; height:100%;}/*地图背景*/
+
+.mapinfo_but{ position:absolute;background:transparent;z-index:2; width:16px; height:49px; cursor:pointer; top:200px; left:-2px;}
+
+
+.hot_popup{ display:none; background-color:#FFFFFF; border:1px solid #999999; width:414px; height:329px; position:absolute; z-index:999; left:300px; top:115px; text-align:left;}
+.hot_title{ background-color:#F9F9F9; height:26px; line-height:26px; width:404px; width:414px\9; border-bottom:1px solid #DADADA; text-align:left; padding-left:10px;}
+.hot_title span{ float:left;}
+.hot_title em{ float:right; margin-right:10px; margin-top:8px; cursor:pointer;}
+.hot_main{ margin-left:10px; margin-top:6px;}
+.hot_sec input{ margin-left:6px;border:2px solid #3997D4; height:23px; line-height:23px; width:248px;}
+.hot_sec img{ margin-left:4px; margin-bottom:6px; margin-bottom:8px\9;}
+.hot_list dl dt{ color:#216075; clear:both; font-weight:bold; }
+.hot_list dl dd ul li{ float:left; margin-right:8px; color:#4677F4; margin-top:4px; margin-bottom:4px; text-decoration:underline; cursor:pointer; line-height:19px; height:19px; white-space:nowrap;text-decoration:none}
+
+/*------------------------------------地图样式 end-------------------------------------*/
+/*--POI结果列表样式--*/
+.poiPanel{padding: 12px}
+.poi_info_item{line-height: 2}
+/*------------------------------------公交换乘 start-----------------------------------*/
+.path_box1{ background-color:#F4F5F5;font-size:12px; font-family:arial,"宋体",sans-serif; border:1px solid #CCCCCC; margin-right:4px;}
+.path_box1 div{ margin-bottom:10px;}
+.path_name{padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; font-weight: bold; cursor:pointer;}
+.route_top{color: #569cf1; padding:4px 6px 4px 6px; margin:3px 0 3px 0; text-align:right;cursor: pointer; clear:both; overflow:hidden}
+.route_top span{ margin-right:10px;}
+.line{height:2px; background-image:url(../images/bus/line.gif);background-repeat: repeat-x;background-position: left top;}
+.taxiCost{ color:#569CF1; padding-left:8px; }
+.taxiCost img{ margin-left:8px; margin-right:8px; }
+.taxiCos span{padding:4px 6px;padding:4px 6px;}
+#current{ color:#000000; font-weight:bold; }
+.con{ border:0px solid #CCCCCC; font-family:arial,"宋体",sans-serif; font-size:12px; margin-top:8px; margin-right:4px;}
+
+
+.title{ font-weight:bold; cursor:pointer; padding:4px;font-size:12px;}
+.title span{ margin-right:0.5px;}
+.title img{ margin-right:4px;}
+
+.msg{ text-align:right; color:#838282; height:24px;}
+.msg span{ margin-right:4px;}
+.info p{ margin:0; padding:0; padding-left:10px; color:#4B4B4B; cursor:pointer; line-height:30px;}
+.info p img{ margin-right:8px;}
+.info_title{ margin-left:4px; clear:both;}
+.info_title img{margin-right:8px;}
+.con_title{padding:8px 0 0 8px;}
+.con_title img{margin-right:8px;}
+.color{color: #569CF1;}
+.num{
+	background-image:url(../images/bus/Route_num.png);
+	background-repeat: no-repeat;
+	background-position: 10px 5px;
+	padding-top:5px;
+	color:#FFFFFF;
+	width: 30px;
+	height: 20px;
+	text-align: center;
+	line-height: 19px;
+	font-weight: bolder;
+
+ }
+ .num span{ margin-left:10px;}
+.cursor{ cursor:pointer}
+#click{ background-color:#F2F2F2}
+.stmc{text-align:right; color:#569CF1; margin-right:10px;}
+.stmc a{margin-right:8px;}
+.ico{ border:none; margin-left:10px; margin-right:8px; margin-top:6px; }
+.BusProjectItemText{cursor:pointer;}
+.BusProjectItemText td{ padding:4px 0 4px 4px;line-height:20px;}
+.BusProjectItemText th{vertical-align:top;}
+/*------------------------------------公交换乘 end-----------------------------------*/
+
+.shaddow_horizon {
+	top: 32px;
+	left: 0px;
+	width: 100%;
+	height: 6px;
+	z-index: 999999;
+	background: url(../images/map/shaddow.png) repeat-x scroll 0 0 rgba(0, 0, 0, 0);
+	position:absolute;
+}
+.shaddow_vertical {
+	background: url(../images/map/shaddow_vertical.png) repeat-y scroll 0 0 rgba(0, 0, 0, 0);
+    font-size: 0;
+    height: 100%;
+    left: 0px;
+    top: 36px;
+    width: 4px;
+	position: absolute;
+	z-index:9999;
+}
+
+.divLayerSwitcher{
+	position: absolute;
+	right: 30px;
+	top: 50px;
+	width: 70px;
+	height: 70px;
+	z-index:9999;
+	cursor: pointer;
+	border: 1px solid #708090;
+}
+.divLayerSwitcher img{
+	position:absolute;
+	width:100%;
+	left:0px;
+	top:0px;
+}
+.divLayerSwitcher span{
+	background-color:#F2F2F2;
+	width:100%;
+	height:20px;
+	bottom:0px;
+	left:0px;
+	position:absolute;
+	color:#000;
+	text-align: center;
+	line-height:20px;
+	border-top:1px solid #CCCCCC;
+}
+
+
+div.smControlMousePosition {
+    bottom: 0em;
+    right: 220px;
+    display: block;
+    position: absolute;
+    font-family: Arial;
+    font-size: 12px;
+    padding: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

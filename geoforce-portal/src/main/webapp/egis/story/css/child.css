@@ -1,0 +1,232 @@
+.content {
+  width: 1100px;
+  min-height: 500px;
+  margin: 50px auto;
+  padding: 50px 70px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.intro-container {
+  width: 700px;
+  height: 100%;
+  float: left;
+}
+.intro-container > .title {
+  padding: 6px 0 28px 0;
+}
+.intro-container > .title .main {
+  color: #212121;
+  font: normal normal normal 24px/30px 'microsoft yahei';
+}
+.intro-container > .title .sub {
+  color: #666;
+  font: normal normal normal 24px/30px 'microsoft yahei';
+}
+.intro-container > .keyword {
+  margin-bottom: 18px;
+  color: #6e6e6e;
+  font: normal normal normal 14px/20px 'microsoft yahei';
+}
+.intro-container > p.text {
+  color: #212121;
+  font: normal normal normal 14px/24px 'microsoft yahei';
+  text-indent: 30px;
+  margin: 10px 0;
+}
+.intro-container > p.title-a {
+  color: #555;
+  margin: 30px 0 15px 0;
+  font: normal normal bold 20px/30px 'microsoft yahei';
+}
+.intro-container > p.items {
+  color: #212121;
+  font: normal normal normal 14px/24px 'microsoft yahei';
+  margin: 15px 0;
+}
+.intro-container > p.title-b {
+  color: #444;
+  margin: 20px 0;
+  font: normal normal bold 16px/30px 'microsoft yahei';
+  text-indent: 34px;
+}
+.intro-container > p.quhua {
+  width: 100%;
+  height: 600px;
+  text-indent: 0;
+  background: #fff url(imgs/quhua.jpg) no-repeat scroll center;
+}
+.intro-container > p.branch {
+  width: 100%;
+  height: 520px;
+  text-indent: 0;
+  background: #fff url(imgs/branch.png) no-repeat scroll center;
+}
+.intro-container > p.path {
+  width: 100%;
+  height: 420px;
+  text-indent: 0;
+  background: #fff url(imgs/path.jpg) no-repeat scroll center;
+}
+.intro-container > p.zjs-zone {
+  width: 100%;
+  height: 550px;
+  background: #fff url(imgs/zjs-zone.png) no-repeat scroll top;
+}
+.intro-container > p.zjs-fendan {
+  width: 100%;
+  height: 500px;
+  text-indent: 0;
+  background: #fff url(imgs/zjs-fendan.png) no-repeat scroll top;
+}
+.intro-container > p.zjs-address {
+  width: 100%;
+  height: 580px;
+  text-indent: 0;
+  background: #fff url(imgs/zjs-address.png) no-repeat scroll top;
+}
+.intro-container > p.yh-cars {
+  width: 100%;
+  height: 600px;
+  text-indent: 0;
+  background: #fff url(imgs/cars.jpg) no-repeat scroll top;
+}
+.intro-container > p.yh-path {
+  width: 100%;
+  height: 550px;
+  text-indent: 0;
+  background: #fff url(imgs/yh-path.jpg) no-repeat scroll top;
+}
+.intro-container > p.yh-flex {
+  width: 100%;
+  height: 290px;
+  text-indent: 0;
+  background: #fff url(imgs/yh-flex.jpg) no-repeat scroll top;
+}
+.intro-container > p.yh-flex-1 {
+  width: 100%;
+  height: 250px;
+  text-indent: 0;
+  background: #fff url(imgs/yh-flex1.jpg) no-repeat scroll top;
+}
+.intro-container > p.img-name {
+  width: 100%;
+  text-align: center;
+  color: #444;
+  font: normal normal bold 12px/20px 'microsoft yahei';
+  margin-bottom: 50px;
+}
+
+.intro-right {
+  position: fixed;
+  top: 200px;
+  width: 200px;
+  display: none;
+  min-height: 350px;
+  overflow: hidden;
+  float: right;
+  padding: 0 0 0 30px;
+}
+.intro-right .logo {
+  width: 135px;
+  height: 100px;
+  background: #fff url(imgs/haier-bg.jpg) no-repeat center center;
+}
+.intro-right .logo-fdb {
+  width: 135px;
+  height: 100px;
+  background: #fff url(imgs/zjs-bg.jpg) no-repeat center center;
+}
+.intro-right .logo-zxt {
+  width: 135px;
+  height: 100px;
+  background: #fff url(imgs/yh.jpg) no-repeat center center;
+}
+.intro-right .link {
+  width: 135px;
+  margin: 20px 0;
+  text-align: center;
+}
+.intro-right .link > a {
+  color: #444;
+  font: normal normal normal 14px/30px 'microsoft yahei';
+  cursor: pointer;
+}
+.intro-right .link > a:hover {
+  color: #444;
+  text-decoration: underline;
+}
+.intro-right ul {
+  width: 100%;
+  border-left: 1px solid #999;
+  padding: 15px 0;
+  margin: 0 0 0 18px;
+}
+
+.intro-right ul > li {
+  width: 100%;
+  height: 30px;
+  padding: 0 0 0 40px;
+  margin: 0 0 0 -10px;
+}
+.intro-right ul > li > span {
+  cursor: pointer;
+  font: normal normal normal 15px/30px 'microsoft yahei';
+}
+.intro-right ul > li.normal {
+  color: #666;
+  background: transparent url(imgs/circle.png) no-repeat 4px center;
+}
+.intro-right ul > li.action {
+  color: #222;
+  background: transparent url(imgs/slider.png) no-repeat 0 center;
+}
+.intro-right ul > li.normal > span:hover {
+  color: #444;
+}
+
+
+
+.contact {
+  width: 1100px;
+  margin: 0 auto;
+  height: 250px;
+}
+.contact p{
+  margin: 80px 0 60px 0;
+  font-size: 20px;
+  font-family: 'microsoft yahei';
+  color: #252525;
+  font-weight: bold;
+}
+.contact .icol {
+  width: 380px;
+  float: left;
+  border-bottom: 1px solid #00bcd4;
+}
+.contact .text-input {
+  border: none;
+  width: 260px;
+  font-size: 18px;
+  font-family: 'microsoft yahei';
+  margin: 5px 0 10px 0;
+  background-color: transparent;
+  padding-left: 0;
+  box-shadow: inset 0 0px 0px rgba(0,0,0,0.075);
+  outline: 0;
+  margin-left: 30px;
+}
+.contact .labelfor {
+  font-size: 18px;
+  font-family: 'microsoft yahei';
+  color: #252525;
+  line-height: 20px;
+}
+#btn_saveInfo {
+  float: left;
+  margin-left: 40px;
+  font-size: 18px;
+  font-family: 'microsoft yahei';
+  padding: 10px 30px;
+}

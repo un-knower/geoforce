@@ -1,0 +1,11 @@
+
+// @koala-prepend "DrawFeature.js"
+// @koala-prepend "map.js"
+// @koala-prepend "page.js"
+// @koala-prepend "LayerEdit.js"
+// @koala-prepend "measure.js"
+// @koala-prepend "pathregion.js"
+// @koala-prepend "rightmenu.js"
+// @koala-prepend "select-user.js"
+// @koala-prepend "select-related-region.js"
+// @koala-prepend "admin-region.js"

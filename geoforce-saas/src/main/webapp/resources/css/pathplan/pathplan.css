@@ -1,0 +1,855 @@
+ul, ol, li {
+  list-style-type: none;
+  margin: 0;
+}
+.widget-header .tools {
+  float: right;
+  margin-right: 15px;
+}
+.tools > ul.nav-tools {
+  margin: 7px 25px 0 0;
+}
+.tools > ul.nav-tools > li {
+  float: left;
+  position: relative;
+}
+a.tool-button {
+  display: inline-block;
+  width: 60px;
+  height: 26px;
+  margin-right: 10px;
+  border: 1px solid transparent;
+  text-align: center;
+  color: #222;
+  font: normal normal normal 12px/22px 'microsoft yahei';
+}
+a.tool-button:hover {
+  border: 1px solid #ddd;
+  text-decoration: none;
+  color: #222;
+}
+a.tool-button:active {
+  background-color: #ddd;
+  text-decoration: none;
+  color: #222;
+}
+
+a.tool-button > img {
+  margin-right: 5px;
+}
+a.tool-button > img.img-2 {
+  margin-top: -2px;
+}
+a.tool-button > img.img-3 {
+  margin-top: -3px;
+}
+
+/*线路规划设置工具栏*/
+.toolbar-path {
+  position: absolute;
+  left: 30%;
+  top: 46px;
+  width:auto;
+  height: 40px;
+  border: 1px solid #ddd;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,.5);
+  background: #fff;
+  z-index: 9999;
+}
+
+.toolbar-path .step {
+  position: relative;
+  float: left;
+  width:auto;
+}
+
+.toolbar-path .step .lead-button {
+  width: 100px;
+  max-width: 100px;
+  float: left;
+  margin: 0 0 0 25px;
+  font: normal normal 400 14px/40px 'microsoft yahei';
+  color: #666;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.toolbar-path .step .lead-button:hover {
+  color: #428bca;
+}
+.toolbar-path .step.third .lead-button {
+  margin: 0;
+}
+
+.toolbar-path .step .i-triangle {
+  float: left;
+  margin: 0 25px 0 5px;
+  line-height: 40px;
+}
+
+.toolbar-path .i-guide {
+  width: 13px;
+  height: 6px;
+  float: left;
+  margin-top: 17px;
+}
+
+.toolbar-path .go-pathplan {
+  width: 100px;
+  height: 41px;
+  float: left;
+  margin: -1px -2px 0 0;
+  background: #0095FF;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font: normal normal 400 14px/40px 'microsoft yahei';
+  color: #f6f6f6; 
+  text-align: center;
+  cursor: pointer;
+}
+.toolbar-path .go-pathplan:hover {
+  color: #fff;
+}
+
+.toolbar-path .third {
+  margin-right: 10px;
+}
+.toolbar-path .step .popup {
+  position: absolute;
+  top: 38px;
+  z-index: 2;
+  width:380px;
+  display:none; 
+}
+.toolbar-path .step.first .popup {
+  left: 0;
+} 
+.toolbar-path .step.second .popup {
+  left: -70px;
+}
+.toolbar-path .step.second .popup > .triangle-head {
+  padding-left: 140px;
+}
+.toolbar-path .step.third .popup {
+  left: -170px;
+}
+.toolbar-path .step.third .popup > .triangle-head {
+  padding-left: 220px;
+}
+input.text-setting {
+  width: 130px;
+  font: normal normal normal 12px/20px 'microsoft yahei';
+}
+span.lbl {
+  font: normal normal 400 13px/22px 'microsoft yahei'; 
+}
+span.ask-tooltip {
+  position: relative;
+  font: normal normal bold 22px/24px 'microsoft yahei';
+  color: #EC5E00;
+  cursor: pointer;
+}
+span.ask-tooltip:hover {
+  text-shadow: 0 0 3px rgba(0,0,0,.5);
+}
+.tooltip-inner {
+  max-width: 200px;
+  text-align: left;
+  text-indent: 24px;
+  border-radius: 5px;
+}
+
+#branchlist_title {
+	font-family: 'microsoft yahei';
+	background: url(title-branchlist.png) no-repeat 0 0;
+	padding-left: 28px;
+  height: 24px;
+}
+
+
+#branchlist_title > label{
+	font-size: 10px;
+	margin-left: 5px;
+}
+
+#pathSettingBtn > i{
+	margin: 0 1px;
+}
+
+.star {
+	color: red;
+}
+
+
+#t_grid-table,#t_grid-table-step1,#t_grid-table-step2,#t_grid-table-step3{
+	padding: 5px;
+	height:50px;
+}
+div[id^="SuperMap.Map_"] {
+	z-index: 1;
+}
+img[id$="_innerImage"] {
+	cursor: pointer;
+}
+.popover-content {
+  font-size: 14px;
+  font-family: "microsoft yahei";
+  color: #fff;
+}
+
+
+.pathResultWindow {
+  position: absolute;
+  right: 12px;
+  top: 38px;
+  z-index: 2;
+  width: 300px;
+
+  display: none;
+}
+
+.pathResultWindowBodyMain {
+  height: 150px;
+  overflow-y: auto;
+}
+
+.path-badge {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  margin: 5px 0 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.path-badge:hover {
+  box-shadow: 0 0 5px rgba(0,0,0,.5);
+}
+.path-badge > .badge-title {
+  width: 100%;
+  height: 25px;
+  padding: 0;
+  font: normal normal normal 12px/25px 'microsoft yahei';
+  color: #fff;
+  text-align: center;
+}
+.path-badge > .orders-count {
+  width: 100%;
+  height: 25px;
+  padding: 0;
+  font: normal normal 700 14px/15px 'microsoft yahei';
+  color: #fff;
+  text-align: center;
+}
+.pathDivTitle {
+  width: 100%;
+  height: 32px;
+  border-radius: 0;
+  background-color: #D9EDF7;
+  margin: 5px 0 2px 0;
+  font-family: 'microsoft yahei';
+}
+.pathDivTitle > ul {
+  width: auto;
+  height: 32px;
+  float: left;
+  margin: 0 0 0 5px;
+}
+.pathDivTitle > ul > li {
+  float: left;
+  width: 70px;
+  height: 32px;
+  text-align: center;
+}
+.pathDivTitle > ul > li.normal {
+  color: #333;
+  font: normal normal normal 14px/32px 'microsoft yahei';
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+}
+.pathDivTitle > ul > li.normal:hover {
+  color: #0096FF;
+}
+.pathDivTitle > ul > li.action {
+  color: #0096FF;
+  font: normal normal 700 14px/32px 'microsoft yahei';
+  border-bottom: 3px solid #0096FF;
+  cursor: default;
+}
+
+.pathDivTitle > a.print-orders {
+  float: right;
+  margin: 0 10px;
+  color: #333;
+  font: normal normal normal 14px/32px 'microsoft yahei';
+  text-decoration: none;
+}
+.pathDivTitle > a.print-orders:hover {
+  color: #0096FF;
+  text-decoration: none;
+}
+.pathInfoesContent {
+  height: auto;
+}
+.pathInfoesContent .content {
+
+}
+.orders-detail {
+  display: block;
+  padding: 5px;
+}
+.orders-detail > .title {
+  color: #000;
+  font: normal normal normal 14px/32px 'microsoft yahei';  
+}
+.orders-detail > .subtitle {
+  width: 100%;
+  height: 32px;
+}
+.orders-detail > .subtitle span {
+  color: #666;
+  font: normal normal normal 14px/32px 'microsoft yahei';
+}
+.orders-detail > .subtitle strong {
+  color: #333;
+  font: normal normal 700 16px/32px 'microsoft yahei';
+}
+.orders-detail > .subtitle .left {
+  float: left;
+}
+.orders-detail > .subtitle .right {
+  float: right;
+}
+.orders-detail p,
+.paths-detail p {
+  margin: 0;
+  font: normal normal normal 14px/32px 'microsoft yahei';  
+}
+.orders-detail > .list-orders {
+  width: 100%;
+}
+.orders-detail > .list-orders .item {
+  width: 100%;
+  height: auto;
+  padding: 7px;
+  border-top: 1px solid #ddd;
+  color: #333;
+  overflow: hidden;
+}
+.orders-detail > .list-orders .item:last-child {
+  border-bottom: 1px solid #ddd;
+}
+.orders-detail > .list-orders .item .xuhao {
+  width: 40px;
+  float: left;
+  font: normal normal normal 16px/24px 'microsoft yahei';
+}
+.orders-detail > .list-orders .item .content {
+  width: 250px;
+  height: auto;
+  max-width: 180px;
+  float: left;
+  font: normal normal normal 16px/24px 'microsoft yahei';
+}
+
+.paths-detail {
+  display: none;
+  padding: 5px;
+}
+
+
+.popover-result {
+  position: absolute;
+  bottom: 60px;
+  left: ~"calc((100% - 300px)*0.5)";
+  display: none;
+  margin: 0 auto;
+  min-width: 300px;
+  max-width: 300px;
+  text-align: center;
+  background-color: #666;
+  border-radius: 4px;
+  z-index: 80010;
+  
+  .popover-result-content {
+    font-size: 14px;
+    font-family: "microsoft yahei";
+    color: #fff;
+    width: auto;
+    padding: 8px 10px;
+    margin: 0 auto;
+  }
+}
+
+/* 信息窗使用的样式 */
+
+.infowindowpopup {
+	
+}
+.infowindowTitle {
+	background-color: #F9F9F9;
+  height: 30px;
+  line-height: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+	border-bottom: 1px solid #CCCCCC;
+	font-family: 'microsoft yahei';
+}
+.infowindowTitleTxt {
+	color: #4D4D4D;
+    font-size: 14px;
+    font-weight: bold;
+    overflow: hidden;
+    padding-left: 11px;
+    white-space: nowrap;
+    width: 100px;
+	font-family: 'microsoft yahei';
+}
+.infowindowContent {
+	overflow: hidden;
+    padding: 9px 11px 6px 9px;
+	text-align: left;
+	font-family: 'microsoft yahei';
+}
+.infowindowContent div {
+	padding: 0;
+	text-align: left;
+	font: 12px arial,SimSun,sans-serif;
+	font-family: 'microsoft yahei';
+}
+.infowindowContentTable {
+	margin-top: 2px;
+	color: #4D4D4D;
+	text-align: left;
+	margin: 2px;
+}
+.infowindowContentTable td {
+	line-height: 28px;	
+	font-family: 'microsoft yahei';
+	color: #555;
+}
+
+.infowindowContentTable td span{
+	width: 80px;
+	display: inline-block;
+}
+.infowindowContentTable td strong{
+	font-weight: normal;
+	color: #307ecc;
+}
+#topToolbarPathDiv_net_ok {
+	font-family: "microsoft yahei";
+}
+
+#netName_step3, #lot_step2_search, #carPlate_step1_search{
+	width: 260px;
+	padding-left: 33px;
+	border: 1px solid #ddd;
+	background: url(search-in-txt.png) no-repeat 9px center;
+	font-family: 'microsoft yahei';
+	display: inline-block;
+	margin: 6px 0 0 0;
+	float: left;
+}
+
+#search-step3, #search-step2, #search-step1 {
+	background: url(btn-search.png) no-repeat 0 0;	
+	width: 75px;
+	height: 30px;
+	padding: 0;
+	margin: 6px 0 0 10px;
+	border: none;	
+	display: inline-block;
+	float: left;
+}
+#search-step3:hover, #search-step2:hover, #search-step1:hover {
+	background: url(btn-search-hover.png) no-repeat 0 0;
+	border: none;	
+}
+#search-step3:active, #search-step2:active, #search-step1:active {
+	background: url(btn-search-down.png) no-repeat 0 0;	
+	border: none;	
+}
+
+
+.triangle-head{
+	padding-left: 70px;
+}
+.triangle{
+  width:0;
+  height:0;
+  border-width:5px;
+  border-style:solid dashed dashed dashed;
+  border-color: transparent transparent #0096ff transparent;
+}
+
+#orderlist_title {
+	font-family: 'microsoft yahei';
+	background: url(title-orderlist.png) no-repeat 0 0;
+	padding-left: 28px;
+	height: 24px;
+}
+
+#orderlist_title > label{
+	font-size: 10px;
+	margin-left: 5px;
+	font-family: 'microsoft yahei';
+}
+
+
+#settinglist-title {
+	font-family: 'microsoft yahei';
+	background: url(title-settinglist.png) no-repeat 0 0;
+	padding-left: 28px;
+	height: 24px;
+}
+
+#topToolbarPathDiv_setting_content {
+	min-height: 286px;
+	padding: 15px 0 0 20px;
+  overflow: hidden;
+}
+
+#topToolbarPathDiv_setting_content label {
+	font-family: 'microsoft yahei';
+}
+#topToolbarPathDiv_setting_content label.forinput {
+	font-family: 'microsoft yahei';
+	width: 150px;
+	text-align: left;
+}
+h4 {
+	font-family: 'microsoft yahei';	
+}
+#carlist-title {
+	font-family: 'microsoft yahei';
+	background: url(title-carlist.png) no-repeat 0 0;
+	padding-left: 40px;
+	height: 24px;	
+}
+.path-header {
+  padding: 0;
+}
+#roadlist_title {
+	background: transparent;
+	padding: 0 0 0 5px;
+	height: 40px;	
+  font: normal normal 700 18px/40px 'microsoft yahei';
+  cursor: pointer;
+}
+
+/*朝西行驶*/
+.arrow-west {  
+    -webkit-transform: rotate(-45deg);  
+    margin-left: 3px;  
+    display: inline-block;  
+    font-size: 0;  
+    border-top: 2px solid #0096FF;  
+    border-left: 2px solid #0096FF;  
+    background-color: rgba(0, 0, 0, 0);
+}  
+.arrow-east {  
+    -webkit-transform: rotate(-45deg);  
+    margin-left: -3px;  
+    display: inline-block;  
+    font-size: 0;  
+    border-bottom: 2px solid #0096FF;  
+    border-right: 2px solid #0096FF;  
+    background-color: rgba(0, 0, 0, 0);
+}  
+.arrow-north {  
+    -webkit-transform: rotate(-45deg);  
+    display: inline-block;  
+    font-size: 0;  
+    border-top: 2px solid #0096FF;  
+    border-right: 2px solid #0096FF;  
+    background-color: rgba(0, 0, 0, 0);
+}  
+.arrow-south {  
+    -webkit-transform: rotate(-45deg);  
+    display: inline-block;  
+    font-size: 0;  
+    border-bottom: 2px solid #0096FF;  
+    border-left: 2px solid #0096FF;  
+    background-color: rgba(0, 0, 0, 0);
+}  
+
+#pathInfoesContent .road {
+	padding: 0 15px 15px 15px;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+#pathInfoesContent .road .direction {
+	height: 24px;
+}
+
+#pathInfoesContent .road .direction .mark {
+	display: inline-block;
+	background-color: #fff;
+	width: 25px;
+	padding: 0;
+}
+#pathInfoesContent .road .direction .mark span.dir-mark{	
+    width: 12px;  
+    height: 12px;  
+}
+
+#pathInfoesContent .road .direction .mark-text{
+	display: inline-block;
+}
+
+#pathInfoesContent .road .direction .mark-text span.dir-text {
+	font-family: 'microsoft yahei';
+	font-size: 14px;
+	color: #000;
+	margin-top: -5px;
+}
+
+#pathInfoesContent .road .description {
+	margin: 10px 0 15px 28px;
+}
+
+#pathInfoesContent .road .description .road-length {
+	float: right;	
+	font-family: 'microsoft yahei';
+	font-size: 14px;
+	color: #000;
+}
+
+#pathInfoesContent .road .description .road-name {
+	float: left;	
+	font-family: 'microsoft yahei';
+	font-size: 14px;
+	color: #000;
+}
+#pathInfoesContent .road .description .road-name strong {
+	margin: 0 2px;
+}
+
+button.showregion {
+	width: 80px;
+	height: 26px;
+	line-height: 22px;
+	color: #333;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	font-family: 'microsoft yahei';
+	border-radius: 2px;
+	padding: 1px 6px;
+  margin-right: 10px;
+}
+
+button.showregion:hover {
+	background-color: #0096ff;
+	color: #fff;
+}
+button.showregion:active {
+	outline: none;
+}
+button.showregion:focus {
+	outline: none;
+}
+
+button.hideregion {	
+	width: 80px;
+	height: 26px;
+	line-height: 22px;
+	color: #fff;
+	background-color: #0096ff;
+	border: 1px solid #ccc;
+	font-family: 'microsoft yahei';
+	border-radius: 2px;
+	padding: 1px 6px;
+  margin-right: 10px;
+}
+button.hideregion:active {	
+	outline: none;
+}
+button.hideregion:focus {
+	outline: none;
+}
+
+button.button-nav {
+	border: none;
+	width: 70px;
+	height: 26px;
+	line-height: 24px;
+	background: rgba(247, 247, 247, 0.9);
+	padding: 0;
+	/*margin: 0 0 0 15px;*/
+}
+
+button.button-nav:hover {
+	border: 1px solid #ddd;
+}
+
+button.button-nav:active {	
+	outline: none;	
+	background: rgba(200, 200, 200, 0.9);
+}
+
+button.button-nav:focus {
+	outline: none;
+}
+button.button-nav span{
+	color: #000;
+	font-family: 'simsun';
+	font-size: 12px;
+}
+
+/*用户引导*/
+.user-guide {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: rgba( 0, 0, 0, 0.5 );
+	display: none;
+	z-index: 1000001;
+}
+.user-guide .step1 {
+	left: 30%;
+	top: 44px;
+	position: absolute;
+}
+.user-guide .step1 .img-word{
+	background: url( user-guide/step1.png ) no-repeat 0 0;
+	width: 250px;
+	height: 290px;
+	position: relative;
+	margin: 2px 0 0 60px;
+}
+.user-guide .step1 .next-step{
+	background: url( user-guide/next-step.png ) no-repeat 0 0;
+	width: 110px;
+	height: 500px;
+	position: relative;
+	margin: 10px 0 0 150px;
+	cursor: pointer;
+}
+
+.user-guide .step2 {
+	left: 30%;
+	top: 44px;
+	position: absolute;
+	display: none;
+	margin-left: 139px;
+}
+.user-guide .step2 .img-word{
+	background: url( user-guide/step2.png ) no-repeat 0 0;
+	width: 250px;
+	height: 290px;
+	position: relative;
+	margin: 2px 0 0 10px;
+}
+.user-guide .step2 .next-step{
+	background: url( user-guide/next-step.png ) no-repeat 0 0;
+	width: 110px;
+	height: 500px;
+	position: relative;
+	margin: 10px 0 0 80px;
+	cursor: pointer;
+}
+
+.user-guide .step3 {
+	left: 30%;
+	top: 44px;
+	position: absolute;
+	display: none;
+	margin-left: 253px;
+}
+.user-guide .step3 .img-word{
+	background: url( user-guide/step3.png ) no-repeat 0 0;
+	width: 250px;
+	height: 290px;
+	position: relative;
+	margin: 2px 0 0 -140px;
+}
+.user-guide .step3 .next-step{
+	background: url( user-guide/next-step.png ) no-repeat 0 0;
+	width: 110px;
+	height: 500px;
+	position: relative;
+	margin: 10px 0 0 -60px;
+	cursor: pointer;
+}
+
+.user-guide .step4 {
+	left: 30%;
+	top: 44px;
+	position: absolute;
+	display: none;
+	margin-left: 335px;
+}
+.user-guide .step4 .img-word{
+	background: url( user-guide/step4.png ) no-repeat 0 0;
+	width: 250px;
+	height: 290px;
+	position: relative;
+	margin: 2px 0 0 -150px;
+}
+.user-guide .step4 .next-step{
+	background: url( user-guide/next-step.png ) no-repeat 0 0;
+	width: 110px;
+	height: 500px;
+	position: relative;
+	margin: 10px 0 0 -80px;
+	cursor: pointer;
+}
+
+.user-guide .step5 {
+	position: absolute;
+	left: 11px;
+	bottom: -3px;
+	display: none;
+	width: 600px;
+	height: 338px;
+}
+.user-guide .step5 .img-word{
+	background: url( user-guide/step5.png ) no-repeat 0 0;
+	width: 250px;
+	height: 290px;
+	position: relative;
+	margin: 2px 0 0 120px;
+}
+.user-guide .step5 .start{
+	background: url( user-guide/start.png ) no-repeat 0 0;
+	width: 110px;
+	height: 500px;
+	position: absolute;
+	left: 360px;
+	top: 140px;
+	cursor: pointer;
+}
+
+.data-list {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  min-width: 230px;
+  z-index: 77778;
+  margin: 0;
+}
+
+.ui-jqgrid .ui-jqgrid-htable th span.ui-jqgrid-resize {
+  height: 35px !important;
+}
+.ui-jqgrid .ui-jqgrid-htable th div {
+  padding-top: 8px;
+}
+
+.modal-print-orders {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background: #fff;
+  z-index: 99999;
+}

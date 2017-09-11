@@ -1,0 +1,176 @@
+.route-setting {
+	position: absolute;
+	top: 45px;
+	left: 1px;
+	width: 260px;
+	height: 205px;
+	background: #fff;
+	border: 1px solid #ddd;
+	z-index: 9999;
+	
+	.get {
+		height: 40px;
+		margin: 10px 15px;
+		border-bottom: 1px solid #ddd;
+		padding: 0 15px 0 28px;
+		background-color: transparent;
+		background-position: 0 center;
+		background-repeat: no-repeat;
+		
+		input {
+			width: 180px;
+			font: normal normal normal 14px/40px "microsoft yahei";
+			background: transparent !important;
+			padding: 0;
+			color: #333;
+			border: none;
+			outline: none;
+			cursor: pointer;
+		}
+		
+		&.start {
+			background-image: url(../imgs/pathplan/marker_qi.png);
+		}
+		
+		&.passing {
+			background-image: url(../imgs/pathplan/marker_jing.png);
+		}
+	}
+	
+	.con {
+		width: 230px;
+		margin: 10px 15px;		
+		
+		.btn {
+			width: 100%;
+			text-align: center;
+			color: #f5f5f5;
+			border: 0;
+			border-radius: 3px;
+			text-shadow: none !important;
+			font-family: "microsoft yahei";
+			font-size: 14px;
+		}
+		
+		&.set {
+			.btn {
+				background-color: #F1960A !important;
+				
+				&:hover {					
+					background-color: #E48D0A !important;
+				}
+			}
+		}
+		&.do {
+			.btn {
+				background-color: #0132FF !important;
+				&:hover {					
+					background-color: #0430DD !important;
+				}
+			}
+		}
+	}
+	
+	.panel {
+		position: absolute;
+		top: 0;
+		left: 263px;
+		width: 310px;
+		min-height: 200px;
+		overflow: hidden;
+		border: 1px solid #ddd;
+		background: #fff;
+		border-radius: 0;
+		
+		&.passing {
+			top: 50px;
+		}
+		
+		.title {
+			width: 100%;
+			border-bottom: 1px solid #ddd;
+			
+			span {
+				margin: 0 10px;
+				font: normal normal bold 14px/30px "microsoft yahei";
+				color: #333;
+			}
+		}
+		
+		.content {
+			padding: 10px;
+			
+			.result-part {
+				li {
+					width: 100%;
+					min-height: 40px;
+					margin: 10px 0 0;
+				}
+				
+				.badge {
+					float: left;
+					margin-top: 2px;
+				}
+				.left {
+					float: left;
+					margin-left: 5px;
+					
+					.name {
+						display: block;
+						color: #0096FF;
+						font: normal normal normal 13px/22px "microsoft yahei";
+						cursor: pointer;
+						
+						&:hover {
+							color: #0033FF;
+						}
+					}
+					.address {
+						color: #999;
+						font: normal normal normal 12px/18px "microsoft yahei";
+					}
+				}
+			}
+			
+			.content-pager {
+				width: 100%;
+				.pagination {
+					float: right;
+					margin: 10px 5px;
+				}
+			}
+		}
+	}
+}
+.select-route {
+	width: 80px;
+	height: 26px;
+	font-family: "microsoft yahei";
+	outline: none;
+	font-size: 12px;
+}
+.search-route {
+	width: 150px;
+	height: 26px;
+	font: normal normal normal 12px/26px "microsoft yahei";
+	padding: 0 3px;
+	border: 1px solid #ccc;
+	outline: none;
+}
+
+.btn-search-route {
+	padding: 3px 10px;
+	vertical-align: top;
+}
+
+.badge {
+	background-color: #2CDF8D;
+}
+
+
+
+
+
+
+
+

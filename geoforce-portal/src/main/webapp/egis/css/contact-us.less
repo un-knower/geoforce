@@ -1,0 +1,122 @@
+
+  @keyframes ccontent-show {
+    0%   {right: -212px;}
+    100% {right: 0;}
+  }
+  @-moz-keyframes ccontent-show {
+    0%   {right: -212px;}
+    100% {right: 0;}
+  }
+  @-webkit-keyframes ccontent-show {
+    0%   {right: -212px;}
+    100% {right: 0;}
+  }
+  @-o-keyframes ccontent-show {
+    0%   {right: -212px;}
+    100% {right: 0;}
+  }
+  @keyframes ccontent-hide {
+    0%   {right: 0;}
+    100% {right: -212px;}
+  }
+  @-moz-keyframes ccontent-hide {
+    0%   {right: 0;}
+    100% {right: -212px;}
+  }
+  @-webkit-keyframes ccontent-hide {
+    0%   {right: 0;}
+    100% {right: -212px;}
+  }
+  @-o-keyframes ccontent-hide {
+    0%   {right: 0;}
+    100% {right: -212px;}
+  }
+
+
+.fixed-contact-us {
+  position: fixed;
+  right: 0px;
+  top: 240px;
+  width: 30px;
+  background: url(../images/contact-us/title-back.png) repeat;
+
+ /* &:hover {
+    .ccontent {
+      display: block;
+    }
+  }*/
+
+  .ctitle {
+    color: #fff;
+    display: inline-block;
+    padding: 5px 22px 5px 8px;
+    text-decoration: none;
+    width: 10px;
+    font: normal normal normal 14px/20px 'microsoft yahei';
+    cursor: pointer;
+  }
+
+  .ccontent {
+    position: absolute;
+    top: -120px;
+    right: 0;
+    width: 212px;
+    height: 386px;
+    display: none;
+    background: #fff;
+    border: 2px solid #0096ff;
+    border-radius: 5px;
+
+    &.show {
+      animation: ccontent-show 0.5s linear 0s 1 normal forwards;
+      -moz-animation: ccontent-show 0.5s linear 0s 1 normal forwards;
+      -webkit-animation: ccontent-show 0.5s linear 0s 1 normal forwards;
+      -o-animation: ccontent-show 0.5s linear 0s 1 normal forwards;      
+    }
+    &.hide {
+      animation: ccontent-hide 0.5s linear 0s 1 normal forwards;
+      -moz-animation: ccontent-hide 0.5s linear 0s 1 normal forwards;
+      -webkit-animation: ccontent-hide 0.5s linear 0s 1 normal forwards;
+      -o-animation: ccontent-hide 0.5s linear 0s 1 normal forwards;
+    }
+
+    .title {
+      margin: 15px 0 10px 18px;
+      font: normal normal normal 16px/22px 'microsoft yahei';
+    } 
+    .phone {
+      text-align: center;
+      font: normal normal normal 18px/25px 'microsoft yahei';
+      color: #0096ff;
+    }
+
+    a.btn-contact {
+      width: 147px;
+      height: 37px;
+      margin: 10px 0 0 33px;
+      border: none;
+      border-radius: 0;
+      background: transparent url(../images/contact-us/btn-back.png) no-repeat 0 0;      
+
+      &:hover {
+        box-shadow: 0 0 5px 0 rgba(0,0,0,.5);
+      }
+    }
+
+    .code {
+      margin: 15px 0 0;
+      width: 100%;
+      height: 190px;
+      background: transparent url(../images/intro/code.jpg) no-repeat center center;    
+      background-size: 190px 190px; 
+    }
+    .info {
+      width: 100%;
+      text-align: center;
+      font: normal normal normal 13px/22px 'microsoft yahei';
+    } 
+  }
+}
+
+
+
