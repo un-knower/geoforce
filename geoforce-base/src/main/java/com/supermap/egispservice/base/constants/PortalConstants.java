@@ -12,7 +12,7 @@ public class PortalConstants {
 	public static final String USER_SOURCE_OTHERS = "其它";
 	public static final String USER_SOURCE_UNKONW = "-1";
 	
-	private static Properties prop = AppPropertiesUtil.readPropertiesFile("egispportal.properties",
+	private static Properties prop = AppPropertiesUtil.readPropertiesFile("config.properties",
 			PortalConstants.class);
 
 	public static final String PHONE_CAPCHAR_SERVICE = prop.getProperty("phone.capchar.service");

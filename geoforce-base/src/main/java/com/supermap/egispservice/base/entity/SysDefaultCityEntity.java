@@ -9,7 +9,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "sys_default_city", catalog = "egisp_dev")
+@Table(name = "sys_default_city")
 public class SysDefaultCityEntity extends IdEntity implements java.io.Serializable {
 	/**
 	 * 

@@ -3,5 +3,6 @@ MAINTAINER chaosting
 
 ENV FILE_NAME=base
 ADD ./target/$FILE_NAME.tar.gz /opt/
-RUN chmod 755 /opt/$FILE_NAME/ -R
+RUN chown root:root /opt/$FILE_NAME/ -R && \
+    chmod 755 /opt/$FILE_NAME/ -R
 WORKDIR /opt/$FILE_NAME/

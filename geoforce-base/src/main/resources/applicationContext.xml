@@ -22,19 +22,53 @@
           http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd 
           http://www.springframework.org/schema/util 
           http://www.springframework.org/schema/util/spring-util.xsd">
+    
+    <context:property-placeholder location="classpath:config.properties" />
+    <util:properties id="configParam" location="config.properties" />
           
     <context:annotation-config /> 
     <context:component-scan base-package="com.supermap.egispservice.base.service" />
     <context:component-scan base-package="com.supermap.egispservice.base.util" />
     <context:component-scan base-package="com.supermap.egispservice.base.constants" />
+    
     <import resource="provider.xml"/>
     <!-- <import resource="consumer.xml"/> -->
-    <util:properties id="configParam" location="config.properties" />
     
     <!-- 定义实体管理器工厂 -->
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">  
+    <!-- <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">  
     	<property name="persistenceUnitName" value="SupermapJPA"/>
-    </bean>
+    </bean> -->
+    <bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="packagesToScan" value="com.supermap.egispservice.base.entity" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+		<property name="dataSource">
+			<bean class="org.logicalcobwebs.proxool.ProxoolDataSource">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="driverUrl" value="${db.url}" />
+				<property name="user" value="${db.username}" />
+				<property name="password" value="${db.password}" />
+				<!-- 最小连接数（默认5） -->
+				<property name="minimumConnectionCount" value="5" />
+				<!-- 最大连接数（默认15） -->
+				<property name="maximumConnectionCount" value="15" />
+				<!-- 检测器休眠时间间隔，单位毫秒（默认30000）。每隔配置时间间隔后检测所有连接状态，空闲回收，超时销毁 -->
+				<property name="houseKeepingSleepTime" value="30000" />
+				<!-- 最小可用连接数（默认0） -->
+				<property name="prototypeCount" value="5" />
+			</bean>
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+	</bean>
          
     <!-- 配置事务管理器 -->  
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">  
@@ -50,7 +84,7 @@
     
     
     <!-- 邮件服务 -->
-	<bean id="sender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	<!-- <bean id="sender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="protocol" value="smtp"></property>
 		<property name="host" value="smtp.exmail.qq.com"></property>
 		<property name="username" value="jiankong@supermapcloud.com"></property>
@@ -63,6 +97,6 @@
 	</bean>
 	<bean id="mailService" class="com.supermap.egispservice.base.service.impl.MailServiceImpl">
 		<property name="sender" ref="sender"></property>
-	</bean>
+	</bean> -->
     
 </beans> 

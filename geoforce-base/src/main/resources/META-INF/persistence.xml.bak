@@ -11,18 +11,18 @@
 			<!--配置数据库驱动 -->
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
 			<!--配置数据库用户名 -->
-			<property name="hibernate.connection.username" value="egisp_dev" />
+			<property name="hibernate.connection.username" value="${db.username}" />
 			<!--配置数据库密码 -->
-			<property name="hibernate.connection.password" value="egisp2015" />
+			<property name="hibernate.connection.password" value="${db.password}" />
 			<!--配置数据库url -->
 			<property name="hibernate.connection.url"
-				value="jdbc:mysql://rdsnuna32fn22iv.mysql.rds.aliyuncs.com:3306/egisp_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;sessionVariables=sql_mode=NO_BACKSLASH_ESCAPES" />
+				value="${db.url}" />
 			<!--设置外连接抓取树的最大深度 -->
 			<property name="hibernate.max_fetch_depth" value="3" />
 			<!-- 缓存提供者 -->
 			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
 			<!--自动输出schema创建DDL语句 -->
-			<property name="hibernate.hbm2ddl.auto" value="none" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="javax.persistence.validation.mode" value="none" />

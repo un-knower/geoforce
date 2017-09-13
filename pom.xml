@@ -11,6 +11,8 @@
 		<checkstyle.configLocation>${basedir}</checkstyle.configLocation>
 		<repository.url>http://maven.aliyun.com/nexus/content/repositories/releases/</repository.url>
 		<snapshotRepository.url>http://maven.aliyun.com/nexus/content/repositories/snapshots/</snapshotRepository.url>
+		<!-- <spring.version>3.2.6.RELEASE</spring.version> -->
+		<spring.version>4.1.3.RELEASE</spring.version>
 	</properties>
 
 	<build>
