@@ -7,7 +7,7 @@ import com.supermap.utils.AppPropertiesUtil;
 public class EgispAreaConstants {
 
 	
-	private static Properties prop = AppPropertiesUtil.readPropertiesFile("egispConstants.properties",EgispAreaConstants.class);
+	private static Properties prop = AppPropertiesUtil.readPropertiesFile("config.properties",EgispAreaConstants.class);
 	
 	/**
 	 * 区域面数据集的名称

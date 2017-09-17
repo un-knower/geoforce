@@ -10,7 +10,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "CORRECT_ADDRESS", catalog = "egisp_dev")
+@Table(name = "CORRECT_ADDRESS")
 public class CorrectAddressEntity extends IdEntity implements Serializable {
 
 	/**

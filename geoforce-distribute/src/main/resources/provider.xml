@@ -10,8 +10,9 @@
 	<dubbo:application name="provider_fendan" />
 
  	<!--使用zookeeper注册中心暴露服务地址 -->
-	<dubbo:registry  protocol="zookeeper"  address="121.41.42.182:2181" />
-	<dubbo:protocol host="121.41.42.182" port="20831"></dubbo:protocol>
+	<dubbo:registry  protocol="zookeeper"  address="{zk}" />
+	<dubbo:protocol port="20831"/>
+	<!-- <dubbo:protocol host="121.41.42.182" port="20831"></dubbo:protocol> -->
 	<!-- 分单管理 -->
 	<dubbo:service interface="com.supermap.egispservice.base.service.ILogisticsOrderService" version="2.5.3" ref="orderService"  timeout="90000" retries="0" async="false" loadbalance="leastactive" actives="200"/>
 	<bean id="orderService" class="com.supermap.egispservice.base.service.LogisticsOrderServiceImpl" />

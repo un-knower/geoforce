@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 @Entity
-@Table(name = "sys_api_log", catalog = "egisp_dev")
+@Table(name = "sys_api_log")
 public class APILogEntity extends IdEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String uri;

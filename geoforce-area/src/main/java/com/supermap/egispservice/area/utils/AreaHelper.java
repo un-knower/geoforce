@@ -69,7 +69,7 @@ public class AreaHelper {
 	static {
 		try {
 
-			Properties prop = AppPropertiesUtil.readPropertiesFile("logisticsAreaManager.properties", AreaHelper.class);
+			Properties prop = AppPropertiesUtil.readPropertiesFile("config.properties", AreaHelper.class);
 			DATASOURCE_URL = prop.getProperty("DATASOURCE_URL");
 			DBDRIVER = prop.getProperty("DBDRIVER");
 			DBURL = prop.getProperty("DBURL");

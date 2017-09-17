@@ -1588,8 +1588,8 @@ public class AreaServiceImpl implements IAreaService {
 	public List<Map<String, Object>> queryAreaCountByParm(String enterpriseId,
 			String dcode, String admincode, String level,String bdate,String edate) throws Exception {
 		List<Map<String, Object>> maplist=new ArrayList<Map<String,Object>>();
-		Properties dbprop = AppPropertiesUtil.readPropertiesFile("db.properties",AreaServiceImpl.class);
-		Properties prop = AppPropertiesUtil.readPropertiesFile("egispConstants.properties",AreaServiceImpl.class);
+		Properties dbprop = AppPropertiesUtil.readPropertiesFile("config.properties",AreaServiceImpl.class);
+		Properties prop = AppPropertiesUtil.readPropertiesFile("config.properties",AreaServiceImpl.class);
 		Connection conn = null;
 		PreparedStatement ps = null; 
 		ResultSet rs = null;

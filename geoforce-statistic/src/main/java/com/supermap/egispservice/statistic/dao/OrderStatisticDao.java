@@ -19,7 +19,7 @@ import org.springframework.util.StringUtils;
 @Repository
 public class OrderStatisticDao implements IOrderStatisticDao {
 
-	@PersistenceContext(unitName="SupermapJPA")
+	@PersistenceContext(unitName="mysql")
 	private EntityManager em;
 	
 	private static Logger LOGGER = Logger.getLogger(OrderStatisticDao.class);

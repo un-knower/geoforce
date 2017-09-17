@@ -158,7 +158,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>3.2.6.RELEASE</version>
+			<version>${spring.version}</version>
 			<scope>test</scope>
 			<type>jar</type>
 		</dependency>

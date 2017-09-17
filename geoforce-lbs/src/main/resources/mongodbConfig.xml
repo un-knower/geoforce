@@ -7,16 +7,16 @@
   			<!-- 外测地址 -->
   			<!-- <value>121.40.86.232</value> -->
 			<!-- 本地测地址 -->
-  			 <value>10.160.59.65</value>
+  			 <value>${mongo.url}</value>
   		</property>
   		<property name="dbName">
-  			<value>egisdata</value>
+  			<value>${mongo.db}</value>
   		</property>
   		<property name="dbUser">
-  			<value>egisdata</value>
+  			<value>${mongo.username}</value>
   		</property>
   		<property name="dbPwd">
-  			<value>egisdata</value>
+  			<value>${mongo.password}</value>
   		</property>
  	</bean>
 </beans>
