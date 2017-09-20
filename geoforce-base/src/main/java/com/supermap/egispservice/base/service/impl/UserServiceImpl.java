@@ -836,7 +836,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public Map<String,String> findAllUserByEid(String eid) {
 		Map<String,String> result=null;
-		List objectlist= this.userDao.findAlluserByEid(eid);
+		List<?> objectlist= this.userDao.findAlluserByEid(eid);
 		if(objectlist!=null&&objectlist.size()>0){
 			result=new HashMap<String,String>();
 			for(int i =0,s=objectlist.size();i<s;i++){

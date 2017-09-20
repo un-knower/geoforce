@@ -3,7 +3,7 @@
 /**
  * 服务端url
  */
-urls.server = "/egispweb";
+urls.server = "/saas";
 /**
  * 地图-底图url
  */

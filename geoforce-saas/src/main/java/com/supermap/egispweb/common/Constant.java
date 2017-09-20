@@ -22,7 +22,7 @@ public class Constant {
 	public static final String PERSON_IMG_PATH;
 	static {
 		String file_name = (new Constant()).getClass().getClassLoader()
-				.getResource("lbs.properties").getFile();
+				.getResource("config.properties").getFile();
 		try {
 			prop.load(new FileInputStream(file_name));
 

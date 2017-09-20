@@ -231,7 +231,7 @@ public class PointEntity  extends IdEntity implements java.io.Serializable {
 		this.dutyPicPath = dutyPicPath;
 	}
 
-	@Column(name="icon_style",length=20)
+	@Column(name="icon_style",length=48)
 	public String getIconStyle() {
 		return iconStyle;
 	}

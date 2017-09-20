@@ -3,8 +3,8 @@
 /**
  * 服务端url
  */
-// urls.server = "http://192.168.10.251:8031/egispweb";
-urls.server = "/egispweb";
+// urls.server = "http://192.168.10.251:8031/saas";
+urls.server = "/saas";
 /**
  * 地图-底图url
  */

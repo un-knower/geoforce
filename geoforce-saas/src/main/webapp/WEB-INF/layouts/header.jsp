@@ -184,7 +184,7 @@
 				//检查是否有日志更新
 				$.ajax({
 					type:"GET",
-        			url:"/egispweb/user/getIsUserReadLastLogs",
+        			url:"/saas/user/getIsUserReadLastLogs",
         			data:{},
 			        success:function(e){
 			        	if(e.result==false){
@@ -200,7 +200,7 @@
 				    //保存用户阅读信息
 					$.ajax({
 						type:"GET",
-						url:"/egispweb/user/saveUserReadInfo",
+						url:"/saas/user/saveUserReadInfo",
 						data:{},
 						success:function(e){
 							/* if(e.isSuccess){

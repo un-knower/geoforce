@@ -85,5 +85,5 @@ public interface UserDao extends CrudRepository<UserEntity, String>, PagingAndSo
 	 * 2016-6-13下午5:17:49
 	 */
 	@Query(value="select u.id,u.realname,u.username from EGISP_RSS_USER u where u.eid=:eid ",nativeQuery=true)
-	public List findAlluserByEid(@Param("eid")String eid);
+	public List<?> findAlluserByEid(@Param("eid")String eid);
 }

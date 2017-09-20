@@ -111,7 +111,7 @@ public class InfoDeptEntity extends IdEntity implements java.io.Serializable {
 		this.phone = phone;
 	}
 
-	@Column(name = "PARENT_ID", nullable = false, length = 32)
+	@Column(name = "PARENT_ID", length = 32)
 	public String getParentId() {
 		return parentId;
 	}

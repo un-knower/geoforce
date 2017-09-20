@@ -44,6 +44,7 @@ public class UserEntity extends IdEntity implements java.io.Serializable {
 	private ComEntity eid;
 	private InfoDeptEntity deptId;
 	private Byte sourceId = 1;
+	private String pid;
 	private String isLogined;//记录默认城市升级后是否登录过
 	private String qq;
 	
@@ -54,7 +55,7 @@ public class UserEntity extends IdEntity implements java.io.Serializable {
 
 	public UserEntity(String username, String password, String realname, String mobilephone, String email, String telephone, String fax, Character sex,
 			String address, String zipCode, String remark, Byte stratusId, String createUser, Date createTime, Date updateTime, ComEntity eid,
-			InfoDeptEntity deptId, Byte sourceId) {
+			InfoDeptEntity deptId, Byte sourceId, String pid) {
 		this.username = username;
 		this.password = password;
 		this.realname = realname;
@@ -73,6 +74,7 @@ public class UserEntity extends IdEntity implements java.io.Serializable {
 		this.eid = eid;
 		this.deptId = deptId;
 		this.sourceId = sourceId;
+		this.pid = pid;
 	}
 	
 	@Column(name = "qq", length = 16)
@@ -259,6 +261,15 @@ public class UserEntity extends IdEntity implements java.io.Serializable {
 
 	public void setSourceId(Byte sourceId) {
 		this.sourceId = sourceId;
+	}
+
+	@Column(name = "pid", length = 32)
+	public String getPid() {
+		return pid;
+	}
+
+	public void setPid(String pid) {
+		this.pid = pid;
 	}
 
 	@Column(name = "tempLogined", length = 1)

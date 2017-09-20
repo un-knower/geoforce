@@ -2,7 +2,7 @@ var urls = {};
 /**
  * 服务端url
  */
-// urls.server = "http://192.168.10.251:8031/egispweb";
+// urls.server = "http://192.168.10.251:8031/saas";
 urls.server = ctx;
 /**
  * 地图-底图url

@@ -10,7 +10,7 @@
 	<dubbo:application name="provider_fendan" />
 
  	<!--使用zookeeper注册中心暴露服务地址 -->
-	<dubbo:registry  protocol="zookeeper"  address="{zk}" />
+	<dubbo:registry  protocol="zookeeper"  address="${zk}" />
 	<dubbo:protocol port="20831"/>
 	<!-- <dubbo:protocol host="121.41.42.182" port="20831"></dubbo:protocol> -->
 	<!-- 分单管理 -->

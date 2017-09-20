@@ -18,12 +18,12 @@
      <mvc:annotation-driven>
     	<mvc:message-converters>
     		<bean class="org.springframework.http.converter.StringHttpMessageConverter"></bean>
-    		<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+    		<!-- <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
     			<property name="objectMapper" ref="smObjectMapper"></property>
-    		</bean>
+    		</bean> -->
     	</mvc:message-converters>
      </mvc:annotation-driven>
-	 <bean id="smObjectMapper" class="com.supermap.egispweb.util.SMObjectMapper"></bean>
+	 <!-- <bean id="smObjectMapper" class="com.supermap.egispweb.util.SMObjectMapper"></bean> -->
  	 <!-- 拦截器 -->
  	  <mvc:interceptors> 
  	 	<mvc:interceptor>

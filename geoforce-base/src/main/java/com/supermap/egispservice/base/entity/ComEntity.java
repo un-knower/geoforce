@@ -63,7 +63,7 @@ public class ComEntity extends IdEntity implements java.io.Serializable {
 		this.address = address;
 	}
 
-	@Column(name = "email", length = 16)
+	@Column(name = "email", length = 32)
 	public String getEmail() {
 		return this.email;
 	}

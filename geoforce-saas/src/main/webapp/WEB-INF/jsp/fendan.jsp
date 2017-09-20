@@ -189,9 +189,9 @@
       </ul>
     </div>
     <div id="images" class="images">
-      <img src="/egispweb/resources/images/point/1.jpg" alt="">
-      <img src="/egispweb/resources/images/point/2.jpg" alt="">
-      <img src="/egispweb/resources/images/point/3.jpg" alt="">
+      <img src="/saas/resources/images/point/1.jpg" alt="">
+      <img src="/saas/resources/images/point/2.jpg" alt="">
+      <img src="/saas/resources/images/point/3.jpg" alt="">
     </div>
   </div>
 

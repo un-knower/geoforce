@@ -5,7 +5,7 @@
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
 	<!--站点名 -->
-	<display-name>egispweb</display-name>
+	<display-name>saas</display-name>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
