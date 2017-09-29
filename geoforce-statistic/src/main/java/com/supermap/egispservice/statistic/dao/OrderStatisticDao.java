@@ -19,7 +19,7 @@ import org.springframework.util.StringUtils;
 @Repository
 public class OrderStatisticDao implements IOrderStatisticDao {
 
-	@PersistenceContext(unitName="mysql")
+	@PersistenceContext(name="entityManagerFactory", unitName="mysql")
 	private EntityManager em;
 	
 	private static Logger LOGGER = Logger.getLogger(OrderStatisticDao.class);
@@ -29,7 +29,7 @@ public class OrderStatisticDao implements IOrderStatisticDao {
 			Date startDate, Date endDate) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(
-				"select count(t.id) as num,area_id from egisp_dev.ORDER_FENDAN t ")
+				"select count(t.id) as num,area_id from ORDER_FENDAN t ")
 				.append("where t.department_id in (:deptIdList) ")
 				.append("and t.fendan_time between :startDate and :endDate ")
 				.append("and t.fendan_status_id in (1,3) ")
@@ -52,7 +52,7 @@ public class OrderStatisticDao implements IOrderStatisticDao {
 		// TODO Auto-generated method stub
 		StringBuilder sb = new StringBuilder();
 		sb.append(
-				"select count(t.id) as num,area_id from egisp_dev.ORDER_FENDAN t ")
+				"select count(t.id) as num,area_id from ORDER_FENDAN t ")
 				.append("where t.department_id in (:deptIdList) ")
 				.append("and t.fendan_time between :startDate and :endDate ")
 				.append("and t.fendan_status_id in (1,3) ")

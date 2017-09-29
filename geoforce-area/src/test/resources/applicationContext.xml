@@ -22,7 +22,8 @@
           http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd 
           http://www.springframework.org/schema/util 
           http://www.springframework.org/schema/util/spring-util.xsd">
-          
+         
+	<context:property-placeholder location="classpath:config.properties" />
     <context:annotation-config /> 
     <context:component-scan base-package="com.supermap.egispservice.area.service.impl" />
     <context:component-scan base-package="com.supermap.egispservice.area.utils" />

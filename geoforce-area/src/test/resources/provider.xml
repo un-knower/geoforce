@@ -9,18 +9,26 @@
         
     <!-- 提供方应用信息，用于计算依赖关系 -->
     	<dubbo:application name="provider_area" />
+
  	<!--使用zookeeper注册中心暴露服务地址 -->
-	<dubbo:registry  protocol="zookeeper"  address="192.168.10.251:2181" />
+	<dubbo:registry  protocol="zookeeper"  address="${zk}" />
+	<!-- <dubbo:protocol port="20811"/> -->
+	<dubbo:protocol name="rmi" port="1099" />
+	<dubbo:provider protocol="rmi" />
 	<dubbo:service interface="com.supermap.egispservice.area.service.IAreaService" 
+		protocol="rmi"
 		version="2.5.3" 
 		ref="areaService"  
-		timeout="300000" 
+		timeout="600000" 
 		retries="0" 
 		async="false" 
 		loadbalance="leastactive" 
 		actives="200"
 	/>
 	
+	
 	<bean id="areaService" class="com.supermap.egispservice.area.service.impl.AreaServiceImpl"/>
-	 
+	
+	<dubbo:reference id="geocodingService" interface="com.supermap.egispservice.geocoding.service.IGeocodingService" version="2.5.3" check="false"/>
+
 </beans>

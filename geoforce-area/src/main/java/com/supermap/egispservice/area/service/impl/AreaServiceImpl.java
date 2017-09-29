@@ -61,9 +61,9 @@ import com.supermap.egispservice.area.utils.DatasetUtils;
 import com.supermap.egispservice.area.utils.GeometristUtil;
 import com.supermap.egispservice.area.utils.ZipExtend;
 import com.supermap.egispservice.area.utils.CommonUtil.DateType;
+import com.supermap.egispservice.area.utils.DBUtil;
 import com.supermap.egispservice.geocoding.service.IGeocodingService;
 import com.supermap.utils.AppPropertiesUtil;
-import com.supermap.utils.DBUtil;
 
 @Component("areaService")
 public class AreaServiceImpl implements IAreaService {
