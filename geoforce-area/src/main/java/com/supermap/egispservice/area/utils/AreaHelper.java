@@ -37,6 +37,10 @@ public class AreaHelper {
 	 */
 	static String DATASOURCE_URL = null;
 	/**
+	 * 数据库名称
+	 */
+	static String DATABASE = null;
+	/**
 	 * DB Driver
 	 */
 	static String DBDRIVER = null;
@@ -71,6 +75,7 @@ public class AreaHelper {
 
 			Properties prop = AppPropertiesUtil.readPropertiesFile("config.properties", AreaHelper.class);
 			DATASOURCE_URL = prop.getProperty("DATASOURCE_URL");
+			DATABASE = prop.getProperty("DATABASE");
 			DBDRIVER = prop.getProperty("DBDRIVER");
 			DBURL = prop.getProperty("DBURL");
 			DBUSER = prop.getProperty("USERNAME");
@@ -100,8 +105,10 @@ public class AreaHelper {
 			info.setServer(DATASOURCE_URL_UDB);
 //			info.setReadOnly(true);
 		}else{
-			info.setEngineType(EngineType.ORACLEPLUS);
+			//info.setEngineType(EngineType.ORACLEPLUS);
+			info.setEngineType(EngineType.MYSQL);
 			info.setServer(DATASOURCE_URL);
+			info.setDatabase(DATABASE);
 			info.setUser(DBUSER);
 			info.setPassword(DBPASSWORD);
 		}
