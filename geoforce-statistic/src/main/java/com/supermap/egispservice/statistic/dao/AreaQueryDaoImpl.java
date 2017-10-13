@@ -18,7 +18,7 @@ import com.supermap.egispservice.statistic.util.AreaFieldNames;
 @Repository
 public class AreaQueryDaoImpl implements IAreaQueryDao {
 	
-	@PersistenceContext(name="entityManagerFactoryOracle", unitName="oracle")
+	@PersistenceContext(name="entityManagerFactory", unitName="mysql")
 	private EntityManager oracleEM;
 
 	@Override
