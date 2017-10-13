@@ -12,7 +12,7 @@
 
 	<properties>
 		<checkstyle.configLocation>..</checkstyle.configLocation>
-		<manifest.mainClass>com.supermap.egispservice.base.RunServer</manifest.mainClass>
+		<manifest.mainClass>com.supermap.egisp.addressmatch.main.RunServer</manifest.mainClass>
 		<log4j.version>1.2.17</log4j.version>
 		<junit.version>4.7</junit.version>
 	</properties>
