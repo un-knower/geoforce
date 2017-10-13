@@ -32,7 +32,7 @@
 	<!-- <bean id="entityManagerFactoryOracle" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">  
     	<property name="persistenceUnitName" value="OracleJPA"/>
     </bean> -->
-    <bean id="entityManagerFactoryOracle"
+    <!-- <bean id="entityManagerFactoryOracle"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="oracle" />
 		<property name="packagesToScan" value="" />
@@ -45,13 +45,13 @@
 				<property name="driverUrl" value="${oracle.url}" />
 				<property name="user" value="${oracle.username}" />
 				<property name="password" value="${oracle.password}" />
-				<!-- 最小连接数（默认5） -->
+				最小连接数（默认5）
 				<property name="minimumConnectionCount" value="5" />
-				<!-- 最大连接数（默认15） -->
+				最大连接数（默认15）
 				<property name="maximumConnectionCount" value="15" />
-				<!-- 检测器休眠时间间隔，单位毫秒（默认30000）。每隔配置时间间隔后检测所有连接状态，空闲回收，超时销毁 -->
+				检测器休眠时间间隔，单位毫秒（默认30000）。每隔配置时间间隔后检测所有连接状态，空闲回收，超时销毁
 				<property name="houseKeepingSleepTime" value="30000" />
-				<!-- 最小可用连接数（默认0） -->
+				最小可用连接数（默认0）
 				<property name="prototypeCount" value="5" />
 			</bean>
 		</property>
@@ -63,7 +63,7 @@
 				<prop key="hibernate.format_sql">true</prop>
 			</props>
 		</property>
-	</bean>
+	</bean> -->
 	
 	<!-- <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">  
     	<property name="persistenceUnitName" value="SupermapJPA"/>
