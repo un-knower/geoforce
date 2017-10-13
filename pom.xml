@@ -91,9 +91,10 @@
 		<module>geoforce-lbs</module><!-- 20901 -->
 		<module>geoforce-point</module><!-- 20902 -->
 
+		<module>geoforce-saas</module>
+		
 		<!-- <module>geoforce-portal</module>8010
 		<module>geoforce-oss</module>8020
-		<module>geoforce-saas</module>8030
 		<module>geoforce-gateway</module>8040 -->
 	</modules>
 </project>
