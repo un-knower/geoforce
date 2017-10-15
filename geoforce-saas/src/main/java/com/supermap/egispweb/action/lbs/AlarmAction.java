@@ -25,7 +25,7 @@ import com.supermap.egispservice.lbs.util.Pagination;
 import com.supermap.egispweb.util.DateUtil;
 
 
-@Controller
+//@Controller
 public class AlarmAction  extends BaseAction{
 	
 	@Autowired

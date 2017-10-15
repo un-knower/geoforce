@@ -29,7 +29,7 @@ import com.supermap.egispservice.lbs.service.DriverService;
 import com.supermap.egispweb.util.DateUtil;
 
 
-@Controller
+//@Controller
 public class DriverAction extends BaseAction{
 	static Logger logger = Logger.getLogger(DriverAction.class.getName());
 	

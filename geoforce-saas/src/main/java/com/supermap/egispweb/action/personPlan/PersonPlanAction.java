@@ -30,7 +30,7 @@ import com.supermap.lbsp.provider.common.Page;
  * @author wang
  *
  */
-@Controller
+//@Controller
 public class PersonPlanAction extends BaseAction {
 	static Logger logger = Logger.getLogger(RegionSetAction.class.getName());
 	/**

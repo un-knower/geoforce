@@ -29,7 +29,7 @@ import com.supermap.egispweb.pojo.export.Alarm;
 import com.supermap.egispweb.util.DateUtil;
 
 
-@Controller
+//@Controller
 public class AlarmReportAcion extends BaseAction{
 	static Logger logger = Logger.getLogger(AlarmReportAcion.class.getName());
 	

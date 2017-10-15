@@ -23,7 +23,7 @@ import com.supermap.egispservice.lbs.pojo.JsonZTree;
 import com.supermap.egispservice.lbs.service.CarService;
 
 
-@Controller
+//@Controller
 public class TreeAction extends BaseAction{
 	static Logger logger = Logger.getLogger(TreeAction.class.getName());
 	

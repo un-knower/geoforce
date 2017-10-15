@@ -27,8 +27,8 @@
 	<context:property-placeholder location="classpath:config.properties" />
     <context:annotation-config /> 
 
-    <context:component-scan base-package="com.supermap.egispweb.consumer" />
-    <context:component-scan base-package="com.supermap.egispweb.service" /><!-- 请不要删除这一行 -->
+    <!-- <context:component-scan base-package="com.supermap.egispweb.consumer" /> -->
+    <!-- <context:component-scan base-package="com.supermap.egispweb.service" /> --><!-- 请不要删除这一行 -->
     <context:component-scan base-package="com.supermap.egispweb.util" />
     <util:properties id="configParam" location="classpath:config.properties" />
     <!-- 
@@ -39,10 +39,11 @@
   	<import resource="dubbo/consumer_areaManage.xml"/> 
     <import resource="dubbo/consumer_userManage.xml"/>
     <import resource="dubbo/consumer_sys.xml"/>
-    <import resource="dubbo/consumer_order.xml"/>
-    <import resource="dubbo/consumer_pointManage.xml"/> 
     <import resource="dubbo/consumer_logistics.xml"/>
+    
+    <!-- <import resource="dubbo/consumer_order.xml"/>
+    <import resource="dubbo/consumer_pointManage.xml"/> 
     <import resource="dubbo/consumer_statistics.xml"/>
     <import resource="dubbo/consumer_pathplan.xml"/>
-    <import resource="dubbo/consumer_carManage.xml"/>
+    <import resource="dubbo/consumer_carManage.xml"/> -->
 </beans> 

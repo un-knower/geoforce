@@ -36,7 +36,7 @@ import com.supermap.egispservice.lbs.service.TerminalTypeService;
 import com.supermap.egispweb.pojo.AutocompleteBean;
 import com.supermap.egispweb.pojo.car.CarTerminal;
 
-@Controller
+//@Controller
 public class CarAction extends BaseAction{
 	static Logger logger = Logger.getLogger(CarAction.class.getName());
 	

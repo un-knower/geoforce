@@ -62,19 +62,19 @@ public class OrderAction {
 
 	private static final String CHARSET = ";charset=UTF-8";
 	
-	@Autowired
+	//@Autowired
 	private ILogisticsOrderService orderService;
 	
-	@Autowired
+	//@Autowired
 	private ILogisticsService logisticsService;
 	
-	@Autowired
+	//@Autowired
 	private IAddressMatchService addressMatch;
 	
-	@Autowired
+	//@Autowired
 	private ILogisticsFendanService fendanService;
 
-	@Autowired
+	//@Autowired
 	private ICorrectAddressService correctAddressService;
 	
 	@Autowired

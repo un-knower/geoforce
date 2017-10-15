@@ -17,7 +17,7 @@ import com.supermap.egispservice.base.entity.UserEntity;
 import com.supermap.egispservice.lbs.service.CarDisMsgService;
 import com.supermap.egispweb.util.DateUtil;
 
-@Controller
+//@Controller
 public class CarDisMsgReportAction extends BaseAction{
 	
 	@Autowired

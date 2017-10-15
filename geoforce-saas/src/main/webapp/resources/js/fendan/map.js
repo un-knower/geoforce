@@ -210,7 +210,7 @@ Map.search = function() {
 
 	Dituhui.showMask();
 	layer_orders.removeAllFeatures();
-	Dituhui.Order.search(param,
+	/*Dituhui.Order.search(param,
 		function(data) {
 			Dituhui.hideMask();
 			Dituhui.Order.Table.refresh(data);
@@ -232,7 +232,7 @@ Map.search = function() {
 			Dituhui.showPopover(info);
 			$('.foot .btn-export').addClass("hide");
 		}
-	);
+	);*/
 }
 
 /**

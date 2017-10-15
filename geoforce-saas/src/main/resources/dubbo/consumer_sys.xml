@@ -9,5 +9,5 @@
 
     
 	<dubbo:reference id="infoDeptService" interface="com.supermap.egispservice.base.service.InfoDeptService" version="2.5.3" check="false"/>
-	<dubbo:reference id="sysLogService" interface="com.supermap.egispservice.base.service.SysLogService" version="2.5.3" check="false"/>
+	<!-- <dubbo:reference id="sysLogService" interface="com.supermap.egispservice.base.service.SysLogService" version="2.5.3" check="false"/> -->
 </beans>

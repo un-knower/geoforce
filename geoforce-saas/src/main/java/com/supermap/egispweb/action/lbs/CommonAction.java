@@ -26,8 +26,8 @@ import com.supermap.egispweb.pojo.AlarmRemind;
 * 操作时间：2014-9-29 下午05:45:06     
 * @version 1.0
  */
-@Controller
-@RequestMapping("common")
+//@Controller
+//@RequestMapping("common")
 public class CommonAction extends BaseAction{
 
 	@Autowired

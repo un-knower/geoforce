@@ -19,7 +19,7 @@ import com.supermap.egispweb.common.AjaxResult;
 import com.supermap.lbsp.provider.common.Page;
 import com.supermap.lbsp.provider.hibernate.lbsp.DataWordbook;
 import com.supermap.lbsp.provider.hibernate.lbsp.Person;
-@Controller
+//@Controller
 public class PersonAction extends BaseAction{
 	static Logger logger = Logger.getLogger(PersonAction.class.getName());
 	

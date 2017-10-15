@@ -83,13 +83,13 @@
 		<module>geoforce-addressmatch</module><!-- -1 -->
 		<module>geoforce-distribute</module><!-- 20831 -->
 		<module>geoforce-geocoding</module><!-- 20841 -->
-		<module>geoforce-pathplan</module><!-- 20851 -->
-		<module>geoforce-statistic</module><!-- 20861 -->
-		<module>geoforce-ts</module><!-- 20871 -->
-		<module>geoforce-pathanalysis</module><!-- 20881 -->
-		<module>geoforce-reverse</module><!-- 20891 -->
-		<module>geoforce-lbs</module><!-- 20901 -->
-		<module>geoforce-point</module><!-- 20902 -->
+		<!-- <module>geoforce-pathplan</module>20851
+		<module>geoforce-statistic</module>20861
+		<module>geoforce-ts</module>20871
+		<module>geoforce-pathanalysis</module>20881
+		<module>geoforce-reverse</module>20891
+		<module>geoforce-lbs</module>20901
+		<module>geoforce-point</module>20902 -->
 
 		<module>geoforce-saas</module>
 		

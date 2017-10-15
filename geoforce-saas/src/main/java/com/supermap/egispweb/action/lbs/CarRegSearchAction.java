@@ -26,8 +26,8 @@ import com.supermap.egispweb.common.AjaxResult;
 * 操作时间：2014-9-26 下午05:41:55     
 * @version 1.0
  */
-@Controller
-@RequestMapping("carMonitor")
+//@Controller
+//@RequestMapping("carMonitor")
 public class CarRegSearchAction {
 	
 	@Autowired

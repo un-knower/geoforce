@@ -49,7 +49,8 @@ public class WelcomeAction {
 			}
 			session.setAttribute("istry",istry );
 		}
-		return "index";
+		//return "index";
+		return "distributeDemo";
 	}
 	
 	

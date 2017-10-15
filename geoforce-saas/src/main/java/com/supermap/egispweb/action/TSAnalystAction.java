@@ -18,8 +18,8 @@ import com.supermap.egisp.ts.pojo.Point;
 import com.supermap.egisp.ts.pojo.TSAnalystResult;
 import com.supermap.egisp.ts.service.TransportationAnalystService;
 
-@Controller
-@RequestMapping("tsService")
+//@Controller
+//@RequestMapping("tsService")
 public class TSAnalystAction {
 	
 	@Autowired

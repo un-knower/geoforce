@@ -14,7 +14,7 @@ import com.supermap.egispweb.common.AjaxResult;
 import com.supermap.lbsp.provider.common.Page;
 
 
-@Controller
+//@Controller
 public class NoticeAction extends BaseAction{
 	static Logger logger = Logger.getLogger(NoticeAction.class.getName());
 	/**

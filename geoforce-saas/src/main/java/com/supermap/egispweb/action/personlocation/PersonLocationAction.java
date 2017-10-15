@@ -30,8 +30,8 @@ import com.supermap.lbsp.provider.hibernate.lbsp.PersonStoreType;
 * 操作时间：2014-11-27 上午10:41:38     
 * @version 1.0
  */
-@Controller
-@RequestMapping("personMonitor")
+//@Controller
+//@RequestMapping("personMonitor")
 public class PersonLocationAction extends BaseAction{
 
 	@RequestMapping("index")

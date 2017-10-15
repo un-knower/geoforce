@@ -20,8 +20,8 @@ import com.supermap.egispservice.base.entity.UserEntity;
 import com.supermap.egispservice.pathplan.service.IPathPlanService;
 import com.supermap.egispservice.pathplan.service.IRouteTaskService;
 
-@Controller
-@RequestMapping("path")
+//@Controller
+//@RequestMapping("path")
 public class PathPlanAction {
 
 	/**

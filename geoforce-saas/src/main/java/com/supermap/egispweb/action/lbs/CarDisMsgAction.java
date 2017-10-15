@@ -20,7 +20,7 @@ import com.supermap.egispservice.lbs.service.CarDisMsgService;
 import com.supermap.egispservice.lbs.service.CarService;
 import com.supermap.egispweb.action.base.BaseAction;
 
-@Controller
+//@Controller
 public class CarDisMsgAction {
 	
 	@Autowired

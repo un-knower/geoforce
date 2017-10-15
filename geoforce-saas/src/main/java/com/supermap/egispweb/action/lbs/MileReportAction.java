@@ -26,7 +26,7 @@ import com.supermap.egispservice.lbs.util.Pagination;
 * @author WangShuang
 * @date 2013-8-1 下午03:36:02
  */
-@Controller
+//@Controller
 public class MileReportAction extends BaseAction{
 	static Logger logger = Logger.getLogger(MileReportAction.class.getName());
 

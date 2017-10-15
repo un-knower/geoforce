@@ -18,6 +18,11 @@
 	</build>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.chaosting</groupId>
+			<artifactId>base.util</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<!-- 车辆监控 -->
 		<dependency>
 			<groupId>com.supermap.egisp</groupId>
@@ -329,7 +334,7 @@
 		</dependency>
 
 		<!--httpclient -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.2.3</version>
@@ -338,7 +343,7 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
 			<version>4.2.2</version>
-		</dependency>
+		</dependency> -->
 		<!-- coordinates convert -->
 		<dependency>
 			<groupId>com.supermap.tools</groupId>

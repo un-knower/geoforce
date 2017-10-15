@@ -25,7 +25,7 @@ import com.supermap.egispweb.pojo.OilLevelInfoBean;
 import com.supermap.egispweb.util.DateUtil;
 
 
-@Controller
+//@Controller
 public class OilLevelReportAction extends BaseAction {
 	static Logger logger = Logger.getLogger(OilLevelReportAction.class.getName());
 	

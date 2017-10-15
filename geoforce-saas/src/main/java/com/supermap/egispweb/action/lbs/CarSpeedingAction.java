@@ -29,7 +29,7 @@ import com.supermap.egispservice.lbs.service.CarSpeedingService;
 import com.supermap.egispweb.common.AjaxResult;
 import com.supermap.egispweb.pojo.HasLinkedCarBean;
 
-@Controller
+//@Controller
 public class CarSpeedingAction extends BaseAction{
 	
 	@Autowired

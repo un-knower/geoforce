@@ -30,9 +30,9 @@ import com.supermap.egispservice.geocoding.service.IGeocodingService;
 import com.supermap.egispservice.statistic.service.IOrderStatisticService;
 import com.supermap.egispweb.excelview.FendansExcelView;
 
-@Controller
-@RequestMapping(value = "/statistic/order")
-@SessionAttributes("user")
+//@Controller
+//@RequestMapping(value = "/statistic/order")
+//@SessionAttributes("user")
 public class OrderStatisticsAction {
 
 	@Autowired

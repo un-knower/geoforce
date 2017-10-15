@@ -32,7 +32,7 @@ import com.supermap.egispweb.util.DateUtil;
 * @author wyj
 * @date 2013-8-28 下午02:15:08
  */
-@Controller
+//@Controller
 public class GpsHistoryAction extends BaseAction {
 	static Logger logger = Logger.getLogger(GpsHistoryAction.class.getName());
 	

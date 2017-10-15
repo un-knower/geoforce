@@ -86,9 +86,9 @@ import com.supermap.lbsp.provider.hibernate.lbsp.Car;
 //import com.supermap.lbsp.provider.hibernate.lbsp.DataWordbook;
 import com.supermap.utils.FileUtil;
 
-@Controller
-@RequestMapping("pointService")
-@SessionAttributes(types = { UserEntity.class }, value = { "user" })
+//@Controller
+//@RequestMapping("pointService")
+//@SessionAttributes(types = { UserEntity.class }, value = { "user" })
 public class PointServiceAction {
 	
 	private static final String NET_DIR_NAME = "net";

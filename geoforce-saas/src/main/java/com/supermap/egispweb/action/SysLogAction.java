@@ -20,8 +20,8 @@ import com.supermap.egispservice.base.entity.UserEntity;
 import com.supermap.egispservice.base.service.SysLogService;
 import com.supermap.egispservice.base.service.UserService;
 
-@Controller
-@RequestMapping("syslog")
+//@Controller
+//@RequestMapping("syslog")
 public class SysLogAction {
 	
 	@Autowired

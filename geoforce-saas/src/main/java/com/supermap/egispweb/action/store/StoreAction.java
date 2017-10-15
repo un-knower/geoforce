@@ -16,7 +16,7 @@ import com.supermap.egispweb.common.AjaxResult;
 import com.supermap.lbsp.provider.common.Page;
 import com.supermap.lbsp.provider.hibernate.lbsp.PersonStore;
 import com.supermap.lbsp.provider.hibernate.lbsp.PersonStoreType;
-@Controller
+//@Controller
 public class StoreAction extends BaseAction{
 	
 	/**

@@ -12,7 +12,7 @@
 	<dubbo:reference id="addressMatch" interface="com.supermap.egisp.addressmatch.service.IAddressMatchService" version="2.5.3" check="false"/>
 	<dubbo:reference id="fendanService" interface="com.supermap.egispservice.base.service.ILogisticsFendanService" version="2.5.3" check="false"/>
 	<dubbo:reference id="geocodingService" interface="com.supermap.egispservice.geocoding.service.IGeocodingService" version="2.5.3" check="false"/>
-	<dubbo:reference id="correctAddressService" interface="com.supermap.egispservice.base.service.ICorrectAddressService" version="2.5.3" check="false"/>
+	<!-- <dubbo:reference id="correctAddressService" interface="com.supermap.egispservice.base.service.ICorrectAddressService" version="2.5.3" check="false"/> -->
 	
 	
 </beans>

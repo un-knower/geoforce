@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.supermap.egispservice.base.entity.UserEntity;
 import com.supermap.egispservice.base.service.IOrderHistoryService;
 
-@Controller
-@RequestMapping(value = "/orderHistory")
-@SessionAttributes("user")
+//@Controller
+//@RequestMapping(value = "/orderHistory")
+//@SessionAttributes("user")
 public class OrderHistoryAction {
 	
 	@Autowired

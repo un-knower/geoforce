@@ -19,8 +19,8 @@ import com.supermap.egispservice.base.entity.UserEntity;
 import com.supermap.egispservice.geocoding.service.IGeocodingService;
 import com.supermap.egispweb.action.OrderAction;
 
-@Controller
-@RequestMapping(value = "/statistic/area")
+//@Controller
+//@RequestMapping(value = "/statistic/area")
 public class AreaStatisticsAction {
 	
 	private final static Logger LOGGER = Logger.getLogger(OrderAction.class);

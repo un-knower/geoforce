@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,10 +22,15 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.chaosting.base.util.http.HttpUtil;
 import com.supermap.egispservice.area.AreaEntity;
 import com.supermap.egispservice.area.PageQueryResult;
 import com.supermap.egispservice.area.Point2D;
@@ -43,6 +49,9 @@ import com.supermap.egispweb.excelview.AreaExcelView;
 import com.supermap.egispweb.util.FieldMap;
 import com.supermap.egispweb.util.StringUtil;
 import com.supermap.utils.FileUtil;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 /**
  * 
@@ -68,7 +77,7 @@ public class AreaManagerAction {
 	@Autowired
 	private  UserService userService;
 	
-	@Autowired
+	//@Autowired
 	private PointService pointService;
 	
 	@Autowired
@@ -83,7 +92,7 @@ public class AreaManagerAction {
 	 * Author：Huasong Huang
 	 * CreateTime：2014-9-16 上午10:08:13
 	 */
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	@RequestMapping(value="add")
 	@ResponseBody
 	public Map<String, Object> addArea(HttpServletRequest request, HttpSession session) {
@@ -143,11 +152,42 @@ public class AreaManagerAction {
 			LOGGER.error(e.getMessage(), e);
 		}
 		return resultMap;
+	}*/
+	
+	@RequestMapping(value="add")
+	@ResponseBody
+	public Map<String, Object> addArea(String areaName, String areaNum, String point2Ds) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		try {
+			if (StringUtil.isStringEmpty(areaName)) {
+				throw new AreaException(ExceptionType.NULL_NO_ALLOW, "areaName");
+			}
+			if (StringUtil.isStringEmpty(areaNum)) {
+				throw new AreaException(ExceptionType.NULL_NO_ALLOW, "areaNum");
+			}
+			if (StringUtil.isStringEmpty(point2Ds)) {
+				throw new AreaException(ExceptionType.NULL_NO_ALLOW, "point2Ds");
+			}
+			
+			String points = point2Ds.replaceAll("\\},\\{", ";").replaceAll("\\[\\{", "").replaceAll("\\}\\]", "").replaceAll("\"x\":", "").replaceAll("\"y\":", "");
+			
+			HttpUtil http = new HttpUtil();
+			Map<String, String> paramMap = new HashMap<String, String>();
+			paramMap.put("ak", "9291cae6d60d4275b718100787dc73c1");
+			paramMap.put("code", "1");
+			paramMap.put("name", areaName);
+			paramMap.put("points", points);
+			
+			String result = http.doPostString("http://restapi.dituhui.com/v1/area/addArea", null, paramMap);
+			System.out.println(result);
+			
+			resultMap = buildResult("添加业务区成功", null, true);
+		} catch (Exception e) {
+			resultMap = buildResult(e.getMessage(), null, false);
+			LOGGER.error(e.getMessage(), e);
+		}
+		return resultMap;
 	}
-	
-	
-	
-	
 	
 	/**
 	 * 
@@ -712,7 +752,7 @@ public class AreaManagerAction {
 	 * @Author Juannyoh
 	 * 2015-7-27下午4:42:15
 	 */
-	@RequestMapping("queryAllAreaByLevel")
+	/*@RequestMapping("queryAllAreaByLevel")
 	@ResponseBody
 	public Map<String,Object> queryAllAreaByLevel(String areaName,String areaNumber,String admincode, int level,@RequestParam(defaultValue="true",required=false)String isNeedPoint,HttpSession session){
 		UserEntity user=(UserEntity)session.getAttribute("user");
@@ -792,8 +832,81 @@ public class AreaManagerAction {
 			LOGGER.error(e.getMessage(), e);
 		}
 		return map;
-	}
+	}*/
 	
+	@RequestMapping("queryAllAreaByLevel")
+	@ResponseBody
+	public Map<String,Object> queryAllAreaByLevel(String areaName,String areaNumber,String admincode, int level,@RequestParam(defaultValue="true",required=false)String isNeedPoint,HttpSession session){
+		Map<String,Object> map = null;
+		try {
+			HttpUtil http = new HttpUtil();
+			StringBuilder url = new StringBuilder("http://restapi.dituhui.com/v1/area/queryByFilter");
+			url.append("?ak=9291cae6d60d4275b718100787dc73c1")
+				.append("&filter=")
+				.append(URLEncoder.encode("[{\"columnName\":\"code\",\"columnType\":\"STRING\",\"columnValue\":\"1\",\"operation\":\"EQUAL\"}]", "UTF-8"))
+				.append("&includeGeo=true");
+			
+			String response = http.doGetString(url.toString(), null);
+			System.out.println(response);
+			
+			List<AreaEntity> list = new ArrayList<AreaEntity>();
+			JSONArray result = JSONObject.fromObject(response).getJSONArray("result");
+			for(int i=0; i<result.size(); i++) {
+				JSONObject json = result.getJSONObject(i);
+				AreaEntity ae = new AreaEntity();
+				ae.setId(json.getString("id"));
+				ae.setCreate_time(json.getString("addTime"));
+				ae.setName(json.getString("name"));
+				ae.setUpdate_time(json.getString("updateTime"));
+				
+				JSONObject innerPoint = json.getJSONObject("innerPoint");
+				ae.setCenter(new Point2D(innerPoint.getDouble("x"),innerPoint.getDouble("y")));
+				
+				JSONObject region = json.getJSONObject("region");
+				if(region.isEmpty() || region.isNullObject()) {
+					continue;
+				}
+				JSONArray points = region.getJSONArray("points");
+				Point2D[] ps = new Point2D[points.size()];
+				for(int j=0;j<points.size();j++) {
+					JSONObject point = points.getJSONObject(j);
+					ps[j] = new Point2D(point.getDouble("x"),point.getDouble("y"));
+				}
+				ae.setPoints(ps);
+				
+				int[] s = new int[1];
+				s[0] = points.size();
+				ae.setParts(s);
+				
+				list.add(ae);
+			}
+
+			if(null != list && list.size() > 0){
+				List<Map> maplist=new ArrayList<Map>();
+				for(AreaEntity Entity:list){
+					//坐标加密
+					Point2D[]  points=Entity.getPoints();
+					if(null!=points&&points.length>0){
+						int xp=951753;int yp=852456;
+						for(Point2D point:points){
+							point.setX((int)(point.getX()*100)^xp);
+							point.setY((int)(point.getY()*100)^yp);
+						}
+					}
+					
+					Map m=FieldMap.convertBean(Entity);
+					maplist.add(m);
+				}
+				map = buildResult(null, maplist, true);
+			}else{
+				map = buildResult("查询结果为空", null, false);
+			}
+		} catch (Exception e) {
+			map = buildResult(e.getMessage(), null, false);
+			LOGGER.error(e.getMessage(), e);
+		}
+		return map;
+	}
 	
 	/**
 	 * 根据部门id查找顶级部门

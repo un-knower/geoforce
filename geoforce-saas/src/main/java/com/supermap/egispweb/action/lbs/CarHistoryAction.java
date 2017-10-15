@@ -26,8 +26,8 @@ import com.supermap.egispweb.util.DateUtil;
 * 操作时间：2014-9-24 下午04:20:04     
 * @version 1.0
  */
-@Controller
-@RequestMapping("carMonitor")
+//@Controller
+//@RequestMapping("carMonitor")
 public class CarHistoryAction {
 	
 	@Autowired

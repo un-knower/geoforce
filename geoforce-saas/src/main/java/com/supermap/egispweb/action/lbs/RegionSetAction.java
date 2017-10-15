@@ -29,7 +29,7 @@ import com.supermap.egispweb.common.AjaxResult;
 
 
 
-@Controller
+//@Controller
 public class RegionSetAction  extends BaseAction{
 	
 	

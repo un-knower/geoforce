@@ -29,7 +29,7 @@ import com.supermap.lbsp.provider.hibernate.lbsp.PersonPic;
  * @author wang
  *
  */
-@Controller
+//@Controller
 public class PersonSignAction extends BaseAction {
 static Logger logger = Logger.getLogger(RegionSetAction.class.getName());
 	/**

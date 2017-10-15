@@ -27,7 +27,7 @@ import com.supermap.egispweb.action.base.BaseAction;
 import com.supermap.egispweb.common.AjaxResult;
 
 
-@Controller
+//@Controller
 public class RegionAction{
 	
 	

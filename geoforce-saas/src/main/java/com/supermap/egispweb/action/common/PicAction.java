@@ -14,7 +14,7 @@ import com.supermap.egispservice.base.entity.UserEntity;
 import com.supermap.egispweb.action.base.BaseAction;
 import com.supermap.lbsp.provider.common.Page;
 import com.supermap.lbsp.provider.hibernate.lbsp.PersonPic;
-@Controller
+//@Controller
 public class PicAction extends BaseAction{
 	/**
 	 * 跟据存类型和外键id得到图的列表
