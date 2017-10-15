@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    
+	<!-- <dubbo:reference id="regionSetService" interface="com.supermap.lbsp.provider.service.region.RegionSetService" check="false"/>
+    <dubbo:reference id="regionService" interface="com.supermap.lbsp.provider.service.region.RegionService" check="false"/>
+    <dubbo:reference id="carSpeedingService" interface="com.supermap.lbsp.provider.service.region.CarSpeedingService" check="false"/>
+    <dubbo:reference id="carRegionService" interface="com.supermap.lbsp.provider.service.region.CarRegionService" check="false"/>
+ --></beans>
