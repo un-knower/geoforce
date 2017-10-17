@@ -223,7 +223,6 @@
  
   <script type="text/javascript" src="${ctx}/resources/js/Dituhui/iclient-8c/SuperMap.Include.js"></script>
   <script src="${ctx}/resources/js/Dituhui/dituhui.libs.min.js"></script>
-  <%-- <script src="${ctx}/resources/js/public/galleria/galleria-1.4.2.min.js"></script> --%>
   <script src="${ctx}/resources/assets/js/jquery.form.js" type="text/javascript" ></script>
   <script src="${ctx}/resources/js/public/jquery.rotate.min.js"></script>
   <script src="${ctx}/resources/js/config.js"></script>
@@ -233,6 +232,7 @@
   <script type="text/javascript" src="${ctx}/resources/js/public/dth.map.js"></script>
   <script type="text/javascript" src="${ctx}/resources/js/public/region.search.js"></script>
   <%-- <script type="text/javascript" src="${ctx}/resources/js/public/branch.search.js"></script> --%>
+  <%-- <script src="${ctx}/resources/js/public/galleria/galleria-1.4.2.min.js"></script> --%>
 </body>
 </html>
 
