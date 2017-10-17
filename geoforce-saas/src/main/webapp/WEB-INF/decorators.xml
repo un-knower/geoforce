@@ -7,6 +7,7 @@
 		<pattern>/uploadlic</pattern>
 		<pattern>/login</pattern>
 		<pattern>/loginIn</pattern>
+		<pattern>/distributeDemo.jsp</pattern>
 	</excludes>
 	
 	<decorator name="default" page="default.jsp">

@@ -172,6 +172,7 @@ public class AreaManagerAction {
 			String points = point2Ds.replaceAll("\\},\\{", ";").replaceAll("\\[\\{", "").replaceAll("\\}\\]", "").replaceAll("\"x\":", "").replaceAll("\"y\":", "");
 			
 			HttpUtil http = new HttpUtil();
+			http.setCharset("UTF-8");
 			Map<String, String> paramMap = new HashMap<String, String>();
 			paramMap.put("ak", "9291cae6d60d4275b718100787dc73c1");
 			paramMap.put("code", "1");
