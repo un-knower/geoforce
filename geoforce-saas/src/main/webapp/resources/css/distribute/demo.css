@@ -10,7 +10,7 @@
 }
 
 #address {
-	width: 260px;
+	width: 210px;
 }
 
 #file {
@@ -23,4 +23,8 @@
 
 .pageBar ul {
 	margin: 0;
+}
+
+.result {
+	color: red;
 }

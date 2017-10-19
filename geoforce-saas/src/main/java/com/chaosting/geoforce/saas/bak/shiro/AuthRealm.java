@@ -1,7 +1,7 @@
-package com.chaosting.geoforce.saas.shiro;
+package com.chaosting.geoforce.saas.bak.shiro;
 
 import com.alibaba.fastjson.JSON;
-import com.chaosting.geoforce.saas.controller.util.JedisUtil;
+import com.chaosting.geoforce.saas.bak.controller.util.JedisUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.AuthenticationException;

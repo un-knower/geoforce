@@ -30,6 +30,11 @@
 		</dependency>
 		<dependency>
 			<groupId>com.chaosting</groupId>
+			<artifactId>base.util</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.chaosting</groupId>
 			<artifactId>dubbo</artifactId>
 			<version>2.5.3</version>
 		</dependency>

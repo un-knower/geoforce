@@ -1,3 +1,9 @@
+var map;
+var polygonA;
+var polygonB;
+var polygonC;
+var marker;
+
 var initArea = function(map) {
 	var areaA = new Array();
     areaA.push([104.070649,30.667103]);
@@ -8,7 +14,7 @@ var initArea = function(map) {
     areaA.push([104.077902,30.658373]);
     areaA.push([104.077279,30.658558]);
     areaA.push([104.070949,30.658484]);
-    var polygonA = new AMap.Polygon({
+    polygonA = new AMap.Polygon({
         path: areaA,
         strokeColor: "green",	//线颜色
         strokeOpacity: 0.3,		//线透明度
@@ -32,7 +38,7 @@ var initArea = function(map) {
     areaB.push([104.056251,30.66858]);
     areaB.push([104.05801,30.667694]);
     areaB.push([104.060499,30.666845]);
-    var polygonB = new AMap.Polygon({
+    polygonB = new AMap.Polygon({
         path: areaB,
         strokeColor: "red",		//线颜色
         strokeOpacity: 0.3,		//线透明度
@@ -52,7 +58,7 @@ var initArea = function(map) {
     areaC.push([104.05874,30.651008]);
     areaC.push([104.060757,30.654146]);
     areaC.push([104.0608,30.656287]);
-    var polygonC = new AMap.Polygon({
+    polygonC = new AMap.Polygon({
         path: areaC,
         strokeColor: "blue",	//线颜色
         strokeOpacity: 0.3,		//线透明度
@@ -65,7 +71,7 @@ var initArea = function(map) {
     AMapUI.loadUI(['overlay/SimpleMarker'], function(SimpleMarker) {
 		new SimpleMarker({
 			iconLabel: {
-				innerHTML: '<strong>AreaA</strong>',
+				innerHTML: '<strong>业务区A</strong>',
 				style: {
 					color: 'red',
 					marginTop: '15px'
@@ -78,7 +84,7 @@ var initArea = function(map) {
 		
 		new SimpleMarker({
 			iconLabel: {
-				innerHTML: '<strong>AreaB</strong>',
+				innerHTML: '<strong>业务区B</strong>',
 				style: {
 					color: 'red',
 					marginTop: '15px'
@@ -91,7 +97,7 @@ var initArea = function(map) {
 		
 		new SimpleMarker({
 			iconLabel: {
-				innerHTML: '<strong>AreaC</strong>',
+				innerHTML: '<strong>业务区C</strong>',
 				style: {
 					color: 'red',
 					marginTop: '15px'
@@ -107,7 +113,8 @@ var initArea = function(map) {
 var initMap = function() {
 	$("#map").height($(window).height() - 50);
 
-	var map = new AMap.Map('map', {
+	map = new AMap.Map('map', {
+		position: [104.065735,30.659462],
 		zoom: 15
 	});
 	AMap.plugin([ 'AMap.ToolBar', 'AMap.Scale', 'AMap.OverView' ],
@@ -128,6 +135,68 @@ var initMap = function() {
 	});
 }
 
+var showMarker = function(x,y) {
+	if (marker) {
+        marker.setMap(null);
+        marker = null;
+    }
+	marker = new AMap.Marker({
+      	position: [x,y]
+ 	});
+  	marker.setMap(map);
+  	
+  	map.setZoomAndCenter(15, marker.getPosition());
+}
+
+var singleDistribute = function(address) {
+	$.ajax({
+		url: "geocoding/single",
+		data: "address=" + address,
+		success: function(json) {
+			showMarker(json.result[0].x,json.result[0].y);
+		  	
+		  	if(polygonA.contains(marker.getPosition())) {
+		  		$("#result").text("业务区A");
+		  		$("#result").addClass("result");
+		  	} else if(polygonB.contains(marker.getPosition())) {
+		  		$("#result").text("业务区B");
+		  		$("#result").addClass("result");
+		  	} else if(polygonC.contains(marker.getPosition())) {
+		  		$("#result").text("业务区C");
+		  		$("#result").addClass("result");
+		  	} else {
+		  		$("#result").text("无");
+		  		$("#result").removeClass("result");
+		  	}
+		}
+	});
+}
+
 $(function() {
 	setTimeout("initMap()", 50);
+	
+	$("#address").bind("keypress",function(event) {
+		if(event.keyCode == "13") {
+			singleDistribute($("#address").val());
+		}
+		return false;
+	});
+	
+	$("#singleDistribute").click(function() {
+		singleDistribute($("#address").val());
+	});
+	
+	$("#reset").click(function() {
+		if (marker) {
+	        marker.setMap(null);
+	        marker = null;
+	    }
+		
+		map.setZoomAndCenter(15, [104.065735,30.659462]);
+		
+		$("#address").val("");;
+		
+		$("#result").text("无");
+  		$("#result").removeClass("result");
+	});
 })

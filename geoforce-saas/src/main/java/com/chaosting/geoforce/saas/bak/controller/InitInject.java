@@ -1,18 +1,18 @@
-package com.chaosting.geoforce.saas.controller;
+package com.chaosting.geoforce.saas.bak.controller;
 
 import javax.annotation.PostConstruct;
 
 import com.alibaba.fastjson.JSON;
 //import com.chaosting.geoforce.entity.Application;
-import com.chaosting.geoforce.saas.controller.util.JedisUtil;
-import com.chaosting.geoforce.saas.interceptor.AuthInterceptor;
+import com.chaosting.geoforce.saas.bak.controller.util.JedisUtil;
+import com.chaosting.geoforce.saas.bak.interceptor.AuthInterceptor;
 //import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.chaosting.geoforce.saas.shiro.AuthRealm;
+import com.chaosting.geoforce.saas.bak.shiro.AuthRealm;
 
 import java.util.List;
 

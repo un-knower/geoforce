@@ -1,9 +1,9 @@
-package com.chaosting.geoforce.saas.interceptor;
+package com.chaosting.geoforce.saas.bak.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.chaosting.geoforce.saas.controller.util.JedisUtil;
+import com.chaosting.geoforce.saas.bak.controller.util.JedisUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.chaosting.geoforce.saas.exception.ParameterException;
+import com.chaosting.geoforce.saas.bak.exception.ParameterException;
 
 @Component
 public class AuthInterceptor extends HandlerInterceptorAdapter {

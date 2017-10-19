@@ -1,7 +1,7 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ request.getContextPath() + "/";
 %>
 
 <!DOCTYPE html>
@@ -17,6 +17,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	
+	<base href="<%=basePath%>">
+	
 	<link rel="icon" href="http://v3.bootcss.com/favicon.ico">
 	
 	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
@@ -25,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
 	<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
 	
-	<link rel="stylesheet" href="resources/css/distribute/distributeDemo.css">
+	<link rel="stylesheet" href="resources/css/distribute/demo.css">
   </head>
   
   <body>
@@ -66,11 +68,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div class="form-group">
 								<input type="text" class="form-control" id="address" placeholder="请输入地址">
 							</div>
-							<button type="submit" class="btn btn-primary">分单</button>
+							<button type="button" class="btn btn-primary" id="singleDistribute">分单</button>
+							<button type="button" class="btn btn-success" id="reset">重置</button>
 						</form>
 					</li>
 					<li class="list-group-item">
-						<strong>分单结果：</strong>xxxx
+						<strong>分单结果：</strong><span id="result">无</span>
 					</li>
 				</ul>
 			</div>
@@ -82,11 +85,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<ul class="list-group">
 					<li class="list-group-item">
 						<form class="form-inline">
-							<button type="submit" class="btn btn-primary">模版下载</button>
+							<button type="button" class="btn btn-primary">模版下载</button>
 							<div class="form-group">
 								<input type="file" id="file">
 							</div>
-							<button type="submit" class="btn btn-primary">上传</button>
+							<button type="button" class="btn btn-primary">上传</button>
 						</form>
 					</li>
 				</ul>
@@ -119,7 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.0&key=c09e2be02abcd2e7d386eceaffc9b96a"></script>
 	<script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
-	<script type="text/javascript" src="resources/js/distribute/distributeDemo.js"></script>
+	<script type="text/javascript" src="resources/js/distribute/demo.js"></script>
 	
   </body>
 </html>

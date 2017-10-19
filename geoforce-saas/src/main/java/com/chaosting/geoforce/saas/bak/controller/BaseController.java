@@ -1,4 +1,4 @@
-package com.chaosting.geoforce.saas.controller;
+package com.chaosting.geoforce.saas.bak.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,6 +7,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.authc.AuthenticationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.chaosting.geoforce.saas.bak.exception.BaseException;
 
-//@Controller
+@Controller
 public class BaseController {
 
 	private static final Logger logger = LoggerFactory.getLogger(BaseController.class);
@@ -40,6 +41,10 @@ public class BaseController {
 			BaseException be = (BaseException) e;
 			status = be.getStatus();
 			info = be.getInfo();
+		} else if (e instanceof AuthenticationException) {
+			logger.warn("有认证异常");
+			status = 10002;
+			info = e.getMessage();
 		} else if (e instanceof MissingServletRequestParameterException) {
 			logger.warn("有参数绑定异常");
 			status = 10001;
