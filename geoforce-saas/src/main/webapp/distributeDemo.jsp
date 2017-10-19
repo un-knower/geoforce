@@ -38,24 +38,87 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="http://v3.bootcss.com/examples/starter-template/#">Project name</a>
+          <a class="navbar-brand" href="#">Geoforce</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="http://v3.bootcss.com/examples/starter-template/#">Home</a></li>
-            <li><a href="http://v3.bootcss.com/examples/starter-template/#about">About</a></li>
-            <li><a href="http://v3.bootcss.com/examples/starter-template/#contact">Contact</a></li>
+            <li class="active"><a href="#">智能分单-示例</a></li>
+            <li><a href="#">智能分单-免费</a></li>
+            <li><a href="#">智能分单-正式</a></li>
+            <li><a href="#">业务区管理</a></li>
+            <li><a href="#">线路规划</a></li>
+            <li><a href="#">车辆监控</a></li>
           </ul>
         </div>
       </div>
     </nav>
-    
-    <div id="container"></div>
+
+	<div class="content">
+		<div class="leftPanel">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">单条分单</h3>
+				</div>
+				<div class="panel-body">introduce</div>
+				<ul class="list-group">
+					<li class="list-group-item">
+						<form class="form-inline">
+							<div class="form-group">
+								<input type="text" class="form-control" id="address" placeholder="请输入地址">
+							</div>
+							<button type="submit" class="btn btn-primary">分单</button>
+						</form>
+					</li>
+					<li class="list-group-item">
+						<strong>分单结果：</strong>xxxx
+					</li>
+				</ul>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">批量分单</h3>
+				</div>
+				<div class="panel-body">introduce</div>
+				<ul class="list-group">
+					<li class="list-group-item">
+						<form class="form-inline">
+							<button type="submit" class="btn btn-primary">模版下载</button>
+							<div class="form-group">
+								<input type="file" id="file">
+							</div>
+							<button type="submit" class="btn btn-primary">上传</button>
+						</form>
+					</li>
+				</ul>
+				<table class="table table-striped table-hover">
+					<tr><th>地址</th><th>业务区</th></tr>
+					<tr><td>1</td><td>1</td></tr>
+					<tr><td>2</td><td>2</td></tr>
+					<tr><td>3</td><td>3</td></tr>
+					<tr><td>4</td><td>4</td></tr>
+					<tr><td>5</td><td>5</td></tr>
+				</table>
+				<nav class="pageBar">
+					<ul class="pagination">
+						<li><a href="#"><span>&laquo;</span></a></li>
+						<li><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li><a href="#"><span>&raquo;</span></a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	    <div id="map"></div>
+    </div>
     
 	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 	<script type="text/javascript" src="resources/assets/js/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.0&key=c09e2be02abcd2e7d386eceaffc9b96a"></script>
+	<script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
 	<script type="text/javascript" src="resources/js/distribute/distributeDemo.js"></script>
 	
   </body>

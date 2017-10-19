@@ -1,5 +1,26 @@
 @CHARSET "UTF-8";
 
-#container {
+.content {
 	margin-top: 50px;
+}
+
+.leftPanel {
+	width: 360px;
+	float: left;
+}
+
+#address {
+	width: 260px;
+}
+
+#file {
+	width: 175px;
+}
+
+.pageBar {
+	text-align: center;
+}
+
+.pageBar ul {
+	margin: 0;
 }
