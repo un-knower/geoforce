@@ -115,7 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     
 	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-	<script type="text/javascript" src="resources/assets/js/jquery.min.js"></script>
+	<script type="text/javascript" src="resources/assets/jquery/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.0&key=c09e2be02abcd2e7d386eceaffc9b96a"></script>
 	<script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
