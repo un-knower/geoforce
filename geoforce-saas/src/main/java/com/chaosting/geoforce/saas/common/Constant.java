@@ -9,4 +9,6 @@ public class Constant {
 	public static final String GEOCODING_URL = API_URL + "/oldaddrmatch/geo";
 	
 	public static final String GCJ02LL = "SMLL";
+	
+	public static final int GEOCODING_FREE_SIZE = 50;
 }

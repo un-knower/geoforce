@@ -4,6 +4,26 @@ var polygonB;
 var polygonC;
 var marker;
 
+var batchResult;
+var pageSize = 5;
+var pageBarOptions = {
+	bootstrapMajorVersion: 3,
+	size: "small",
+	tooltipTitles: function(type, page, current) {},
+	itemTexts: function (type, page, current) {
+		switch (type) {
+			case "first": return "首页";
+			case "prev": return "上页";
+			case "next": return "下页";
+			case "last": return "末页";
+			case "page": return page;
+		}
+	},
+	onPageClicked: function(event, originalEvent, type, page) {
+		refreshTable(page);
+	}
+};
+
 var initArea = function(map) {
 	var areaA = new Array();
     areaA.push([104.070649,30.667103]);
@@ -74,7 +94,8 @@ var initArea = function(map) {
 				innerHTML: '<strong>业务区A</strong>',
 				style: {
 					color: 'red',
-					marginTop: '15px'
+					marginTop: '15px',
+					width: '55px'
 				}
 			},
 			iconStyle: "<>",
@@ -87,7 +108,8 @@ var initArea = function(map) {
 				innerHTML: '<strong>业务区B</strong>',
 				style: {
 					color: 'red',
-					marginTop: '15px'
+					marginTop: '15px',
+					width: '55px'
 				}
 			},
 			iconStyle: "<>",
@@ -100,7 +122,8 @@ var initArea = function(map) {
 				innerHTML: '<strong>业务区C</strong>',
 				style: {
 					color: 'red',
-					marginTop: '15px'
+					marginTop: '15px',
+					width: '55px'
 				}
 			},
 			iconStyle: "<>",
@@ -111,7 +134,7 @@ var initArea = function(map) {
 }
 
 var initMap = function() {
-	$("#map").height($(window).height() - 50);
+	$("#map").height($("#leftPanel").height());
 
 	map = new AMap.Map('map', {
 		position: [104.065735,30.659462],
@@ -129,10 +152,6 @@ var initMap = function() {
 		});
 	
 	initArea(map);
-	
-	$(window).resize(function() {
-		$("#map").height($(window).height() - 50);
-	});
 }
 
 var showMarker = function(x,y) {
@@ -149,11 +168,23 @@ var showMarker = function(x,y) {
 }
 
 var singleDistribute = function(address) {
+	if(address == "") {
+		$("#address").parent().addClass("has-error");
+		$("#result").text("无");
+  		$("#result").removeClass("result");
+		return;
+	} else {
+		$("#address").parent().removeClass("has-error");
+		$("#singleDistribute").attr("disabled", "disabled");
+	}
+	
 	$.ajax({
 		url: "geocoding/single",
-		data: "address=" + address,
+		data: "address=" + encodeURIComponent(address),
 		success: function(json) {
-			showMarker(json.result[0].x,json.result[0].y);
+			$("#singleDistribute").removeAttr("disabled");
+			
+			showMarker(json.x,json.y);
 		  	
 		  	if(polygonA.contains(marker.getPosition())) {
 		  		$("#result").text("业务区A");
@@ -172,8 +203,50 @@ var singleDistribute = function(address) {
 	});
 }
 
+var reset = function() {
+	if (marker) {
+        marker.setMap(null);
+        marker = null;
+    }
+	
+	map.setZoomAndCenter(15, [104.065735,30.659462]);
+	
+	$("#address").val("");;
+	
+	$("#result").text("无");
+	$("#result").removeClass("result");
+}
+
+var refreshTable = function(currentPage) {
+	$("#table tr").remove(".tableRow");
+	
+	var start = (currentPage - 1) * pageSize;
+	var end = currentPage * pageSize - 1;
+	for(var i=start; i<=end; i++) {
+		if(batchResult[i]) {
+			$("#table").append("<tr class='tableRow' index='" + i + "'><td>" + batchResult[i].id + 
+					"</td><td>" + batchResult[i].address + 
+					"</td><td class='result'>" + batchResult[i].area + "</td></tr>");
+		}
+	}
+	
+	$(".tableRow").click(function(e) {
+		showMarker(batchResult[$(this).attr("index")].x, batchResult[$(this).attr("index")].y);
+	})
+	
+	$("#map").height($("#leftPanel").height());
+}
+
 $(function() {
 	setTimeout("initMap()", 50);
+	
+	$("#pageBar ul").bootstrapPaginator(pageBarOptions);
+	
+	$("[data-toggle='popover']").popover();
+	
+	$("#leftPanel").on("shown.bs.collapse", function () {
+		$("#map").height($("#leftPanel").height());
+	});
 	
 	$("#address").bind("keypress",function(event) {
 		if(event.keyCode == "13") {
@@ -187,16 +260,61 @@ $(function() {
 	});
 	
 	$("#reset").click(function() {
-		if (marker) {
-	        marker.setMap(null);
-	        marker = null;
-	    }
+		reset();
+	});
+	
+	$("#download").click(function() {
+		location.href = basePath + "resources/assets/template/template.xlsx";
+	});
+	
+	$("#upload").click(function() {
+		if($("#file").val() == "") {
+			return;
+		}
 		
-		map.setZoomAndCenter(15, [104.065735,30.659462]);
+		$("#upload").attr("disabled", "disabled");
+		$("#upload").text("上传中...");
 		
-		$("#address").val("");;
-		
-		$("#result").text("无");
-  		$("#result").removeClass("result");
+		$("#form").ajaxSubmit({
+			url: "geocoding/upload",
+			type: "post",
+			dataType: "json",
+			success: function(json) {
+				if(json.status == 10001) {
+					$("#tipWin").modal("show");
+					
+					$("#upload").removeAttr("disabled");
+					$("#upload").text("上传");
+				} else {
+					$.each(json.result, function(index, item) {
+						if(polygonA.contains([item.x, item.y])) {
+					  		item.area = "业务区A";
+					  	} else if(polygonB.contains([item.x, item.y])) {
+					  		item.area = "业务区B";
+					  	} else if(polygonC.contains([item.x, item.y])) {
+					  		item.area = "业务区C";
+					  	} else {
+					  		item.area = "";
+					  	}
+					});
+					
+					batchResult = json.result;
+					
+					$("#upload").removeAttr("disabled");
+					$("#upload").text("上传");
+					$("#file").val("");
+					reset();
+					
+					refreshTable(1);
+					
+					pageBarOptions.totalPages = Math.ceil(batchResult.length / pageSize);
+					$("#pageBar ul").bootstrapPaginator("setOptions", pageBarOptions);
+				}
+			}
+		});
+	});
+	
+	$("#tipWin button").click(function() {
+		$("#tipWin").modal("hide");
 	});
 })
