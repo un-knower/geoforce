@@ -9,9 +9,10 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<checkstyle.configLocation>${basedir}</checkstyle.configLocation>
-		<repository.url>http://maven.aliyun.com/nexus/content/repositories/releases/</repository.url>
-		<snapshotRepository.url>http://maven.aliyun.com/nexus/content/repositories/snapshots/</snapshotRepository.url>
-		<!-- <spring.version>3.2.6.RELEASE</spring.version> -->
+		<!-- <repository.url>http://maven.aliyun.com/nexus/content/repositories/releases/</repository.url>
+		<snapshotRepository.url>http://maven.aliyun.com/nexus/content/repositories/snapshots/</snapshotRepository.url> -->
+		<repository.url>http://test.supermapcloud.com:8050/nexus/content/repositories/releases/</repository.url>
+		<snapshotRepository.url>http://test.supermapcloud.com:8050/nexus/content/repositories/snapshots/</snapshotRepository.url>
 		<spring.version>4.1.3.RELEASE</spring.version>
 	</properties>
 
@@ -78,11 +79,11 @@
 	</distributionManagement>
 
 	<modules>
-		<module>geoforce-area</module><!-- 1099 -->
-		<module>geoforce-base</module><!-- 20821 -->
-		<module>geoforce-addressmatch</module><!-- -1 -->
-		<module>geoforce-distribute</module><!-- 20831 -->
-		<module>geoforce-geocoding</module><!-- 20841 -->
+		<!-- <module>geoforce-area</module>1099
+		<module>geoforce-base</module>20821
+		<module>geoforce-addressmatch</module>-1
+		<module>geoforce-distribute</module>20831
+		<module>geoforce-geocoding</module>20841 -->
 		<!-- <module>geoforce-pathplan</module>20851
 		<module>geoforce-statistic</module>20861
 		<module>geoforce-ts</module>20871
