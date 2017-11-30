@@ -1,234 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
-	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="dituhui.openapi.portal" version="3.1">
 
-	<!--վ���� -->
-	<display-name>egispportal</display-name>
+	<display-name>dituhui.openapi.portal</display-name>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
-	
-	<!-- 注销 -->
+
 	<listener>
-		<listener-class>org.jasig.cas.client.session.SingleSignOutHttpSessionListener</listener-class>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
+	<servlet>
+		<servlet-name>springMvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:springMvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springMvc</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
 	<filter>
-		<filter-name>CasSingleSignOutFilter</filter-name>
-		<filter-class>org.jasig.cas.client.session.SingleSignOutFilter</filter-class>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+	<filter>
+		<filter-name>sf</filter-name>
+		<filter-class>com.dituhui.openapi.portal.filter.EncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
 	</filter>
 	<filter-mapping>
-		<filter-name>CasSingleSignOutFilter</filter-name>
+		<filter-name>sf</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping> 
+	</filter-mapping>
 
-	
-	<!-- 单点登录 -->
 	<filter>
-		<filter-name>CasAuthenticationFilter</filter-name>
-		<filter-class>org.jasig.cas.client.authentication.AuthenticationFilter</filter-class>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
-			<param-name>casServerLoginUrl</param-name>
-			<param-value>http://sso.dituhui.com/login</param-value>
-			<!-- ?service=http://192.168.15.35/egispportal/userService?method=login -->
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
 		</init-param>
 		<init-param>
-			<param-name>serverName</param-name>
-			<param-value>http://e.dituhui.com/</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>CasAuthenticationFilter</filter-name>
-		<url-pattern>/userService</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>CasAuthenticationFilter</filter-name>
-		<url-pattern>/orderService</url-pattern>
-	</filter-mapping>
-	<!-- 对ticket进行校验 -->
-	<filter>
-		<filter-name>CasValidationFilter</filter-name>
-		<filter-class>org.jasig.cas.client.validation.Cas20ProxyReceivingTicketValidationFilter</filter-class>
-		<init-param>
-			<param-name>casServerUrlPrefix</param-name>
-			<param-value>http://sso.dituhui.com</param-value>
-		</init-param>
-		<init-param>
-			<param-name>serverName</param-name>
-			<param-value>http://e.dituhui.com/</param-value>
-		</init-param>
-		<init-param>
-			<param-name>encodeServiceUrl</param-name>
-			<param-value>false</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>CasValidationFilter</filter-name>
-		<url-pattern>/userService</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>CasValidationFilter</filter-name>
-		<url-pattern>/orderService</url-pattern>
-	</filter-mapping>
-	<!--<filter-mapping>
-		<filter-name>CasValidationFilter</filter-name>
-		<url-pattern>/queryUserInfo</url-pattern>
-	</filter-mapping>
-	
-	-->
-	 <!-- 封装request, 支持getUserPrincipal等方法-->  
-    <filter>   
-            <filter-name>CAS HttpServletRequest Wrapper Filter</filter-name>  
-            <filter-class>org.jasig.cas.client.util.HttpServletRequestWrapperFilter</filter-class>  
-    </filter>  
-    <filter-mapping>  
-            <filter-name>CAS HttpServletRequest Wrapper Filter</filter-name>  
-        <url-pattern>/*</url-pattern>  
-    </filter-mapping>  
-      
-    <!-- 存放Assertion到ThreadLocal中   -->  
-    <filter>   
-        <filter-name>CAS Assertion Thread Local Filter</filter-name>  
-        <filter-class>org.jasig.cas.client.util.AssertionThreadLocalFilter</filter-class>  
-	</filter>   
-	    <filter-mapping>  
-	        <filter-name>CAS Assertion Thread Local Filter</filter-name>  
-	        <url-pattern>/*</url-pattern>  
-	</filter-mapping>  
-	
-	
-	
-	
-	
-	
-	
-
- 	<filter>
-		<filter-name>shiroFilter</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-		<init-param>
-			<param-name>targetFilterLifecycle</param-name>
+			<param-name>forceEncoding</param-name>
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
-		<filter-name>shiroFilter</filter-name>
+		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
 	
-	<!-- 身份验证及权限验证过滤器 -->
- 
-	<filter>
-		<filter-name>accessFilter</filter-name>
-		<filter-class>com.supermap.egispportal.filter.AccessFilter</filter-class>
+	<!--<filter>-->
+		<!--<filter-name>sitemesh</filter-name>-->
+		<!--<filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class>-->
+	<!--</filter>-->
+	<!--<filter-mapping>-->
+		<!--<filter-name>sitemesh</filter-name>-->
+		<!--<url-pattern>/*</url-pattern>-->
+	<!--</filter-mapping>-->
+
+	<!-- <filter>
+		<filter-name>GZIPFilter</filter-name>
+		<filter-class>com.tacitknowledge.filters.gzipfilter.GZIPFilter</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>accessFilter</filter-name>
-		<url-pattern>/userService</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>accessFilter</filter-name>
-		<url-pattern>/orderService</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>accessFilter</filter-name>
-		<url-pattern>/logout</url-pattern>
-	</filter-mapping>
-	
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-	
-	<!-- �û����� -->
-	<servlet>
-		<servlet-name>userService</servlet-name>
-		<servlet-class>com.supermap.egispportal.servlet.UserServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>userService</servlet-name>
-		<url-pattern>/userService</url-pattern>
-	</servlet-mapping>
-	<!-- ����ģ�� -->
-	<servlet>
-		<servlet-name>moduleService</servlet-name>
-		<servlet-class>com.supermap.egispportal.servlet.ModuleServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>moduleService</servlet-name>
-		<url-pattern>/moduleService</url-pattern>
-	</servlet-mapping>
-	<!-- �������� -->
-	<servlet>
-		<servlet-name>orderService</servlet-name>
-		<servlet-class>com.supermap.egispportal.servlet.OrderServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>orderService</servlet-name>
-		<url-pattern>/orderService</url-pattern>
-	</servlet-mapping>
+		<filter-name>GZIPFilter</filter-name>
+		<url-pattern>/point/getAllByDimPointTypeAndAdmincode</url-pattern>
+	</filter-mapping> -->
 
-	<servlet>
-		<servlet-name>queryUserInfo</servlet-name>
-		<servlet-class>com.supermap.egispportal.servlet.UserSupServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>queryUserInfo</servlet-name>
-		<url-pattern>/queryUserInfo</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>mailService</servlet-name>
-		<servlet-class>com.supermap.egispportal.servlet.UserSupServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>mailService</servlet-name>
-		<url-pattern>/mailService</url-pattern>
-	</servlet-mapping>
-	<!-- 意见反馈 -->
-	<servlet>
-		<servlet-name>feedbackmailService</servlet-name>
-		<servlet-class>com.supermap.egispportal.servlet.UserSupServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>feedbackmailService</servlet-name>
-		<url-pattern>/feedbackmailService</url-pattern>
-	</servlet-mapping>
-	<!--  -->
-	
-	<servlet>
-		<servlet-name>logout</servlet-name>
-		<servlet-class>com.supermap.egispportal.servlet.UserServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>logout</servlet-name>
-		<url-pattern>/logout</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>regist</servlet-name>
-		<servlet-class>com.supermap.egispportal.servlet.RegistServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>regist</servlet-name>
-		<url-pattern>/regist</url-pattern>
-	</servlet-mapping>
-	
-	<!-- 更新日志查询 -->
-	  <servlet>
-	    <servlet-name>sysUpdateLogService</servlet-name>
-	    <servlet-class>com.supermap.egispportal.servlet.SysUpdateLogServlet</servlet-class>
-	  </servlet>
-	  <servlet-mapping>
-	    <servlet-name>sysUpdateLogService</servlet-name>
-	    <url-pattern>/sysUpdateLogService</url-pattern>
-	  </servlet-mapping>
+	<!-- <session-config>
+		<session-timeout>10</session-timeout>
+	</session-config> -->
+
+	<!-- <error-page>
+		<error-code>404</error-code>
+		<location>/error.html</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error.html</location>
+	</error-page> -->
 
 	<welcome-file-list>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>/index</welcome-file>
 	</welcome-file-list>
 </web-app>

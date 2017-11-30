@@ -1,0 +1,62 @@
+.level-1>a{
+    font-size: 14px!important;
+    font-family: "微软雅黑", Helvetica, Arial, sans-serif;
+}
+
+.level-2{
+    padding-left: 10px;
+}
+.level-2>a{
+    font-size: 12px!important;
+    font-family: "微软雅黑", Helvetica, Arial, sans-serif;
+}
+.demoRun{
+    display: inline-block;
+    width:60px;
+    height:30px;
+    background: #0E81E5;
+    font-size: 16px;
+    font-family: 'Microsoft Yahei', serif;
+    text-align: center;
+    line-height:30px;
+    border-radius: 5px;
+    color: #fff!important;
+}
+.codeResult{
+    width:100%;
+    min-height:300px;
+    background: #CCCCCC;
+    display: none;
+}
+
+
+/*helpLink右侧友情链接*/
+#helpLink{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 120px;
+    height:150px;
+    box-shadow: 0 0 20px 3px #aaaaaa;
+    -webkit-box-shadow:0 0 20px 3px #aaaaaa ;
+    -moz-box-shadow:0 0 20px 3px #aaaaaa ;
+}
+#helpLink ul li{
+    height:50px;
+    line-height:50px;
+}
+#helpLink ul li img{
+    margin-left: 5px;
+    height: 30px;
+    vertical-align: middle;
+}
+#helpLink ul li a{
+    font-family: 'Microsoft Yahei', serif;
+    color: #000;
+    font-size: 15px;
+    margin-left: 10px;
+}
+#helpLink ul li a:hover{
+    color: #333;
+}
+

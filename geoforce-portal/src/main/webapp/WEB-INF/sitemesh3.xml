@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+	<mapping decorator="/WEB-INF/decorators/default.jsp" />
+	<mapping path="/console" decorator="/WEB-INF/decorators/console.jsp" />
+	<mapping path="/permission" decorator="/WEB-INF/decorators/console.jsp" />
+	<mapping path="/consolePerson" decorator="/WEB-INF/decorators/console.jsp" />
+</sitemesh>

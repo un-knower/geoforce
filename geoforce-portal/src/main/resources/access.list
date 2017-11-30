@@ -1,8 +1,0 @@
-/egispportal/userService?method=updateUser
-/egispportal/userService?method=queryUserInfo
-/egispportal/userService?method=changePassword
-/egispportal/orderService?method=addOrder
-/egispportal/orderService?method=queryOrderList
-/egispportal/orderService?method=queryOrderDetails
-/egispportal/orderService?method=deleteOrder
-/egispportal/orderService?method=requestLicense

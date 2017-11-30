@@ -38,10 +38,10 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="distribute/demo">智能分单-示例<span class="label label-primary theLabel">New</span></a></li>
-            <li><a href="javascrip:void(0);" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="提示" data-content="敬请期待...">智能分单-免费</a></li>
-            <li><a href="javascrip:void(0);" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="提示" data-content="敬请期待...">智能分单-正式</a></li>
-            <li><a href="javascrip:void(0);" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="提示" data-content="敬请期待...">业务区管理</a></li>
+            <li class="active"><a href="distribute/demo">智能分单-示例</a></li>
+            <li><a href="distribute/free">智能分单-免费<span class="label label-primary theLabel">New</span></a></li>
+            <li><a href="javascrip:void(0);" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="提示" data-content="即将上线...">智能分单-正式</a></li>
+            <li><a href="javascrip:void(0);" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="提示" data-content="即将上线...">业务区管理</a></li>
             <li><a href="javascrip:void(0);" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="提示" data-content="敬请期待...">线路规划</a></li>
             <li><a href="javascrip:void(0);" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="提示" data-content="敬请期待...">车辆监控</a></li>
           </ul>

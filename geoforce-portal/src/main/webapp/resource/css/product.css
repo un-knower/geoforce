@@ -1,0 +1,373 @@
+@charset "utf-8";
+* {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+a {
+  outline: none!important;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.main {
+  width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+}
+.main .leftBar {
+  width: 210px;
+}
+.main .leftBar * {
+  transition: .2s;
+}
+.main .leftBar .menu-grandpa > li.has_child .menu-father {
+  display: none;
+}
+.main .leftBar .menu-grandpa > li.show > span > i {
+  transform: rotate(180deg);
+  transition: .2s;
+}
+.main .leftBar .menu-grandpa > li.show .menu-father {
+  display: block!important;
+}
+.main .leftBar .menu-grandpa > li.active > a,
+.main .leftBar .menu-grandpa > li.active > span {
+  transition: .2s;
+  background: #449df2;
+  color: #ffffff;
+}
+.main .leftBar .menu-grandpa > li.active > a i,
+.main .leftBar .menu-grandpa > li.active > span i {
+  color: #ffffff;
+}
+.main .leftBar .menu-grandpa > li > a,
+.main .leftBar .menu-grandpa > li > span {
+  display: block;
+  padding: 0 20px;
+  font-size: 16px;
+  background: #e3e3ff;
+  height: 54px;
+  line-height: 54px;
+  color: #000000;
+  cursor: pointer;
+  border-bottom: 1px solid #ffffff;
+}
+.main .leftBar .menu-grandpa > li > span {
+  position: relative;
+}
+.main .leftBar .menu-grandpa > li > span i {
+  position: absolute !important;
+  right: 20px !important;
+  line-height: 54px !important;
+  font-size: 12px;
+}
+.main .leftBar .menu-grandpa > li > a:hover,
+.main .leftBar .menu-grandpa > li > span:hover {
+  transition: .2s;
+  background: #449df2;
+  color: #ffffff;
+}
+.main .leftBar .menu-grandpa > li > a:hover i,
+.main .leftBar .menu-grandpa > li > span:hover i {
+  color: #ffffff;
+}
+.main .leftBar .menu-grandpa > li .menu-father {
+  display: none;
+}
+.main .leftBar .menu-grandpa > li .menu-father > li.has_child .menu-son {
+  display: none;
+}
+.main .leftBar .menu-grandpa > li .menu-father > li.show > span > i {
+  transform: rotate(180deg);
+  transition: .2s;
+}
+.main .leftBar .menu-grandpa > li .menu-father > li.show .menu-son {
+  display: block!important;
+}
+.main .leftBar .menu-grandpa > li .menu-father > li > span {
+  display: block;
+  padding: 0 20px 0 30px;
+  height: 40px;
+  font-size: 14px;
+  color: #333333;
+  line-height: 40px;
+  background: #fafafa;
+  cursor: pointer;
+  position: relative;
+}
+.main .leftBar .menu-grandpa > li .menu-father > li > span i {
+  position: absolute!important;
+  right: 20px;
+  line-height: 40px;
+  font-size: 12px;
+  color: #999999;
+}
+.main .leftBar .menu-grandpa > li .menu-father > li .menu-son {
+  display: none;
+  background: #fafafa;
+}
+.main .leftBar .menu-grandpa > li .menu-father > li .menu-son > li > a {
+  display: block;
+  padding-left: 40px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 13px;
+  color: #666666;
+}
+.main .leftBar .menu-grandpa > li .menu-father > li .menu-son > li > a:hover {
+  color: #449df2;
+}
+.main .leftBar .menu-grandpa > li .menu-father > li .menu-son > li.active a {
+  color: #449df2;
+}
+.main .centerBar {
+  width: 800px;
+  margin-left: 40px;
+  padding-top: 15px;
+}
+.main .centerBar .location {
+  font-size: 12px;
+  color: #a5a5a5;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e6e6e6;
+}
+.main .centerBar .location a {
+  color: #449df2;
+}
+.main .centerBar .location a.active {
+  color: #a5a5a5;
+}
+.main .centerBar table {
+  table-layout: fixed;
+}
+.main .centerBar table tr.active td {
+  color: #ffffff;
+  background: #449df2;
+}
+.main .centerBar table tr td {
+  line-height: 37px;
+  border: 1px solid #e6e6e6;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.main .centerBar .title {
+  margin-top: 25px;
+  font-size: 30px;
+  color: #333333;
+}
+.main .centerBar .refresh-time {
+  font-size: 12px;
+  color: #a5a5a5;
+}
+.main .centerBar h3 {
+  font-size: 18px;
+  color: #333333;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin: 0 0 10px 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+.main .centerBar .lightspot {
+  counter-reset: count;
+  font-size: 14px;
+  color: #666;
+}
+.main .centerBar .lightspot li {
+  line-height: 24px;
+}
+.main .centerBar .lightspot li:before {
+  content: "•";
+  color: #449df2;
+  letter-spacing: 1px;
+  text-indent: 10px;
+}
+.main .centerBar .lightspot li span {
+  font-size: 14px;
+  color: #666666;
+  display: inline-block;
+  margin-left: 10px;
+}
+.main .centerBar .pro-intro {
+  font-size: 14px;
+  color: #666666;
+  line-height: 25px;
+}
+.main .centerBar .demoResult {
+  height: 298px;
+  width: 100%;
+  border: 1px solid #ededed;
+  position: relative;
+}
+.main .centerBar .demoCode {
+  height: 298px;
+  border-left: 1px solid #ededed;
+  border-bottom: 1px solid #ededed;
+  border-right: 1px solid #ededed;
+  background: #f5f5f5;
+  position: relative;
+}
+.main .centerBar .demoCode #demoCode {
+  width: 100%;
+  height: 100%;
+}
+.main .centerBar .demoCode .CodeMirror {
+  font-size: 12px!important;
+  color: #333!important;
+  font-family: Microsoft YaHei Arial sans-serif !important;
+  background-color: #FFF!important;
+  border: 1px solid #ece2e2!important;
+}
+.main .centerBar .demoCode .CodeMirror .CodeMirror-linenumber {
+  background-color: #F7F7F7;
+  color: #999;
+  border: 1px solid #ddd;
+}
+.main .centerBar .ak-step {
+  font-size: 14px;
+  color: #666666;
+}
+.main .centerBar .AK-step {
+  width: 100%;
+  text-align: center;
+  margin: 50px auto;
+}
+.main .centerBar .AK-step li {
+  width: 25%;
+  float: left;
+  color: #449df2;
+  position: relative;
+}
+.main .centerBar .AK-step li i {
+  position: absolute;
+  left: 50%;
+  top: 15px;
+  border-bottom: 1px dashed #a5a5a5;
+  width: 170px;
+  margin-left: 15px;
+}
+.main .centerBar .AK-step li span {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  color: #666;
+  font-size: 14px;
+  border: 1px solid #eaeaea;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+.main .centerBar .update-log {
+  position: relative;
+  background: url("../img/time-line.png") repeat-y 89px 0;
+}
+.main .centerBar .update-log .year {
+  position: relative;
+}
+.main .centerBar .update-log .year * {
+  transition: .2s;
+}
+.main .centerBar .update-log .year h2 {
+  margin: 20px 0 0 0;
+  padding: 0 0 20px 0;
+}
+.main .centerBar .update-log .year h2 a {
+  font-size: 14px;
+  color: #449df2;
+}
+.main .centerBar .update-log .year h2 a img {
+  margin-left: 10px;
+  transform: rotate(-90deg);
+}
+.main .centerBar .update-log .year .list {
+  min-height: 100px;
+  max-height: 400px;
+  overflow-y: auto;
+  position: relative;
+  display: none;
+  /*滚动条样式*/
+}
+.main .centerBar .update-log .year .list::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 10px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height: 10px;
+}
+.main .centerBar .update-log .year .list::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 5px;
+  background: #449df2;
+}
+.main .centerBar .update-log .year .list::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  background: #ededed;
+}
+.main .centerBar .update-log .year .list ul {
+  position: absolute;
+}
+.main .centerBar .update-log .year .list ul li {
+  height: 100%;
+  background: url("../img/time-dot.png") no-repeat 78px 0;
+}
+.main .centerBar .update-log .year .list ul li:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.main .centerBar .update-log .year .list ul li .date,
+.main .centerBar .update-log .year .list ul li .version {
+  float: left;
+  display: block;
+  width: 70px;
+  font-size: 14px;
+  color: #666666;
+  margin-bottom: 0;
+  text-align: right;
+  clear: left;
+}
+.main .centerBar .update-log .year .list ul li .more {
+  float: right;
+  width: 650px;
+  margin-left: 45px;
+  clear: right;
+}
+.main .centerBar .update-log .active h2 a img {
+  transform: rotate(0deg);
+}
+.main .centerBar .update-log .active .list {
+  display: block;
+}
+.main .rightBar {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-left: 1px solid #e6e6e6;
+  position: fixed;
+  top: 80px;
+  right: 50%;
+  margin-right: -600px;
+  width: 130px;
+}
+.main .rightBar ul {
+  margin-bottom: 0!important;
+}
+.main .rightBar ul li {
+  height: 30px;
+  line-height: 30px;
+}
+.main .rightBar ul li a {
+  font-size: 14px;
+  color: #666;
+  padding: 0 0 0 20px;
+}
+.main .rightBar ul li.active {
+  border-left: 2px solid #449df2;
+  background: #e3e3ff;
+}
+.main .rightBar ul li.active a {
+  color: #449df2;
+}

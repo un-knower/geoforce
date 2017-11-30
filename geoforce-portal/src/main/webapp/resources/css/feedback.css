@@ -1,0 +1,337 @@
+@charset "UTF-8";
+html,
+body {
+  height: 100%;
+}
+p{
+  margin:0;
+}
+.blue {
+  color: #0088cc;
+}
+.modal{top:45%;}
+.modal-custom {
+    width: 480px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 10px;
+}
+.modal-custom .modal-custom-content {
+    padding: 20px 10px;
+}
+.modal-custom .modal-custom-content .back-img {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+.modal-custom .modal-custom-content .title {
+    color: #353535;
+    font-family: 'microsoft yahei';
+    font-size: 16px;
+    display: block;
+    text-align: center;
+    margin:15px 0 20px 0;
+}
+.red-border {
+  outline: none;
+  border: 1px solid #fc4343 !important;
+}
+main {
+  min-height: 100%;
+  padding-top: 60px;
+  background-color: #f2f2f2;
+  box-sizing: border-box;
+  padding-bottom: 41px;
+}
+main section {
+  background: url(../img/bg_developmentDocument.png) no-repeat;
+  color: #E8EBF3;
+  padding-left: 200px;
+}
+main section.feedback {
+  background: url(../img/bg_feedback.png) no-repeat;
+  background-size: 100% 100%;
+  padding-bottom: 40px;
+}
+main section.saleSupport {
+  background: url("../img/bg_serviceSupport.png") no-repeat;
+  background-size: 100% 100%;
+  padding-bottom: 40px;
+}
+main section.about {
+  background: url(../img/bg_aboutUs.png) no-repeat;
+  background-size: 100% 100%;
+  padding-bottom: 40px;
+}
+main section.about P {
+  width: 43%;
+}
+main section.contact {
+  background: url("../img/bg_lxwm.png") no-repeat;
+  background-size: 100% 100%;
+  padding-bottom: 40px;
+}
+main section.contact P {
+  width: 43%;
+}
+main section h1 {
+  font-size: 38px;
+  line-height: 110px;
+}
+main section p {
+  width: 50%;
+  line-height: 35px;
+  font-size: 20px;
+  font-weight: bold;
+}
+main div.content {
+  max-width: 1130px;
+  margin: -10px auto 50px auto;
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #f3f3f3;
+  padding: 100px 200px;
+  box-sizing: border-box;
+}
+main div.content div.feedback-top p label {
+  width: 100px;
+  font-size: 12px;
+  font-weight: bold;
+}
+main div.content div.feedback-top p select {
+  width: 660px;
+  height: 34px;
+  margin: 5px 0;
+}
+main div.content div.feedback-top p input {
+  width: 660px;
+  height: 34px;
+  margin: 5px 0;
+}
+main div.content div.feedback-top p textarea {
+  width: 655px;
+  vertical-align: top;
+  height: 150px;
+  margin: 5px 0;
+  padding-left: 3px;
+}
+main div.content div.feedback-top p button {
+  width: 660px;
+  line-height: 35px;
+  background: #0075FF;
+  color: #fff;
+  border: #0075FF;
+  margin: 20px 0 0 0px;
+}
+main div.content div.feedback-bottom {
+  margin: 160px 0 20px;
+}
+main div.content div.feedback-bottom img {
+  float: left;
+  margin-left: 25%;
+}
+main div.content div.feedback-bottom div.right {
+  margin-left: 50%;
+}
+main div.content div.feedback-bottom div.right h2 {
+  color: #434343;
+  line-height: 30px;
+}
+main div.content div.feedback-bottom div.right p {
+  color: #9C9C9C;
+  font-size: 20px;
+  line-height: 50px;
+}
+main div.content div.feedback-bottom div.right p.hour {
+  color: #313131;
+  font-weight: bold;
+}
+main div.content div.feedback-bottom div.right p span {
+  color: #E6431E;
+  font-size: 38px;
+  font-weight: bold;
+  vertical-align: -3px;
+  margin-right: 2px;
+}
+main div.content div.saleSupport-up {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+main div.content div.saleSupport-up ul li {
+  list-style: none;
+  line-height: 30px;
+  font-size: 12px;
+}
+main div.content div.saleSupport-up ul li:first-child {
+  position: relative;
+  text-align: center;
+  line-height: 110px;
+  margin-bottom: -30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #7D7D7D;
+}
+main div.content div.saleSupport-up ul li:first-child img {
+  position: absolute;
+  left: 50%;
+  margin-left: -24px;
+  margin-top: -10px;
+}
+main div.content div.saleSupport-up ul li a {
+  text-decoration: none;
+  color: #535353;
+  font-weight: bold;
+}
+main div.content div.saleSupport-down {
+  padding-top: 30px;
+}
+main div.content div.saleSupport-down p.head {
+  color: #727272;
+  font-size: 16px;
+  font-weight: bold;
+}
+main div.content div.saleSupport-down div.figure {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 35px;
+}
+main div.content div.saleSupport-down div.figure figure {
+  flex: 1;
+  width: 100%;
+}
+main div.content div.saleSupport-down div.figure figure:first-child {
+  border-right: 1px solid #DFDFDF;
+  padding-right: 100px;
+}
+main div.content div.saleSupport-down div.figure figure:nth-child(2) {
+  margin-left: 130px;
+}
+main div.content div.saleSupport-down div.figure figure img {
+  float: left;
+}
+main div.content div.saleSupport-down div.figure figure figcaption {
+  padding-left: 70px;
+}
+main div.content div.saleSupport-down div.figure figure figcaption span {
+  display: inline-block;
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+main div.content div.saleSupport-down div.figure figure figcaption p {
+  font-size: 12px;
+  line-height: 35px;
+}
+main div.content div.saleSupport-down div.figure figure figcaption button {
+  width: 150px;
+  line-height: 28px;
+  background: #006EFF;
+  color: #fff;
+  border: 1px solid #006EFF;
+}
+main div.content div.contact-top {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 90px;
+  border-bottom: 1px dotted #DADADA;
+}
+main div.content div.contact-top div.left-con {
+  flex: 3;
+}
+main div.content div.contact-top div.left-con p {
+  font-size: 14px;
+  color: #8D8D8D;
+  font-weight: bold;
+  line-height: 30px;
+}
+main div.content div.contact-top div.right-pic {
+  flex: 2;
+  margin-top: 25px;
+}
+main div.content div.contact-top div.right-pic img {
+  float: right;
+  border: 1px solid #3B7CE4;
+}
+main div.content div.contact-middle {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+main div.content div.contact-middle dl {
+  text-align: center;
+  color: #969696;
+  font-weight: bold;
+}
+main div.content div.contact-middle dl dt {
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+main div.content div.contact-middle dl dd {
+  font-size: 12px;
+  line-height: 30px;
+}
+main div.content div.contact-bottom {
+  color: #949494;
+  text-align: center;
+  margin-top: 50px;
+}
+main div.content div.contact-bottom img {
+  width: 80px;
+  height: 80px;
+  margin: 20px 80px 40px;
+}
+main div.briefing {
+  color: #898989;
+}
+main div.briefing h3 {
+  position: relative;
+}
+main div.briefing h3:before {
+  content: "";
+  height: 36px;
+  position: absolute;
+  width: 32px;
+  background: url("../img/icon_gywm.png") no-repeat;
+  left: -50px;
+  top: -5px;
+}
+main div.briefing p {
+  text-align: justify;
+  text-indent: 2rem;
+  line-height: 35px;
+  font-size: 14px;
+}
+footer {
+  margin-top: -41px;
+  width: 100%;
+  background: #F2F2F2;
+}
+footer div.footer {
+  display: flex;
+  max-width: 1130px;
+  margin: auto;
+  text-align: center;
+  font-size: 12px;
+}
+footer div.footer div.copyright {
+  width: 50%;
+}
+footer div.footer aside {
+  margin-right: 5%;
+  line-height: 40px;
+}
+footer div.footer aside i:before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+footer div.footer aside i.phone {
+  background: url("../img/footer-phone.png") no-repeat center center;
+}
+footer div.footer aside i.email {
+  background: url("../img/footer-email.png") no-repeat center center;
+}
+footer div.footer aside span {
+  margin: 0 10px 0 5px;
+}

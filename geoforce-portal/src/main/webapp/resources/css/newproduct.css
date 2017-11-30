@@ -1,0 +1,74 @@
+.lv-1{
+    hieght:30px;
+    padding-left: 10px;
+    line-height:30px;
+}
+.lv-1>a{
+    font-size: 14px;
+    font-family: "微软雅黑", Helvetica, Arial, sans-serif;
+    color: #000000;
+}
+.lv-2{
+    height: 25px;
+    padding-left: 15px;
+    line-height:25px;
+}
+.lv-2>a{
+    font-size:12px;
+    font-family: "微软雅黑", Helvetica, Arial, sans-serif;
+    color: #3c3c3c;
+}
+.lv-2>a:hover{
+    color: #000;
+}
+.demoImg{
+    border:2px solid #ccc;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+}
+.demoCode{
+    margin-top:10px;
+    width: 100%;
+    height:350px;
+    border: 2px solid #ccc;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+}
+#codeMirror{
+    width: 100%;
+    height:100%;
+    margin:0;
+    padding:0;
+    border:none;
+}
+/*helpLink右侧友情链接*/
+#helpLink{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 120px;
+    height:150px;
+    box-shadow: 0 0 20px 3px #aaaaaa;
+}
+#helpLink ul li{
+    height:50px;
+    line-height:50px;
+}
+#helpLink ul li img{
+    margin-left: 5px;
+    height: 30px;
+    vertical-align: middle;
+}
+#helpLink ul li a{
+    font-family: 'Microsoft Yahei', serif;
+    color: #000;
+    font-size: 15px;
+    margin-left: 10px;
+}
+#helpLink ul li a:hover{
+    color: #333;
+}
+
+

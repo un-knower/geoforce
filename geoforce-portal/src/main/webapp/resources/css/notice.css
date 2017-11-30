@@ -1,0 +1,30 @@
+.content {
+  width: 100%;
+  max-width: 1130px;
+  padding-top: 80px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding-bottom: 41px;
+  background-color: #f2f2f2;
+  box-sizing: border-box;
+}
+.content .article {
+  margin: 0 auto;
+  padding: 20px 40px;
+  border-radius: 5px;
+}
+.content .article h3 {
+  padding-bottom: 20px;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+}
+.content .article .inner p {
+  font-size: 14px;
+  margin-top: 10px;
+  padding-bottom: 14px;
+  line-height: 25px;
+}
+.content .article .inner .sign {
+  text-align: right;
+}

@@ -1,0 +1,140 @@
+body {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+}
+main {
+  padding-top: 80px;
+  background-color: #f2f2f2;
+  height: 650px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+main article {
+  width: 600px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #E8E8E8;
+  margin: 0 auto 80px;
+}
+main article form {
+  position: relative;
+  width: 350px;
+  color: #999999;
+  margin: 50px 80px;
+  padding-bottom: 50px;
+}
+main article form label {
+  display: inline-block;
+  width: 80px;
+  text-align: right;
+  font-size: 14px;
+  color: #000;
+}
+main article form p {
+  color: #333333;
+  margin-top: 15px;
+  font-size: 12px;
+  position: relative;
+}
+main article form p input[type="text"],
+main article form p input[type="password"],
+main article form p input[type="button"] {
+  width: 250px;
+  vertical-align: middle;
+  margin: 0 2px;
+  height: 30px;
+  border: 1px solid #CCCCCC;
+  padding-left: 5px;
+  border-radius: 2px;
+}
+main article form p input[type="text"].check,
+main article form p input[type="password"].check,
+main article form p input[type="button"].check {
+  width: 90px;
+  font-size: 10px;
+}
+main article form p input[type="text"].checkBtn,
+main article form p input[type="password"].checkBtn,
+main article form p input[type="button"].checkBtn {
+  height: 32px;
+  width: 152px;
+  margin: 0 auto;
+  background-color: #F5D196;
+  border: 1px solid #F5D196;
+}
+main article form p input[type="text"].checkBtn-used,
+main article form p input[type="password"].checkBtn-used,
+main article form p input[type="button"].checkBtn-used {
+  background-color: #E5E5E5;
+  color: #A9A9A9;
+  border: 1px solid #E5E5E5;
+}
+main article form p input[type="text"].login-state input[type=checkbox],
+main article form p input[type="password"].login-state input[type=checkbox],
+main article form p input[type="button"].login-state input[type=checkbox] {
+  visibility: hidden;
+}
+main article form p.p-login-state {
+  margin: 20px 0 0 85px ;
+}
+main article form p.p-login-state input.login-state {
+  width: auto;
+  line-height: 10px;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+main article form .slideTip {
+  top: 0 !important;
+}
+main article form .tips {
+  width: 150px;
+  display: none;
+  position: absolute;
+  font-size: 12px;
+  top: 8px;
+  right: -150px;
+  color: #E70516;
+}
+main article form .tips b {
+  text-align: center;
+  display: inline-block;
+  width: 12px;
+  line-height: 12px;
+  border-radius: 50%;
+  background-color: #E70516;
+  color: #fff;
+  vertical-align: -1px;
+  font-size: 13px;
+}
+main article form p span a {
+  text-decoration: none;
+  color: #333333;
+}
+main article form p span a:hover {
+  text-decoration: underline;
+}
+main article form p span.register {
+  margin-left: 45px;
+  font-size: 14px;
+}
+main article form p span.forgetPwd {
+  margin-left: 5px;
+  cursor: pointer;
+}
+main article form button {
+  display: block;
+  width: 255px;
+  height: 32px;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #008FFF;
+  color: #fff;
+  margin: 0 88px;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-top: 6px;
+}

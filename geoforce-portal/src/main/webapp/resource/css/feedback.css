@@ -1,0 +1,236 @@
+@charset "utf-8";
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.banner {
+  width: 100%;
+  min-width: 1170px;
+  height: 250px;
+  background: url("../img/feedback-banner-bg.jpg");
+  background-size: 100% 100%;
+  background-position: top center;
+}
+.banner h1 {
+  font-size: 58px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 10px;
+  line-height: 250px;
+}
+.main .feedback-center {
+  width: 1170px;
+  margin: 0 auto;
+}
+.main .feedback-center .location {
+  font-size: 12px;
+  color: #a5a5a5;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e6e6e6;
+}
+.main .feedback-center .location a,
+.main .feedback-center .location span {
+  display: inline-block;
+  padding-top: 5px;
+  font-size: 12px;
+}
+.main .feedback-center .location a {
+  color: #449df2;
+}
+.main .feedback-center .location span {
+  color: #a5a5a5;
+}
+.main .feedback-center .feedback-content {
+  width: 1060px;
+  margin: 0 auto;
+}
+.main .feedback-center .feedback-content .feedback-title {
+  margin-top: 30px;
+}
+.main .feedback-center .feedback-content .feedback-title span {
+  display: inline;
+}
+.main .feedback-center .feedback-content .feedback-title .feedback-title-sp1 {
+  color: #333333;
+  font-size: 15px;
+  line-height: 28px;
+}
+.main .feedback-center .feedback-content .feedback-title .feedback-title-sp2,
+.main .feedback-center .feedback-content .feedback-title .feedback-title-sp3 {
+  color: #a5a5a5;
+  font-size: 15px;
+  line-height: 28px;
+}
+.main .feedback-center .feedback-content .feedback-title #cue2 {
+  display: none;
+  color: #ff9692;
+}
+.main .feedback-center .feedback-content .feedback-title #cue2 i.glyphicon {
+  top: 2px;
+  margin-right: 5px;
+  color: #ff9692;
+}
+.main .feedback-center .feedback-content .feedback-title #cue3 {
+  display: none;
+  color: #ff9692;
+}
+.main .feedback-center .feedback-content .feedback-title .feedback-title-sp3 {
+  margin-right: 65px;
+}
+.main .feedback-center .feedback-content .feedback-title .feedback-title-sp3 .check-num {
+  color: #333;
+  font-size: 15px;
+  line-height: 28px;
+}
+.main .feedback-center .feedback-content .feedback-textarea {
+  width: 975px;
+  height: 210px;
+  margin-left: 24px;
+  padding-top: 10px;
+}
+.main .feedback-center .feedback-content .feedback-textarea textarea {
+  height: 200px;
+  resize: none;
+}
+.main .feedback-center .feedback-content .img-box {
+  max-width: 975px;
+  margin-left: 24px;
+  padding-top: 10px;
+}
+.main .feedback-center .feedback-content .img-box .img-son-box,
+.main .feedback-center .feedback-content .img-box .addimg-son-box {
+  width: 150px;
+  height: 150px;
+  margin-right: 20px;
+  position: relative;
+}
+.main .feedback-center .feedback-content .img-box .img-son-box .close-upimg,
+.main .feedback-center .feedback-content .img-box .addimg-son-box .close-upimg {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  z-index: 9;
+  cursor: pointer;
+}
+.main .feedback-center .feedback-content .img-box .img-son-box .up-img,
+.main .feedback-center .feedback-content .img-box .addimg-son-box .up-img {
+  width: 100%;
+  height: 100%;
+}
+.main .feedback-center .feedback-content .img-box .img-son-box .tip,
+.main .feedback-center .feedback-content .img-box .addimg-son-box .tip {
+  padding-top: 50px;
+  width: 150px;
+  height: 150px;
+  border: 2px dashed #cacfd7;
+  background: #ffffff;
+  text-align: center;
+}
+.main .feedback-center .feedback-content .img-box .img-son-box .tip span,
+.main .feedback-center .feedback-content .img-box .addimg-son-box .tip span {
+  display: block;
+  color: #a5a5a5;
+}
+.main .feedback-center .feedback-content .img-box .img-son-box .tip .addImg-tip,
+.main .feedback-center .feedback-content .img-box .addimg-son-box .tip .addImg-tip {
+  font-size: 12px;
+  padding-top: 10px;
+}
+.main .feedback-center .feedback-content .img-box .img-son-box .file,
+.main .feedback-center .feedback-content .img-box .addimg-son-box .file {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+}
+.main .feedback-center .feedback-content .tel-msg {
+  width: 975px;
+  margin-left: 24px;
+  padding-top: 10px;
+}
+.main .feedback-center .feedback-content .tel-msg .feedback-title-sp1 {
+  font-size: 15px;
+  color: #333333;
+}
+.main .feedback-center .feedback-content .tel-msg input {
+  width: 300px;
+  height: 30px;
+  background: #ffffff;
+  padding-left: 10px;
+  box-shadow: 0.5px 1px 1px #f0f0f0 inset;
+  border: 1px solid #e6e6e6;
+}
+.main .feedback-center .save {
+  width: 130px;
+  margin: 50px auto;
+}
+.main .feedback-center .save a {
+  font-size: 16px;
+  display: block;
+  width: 130px;
+  background: #449df2;
+  color: #ffffff;
+  line-height: 40px;
+  text-align: center;
+}
+.mask {
+  z-index: 1000;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+.mask .mask-content {
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -150px;
+  margin-top: -80px;
+  background: white;
+  height: 160px;
+  text-align: center;
+  border-radius: 10px;
+}
+.mask .mask-content .del-p {
+  color: #555;
+  height: 94px;
+  line-height: 94px;
+  font-size: 18px;
+  border-bottom: 1px solid #D1D1D1;
+}
+.mask .mask-content .check-p {
+  height: 66px;
+  line-height: 66px;
+  margin: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.mask .mask-content .check-p span {
+  width: 49%;
+  display: inline-block;
+  text-align: center;
+  color: #449df2;
+  font-size: 18px;
+}
+.mask .mask-content .check-p .del-com {
+  border-right: 1px solid #D1D1D1;
+}

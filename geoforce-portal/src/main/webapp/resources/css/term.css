@@ -1,0 +1,43 @@
+main .container {
+  outline: 1px solid red;
+  min-height: 100%;
+  padding: 70px 0 71px;
+  background: #fefefe;
+}
+main .container .content {
+  width: 1160px;
+  margin: 0 auto;
+}
+main .container .content h3 {
+  font-weight: 400;
+  font-size: 24px;
+  color: #292929;
+  padding: 35px 0 20px;
+}
+main .container .content h4 {
+  color: #afb1b0;
+  font-size: 12px;
+  font-weight: 400;
+  display: block;
+  margin: 0 0 17px 0;
+  padding-bottom: 17px;
+  border-bottom: 1px solid #E7E7E7;
+}
+main .container .content section p {
+  text-indent: 2rem;
+  font-size: 14px;
+  line-height: 25px;
+}
+main .container .content section pre {
+  padding-left: 50px;
+}
+main .container .content section pre code {
+  font-size: 13px;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+  font-family: Menlo,Monaco,Consolas,Courier New,monospace;
+}
+main .container .content h5 {
+  margin: 5px 0;
+}
