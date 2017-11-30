@@ -1,0 +1,68 @@
+@CHARSET "UTF-8";
+/*自定义业务区*/
+#custom-area{
+	position: fixed;
+	z-index: 1000;
+	top: 80px;
+	right: 30px;
+}
+#custom-area p{
+	height:35px;
+	background-color: rgba(51,122,183,1);
+	color: #fff;
+	line-height: 35px;
+	padding-left:5px;
+	padding-right: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-family: "微软雅黑";
+	font-size: 12px;
+}
+.theLabel {
+	margin-left: 5px;
+}
+
+.content {
+	margin-top: 50px;
+}
+
+.leftPanel {
+	width: 380px;
+	float: left;
+}
+
+#address {
+	width: 230px;
+}
+
+#file {
+	width: 175px;
+}
+
+#upload {
+	width: 80px;
+}
+
+#pageBar {
+	text-align: center;
+}
+
+#pageBar ul {
+	margin: 10px 0;
+}
+
+.result {
+	color: red;
+}
+
+#table {
+	border-bottom: 1px solid #ddd;
+}
+
+#districtWin select {
+	width: 100%;
+}
+
+#districtWin table td {
+	vertical-align: middle;
+}

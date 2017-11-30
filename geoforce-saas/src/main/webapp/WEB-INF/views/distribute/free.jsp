@@ -27,10 +27,16 @@
 	<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
 	<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
 	
-	<link rel="stylesheet" href="resources/css/distribute/demo.css">
+	<link rel="stylesheet" href="resources/assets/bootoast/bootoast.min.css">
+	
+	<link rel="stylesheet" href="resources/css/distribute/free.css">
   </head>
   
   <body>
+  	<!--自定义业务区按钮-->
+	<div id="custom-area">
+		<p>自定义业务区</p>
+	</div>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -38,8 +44,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="distribute/demo">智能分单-示例</a></li>
-            <li><a href="distribute/free">智能分单-免费<span class="label label-primary theLabel">New</span></a></li>
+            <li><a href="distribute/demo">智能分单-示例</a></li>
+            <li class="active"><a href="distribute/free">智能分单-免费<span class="label label-primary theLabel">New</span></a></li>
             <li><a href="javascrip:void(0);" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="提示" data-content="即将上线...">智能分单-正式</a></li>
             <li><a href="javascrip:void(0);" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="提示" data-content="即将上线...">业务区管理</a></li>
             <li><a href="javascrip:void(0);" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="提示" data-content="敬请期待...">线路规划</a></li>
@@ -51,7 +57,7 @@
         </div>
       </div>
     </nav>
-
+    
 	<div class="content">
 		<div class="panel-group leftPanel" id="leftPanel">
 			<div class="panel panel-primary">
@@ -218,7 +224,9 @@
 			</div>
 		</div> -->
 	    
-	    <div id="map"></div>
+	    <div id="map">
+
+		</div>
     </div>
     
     <div class="modal fade" id="tipWin">
@@ -237,14 +245,69 @@
   		</div>
 	</div>
     
+    <div class="modal fade" id="districtWin">
+  		<div class="modal-dialog modal-lg">
+	    	<div class="modal-content">
+	    		<div class="modal-header">
+			        <h4 class="modal-title">sdf</h4>
+			  	</div>
+			   	<div class="modal-body">
+	    			<form class="form-inline">
+	    				<div class="container-fluid">
+	    					<div class="row">
+	    						<div class="col-md-2">
+	    							<ul class="list-group">
+									  <li class="list-group-item list-group-item-info">省</li>
+									  <select class="form-control" size="10" id="province"></select>
+									</ul>
+	    						</div>
+	    						<div class="col-md-2">
+	    							<ul class="list-group">
+									  <li class="list-group-item list-group-item-info">市</li>
+									  <select class="form-control" size="10" id="city"></select>
+									</ul>
+	    						</div>
+	    						<div class="col-md-2">
+	    							<ul class="list-group">
+									  <li class="list-group-item list-group-item-info">区/县</li>
+									  <select class="form-control" size="10" id="county"></select>
+									</ul>
+	    						</div>
+	    						<div class="col-md-2">
+	    							<ul class="list-group">
+									  <li class="list-group-item list-group-item-info">乡镇/街道</li>
+									  <select class="form-control" size="10"></select>
+									</ul>
+	    						</div>
+	    						<div class="col-md-4">
+	    							<div class="panel panel-primary">
+	    								<div class="panel-heading">业务区块</div>
+	    								<table class="table table-striped table-hover table-bordered table-condensed" id="area">
+	    									<tbody></tbody>
+										</table>
+	    							</div>
+	    						</div>
+	    					</div>
+	    				</div>
+	    			</form>
+			  	</div>
+		    	<div class="modal-footer">
+			        <button type="button" class="btn btn-default" id="close">关闭</button>
+			        <button type="button" class="btn btn-primary" id="import">导入</button>
+		  		</div>
+	    	</div>
+  		</div>
+	</div>
+	
 	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 	<script type="text/javascript" src="resources/assets/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="resources/assets/jquery/jquery.form.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="resources/assets/bootstrap/bootstrap-paginator.min.js"></script>
+	<script type="text/javascript" src="resources/assets/bootoast/bootoast.min.js"></script>
 	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.0&key=c09e2be02abcd2e7d386eceaffc9b96a"></script>
 	<script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
-	<script type="text/javascript" src="resources/js/distribute/demo.js"></script>
+	<script type="text/javascript" src="resources/js/distribute/free.js"></script>
 	<script type="text/javascript">
 		var basePath = "<%=basePath%>";
 	</script>

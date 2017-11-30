@@ -7,7 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ViewController {
 
 	@RequestMapping(value = "distribute/demo")
-	public String index() {
+	public String demo() {
 		return "distribute/demo";
+	}
+	
+	@RequestMapping(value = "distribute/free")
+	public String free() {
+		return "distribute/free";
 	}
 }
