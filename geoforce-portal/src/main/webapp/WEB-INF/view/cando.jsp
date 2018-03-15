@@ -5,17 +5,19 @@
     <meta charset="UTF-8">
     <!--设置移动端-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <title>产品--使用限制</title>
+    <title>地图慧开放平台</title>
 
     <!--图标-->
     <link rel="shortcut icon" type="image/x-icon" href="http://www.dituhui.com/favicon.ico">
-
     <!--引入公共样式文件-->
     <link rel="stylesheet" href="resource/css/normalize.css">
     <link rel="stylesheet" href="resource/lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="resource/css/common.css">
 
-    <link rel="stylesheet" href="resource/css/product_limit.css">
+    <link rel="stylesheet" href="resource/css/cando.css">
+
+    <!--滚动条样式-->
+    <link rel="stylesheet" href="resource/lib/scrollBar/css/scrollBar.css">
 </head>
 <body style="display: none;">
 <!--header-->
@@ -80,6 +82,18 @@
                 </div>
             </li>
             <li>
+                <a href="javascript:void(0);" class="li-child5-1">示例应用
+                    <i></i>
+                </a>
+                <div class="li-child5">
+                    <ul class="child5-li">
+                        <li><a href="cando.html">点线面管理</a></li>
+                        <li><a href="distribute/demo">智能分单示例</a></li>
+                        <li><a href="distribute/free">免费智能分单</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
                 <a href="javascript:void(0);" data-container="body" data-toggle="popover" data-placement="right"
                    data-content="敬请期待！">意见反馈
                     <i></i>
@@ -98,86 +112,77 @@
         </div>
     </div>
 </div>
-<!--content start-->
-<div class="main page_wrapper">
-    <!--左侧菜单-->
-    <div class="leftBar fl">
-        <ul id="menu-grandpa" class="menu-grandpa">
+<!--content-->
+<div class="main">
+    <div id="map">
 
-        </ul>
     </div>
-    <!--中间内容-->
-    <div class="centerBar fl">
-        <p class="location">当前位置：
-            <span>产品 </span>/
-            <span class="active">使用限制</span>
-        </p>
-        <table class="table table-bordered table-hover">
-            <thead align="center">
-            <tr class="active">
-                <td width="33.33%">API</td>
-                <td width="33.33%">配额（次/日）</td>
-                <td width="33.33%">TP5（次/秒）</td>
-            </tr>
-            </thead>
-            <tbody align="center">
-            <tr>
-                <td>线路规划</td>
-                <td>100W</td>
-                <td>100</td>
-            </tr>
-            <tr>
-                <td>面管理</td>
-                <td>100W</td>
-                <td>100</td>
-            </tr>
-            <tr>
-                <td>行政区划</td>
-                <td>100W</td>
-                <td>100</td>
-            </tr>
-            <tr>
-                <td>测距</td>
-                <td>100W</td>
-                <td>200</td>
-            </tr>
-            <tr>
-                <td>图片生成三维图</td>
-                <td>100W</td>
-                <td>200</td>
-            </tr>
-            <tr>
-                <td>POI检索</td>
-                <td>100W</td>
-                <td>200</td>
-            </tr>
-            <tr>
-                <td>智能画图</td>
-                <td>100W</td>
-                <td>200</td>
-            </tr>
-            <tr>
-                <td>坐标转换</td>
-                <td>100W</td>
-                <td>100</td>
-            </tr>
-            <tr>
-                <td>地理编码</td>
-                <td>100W</td>
-                <td>100</td>
-            </tr>
-            <tr>
-                <td>切片服务</td>
-                <td>100W</td>
-                <td>100</td>
-            </tr>
-            </tbody>
-        </table>
+    <div id="toolBar" class="toolBar">
+        <div class="toolbox">
+            <%--画点--%>
+            <div id="hd" class="toolbar-child btn-toolbar">
+                <img src="resource/img/hd.png"/>
+                <span>画点</span>
+            </div>
+            <i></i>
+            <%--画线--%>
+            <div id="hx" class="toolbar-child btn-toolbar">
+                <img src="resource/img/hx.png"/>
+                <span>画线</span>
+            </div>
+            <i></i>
+            <%--画面--%>
+            <div id="hm" class="toolbar-child btn-toolbar">
+                <img src="resource/img/hm.png"/>
+                <span>画面</span>
+            </div>
+        </div>
+        <%--<div style="display: block" class="detail-act">--%>
+            <%--<span id="add-marker">新增</span>--%>
+        <%--</div>--%>
+        <%--<div id="hd-act" class="detail-act">--%>
+            <%--<span id="add-marker">增加</span>--%>
+            <%--<i></i>--%>
+            <%--<span id="delete-marker">删除</span>--%>
+            <%--<i></i>--%>
+            <%--<span id="update-marker">修改</span>--%>
+            <%--<i></i>--%>
+            <%--<span id="look-marker">查询</span>--%>
+        <%--</div>--%>
+        <div id="hx-act" class="detail-act">
+            <span>增加线</span>
+            <i></i>
+            <span id="delete-polyline">删除线</span>
+            <i></i>
+            <span>修改线</span>
+            <i></i>
+            <span>查询线</span>
+        </div>
+        <%--<div id="hm-act" class="detail-act">--%>
+            <%--<span>增加</span>--%>
+            <%--<i></i>--%>
+            <%--<span id="delete-polygon">删除</span>--%>
+            <%--<i></i>--%>
+            <%--<span>修改</span>--%>
+            <%--<i></i>--%>
+            <%--<span>查询</span>--%>
+            <%--<i></i>--%>
+            <%--<span id="split">拆分</span>--%>
+            <%--<i></i>--%>
+            <%--<span>合并</span>--%>
+        <%--</div>--%>
+        <div id="hm-act" class="detail-act">
+            <span>提示：双击结束画面！</span>
+        </div>
+        <div id="hm-edit" class="detail-act">
+            <span id="lineSplit">线拆分</span>
+            <i></i>
+            <span id="gonSplit">面拆分</span>
+            <i></i>
+            <span id="merge">合并</span>
+        </div>
     </div>
-    <div style="clear: both"></div>
 </div>
-<!--content end-->
-
 <!--quick-link-->
 <div class="quick-link">
     <ul>
@@ -217,7 +222,7 @@
         </li>
         <li class="footer-link-list-4">
             <p>客服电话：400-966-1112</p>
-            <p>客服电话：028-67077202</p>
+            <p>客服电话：028-67077210</p>
             <p>地址：成都市高新区天府大道中段<br>
                 1366号天府软件园E区6幢6楼</p>
         </li>
@@ -243,8 +248,17 @@
 </html>
 <!--加载jQuery文件-->
 <script src="resource/lib/jquery-1.9.1/jquery.min.js"></script>
+<!--高德地图-->
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.4&key=c09e2be02abcd2e7d386eceaffc9b96a"></script>
+<!--高德UI组件库-->
+<script src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
 <!--bootstrap插件-->
 <script src="resource/lib/bootstrap/js/bootstrap.min.js"></script>
+<!--bootbox插件-->
+<script src="resource/lib/bootstrap/js/bootbox.min.js"></script>
+<!--滚动条插件-->
+<script src="resource/lib/scrollBar/js/scrollBar.js"></script>
+
 
 <script src="resource/js/common.js"></script>
-<script src="resource/js/product_limit.js"></script>
+<script src="resource/js/cando.js"></script>

@@ -126,14 +126,14 @@ $(function(){
 
                     //使用方法
                     html += '<h3 id="useMethod">使用方法</h3>'+
-                        '<p class="pro-intro">成为Geoforce开发者的步骤：</p>'+
-                        '<p class="ak-step">1. 成为Geoforce用户</p>'+
-                        '<p class="ak-step">2. 注册Geoforce开发者</p>'+
+                        '<p class="pro-intro">成为地图慧开发者的步骤：</p>'+
+                        '<p class="ak-step">1. 成为地图慧用户</p>'+
+                        '<p class="ak-step">2. 注册地图慧开发者</p>'+
                         '<p class="ak-step">3. 去控制台创建应用</p>'+
                         '<p class="ak-step">4. 获取KEY</p>'+
                         '<ul class="AK-step">'+
-                        '<li><i></i><span>1</span><br>成为Geoforce用户</li>'+
-                        '<li><i></i><span>2</span><br>注册Geoforce开发者</li>'+
+                        '<li><i></i><span>1</span><br>成为地图慧用户</li>'+
+                        '<li><i></i><span>2</span><br>注册地图慧开发者</li>'+
                         '<li><i></i><span>3</span><br>去控制台创建应用</li>'+
                         '<li><span>4</span><br>获取KEY</li>'+
                         '<div style="clear: both"></div>'+

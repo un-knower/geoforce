@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <!--设置移动端-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <title>Geoforce</title>
+    <title>地图慧开放平台</title>
 
     <!--图标-->
     <link rel="shortcut icon" type="image/x-icon" href="http://www.dituhui.com/favicon.ico">
@@ -16,7 +16,6 @@
 
     <!--首页样式-->
     <link rel="stylesheet" href="resource/css/index.css">
-    <link rel="stylesheet" href="resource/css/index-gif.css">
     <!--滚动条样式-->
     <link rel="stylesheet" href="resource/lib/scrollBar/css/scrollBar.css">
 </head>
@@ -82,11 +81,18 @@
                     </ul>
                 </div>
             </li>
-            <%--<li>--%>
-                <%--<a href="cando.html">我能做--%>
-                    <%--<i></i>--%>
-                <%--</a>--%>
-            <%--</li>--%>
+            <li>
+           		<a href="javascript:void(0);" class="li-child5-1">示例应用
+                    <i></i>
+                </a>
+                <div class="li-child5">
+                    <ul class="child5-li">
+                        <li><a href="cando.html">点线面管理</a></li>
+                        <li><a href="distribute/demo">智能分单示例</a></li>
+                        <li><a href="distribute/free">免费智能分单</a></li>
+                    </ul>
+                </div>
+            </li>
             <li>
                 <a href="javascript:void(0);" data-container="body" data-toggle="popover" data-placement="right"
                    data-content="敬请期待！">意见反馈
@@ -111,49 +117,20 @@
     <!--banner-->
     <div class="banner_slides" id="banner_slides">
         <%--<div class="banner_change banner_prev">--%>
-            <%--<a href="javascript:void(0);"></a>--%>
+            <%--<a href="javascript:void(0);"><img src="resource/img/prev.png"/></a>--%>
         <%--</div>--%>
         <%--<div class="banner_change banner_next">--%>
-            <%--<a href="javascript:void(0);"></a>--%>
+            <%--<a href="javascript:void(0);"><img src="resource/img/next.png"/></a>--%>
         <%--</div>--%>
         <div class="slides_container">
             <div class="slide">
-                <div class="banner">
-                    <div class="banner-center">
-                        <div class="leftBar fl">
-                            <%--<h1>便捷牵手全新开放平台</h1>--%>
-                            <h1>Geoforce正式上线</h1>
-                            <%--<h3>拥抱革命，让开发变得更简单</h3>--%>
+                <div class="banner_1">
+                    <div class="banner1_center">
+                        <div class="banner1_title">
+                            <h1>地图会开放平台正式上线</h1>
                             <h3>企业&nbsp;&nbsp;专业&nbsp;&nbsp;GIS&nbsp;&nbsp;在线&nbsp;&nbsp;行业无关&nbsp;&nbsp;业务无关</h3>
-                            <%--<a href="javascript:void(0);">点击注册</a>--%>
                         </div>
-                        <div id="dh-big" class="rightBar fr">
-                            <div>
-                                <img src="resource/img/banner-gif/d1.png" id="bg1"/>
-                                <img src="resource/img/banner-gif/d2.png" height="67" width="80" id="bg2"/>
-                                <img src="resource/img/banner-gif/d3.png" height="57" width="60" id="bg3"/>
-                                <img src="resource/img/banner-gif/d4.png" height="59" width="70" id="bg4"/>
-
-                                <div id="bg5">
-                                </div>
-                                <div id="bg7">
-                                </div>
-
-                                <img src="resource/img/banner-gif/d8.png" height="250" width="172" id="bg8"/>
-                                <img src="resource/img/banner-gif/d10-1.png" height="95" width="150" id="bg10-1"/>
-                                <img src="resource/img/banner-gif/d12.png" height="44" width="30" id="bg12"/>
-                                <img src="resource/img/banner-gif/d13.png" height="44" width="30" id="bg13"/>
-
-                                <img src="resource/img/banner-gif/d14.png" height="67" width="30" id="bg14"/>
-                                <img src="resource/img/banner-gif/d15.png" height="60" width="30" id="bg15"/>
-                                <img src="resource/img/banner-gif/sdk-2.png" height="44" width="30" id="bgsdk-2"/>
-
-                                <img src="resource/img/banner-gif/application-x-desktop-5.png" height="64" width="64" id="bg20"/>
-                                <img src="resource/img/banner-gif/gear-5.png" height="128" width="128" id="bg21"/>
-                                <img src="resource/img/banner-gif/advanced-1.png" height="77" width="80" id="bg22"/>
-                            </div>
-                        </div>
-                        <div style="clear: both;"></div>
+                        <a><img src="resource/img/index-banner1-center.png"/></a>
                     </div>
                 </div>
             </div>
@@ -501,7 +478,7 @@
             <a href="news_list.html">平台公告</a>
         </li>
         <li class="footer-link-list-3">
-            <span>极图科技</span>
+            <span>地图慧</span>
             <a href="javascript:void(0);" data-container="body" data-toggle="popover" data-placement="left"
                data-content="敬请期待！">关于我们</a>
             <a href="javascript:void(0);" data-container="body" data-toggle="popover" data-placement="left"
@@ -522,7 +499,7 @@
             </div>
             <div class="link-img-box">
                 <img src="resource/img/dituhui.jpg"/>
-                <span>极图科技</span>
+                <span>地图慧</span>
             </div>
         </li>
     </ul>
@@ -530,7 +507,7 @@
 <!--footer-->
 <div class="footer">
     <p class="copyright">
-        Copyright <span id="console">©</span> 2018 极图科技 京ICP备11032883号-5 京ICP证120611号 甲测资质1100363
+        Copyright <span id="console">©</span> 2018地图慧 京ICP备11032883号-5 京ICP证120611号 甲测资质1100363
     </p>
 </div>
 </body>

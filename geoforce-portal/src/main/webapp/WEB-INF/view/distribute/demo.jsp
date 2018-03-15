@@ -114,6 +114,18 @@
 	                </div>
 	            </li>
 	            <li>
+	                <a href="javascript:void(0);" class="li-child5-1">示例应用
+	                    <i></i>
+	                </a>
+	                <div class="li-child5">
+	                    <ul class="child5-li">
+	                        <li><a href="cando.html">点线面管理</a></li>
+	                        <li><a href="distribute/demo">智能分单示例</a></li>
+	                        <li><a href="distribute/free">免费智能分单</a></li>
+	                    </ul>
+	                </div>
+	            </li>
+	            <li>
 	                <a href="javascript:void(0);" data-container="body" data-toggle="popover" data-placement="right"
 	                   data-content="敬请期待！">意见反馈
 	                    <i></i>

@@ -82,6 +82,18 @@
                 </div>
             </li>
             <li>
+                <a href="javascript:void(0);" class="li-child5-1">示例应用
+                    <i></i>
+                </a>
+                <div class="li-child5">
+                    <ul class="child5-li">
+                        <li><a href="cando.html">点线面管理</a></li>
+                        <li><a href="distribute/demo">智能分单示例</a></li>
+                        <li><a href="distribute/free">免费智能分单</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
                 <a href="javascript:void(0);" data-container="body" data-toggle="popover" data-placement="right"
                    data-content="敬请期待！" class="come-soon">意见反馈
                     <i></i>
@@ -155,7 +167,7 @@
             <a href="news_list.html">平台公告</a>
         </li>
         <li class="footer-link-list-3">
-            <span>极图科技</span>
+            <span>地图慧</span>
             <a href="javascript:void(0);" data-container="body" data-toggle="popover" data-placement="left"
                data-content="敬请期待！">关于我们</a>
             <a href="javascript:void(0);" data-container="body" data-toggle="popover" data-placement="left"
@@ -176,7 +188,7 @@
             </div>
             <div class="link-img-box">
                 <img src="resource/img/dituhui.jpg"/>
-                <span>极图科技</span>
+                <span>地图慧</span>
             </div>
         </li>
     </ul>
@@ -184,7 +196,7 @@
 <!--footer-->
 <div class="footer">
     <p class="copyright">
-        Copyright © 2018 极图科技 京ICP备11032883号-5 京ICP证120611号 甲测资质1100363
+        Copyright © 2018地图慧 京ICP备11032883号-5 京ICP证120611号 甲测资质1100363
     </p>
 </div>
 </body>

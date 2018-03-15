@@ -15,7 +15,7 @@ $(function(){
                     if(item.property == 1){
                         list += '<a href="news_detail.html?id='+item.id+'" class="isNew">'+item.title+'</a>';
                     }else if(item.property == 2){
-                        list += '<a href="news_detail.html?id='+item.id+'" class="isNew">'+item.title+'<img src="resource/img/new.gif"></a>';
+                        list += '<a href="news_detail.html?id='+item.id+'" class="isNew">'+item.title+'<img src="resource/img/new.png"></a>';
                     }else if(item.property == 3){
                         list += '<a href="news_detail.html?id='+item.id+'" class="isNew">'+item.title+'<img src="resource/img/news_hot.gif"></a>';
                     }

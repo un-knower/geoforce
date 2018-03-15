@@ -21,7 +21,7 @@ $(function(){
                         if(itemGrandSon.status == 1){
                             html += '<li><a href="product.html?id='+itemGrandSon.id+'">'+itemGrandSon.apiName+'</a></li>';
                         }else if(itemGrandSon.status == 2){
-                            html += '<li><a href="product.html?id='+itemGrandSon.id+'">'+itemGrandSon.apiName+'<img src="resource/img/new.gif"/></a></li>';
+                            html += '<li><a href="product.html?id='+itemGrandSon.id+'">'+itemGrandSon.apiName+'<img src="resource/img/new.png"/></a></li>';
                         }else if(itemGrandSon.status == 3){
                             html += '<li><a href="product.html?id='+itemGrandSon.id+'">'+itemGrandSon.apiName+'<img src="resource/img/api_come_soon.png"/></a></li>';
                         }
@@ -74,6 +74,12 @@ $(function () {
         $(".li-child4").show();
     },function(){
         $(".li-child4").hide();
+    });
+    //我能做
+    $(".menu>li:nth-child(5)").hover(function(){
+        $(".li-child5").show();
+    },function(){
+        $(".li-child5").hide();
     });
 
 

@@ -125,12 +125,11 @@ h6{
     //左右切换
     .banner_change{
       width: 50px;
-      height: 50px;
-      background: #cccccc;
+      height: 95px;
       display: block;
       position: absolute;
       top: 50%;
-      margin-top: -25px;
+      margin-top: -50px;
       z-index: 9;
       display: none;
       //opacity: 0;
@@ -152,51 +151,34 @@ h6{
         display: block;
         background: #449df2;
         //第一个展示banner
-        .banner {
+        //banner_1
+        .banner_1{
           width: 100%;
           height: 670px;
-          //position: relative;
-          background-image: url("../img/banner-bg.jpg");
+          background-image: url("../img/index-banner-1.jpg");
           background-size: 100% 100%;
           background-position: top center;
-          overflow: hidden;
-          .banner-center {
-            .center;
-            .leftBar {
-              height: 200px;
-              margin-top: 250px;
-              margin-left: 50px;
-              h1 {
+          .banner1_center{
+            width: 1200px;
+            margin: 0 auto;
+            height: 670px;
+            position: relative;
+            .banner1_title{
+              position: absolute;
+              top: 140px;
+              left: 0;
+              width:1200px;
+              height: auto;
+              text-align: center;
+              h1{
+                font-size: 48px;
                 font-weight: 600;
-                font-size: 40px;
-              }
-              h3 {
-                margin-top: 10px;
-              }
-              h1,
-              h3 {
                 color: #ffffff;
               }
-              a {
-                display: block;
-                width: 132px;
-                height: 42px;
-                font-size: 16px;
-                text-align: center;
-                line-height: 40px;
-                border: 2px solid #ffffff;
-                .border-radius(5em);
+              h3{
+                font-size: 20px;
                 color: #ffffff;
-                margin-top: 30px;
-                &:hover {
-                  background: #ffffff;
-                  color: #449df2;
-                  transition: .5s;
-                }
               }
-            }
-            .rightBar {
-              line-height: 670px;
             }
           }
         }
@@ -294,7 +276,8 @@ h6{
                 &>img{
                   position: absolute;
                   padding-left: 5px;
-                  top: 7px;
+                  //top: 1px;
+                  top: 6px;
                 }
               //}
             }
@@ -426,10 +409,9 @@ h6{
   .solution {
     width: 100%;
     .page-height;
-    background-size: cover;
-    background: #00c6ff;
-    background: -webkit-linear-gradient(to top, #00c6ff, #0072ff);
-    background: linear-gradient(to top, #00c6ff, #0072ff);
+    background-image: url("../img/solution-bg.jpg");
+    background-size: 100% 100%;
+    background-position: top center;
     h5,
     h6 {
       color: #ffffff;

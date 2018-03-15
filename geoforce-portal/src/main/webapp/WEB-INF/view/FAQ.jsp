@@ -110,9 +110,9 @@
                 <p class="faq-question">Q:申请Web服务API服务需要注意什么？<span class="glyphicon glyphicon-plus"></span></p>
                 <div class="faq-answer">
                     <p>A:有两点需要注意:</p>
-                    <p>1、申请GeoforceWeb服务API，务必绑定IP白名单，否则会被我们系统识别为非法key，被自动封停。</p>
-                    <p>2、请各位合作伙伴注意：使用GeoforceWeb服务API，严禁做压力测试，如擅自做压力测试，系统立即会识别出来，并自动封停服务。由此引发的
-                        损失Geoforce概不负责。</p>
+                    <p>1、申请地图慧Web服务API，务必绑定IP白名单，否则会被我们系统识别为非法key，被自动封停。</p>
+                    <p>2、请各位合作伙伴注意：使用地图慧Web服务API，严禁做压力测试，如擅自做压力测试，系统立即会识别出来，并自动封停服务。由此引发的
+                        损失地图慧概不负责。</p>
                 </div>
             </div>
             <div class="faq-list">
@@ -139,9 +139,9 @@
                     <p>A:请提工单给我们，选择技术咨询 -> Web服务API，并提供如下信息：</p>
                     <p>1、接口的使用场景？（app-sdk 调用 或 客户服务器直接调用）</p>
                     <p>2、接口调用（超时/响应慢) 的 具体的影响面 或 特征 （哪些地区/运营商/集中的时间段）</p>
-                    <p>3、调用 Geoforce api 请求的源地址,（公网出口IP）</p>
+                    <p>3、调用 地图慧 api 请求的源地址,（公网出口IP）</p>
                     <p>4、用户机房所在地</p>
-                    <p>5、用户访问访问Geoforce服务超时时候的mtr结果以及ping结果</p>
+                    <p>5、用户访问访问地图慧服务超时时候的mtr结果以及ping结果</p>
                     <p>6、异常的url 、及错误提示等待</p>
                     <p>7、异常时间点(到秒)及 时间段用户的key</p>
                 </div>
@@ -175,7 +175,7 @@
             <a href="news_list.html">平台公告</a>
         </li>
         <li class="footer-link-list-3">
-            <span>Geoforce</span>
+            <span>地图慧</span>
             <a href="javascript:void(0);">关于我们</a>
             <a href="javascript:void(0);">加入我们</a>
             <a href="javascript:void(0);">意见反馈</a>
@@ -194,7 +194,7 @@
             </div>
             <div class="link-img-box">
                 <img src="resource/img/dituhui.jpg"/>
-                <span>Geoforce</span>
+                <span>地图慧</span>
             </div>
         </li>
     </ul>
@@ -202,7 +202,7 @@
 <!--footer-->
 <div class="footer">
     <p class="copyright">
-        版权所有@1997-2018 成都极图科技有限公司 京ICP备11032883号-1
+        版权所有@1997-2018 北京超图软件股份有限公司 京ICP备11032883号-1
     </p>
 </div>
 </body>

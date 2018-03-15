@@ -176,4 +176,9 @@ public class ViewController {
 	public String free() {
 		return "distribute/free";
 	}
+	
+	@RequestMapping("cando")
+    public String cando() {
+        return "cando";
+    }
 }

@@ -1,0 +1,150 @@
+@charset "utf-8";
+*{
+  margin: 0;
+  padding: 0;
+}
+a{
+  text-decoration: none;
+}
+li{
+  list-style: none;
+}
+.main{
+  width: 100%;
+  position: relative;
+  #map{
+    width: 100%;
+    height: 100%;
+  }
+  .toolBar{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 99;
+    .toolbox{
+      float: left;
+      min-width: 100px;
+      height: 35px;
+      padding:0 10px;
+      background: #ffffff;
+      border-radius: 3px;
+      border: 1px solid #eee;
+      box-shadow: 3px 3px 8px #ccc;
+      .toolbar-child{
+        float: left;
+        line-height: 35px;
+        cursor: pointer;
+        &:hover span,
+        &.active span{
+          color: #449df2;
+        }
+      }
+      i{
+        width: 1px;
+        height: 15px;
+        margin: 10px 10px;
+        display: block;
+        float: left;
+        border-right: 1px dashed #bbb;
+      }
+    }
+    .detail-act{
+      float: left;
+      min-width: 50px;
+      margin-left: 10px;
+      height: 35px;
+      padding:0 10px;
+      background: #ffffff;
+      border-radius: 3px;
+      border: 1px solid #eee;
+      box-shadow: 3px 3px 8px #ccc;
+      display:none;
+      span{
+        display: block;
+        float: left;
+        cursor: pointer;
+        line-height: 35px;
+      }
+      i{
+        width: 1px;
+        height: 15px;
+        margin: 10px 10px;
+        display: block;
+        float: left;
+        border-right: 1px dashed #bbb;
+      }
+    }
+  }
+}
+
+
+//画点、面的信息框样式
+.amap-info-contentContainer{
+  .amap-ui-infowindow-close{
+    color: #ffffff;
+    display: none;
+  }
+  .amap-ui-smp-ifwn-content-body{
+    border: none;
+    padding: 0;
+    h3{
+      background: #449df2;
+      padding:2px 5px 2px 2px;
+      strong{
+        font-weight: 100;
+        color: #ffffff;
+        line-height:28px;
+        padding-left: 3px;
+      }
+      #title{
+        float: left;
+      }
+      a{
+        float: right;
+        margin-left: 10px;
+        line-height: 28px;
+        color: #ffffff;
+        cursor: pointer;
+        &:hover{
+          color: #cccccc;
+        }
+      }
+    }
+    .amap-ui-infowindow-body{
+      label{
+        font-size: 12px;
+        line-height: 24px;
+      }
+      span{
+        width: 179px;
+      }
+      button{
+        width: 35px;
+        height: 24px;
+        line-height:24px;
+        font-size: 12px;
+        color: #333333;
+      }
+    }
+  }
+}
+//marker展示信息样式
+.amap-marker-label{
+  border: none;
+  box-shadow: 2px 2px 3px #ccc;
+}
+
+//面的marker标签的显示样式
+.my_color{
+  .amap-simple-marker-label{
+    position: relative;
+    span{
+      display: inline-block;
+      padding: 5px;
+      background: #449df2;
+      color: #ffffff;
+      font-size: 14px;
+      border-radius: 3px;
+    }
+  }
+}

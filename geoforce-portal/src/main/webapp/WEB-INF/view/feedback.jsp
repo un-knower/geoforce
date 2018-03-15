@@ -170,7 +170,7 @@
             <a href="news_list.html">平台公告</a>
         </li>
         <li class="footer-link-list-3">
-            <span>极图科技</span>
+            <span>地图慧</span>
             <a href="javascript:void(0);">关于我们</a>
             <a href="javascript:void(0);">加入我们</a>
             <a href="javascript:void(0);">意见反馈</a>
@@ -189,7 +189,7 @@
             </div>
             <div class="link-img-box">
                 <img src="resource/img/dituhui.jpg"/>
-                <span>极图科技</span>
+                <span>地图慧</span>
             </div>
         </li>
     </ul>
