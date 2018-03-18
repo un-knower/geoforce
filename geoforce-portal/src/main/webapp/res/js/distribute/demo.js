@@ -264,7 +264,7 @@ $(function() {
 	});
 	
 	$("#download").click(function() {
-		location.href = basePath + "resources/assets/template/template.xlsx";
+		location.href = basePath + "res/assets/template/template.xlsx";
 	});
 	
 	$("#upload").click(function() {
