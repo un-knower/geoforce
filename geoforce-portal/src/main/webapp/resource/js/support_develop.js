@@ -111,7 +111,7 @@ $(function(){
                     var dateTip = "最后更新时间为" + updateDate[0] + "年" + parseInt(updateDate[1]) + "月" + parseInt(updateDate[2]) + "日";
                     $(".refresh-time").html(dateTip);
                     demoDataRequest = data.requestPath;
-                    $("#address").next().html("http://restapi.dituhui.com/v1"+data.requestPath);
+                    $("#address").next().html("http://api.jituonline.com/v1"+data.requestPath);
 
                     //请求参数
                     var paraCols=[];
@@ -226,7 +226,7 @@ $(function(){
                     $("#returnTh").attr("colspan",max+1);
 
                     //运行示例
-                    $(".demoReqUrl").html("http://restapi.dituhui.com/v1"+data.requestPath+"?ak=您的ak");
+                    $(".demoReqUrl").html("http://api.jituonline.com/v1"+data.requestPath+"?ak=您的ak");
                     var serviceDemoReqHtml = "";
                     // console.log(data.requestParameters);
                     serviceDemoReqHtml += '<thead>'+
@@ -366,7 +366,7 @@ $(function(){
         // if($("#return-result").children("div")){
         //     $("#return-result").children("div").remove();
         // }
-        var url = "http://restapi.dituhui.com/v1"+demoDataRequest+"?ak=4e41c1eefa7946f4bab0b66ebc664d31";
+        var url = "http://api.jituonline.com/v1"+demoDataRequest+"?ak=4e41c1eefa7946f4bab0b66ebc664d31";
         var demoTr = $("#demoTr tr");
         for(var i = 0; i<demoTr.length;i++){
             var key = $(demoTr[i]).find("td:nth-child(1)").html();

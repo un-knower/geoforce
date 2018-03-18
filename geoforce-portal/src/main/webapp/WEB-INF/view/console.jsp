@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>控制台</title>
+    <title>极图|Geoforce 专业的企业级GIS云开放平台</title>
     <!-- SEO -->
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
     <!--图标-->
-    <link rel="shortcut icon" type="image/x-icon" href="http://www.dituhui.com/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="resource/img/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="resources/lib/bootstrap_3.3.5/css/bootstrap.min.css">
 

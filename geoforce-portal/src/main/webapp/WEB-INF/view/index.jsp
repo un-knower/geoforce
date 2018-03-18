@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <!--设置移动端-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <title>地图慧开放平台</title>
+    <title>极图|Geoforce 专业的企业级GIS云开放平台</title>
 
     <!--图标-->
-    <link rel="shortcut icon" type="image/x-icon" href="http://www.dituhui.com/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="resource/img/favicon.png">
     <!--引入公共样式文件-->
     <link rel="stylesheet" href="resource/css/normalize.css">
     <link rel="stylesheet" href="resource/lib/bootstrap/css/bootstrap.min.css">
@@ -24,7 +24,7 @@
 <div class="header">
     <div class="header-center">
         <div class="logo">
-            <a href="index.html"><img class="logo-img" src="resource/img/logo.png"/></a>
+            <a href="index.html"><img class="logo-img" src="resource/img/logo.png"/><span class="logo-span">极图·Geoforce</span></a>
         </div>
         <ul class="menu">
             <li>
@@ -127,8 +127,8 @@
                 <div class="banner_1">
                     <div class="banner1_center">
                         <div class="banner1_title">
-                            <h1>地图会开放平台正式上线</h1>
-                            <h3>企业&nbsp;&nbsp;专业&nbsp;&nbsp;GIS&nbsp;&nbsp;在线&nbsp;&nbsp;行业无关&nbsp;&nbsp;业务无关</h3>
+                            <h1>极图 · Geoforce正式上线</h1>
+                            <h3>专业面向所有行业的企业级云GIS开放平台</h3>
                         </div>
                         <a><img src="resource/img/index-banner1-center.png"/></a>
                     </div>
@@ -342,7 +342,7 @@
         <h6 class="home-h6">数字验证平台可靠性</h6>
         <div class="activity-content row">
             <div class="act-data col-md-6">
-                <h1 id="allNum">35234234223</h1>
+                <h1 id="allNum">8000</h1>
                 <h3>应用总数</h3>
             </div>
             <div class="act-data col-md-6">
@@ -478,7 +478,7 @@
             <a href="news_list.html">平台公告</a>
         </li>
         <li class="footer-link-list-3">
-            <span>地图慧</span>
+            <span>极图科技</span>
             <a href="javascript:void(0);" data-container="body" data-toggle="popover" data-placement="left"
                data-content="敬请期待！">关于我们</a>
             <a href="javascript:void(0);" data-container="body" data-toggle="popover" data-placement="left"
@@ -487,19 +487,14 @@
                data-content="敬请期待！">意见反馈</a>
         </li>
         <li class="footer-link-list-4">
-            <p>客服电话：400-966-1112</p>
-            <p>客服电话：028-67077202</p>
-            <p>地址：成都市高新区天府大道中段<br>
-                1366号天府软件园E区6幢6楼</p>
+            <p>咨询电话：18628102813</p>
+            <p>咨询电话：13518121873</p>
+            <p>咨询电话：18108083056</p>
+            <p>地址：成都市高新区世纪城南路216号天府软件园D区</p>
         </li>
         <li class="footer-link-list-5">
             <div class="link-img-box">
                 <img src="resource/img/weixin.png"/>
-                <span>微信公众号</span>
-            </div>
-            <div class="link-img-box">
-                <img src="resource/img/dituhui.jpg"/>
-                <span>地图慧</span>
             </div>
         </li>
     </ul>
@@ -507,7 +502,7 @@
 <!--footer-->
 <div class="footer">
     <p class="copyright">
-        Copyright <span id="console">©</span> 2018地图慧 京ICP备11032883号-5 京ICP证120611号 甲测资质1100363
+        Copyright <span id="console">©</span> 2018 成都极图科技有限公司 京ICP备XXXXXX号
     </p>
 </div>
 </body>

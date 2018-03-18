@@ -17,9 +17,11 @@
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	
+	<title>极图|Geoforce 专业的企业级GIS云开放平台</title>
+	
 	<base href="<%=basePath%>">
 	
-	<link rel="icon" href="http://v3.bootcss.com/favicon.ico">
+	<link rel="icon" href="resource/img/favicon.png">
 	
 	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
 	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -62,7 +64,7 @@
 	<div class="header">
 	    <div class="header-center">
 	        <div class="logo">
-	            <a href="index.html"><img class="logo-img" src="resource/img/logo.png"/></a>
+	            <a href="index.html"><img class="logo-img" src="resource/img/logo.png"/><span class="logo-span">极图·Geoforce</span></a>
 	        </div>
 	        <ul class="menu">
 	            <li>

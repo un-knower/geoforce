@@ -44,10 +44,15 @@ li {
 }
 .header .header-center .logo a {
   line-height: 60px;
+  margin-right: 30px;
 }
 .header .header-center .logo a .logo-img {
-  width: 115px;
-  margin-right: 30px;
+  margin-right: 10px;
+}
+.header .header-center .logo a .logo-span {  
+  color:#fff;
+  font-size: large;
+  font-weight: 600;
 }
 .header .header-center .menu {
   height: 60px;
