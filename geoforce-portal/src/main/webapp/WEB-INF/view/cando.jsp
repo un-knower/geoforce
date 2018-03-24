@@ -12,6 +12,7 @@
     <!--引入公共样式文件-->
     <link rel="stylesheet" href="resource/css/normalize.css">
     <link rel="stylesheet" href="resource/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resource/lib/bootstrap/css/bootoast.css">
     <link rel="stylesheet" href="resource/css/common.css">
 
     <link rel="stylesheet" href="resource/css/cando.css">
@@ -236,7 +237,7 @@
 <!--footer-->
 <div class="footer">
     <p class="copyright">
-        Copyright © 2018 成都极图科技有限公司 京ICP备XXXXXX号
+        Copyright © 2018 成都极图科技有限公司 蜀ICP备18007265号
     </p>
 </div>
 </body>
@@ -251,6 +252,8 @@
 <script src="resource/lib/bootstrap/js/bootstrap.min.js"></script>
 <!--bootbox插件-->
 <script src="resource/lib/bootstrap/js/bootbox.min.js"></script>
+<!--bootoast插件-->
+<script src="resource/lib/bootstrap/js/bootoast.js"></script>
 <!--滚动条插件-->
 <script src="resource/lib/scrollBar/js/scrollBar.js"></script>
 

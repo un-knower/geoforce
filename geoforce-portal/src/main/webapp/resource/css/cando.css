@@ -68,6 +68,9 @@ li {
   cursor: pointer;
   line-height: 35px;
 }
+.main .toolBar .detail-act span.active {
+  color: #449df2;
+}
 .main .toolBar .detail-act i {
   width: 1px;
   height: 15px;
@@ -124,15 +127,4 @@ li {
 .amap-marker-label {
   border: none;
   box-shadow: 2px 2px 3px #ccc;
-}
-.my_color .amap-simple-marker-label {
-  position: relative;
-}
-.my_color .amap-simple-marker-label span {
-  display: inline-block;
-  padding: 5px;
-  background: #449df2;
-  color: #ffffff;
-  font-size: 14px;
-  border-radius: 3px;
 }

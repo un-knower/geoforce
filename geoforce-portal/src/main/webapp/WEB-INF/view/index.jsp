@@ -502,7 +502,7 @@
 <!--footer-->
 <div class="footer">
     <p class="copyright">
-        Copyright <span id="console">©</span> 2018 成都极图科技有限公司 京ICP备XXXXXX号
+        Copyright <span id="console">©</span> 2018 成都极图科技有限公司 蜀ICP备18007265号
     </p>
 </div>
 </body>

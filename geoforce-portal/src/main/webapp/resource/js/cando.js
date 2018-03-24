@@ -3,14 +3,15 @@
  */
 var map;
 var currentMarker = null;//当前的标注
-var currentPolygon = null;//当前的面
-var prevPolygon;//前一个面对象
 var polygonMouseTool = null;//画面鼠标工具
-var polygonObjs = [];//面对象集合
+var overlayObjs = [];//覆盖物组数组
 var polygonEditor = null;//多边形编辑器
 var polygonTexts = [];//面对象的名称集合
 var polygonInfoWin = null;//面对象的信息窗体
 var hmStatus = 0;//画面选中的状态（0：未选中；1：表示选中）
+var mergeGon = [];//待合并面的集合
+var splitGon = null;//待拆分的面
+var ctrlStatus = 0;//ctrl键的状态
 
 //设置鼠标样式
 var setCursor = function(){
@@ -152,8 +153,11 @@ var showMarkerInfoWindow = function(marker,position,fun){
 
 /*面操作start*/
 //画面的信息窗体（参数有3个，当前显示窗体的对象、窗体显示的位置和地图事件方法）
-var showPolygonInfoWindow = function(polygonObj,position,mouseTool){
-    var _thisPolygon = polygonObj;
+var showOverlayInfoWindow = function(overlayObj,position,mouseTool){
+
+    var _thisOverlay = overlayObj;
+    var _thisPolygon = _thisOverlay.getOverlays()[_thisOverlay.getOverlays().length-1];
+
     var labelContent = _thisPolygon.getExtData();
 
     AMapUI.loadUI(['overlay/SimpleInfoWindow'], function(SimpleInfoWindow) {
@@ -181,25 +185,36 @@ var showPolygonInfoWindow = function(polygonObj,position,mouseTool){
         hmInfoWindow.open(map,position);
 
         //保存
-        function savePolygon(name,attr_name,status){
+        function saveOverlay(name,attr_name,status){
             if(name != "" && attr_name != ""){
                 hmInfoWindow.close();
                 _thisPolygon.setExtData({
                     content:name,
                     attr_name:attr_name
                 });
-                _thisPolygon.setOptions({
+                _thisOverlay.setOptions({
                     fillOpacity:"0.35"
                 });
 
                 if(status == 0){
-                    showPolygonText(_thisPolygon,name,mouseTool);
+                    showOverlayText(_thisOverlay,name,mouseTool);
                     removePolygonTool(mouseTool);
-                    // _thisPolygon.on('click',function(){
-                    //     polygonClick(_thisPolygon,mouseTool);
-                    // });
-                    _thisPolygon.on('click',function(){
-                       polygonClick(_thisPolygon);
+                    _thisOverlay.on('click',function(){
+                        if(ctrlStatus == 1){
+                            if(splitGon != null){
+                                mergeGon.push(splitGon);
+                            }
+                            if(mergeGon.length == 0){
+                                mergeGon.push(_thisOverlay);
+                            }else if(mergeGon.length<2){
+                                for(var i = 0;i<mergeGon.length;i++){
+                                    if(mergeGon[i] != _thisOverlay){
+                                        mergeGon.push(_thisOverlay);
+                                    }
+                                }
+                            }
+                        }
+                        overlayClick(_thisOverlay);
                     });
                 }
                 hmStatus = 0;
@@ -214,7 +229,7 @@ var showPolygonInfoWindow = function(polygonObj,position,mouseTool){
             var attr_name = $("#attr_name").val();
             //内容为空，为0
             var status = 0;
-            savePolygon(name,attr_name,status);
+            saveOverlay(name,attr_name,status);
         });
 
         //label内容不为空时的保存操作（即查看标注时的确定操作）
@@ -225,15 +240,14 @@ var showPolygonInfoWindow = function(polygonObj,position,mouseTool){
             var attr_name = $("#attr_name").html();
             //内容不为空，为1
             var status = 1;
-            savePolygon(name,attr_name,status);
+            saveOverlay(name,attr_name,status);
         });
 
         //取消
         function resetPolygon(){
-            _thisPolygon.setMap(null);
+            _thisOverlay.setMap(null);
             //删除最后一个对象
-            polygonObjs.pop();
-            currentPolygon = prevPolygon;
+            overlayObjs.pop();
             map.clearInfoWindow();
             removePolygonTool(mouseTool);
         }
@@ -244,7 +258,7 @@ var showPolygonInfoWindow = function(polygonObj,position,mouseTool){
         });
 
         //删除
-        function deletePolygon(){
+        function deleteOverlay(){
             bootbox.confirm({
                 title:"删除面",
                 closeButton:false,
@@ -262,16 +276,18 @@ var showPolygonInfoWindow = function(polygonObj,position,mouseTool){
                 callback: function(result){
                     /* result is a boolean; true = OK, false = Cancel*/
                     if (result == true){
-                        _thisPolygon.setMap(null);
+                        _thisOverlay.setMap(null);
                         hmInfoWindow.close();
                         if(polygonEditor != null){
-                            polygonEditor.close();
+                            for(var i = 0;i<polygonEditor.length;i++){
+                                polygonEditor[i].close();
+                            }
                         }
                         //删除面集合的当前对象
-                        for(var i = 0; i< polygonObjs.length;i++){
-                            if(polygonObjs[i] == _thisPolygon){
+                        for(var i = 0; i< overlayObjs.length;i++){
+                            if(overlayObjs[i] == _thisOverlay){
                                 //删除当前对象
-                                polygonObjs.splice(i,1);
+                                overlayObjs.splice(i,1);
                                 //删除当前面对象所对应的名称
                                 polygonTexts[i].setMap(null);
                                 polygonTexts.splice(i,1);
@@ -284,17 +300,27 @@ var showPolygonInfoWindow = function(polygonObj,position,mouseTool){
         //删除操作
         hmInfoWindow.get$InfoTitle().on('click',"#delete",function(e){
             e.stopPropagation();
-            deletePolygon();
+            deleteOverlay();
         });
 
         //编辑操作
+        /*面编辑工具对象*/
+        var polygonEditors = [];
         hmInfoWindow.get$InfoTitle().on('click',"#edit",function(e){
             e.stopPropagation();
             //构造折线编辑对象，并开启折线的编辑状态
-            map.plugin(["AMap.PolyEditor"],function(){
-                polygonEditor = new AMap.PolyEditor(map,_thisPolygon);
-                polygonEditor.open();
+            _thisOverlay.eachOverlay(function(overlay){
+                map.plugin(["AMap.PolyEditor"],function(){
+                    var polygonEditor = new AMap.PolyEditor(map,overlay);
+                    polygonEditor.open();
+                    polygonEditors.push(polygonEditor);
+                    _thisOverlay.on('click',function(){
+                        polygonEditor.close();
+                    });
+                });
             });
+
+            polygonEditor = polygonEditors;
 
             hmInfoWindow.setContent(
                 '<div class="amap-ui-smp-ifwn-container">'+
@@ -306,34 +332,34 @@ var showPolygonInfoWindow = function(polygonObj,position,mouseTool){
                 '<div class="amap-ui-smp-ifwn-combo-sharp"></div>'+
                 '</div>'
             );
-            _thisPolygon.on('click',function(){
-                polygonEditor.close();
-            });
             $("#save").click(function(){
                 var name = $("#name").val();
                 var attr_name = $("#attr_name").val();
-                for(var i = 0;i<polygonObjs.length;i++){
-                    if(polygonObjs[i] == _thisPolygon){
+                for(var i = 0;i<overlayObjs.length;i++){
+                    if(overlayObjs[i] == _thisOverlay){
                         polygonTexts[i].setText(name);
                     }
                 }
-                savePolygon(name,attr_name);
-                polygonEditor.close();
+                saveOverlay(name,attr_name);
+                for(var i = 0;i<polygonEditors.length;i++){
+                    polygonEditors[i].close();
+                }
+                polygonEditor = null;
             });
             $("#delete").click(function(){
-                deletePolygon();
+                deleteOverlay();
             });
         });
     });
 };
 
 //添加text
-var showPolygonText = function(polygon,name,mouseTool){
+var showOverlayText = function(polygon,name,mouseTool){
     var _thisPolygon = polygon;
     var textInfo;
     textInfo = new AMap.Text({
         map:map,
-        position:_thisPolygon.getBounds().getCenter(),
+        position:_thisPolygon.getOverlays()[_thisPolygon.getOverlays().length-1].getBounds().getCenter(),
     });
     textInfo.setText(name);
     textInfo.on('click',function(){
@@ -344,130 +370,174 @@ var showPolygonText = function(polygon,name,mouseTool){
 
 //取消画面操作（参数：鼠标画面工具对象）
 var removePolygonTool = function(mouseTool){
-    mouseTool.close();
-    var src = $("#hm").find("img").attr("src").split("_");
-    $("#hm").removeClass("active").find("img").attr("src",src[0]+".png");
-    polygonMouseTool = null;
-    $("#hm-act").hide();
-    //未选中"画面"
-    hmStatus = 0;
+    if(mouseTool){
+        mouseTool.close();
+        var src = $("#hm").find("img").attr("src").split("_");
+        $("#hm").removeClass("active").find("img").attr("src",src[0]+".png");
+        polygonMouseTool = null;
+        $("#hm-act").hide();
+        //未选中"画面"
+        hmStatus = 0;
+    }
 };
 
-//面的点击事件（参数是面对象）
-var textClick = function(polygon,mouseTool){
-    $("#hm-edit").show();
-    var polygonObj = polygon;
-    if(hmStatus == 0){
-        polygonObj.setOptions({
-            fillOpacity:"0.6"
-        });
-        showPolygonInfoWindow(polygonObj,[polygonObj.getPath()[0]['lng'],polygonObj.getPath()[0]['lat']],mouseTool);
+//text的点击事件（参数是面集合对象）
+var textClick = function(overlay,mouseTool){
+    if(splitGon == null && mergeGon.length == 0){
+        $("#hm-edit").hide();
+        var overlayObj = overlay;
+        if(hmStatus == 0){
+            overlayObj.setOptions({
+                fillOpacity:"0.35"
+            });
+            var position = overlayObj.getOverlays()[overlayObj.getOverlays().length-1].getPath()[0];
+            showOverlayInfoWindow(overlayObj,[position['lng'],position['lat']],mouseTool);
+        }
+    }
+};
 
-        for(var i = 0;i<polygonObjs.length;i++){
-            if(polygonObjs[i] != polygonObj){
-                polygonObjs[i].setOptions({
-                    fillOpacity:"0.35"
+//点击面（参数：当前待操作的面集合）
+var overlayClick = function(overlay){
+    if(hmStatus != 0){
+        return false;
+    }else{
+        if(polygonInfoWin.getIsOpen() == true){
+            polygonInfoWin.close();
+        }
+
+        if(polygonEditor != null){
+            for(var i = 0;i<polygonEditor.length;i++){
+                polygonEditor[i].close();
+            }
+        }
+        var _thisOverlay = overlay;
+        var _thisPolygon = _thisOverlay.getOverlays()[_thisOverlay.getOverlays().length-1];
+        if(hmStatus == 0){
+            $("#hm-edit").show();
+            //ctrl按下操作
+            if(ctrlStatus == 1){
+                for(var i = 0;i<mergeGon.length;i++){
+                    if(mergeGon[i] == _thisOverlay){
+                        if(_thisPolygon.getOptions().fillOpacity == "0.6" && mergeGon.length<2){
+                            _thisOverlay.setOptions({
+                                fillOpacity:"0.35"
+                            });
+                            mergeGon.splice(i,1);
+                        }else if(_thisPolygon.getOptions().fillOpacity == "0.35"){
+                            _thisOverlay.setOptions({
+                                fillOpacity:"0.6"
+                            });
+                        }
+                    }
+                }
+            }
+            //没有Ctrl操作
+            if(ctrlStatus == 0){
+                //把合并的面集合设置为空
+                mergeGon = [];
+                _thisOverlay.setOptions({
+                    fillOpacity:"0.6"
                 });
+                splitGon = _thisOverlay;
+                for(var i = 0;i<overlayObjs.length;i++){
+                    if(overlayObjs[i] != _thisOverlay){
+                        overlayObjs[i].setOptions({
+                            fillOpacity:"0.35"
+                        });
+                    }
+                }
             }
         }
     }
 };
 
-//点击面（参数：当前待拆分的面）
-var polygonClick = function(polygon){
-    var _thisPolygon = polygon;
-    if(hmStatus == 0){
-        $("#hm-edit").show();
-        //线拆分
-        var points = [];
-        $.each(_thisPolygon.getPath(),function(index,item){
-            points.push(item['lng']+','+item['lat']);
-        });
-        points.push(points[0]);
-        points = points.join(";");
-        $("#lineSplit").click(function(){
-            setCursor();
+var splitRegion = function(points,splitPoints,overlay){
 
-            map.plugin(["AMap.MouseTool"],function(){
-                var lineTool = new AMap.MouseTool(map);
-                lineTool.polyline(); //使用鼠标工具，在地图上画标记点
-                lineTool.on('draw',function(e){
-                    var splitPoints = [];
-                    var splitLineObj = e.obj;
-                    $.each(e.obj.getPath(),function(index,item){
-                        splitPoints.push(item['lng']+','+item['lat']);
-                    });
-                    splitPoints = splitPoints.join(";");
-                    map.setDefaultCursor();
-                    lineTool.close();
-
-                    splitRegion(points,splitPoints,_thisPolygon,splitLineObj);
-                });
-            });
-        });
-        //面拆分
-        $("#gonSplit").click(function(){
-            setCursor();
-
-            map.plugin(['AMap.MouseTool'],function(){
-               var gonTool = new AMap.MouseTool(map);
-               gonTool.polygon();
-               gonTool.on('draw',function(e){
-                   var splitPoints = [];
-                   var splitGonObj = e.obj;
-                   $.each(e.obj.getPath(),function(index,item){
-                       splitPoints.push(item['lng']+','+item['lat']);
-                   });
-                   splitPoints.push(splitPoints[0]);
-                   splitPoints = splitPoints.join(";");
-                   map.setDefaultCursor();
-                   gonTool.close();
-
-                   splitRegion(points,splitPoints,_thisPolygon,splitGonObj);
-               });
-            });
-        });
-    }
-};
-
-var splitRegion = function(points,splitPoints,polygon,polyline){
-
-    var _thisPolygon = polygon;
-    var _thisPolyline = polyline;
-    console.log(points);
-    console.log(splitPoints);
+    var _thisOverlay = overlay;
     $.ajax({
-        url:"http://172.16.14.110/gateway/geocalculator/splitRegion?ak=11",
+        url:"http://api.jituonline.com/v1/geocalculator/splitRegion?ak=9291cae6d60d4275b718100787dc73c1",
         dataType:"jsonp",
         jsonp:"callback",
         data:{
             "points":points,
             "splitPoints":splitPoints,
-            "coordType":"gcj02ll"
+            // "coordType":"gcj02ll"
         },
         success:function(e){
-            console.log(e.result);
-            console.log(e);
             //返回成功
-            if(e && e.info == "OK"){
-                for(var i = 0;i<polygonObjs.length;i++){
-                    if(polygonObjs[i] == _thisPolygon){
-                        polygonObjs[i].setMap(null);
-                        polygonObjs.splice(i,1);
+            if(e && e.info == "OK" && e.result.region1.parts.length != 0){
+                for(var i = 0;i<overlayObjs.length;i++){
+                    if(overlayObjs[i] == _thisOverlay){
+                        overlayObjs[i].setMap(null);
+                        overlayObjs.splice(i,1);
                         polygonTexts[i].setMap(null);
                         polygonTexts.splice(i,1);
                     }
                 }
-                _thisPolyline.setMap(null);
                 $.each(e.result,function(indexGrandPa,itemGrandPa){
                     if(itemGrandPa != true){
                         var pathArr = [];
-                        $.each(itemGrandPa.points,function(indexFather,itemFather){
+                        var polygonArr = [];
+                        $.each(itemGrandPa['points'],function(indexFather,itemFather){
                             pathArr.push([itemFather.x,itemFather.y]);
                         });
-                        drawPolygon(pathArr);
+
+                        if(itemGrandPa['parts'].length>0){
+                            for(var i = 0;i<itemGrandPa['parts'].length;i++){
+                                polygonArr[i] = pathArr.splice(0,itemGrandPa['parts'][i]);
+                            }
+                        }
+                        drawPolygon(indexGrandPa,polygonArr);
                     }
                 });
+                splitGon = null;
+            }
+        }
+    });
+
+};
+
+//合并面
+var unionGon = function(points,unionPoints,overlayObj1,overlayObj2){
+    $.ajax({
+        url:"http://api.jituonline.com/v1/geocalculator/union?ak=9291cae6d60d4275b718100787dc73c1",
+        dataType:"jsonp",
+        jsonp:"callback",
+        data:{
+            points:points,
+            unionPoints:unionPoints,
+            // coordType:"gcj02ll"
+        },
+        success:function(e){
+            if(e && e.info == "OK" && e.result){
+                var pathArr = [];
+                var polygonArr = [];
+
+                $.each(e.result.points,function(index,item){
+                    pathArr.push([item.x,item.y]);
+                });
+                if(e.result['parts'].length>0){
+                    for(var i = 0;i<e.result['parts'].length;i++){
+                        polygonArr[i] = pathArr.splice(0,e.result['parts'][i]);
+                    }
+                }
+
+                for(var i = 0;i<overlayObjs.length;i++){
+                    if(overlayObjs[i] == overlayObj1 || overlayObjs[i] == overlayObj2){
+                        polygonTexts[i].setMap(null);
+                    }
+                }
+                overlayObj1.setMap(null);
+                overlayObj2.setMap(null);
+                drawPolygon(0,polygonArr);
+            }else{
+                overlayObj1.setOptions({
+                    fillOpacity:"0.35"
+                });
+                overlayObj2.setOptions({
+                    fillOpacity:"0.35"
+                });
+                mergeGon = [];
             }
         }
     });
@@ -477,16 +547,97 @@ var splitRegion = function(points,splitPoints,polygon,polyline){
 /****
  *param:pathArr(路径参数)
  ****/
-var drawPolygon = function(pathArr){
-    var  polygon = new AMap.Polygon({
-        path: pathArr,//设置多边形边界路径
-        strokeColor: "#1791fc", //线颜色
-        strokeOpacity: 0.9, //线透明度
-        strokeWeight: 3,    //线宽
-        fillColor: "#1791fc", //填充色
-        fillOpacity: 0.35//填充透明度
+var drawPolygon = function(index,pathArr){
+    mergeGon = [];
+    splitGon = null;
+    //定义覆盖物集合
+    var overlayGroup = new AMap.OverlayGroup();
+    var position;
+    for(var i = 0;i<pathArr.length;i++){
+        var polygon = new AMap.Polygon({
+            path: pathArr[i],//设置多边形边界路径
+            strokeOpacity: 0.9, //线透明度
+            strokeWeight: 2,    //线宽
+            fillOpacity: 0.35,//填充透明度
+
+            strokeColor: '#1791fc', //线颜色
+            fillColor: "#1791fc", //填充色
+        });
+
+        if(i == pathArr.length-1) {
+            position = polygon.getBounds().getCenter();
+            if(index == "region1"){
+                polygon.setExtData({
+                    content:"区划1",
+                    attr_name:"区划1"
+                });
+            }
+            if(index == "region2"){
+                polygon.setExtData({
+                    content:"区划2",
+                    attr_name:"区划2"
+                });
+            }
+            if(index == 0){
+                polygon.setExtData({
+                    content:"区划0",
+                    attr_name:"区划0"
+                });
+            }
+        }
+        overlayGroup.addOverlay(polygon);
+    }
+    if(index == "region1"){
+        var textInfo = new AMap.Text({
+            map:map,
+            position:position,
+            text:"区划1"
+        });
+        textInfo.on('click',function(){
+            textClick(overlayGroup);
+        });
+        polygonTexts.push(textInfo);
+    }else if(index == "region2"){
+        var textInfo = new AMap.Text({
+            map:map,
+            position:position,
+            text:"区划2"
+        });
+        textInfo.on('click',function(){
+            textClick(overlayGroup);
+        });
+        polygonTexts.push(textInfo);
+    }else if(index == 0){
+        var textInfo = new AMap.Text({
+            map:map,
+            position:position,
+            text:"区划0"
+        });
+        textInfo.on('click',function(){
+            textClick(overlayGroup);
+        });
+        polygonTexts.push(textInfo);
+    }
+    overlayGroup.on('click',function(){
+        if(ctrlStatus == 1){
+            if(splitGon != null){
+                mergeGon.push(splitGon);
+            }
+            if(mergeGon.length == 0){
+                mergeGon.push(overlayGroup);
+            }else if(mergeGon.length<2){
+                for(var i = 0;i<mergeGon.length;i++){
+                    if(mergeGon[i] != overlayGroup){
+                        mergeGon.push(overlayGroup);
+                    }
+                }
+            }
+        }
+        overlayClick(overlayGroup);
     });
-    polygon.setMap(map);
+    overlayObjs.push(overlayGroup);
+    overlayGroup.setMap(map);
+
     $("#hm-edit").hide();
 }
 /*面操作end*/
@@ -518,8 +669,10 @@ $(function(){
         //如果不是画面操作，polygonMouseTool的内容注销并设置为初始值null
         if(id != "hm"){
             //清空面集合中的数据，清空面名称的数据
-            polygonObjs = [];
+            overlayObjs = [];
             polygonTexts = [];
+            mergeGon = [];
+            splitGon = null;
             if(polygonEditor != null){
                 polygonEditor = null;
             }
@@ -617,8 +770,15 @@ $(function(){
         }
         $("#hd-act").hide();
         var mousetool;
-        if(polygonMouseTool == null){
+        if(polygonMouseTool == null && $("#hm-edit span.active").length == 0){
             if(polygonInfoWin == null || polygonInfoWin.getIsOpen() == false){
+                mergeGon = [];
+                splitGon = null;
+                for(var i = 0;i<overlayObjs.length;i++){
+                    overlayObjs[i].setOptions({
+                        fillOpacity:"0.35"
+                    });
+                }
                 hmStatus = 1;
                 $("#hm-act").show();
                 $("#hm-edit").hide();
@@ -633,19 +793,14 @@ $(function(){
 
                         var polygonObj = e.obj;
 
+                        var overlayGroup = new AMap.OverlayGroup(polygonObj);
                         //将画完的数组对象存入面集合中
-                        polygonObjs.push(polygonObj);
+                        overlayObjs.push(overlayGroup);
 
-                        //如果当前的面对象不为空，保存下来，在清空当前所画的面之后，重新赋值
-                        if(currentPolygon != null){
-                            prevPolygon = currentPolygon;
-                        }
-
-                        currentPolygon = polygonObj;
                         var position = [polygonObj.getPath()[0]['lng'],polygonObj.getPath()[0]['lat']];
 
-                        showPolygonInfoWindow(polygonObj,position,mousetool);
-
+                        overlayGroup.setMap(map);
+                        showOverlayInfoWindow(overlayGroup,position,mousetool);
                         mousetool.close();
                         map.setDefaultCursor();
                     });
@@ -654,4 +809,191 @@ $(function(){
         }
     });
     /*画面end*/
+
+    /*面的拆分合并*/
+    $("#lineSplit").click(function(){
+        if($("#hm-edit span.active").length == 0 && mergeGon.length != 2){
+            if(splitGon != null){
+                //线拆分
+                /* *
+                * *parts:复合面的组成部分
+                * *points:每个复合面的组成路径
+                * *overlayPoints:传入后台的待拆分的面参数
+                * */
+                var parts = [];
+                var points = [];
+                var overlayPoints = [];
+                splitGon.eachOverlay(function (overlay) {
+                    var point = [];
+                    $.each(overlay.getPath(),function(i,item){
+                        point.push(item['lng']+','+item['lat']);
+                    });
+                    if(point[0] != point[point.length-1]){
+                        point.push(point[0]);
+                    }
+                    for(var i = 0;i<point.length;i++){
+                        points.push(point[i]);
+                    }
+                    parts.push(point.length);
+                });
+                overlayPoints.push(parts.join(','));
+                overlayPoints.push(points.join(';'));
+                overlayPoints = overlayPoints.join('^');
+
+                var that = $(this);
+                that.addClass("active").siblings().removeClass("active");
+                setCursor();
+
+                map.plugin(["AMap.MouseTool"],function(){
+                    var lineTool = new AMap.MouseTool(map);
+                    lineTool.polyline(); //使用鼠标工具，在地图上画标记点
+                    lineTool.on('draw',function(e){
+                        var splitPoints = [];
+                        $.each(e.obj.getPath(),function(index,item){
+                            splitPoints.push(item['lng']+','+item['lat']);
+                        });
+                        splitPoints = splitPoints.join(";");
+                        map.setDefaultCursor();
+
+                        splitRegion(overlayPoints,splitPoints,splitGon);
+                        lineTool.close(true);
+                        that.removeClass("active");
+                    });
+                });
+            }
+        }else{
+            bootoast({
+                message: '请选择待拆分的面！',
+                type: 'danger',
+                icon: 'remove-circle',
+                position: 'top',
+                timeout: 3,
+                dismissable:'false'
+            });
+        }
+    });
+    //面拆分
+    $("#gonSplit").click(function(){
+        if($("#hm-edit span.active").length == 0 && mergeGon.length != 2){
+            if(splitGon != null) {
+                //面拆分
+                /* *
+                 * *parts:复合面的组成部分
+                 * *points:每个复合面的组成路径
+                 * *overlayPoints:传入后台的待拆分的面参数
+                 * */
+                var parts = [];
+                var points = [];
+                var overlayPoints = [];
+                splitGon.eachOverlay(function (overlay) {
+                    var point = [];
+                    $.each(overlay.getPath(),function(i,item){
+                        point.push(item['lng']+','+item['lat']);
+                    });
+                    if(point[0] != point[point.length-1]){
+                        point.push(point[0]);
+                    }
+                    for(var i = 0;i<point.length;i++){
+                        points.push(point[i]);
+                    }
+                    parts.push(point.length);
+                });
+                overlayPoints.push(parts.join(','));
+                overlayPoints.push(points.join(';'));
+                overlayPoints = overlayPoints.join('^');
+
+                var that = $(this);
+                that.addClass("active").siblings().removeClass("active");
+                setCursor();
+
+                map.plugin(['AMap.MouseTool'], function () {
+                    var gonTool = new AMap.MouseTool(map);
+                    gonTool.polygon();
+                    gonTool.on('draw', function (e) {
+                        var splitPoints = [];
+                        $.each(e.obj.getPath(), function (index, item) {
+                            splitPoints.push(item['lng'] + ',' + item['lat']);
+                        });
+                        splitPoints.push(splitPoints[0]);
+                        splitPoints = splitPoints.join(";");
+                        map.setDefaultCursor();
+
+                        splitRegion(overlayPoints, splitPoints, splitGon);
+                        gonTool.close(true);
+                        that.removeClass("active");
+                    });
+                });
+            }
+        }
+    });
+    //面合并
+    $("#merge").click(function(){
+        if($("#hm-edit span.active").length == 0){
+            if(mergeGon.length == 2){
+                var that = $(this);
+                that.addClass("active").siblings().removeClass("active");
+
+                //需要合并的第一个面
+                var points = [];
+                var parts1 = [];
+                var overlay = [];
+                //需要合并的第二个面
+                var unionPoints = [];
+                var parts2 = [];
+                var unionOverlay = [];
+
+                //第一个面
+                mergeGon[0].eachOverlay(function(overlay){
+                    var point = [];
+                    $.each(overlay.getPath(),function(i,item){
+                        point.push(item['lng']+','+item['lat']);
+                    });
+                    if(point[0] != point[point.length-1]){
+                        point.push(point[0]);
+                    }
+                    parts1.push(point.length);
+                    for(var i = 0;i<point.length;i++){
+                        points.push(point[i]);
+                    }
+                });
+
+                overlay.push(parts1.join(','));
+                overlay.push(points.join(';'));
+                overlay = overlay.join('^');
+
+                //第二个面
+                mergeGon[1].eachOverlay(function(overlay){
+                    var point = [];
+                    $.each(overlay.getPath(),function(i,item){
+                        point.push(item['lng']+','+item['lat']);
+                    });
+                    if(point[0] != point[point.length-1]){
+                        point.push(point[0]);
+                    }
+                    parts2.push(point.length);
+                    for(var i = 0;i<point.length;i++){
+                        unionPoints.push(point[i]);
+                    }
+                });
+
+                unionOverlay.push(parts2.join(','));
+                unionOverlay.push(unionPoints.join(';'));
+                unionOverlay = unionOverlay.join('^');
+
+                unionGon(overlay,unionOverlay,mergeGon[0],mergeGon[1]);
+                mergeGon = [];
+                that.removeClass("active");
+            }
+        }
+    });
+    window.document.onkeydown = function(){
+        if (window.event.keyCode == 17) {
+            ctrlStatus = 1;
+        }
+    };
+    window.document.onkeyup = function(){
+        if (window.event.keyCode == 17) {
+            ctrlStatus = 0;
+        }
+    };
 });
