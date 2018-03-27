@@ -5,7 +5,7 @@ $(function(){
 
     var id = UrlParm.parm("id");
     $.ajax({
-        url:BASE_PATH + "announce/findById/" + id,
+        url:"announce/findById/" + id,
         // url:BASE_PATH + "announce/findById/",
         success:function(json){
             var data = json.result.data;

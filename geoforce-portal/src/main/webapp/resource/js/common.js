@@ -3,11 +3,11 @@
  */
 
 // var BASE_PATH = "http://192.168.10.252:8082/portal/";
-var BASE_PATH = "/portal/";
+//var BASE_PATH = "/portal/";
 //页面渲染
 $(function(){
     $.ajax({
-        url:BASE_PATH + "groupSet/findColumn",
+        url:"groupSet/findColumn",
         success:function(json){
             var data = json.result.data;
             var html = "";

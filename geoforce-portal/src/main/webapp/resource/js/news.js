@@ -7,7 +7,7 @@ $(function(){
     var page = 1;
     var newsList = function(first,size){
         $.ajax({
-            url:BASE_PATH + "announce/query?first="+first+"&size=",
+            url:"announce/query?first="+first+"&size=",
             async:false,
             success:function(json){
                 var data = json.result.data;

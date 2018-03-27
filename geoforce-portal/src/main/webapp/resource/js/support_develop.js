@@ -6,7 +6,7 @@ $(function(){
     var demoDataRequest;
     var getMenu = function(hrefID){
         $.ajax({
-            url:BASE_PATH + "groupSet/findAll",
+            url:"groupSet/findAll",
             async:false,
             success:function(json){
                 var data = json.result.data;
@@ -65,7 +65,7 @@ $(function(){
 
     var getContent = function(apiID){
         $.ajax({
-            url:BASE_PATH + "api/findOne/" + apiID,
+            url:"api/findOne/" + apiID,
             async:false,
             success:function(json){
                 if(json){

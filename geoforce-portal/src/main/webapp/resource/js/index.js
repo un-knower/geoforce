@@ -4,7 +4,7 @@
 //渲染页面
 $(function(){
     $.ajax({
-        url:BASE_PATH + "announce/query?first=0&size=",
+        url:"announce/query?first=0&size=",
         // async:false,
         success:function(json){
             var data = json.result.data;
@@ -27,7 +27,7 @@ $(function(){
     });
 
     $.ajax({
-        url:BASE_PATH + "groupSet/findAll",
+        url:"groupSet/findAll",
         // async:false,
         success:function(json){
             var data = json.result.data;
@@ -42,14 +42,14 @@ $(function(){
                     html += '<li class="pro-father">'+
                                 '<div class="pro-son">'+
                                     '<div class="img-box">'+
-                                    '<img src="'+ BASE_PATH + item.imageUrl +'"/>'+
+                                    '<img src="'+ item.imageUrl +'"/>'+
                                     '<p>'+item.groupName+'</p>'+
                                     '<span>'+item.description+'</span>'+
                                     '</div>'+
                                 '</div>'+
                                 '<div class="pro-son-h">'+
                                     '<p>'+item.groupName+'</p>'+
-                                    '<img src="'+ BASE_PATH + item.imageUrl +'"/>'+
+                                    '<img src="'+ item.imageUrl +'"/>'+
                                     '<a href="product.html?id='+item.apis[0].id+'">查看详情</a>'+
                                 '</div>'+
                             '</li>';
@@ -341,7 +341,7 @@ $(function(){
 //console
 $(function(){
    $("#console").click(function(){
-       $(location).attr('href','/portal/u/login');
+       $(location).attr('href','u/login');
        // window.location.href = "u/login";
    });
 });

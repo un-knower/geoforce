@@ -2,9 +2,9 @@
  * Created by zr on 2018/1/29.
  */
 $(function(){
-    var BASE_PATH = "http://192.168.10.252:8082/portal/";
+    //var BASE_PATH = "http://192.168.10.252:8082/portal/";
     $.ajax({
-        url:BASE_PATH + "groupSet/findAll",
+        url:"groupSet/findAll",
         async:false,
         success:function(json){
             var data = json.result.data;
