@@ -37,15 +37,14 @@ public class ImageController {
         }
     }
 
-    //格式 根目录 + 类型 + 年 + 月 + 文件名称
-    @RequestMapping(value = "imagesAssets/{year}/{month}/{name}.{suffix}")
+    //格式 根目录 + 年月 + 文件名称
+    @RequestMapping(value = "imagesAssets/{yearAndMonth}/{name}.{suffix}")
     public void images(HttpServletResponse response,
-                       @PathVariable("year") String year,
-                       @PathVariable("month") String month,
+                       @PathVariable("yearAndMonth") String yearAndMonth,
                        @PathVariable("name") String name,
                        @PathVariable("suffix") String suffix) {
         try {
-            String path = year + "/" + month + "/" + name;
+            String path = yearAndMonth + "/" + name;
             File image = new File(Constant.BASE_PATH + "/" + path + "." + suffix);
             FileInputStream inputStream = new FileInputStream(image);
             int length = inputStream.available();
