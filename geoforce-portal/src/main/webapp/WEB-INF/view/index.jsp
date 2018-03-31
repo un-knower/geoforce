@@ -361,8 +361,8 @@
                     <div class="shade">
                         <div class="shadeChild">
                             <a>
-                                <h4>美的</h4>
-                                <p>大型综合性现代化企业集团</p>
+                                <h4>澳柯玛</h4>
+                                <p>世界知名制冷装备供应商</p>
                             </a>
                         </div>
                     </div>
@@ -372,8 +372,8 @@
                     <div class="shade">
                         <div class="shadeChild">
                             <a>
-                                <h4>日日顺</h4>
-                                <p>海尔集团旗下综合服务品牌</p>
+                                <h4>渤海银行</h4>
+                                <p>一家全国性的股份制商业银行</p>
                             </a>
                         </div>
                     </div>
@@ -383,8 +383,8 @@
                     <div class="shade">
                         <div class="shadeChild">
                             <a>
-                                <h4>海尔</h4>
-                                <p>全球大型家电第一品牌</p>
+                                <h4>朝宏网</h4>
+                                <p>帮助同城实体商家、企业拥有市场竞争力</p>
                             </a>
                         </div>
                     </div>
@@ -394,8 +394,8 @@
                     <div class="shade">
                         <div class="shadeChild">
                             <a>
-                                <h4>安得物流</h4>
-                                <p>国内最早开展现代物流集成化管理的物流公司</p>
+                                <h4>车享家</h4>
+                                <p>车享旗下连锁实体服务网络，致力于成为用户身边的爱车好管家</p>
                             </a>
                         </div>
                     </div>
@@ -405,8 +405,8 @@
                     <div class="shade">
                         <div class="shadeChild">
                             <a>
-                                <h4>宅急送</h4>
-                                <p>网络已覆盖全国地级以上城市的物流公司</p>
+                                <h4>华宇物流</h4>
+                                <p>国际最具实力全球连锁搬家品牌</p>
                             </a>
                         </div>
                     </div>
@@ -416,8 +416,8 @@
                     <div class="shade">
                         <div class="shadeChild">
                             <a>
-                                <h4>全峰快递</h4>
-                                <p>主要经营国际、国内快递及相关业务的服务型企业</p>
+                                <h4>佳怡</h4>
+                                <p>为客户提供物流与供应链一体化服务的综合性物流企业集团</p>
                             </a>
                         </div>
                     </div>
@@ -427,8 +427,8 @@
                     <div class="shade">
                         <div class="shadeChild">
                             <a>
-                                <h4>东风万邦快递</h4>
-                                <p>向客户提供专业的高品质的上海同城即时快递服务</p>
+                                <h4>龙邦快运</h4>
+                                <p>一家以物流供应链管理为核心的创新型平台企业</p>
                             </a>
                         </div>
                     </div>
@@ -438,8 +438,8 @@
                     <div class="shade">
                         <div class="shadeChild">
                             <a>
-                                <h4>龙邦物流</h4>
-                                <p>主要经营国际、国内快递货运业务的物流公司</p>
+                                <h4>新邦物流</h4>
+                                <p>国家AAAAA级综合型物流企业</p>
                             </a>
                         </div>
                     </div>
@@ -490,7 +490,7 @@
             <p>咨询电话：18628102813</p>
             <p>咨询电话：13518121873</p>
             <p>咨询电话：18108083056</p>
-            <p>地址：成都市高新区世纪城南路216号天府软件园D区</p>
+            <p>地址：成都市高新区天晖路360号3楼7号</p>
         </li>
         <li class="footer-link-list-5">
             <div class="link-img-box">

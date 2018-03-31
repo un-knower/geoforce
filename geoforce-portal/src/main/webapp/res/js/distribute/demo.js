@@ -211,7 +211,7 @@ var reset = function() {
 	
 	map.setZoomAndCenter(15, [104.065735,30.659462]);
 	
-	$("#address").val("");;
+	$("#address").val("");
 	
 	$("#result").text("无");
 	$("#result").removeClass("result");
@@ -251,8 +251,9 @@ $(function() {
 	$("#address").bind("keypress",function(event) {
 		if(event.keyCode == "13") {
 			singleDistribute($("#address").val());
+			return false;
 		}
-		return false;
+		return true;
 	});
 	
 	$("#singleDistribute").click(function() {

@@ -305,8 +305,9 @@ $(function() {
 	$("#address").bind("keypress",function(event) {
 		if(event.keyCode == "13") {
 			singleDistribute($("#address").val());
+			return false;
 		}
-		return false;
+		return true;
 	});
 	
 	$("#singleDistribute").click(function() {
